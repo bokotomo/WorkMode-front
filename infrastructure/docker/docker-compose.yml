@@ -1,0 +1,13 @@
+version: "3.7"
+services:
+    work-mode-front:
+      build:
+        context: .
+        dockerfile: Dockerfile
+      container_name: "work-mode"
+      volumes:
+        - ../../:/src
+      tty: true
+      expose:
+        - 80
+      privileged: true
