@@ -43,7 +43,7 @@ const styleTitle = {
 
 const styleTitleLeft = {
     flex: "0 1 60px",
-    padding: 15,
+    padding: "15px 0",
     background: "#0000006b",
     lineHeight: "60px",
     fontSize: 20,
@@ -67,7 +67,7 @@ export const TaskBoard: React.FC<Props> = props => {
         <div style={style}>
             <div style={styleLeft}>
                 <div style={styleTitleLeft}>
-                    やること
+                    <div style={{ textAlign: "center" }}>やること</div>
                 </div>
                 <div style={styleTackCardWrapper}>
                     <TackCard />
@@ -80,12 +80,12 @@ export const TaskBoard: React.FC<Props> = props => {
             </div>
             <div style={style2}>
                 <div style={styleTitle}>
-                    実行中
+                    <div style={{ textAlign: "center" }}>実行中</div>
                 </div>
             </div>
             <div style={style1}>
                 <div style={styleTitle}>
-                    完了したこと
+                    <div style={{ textAlign: "center" }}>完了したこと</div>
                 </div>
             </div>
         </div>

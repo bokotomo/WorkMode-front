@@ -63,7 +63,7 @@ export const MessageBoard: React.FC<Props> = props => {
                 </div>
                 <div style={styleRoomCreateWrapper}>
                     <div style={styleRoomCreate}>
-                        +
+                        <div style={{ textAlign: "center" }}>+</div>
                     </div>
                 </div>
             </div>
