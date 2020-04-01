@@ -3,7 +3,7 @@ import React from 'react'
 interface OwnProps { }
 
 const style = {
-    background: "#677182",
+    background: "#3e547a",
     height: "1px",
 };
 

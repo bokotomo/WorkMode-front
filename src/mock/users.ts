@@ -8,11 +8,11 @@ const users = [
         userColor: "#34D05E",
     },
     {
-        userName: "fege",
+        userName: "山田太郎",
         userColor: "#8A29AD",
     },
     {
-        userName: "boko",
+        userName: "まっつー",
         userColor: "#D3402E",
     },
 ];

@@ -1,4 +1,5 @@
 import React from 'react'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { MessageLineBar } from '../atom/MessageLineBar';
 import { MessageUserList } from '../molecules/MessageUserList';
 import { MessageTaskProgress } from '../molecules/MessageTaskProgress';
@@ -15,12 +16,13 @@ const style = {
 
 const style2 = {
     display: "flex",
-    padding: "20px",
+    height: 40,
+    padding: "20px 20px",
 };
 
 const styleRoom = {
     background: "linear-gradient(125deg, #66B7FF, #0052de)",
-    padding: "15px 10px 15px 20px",
+    padding: "7px 10px 7px 20px",
     borderRadius: "5px",
     fontWeight: 800,
 };
@@ -48,23 +50,48 @@ const styleRoomButton = {
     padding: "0px 10px",
 }
 
+const styleSelect = {
+    background: "none",
+    width: "100%",
+    height: "100%",
+    border: "none",
+    color: "white",
+    cursor: "pointer",
+    fontWeight: 600,
+    fontSize: 14,
+}
+
 type Props = OwnProps
 export const MessageBoard: React.FC<Props> = props => {
     return (
         <div style={style}>
             <div style={style2}>
                 <div style={styleRoom}>
-                    <span>
-                        エンジニアもくもく会
-                    </span>
-                    <span style={styleRoomButton}>
-                        V
-                    </span>
+                    <select style={styleSelect}>
+                        <option value="">エンジニアもくもく会</option>
+                        <option value="">初心者エンジニア</option>
+                        <option value="">センター試験勉強</option>
+                        <option value="">読書会</option>
+                        <option value="">ゲームクリエイター</option>
+                    </select>
+                    {/* <span style={styleRoomButton}>
+                        <FontAwesomeIcon icon="caret-down" />
+                    </span> */}
                 </div>
+
                 <div style={styleRoomCreateWrapper}>
                     <div style={styleRoomCreate}>
-                        <div style={{ textAlign: "center" }}>+</div>
+                        <FontAwesomeIcon icon="plus" />
                     </div>
+                </div>
+
+                <div style={{
+                    cursor: "pointer",
+                    fontSize: 26,
+                    color: "#f9c929",
+                    marginLeft: 10,
+                }}>
+                    <FontAwesomeIcon icon="moon" />
                 </div>
             </div>
             <MessageLineBar />

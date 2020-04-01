@@ -27,18 +27,23 @@ export const MessageTaskProgress: React.FC<Props> = props => {
                                 height: 50,
                                 background: message.userColor,
                                 borderRadius: 50,
+                                cursor: "pointer",
                             }
                         } />
                     </div>
 
                     <div>
                         <div>
-                            {message.userName} {message.time}
+                            <span style={
+                                {
+                                    cursor: "pointer",
+                                }
+                            } >{message.userName}</span> {message.time}
                         </div>
                         <div>
-                            タスク：{message.title}
+                            {message.title}
                             {message.status === "done" ? 'が完了しました。' : ''}
-                            {message.status === "run" ? 'を実行中' : ''}
+                            {message.status === "run" ? 'を実行中。' : ''}
                         </div>
                         <div>
                             進捗率 {message.progress}%

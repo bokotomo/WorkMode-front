@@ -1,6 +1,9 @@
 import React from 'react';
 
-interface OwnProps { }
+interface OwnProps {
+    title: string
+    time: number
+}
 
 const styleCard = {
     background: "#2A3B57",
@@ -8,7 +11,8 @@ const styleCard = {
     borderRadius: "10px",
     cursor: "pointer",
     boxShadow: "0px -1px 8px #00000036",
-    marginBottom: "10px",
+    marginBottom: 15,
+    fontSize: 15,
 };
 
 const styleTitle = {
@@ -24,10 +28,10 @@ export const TackCard: React.FC<Props> = props => {
     return (
         <div style={styleCard}>
             <div style={styleTitle}>
-                railsのAPIサーバをEC2へデプロイ
+                {props.title}
             </div>
             <div style={styleTime}>
-                1h
+                {props.time}h
             </div>
         </div>
     )

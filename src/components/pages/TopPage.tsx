@@ -2,10 +2,7 @@ import React from 'react'
 import { TopPageHandler } from '../../containers/TopPageContainer';
 import { TaskBoard } from '../organisms/TaskBoard';
 import { MessageBoard } from '../organisms/MessageBoard';
-// import { TextInput } from '../molecules/TextInput';
-// import { RadioInput } from '../molecules/RadioInput';
-// import { ShowState } from '../molecules/ShowState';
-// import { SubmitButton } from '../molecules/SubmitButton';
+import { ModalAddTask } from '../modal/ModalAddTask';
 
 const style = {
     color: "white",
@@ -23,6 +20,7 @@ export class TopPage extends React.Component<Props> {
     render() {
         return (
             <div style={style}>
+                <ModalAddTask />
                 <TaskBoard />
                 <MessageBoard />
 

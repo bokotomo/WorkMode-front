@@ -16,6 +16,7 @@ export const MessageUserList: React.FC<Props> = props => {
                 flexDirection: "column",
                 justifyContent: "center",
                 alignItems: "center",
+                fontSize: 13,
             }}>
                 <div>
                     <div style={
