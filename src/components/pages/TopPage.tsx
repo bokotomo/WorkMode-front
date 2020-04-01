@@ -14,14 +14,18 @@ interface OwnProps {
     inputValue: string
     selectedValue: string
     clickCount: number
+    isModalOpened: boolean
 }
 type Props = OwnProps & TopPageHandler
 export class TopPage extends React.Component<Props> {
     render() {
         return (
             <div style={style}>
-                <ModalAddTask />
-                <TaskBoard />
+                <ModalAddTask
+                    isModalOpened={this.props.isModalOpened}
+                    handleOnModalOpend={this.props.handleOnModalOpend}
+                />
+                <TaskBoard handleOnModalOpend={this.props.handleOnModalOpend} />
                 <MessageBoard />
 
                 {/*<Header title="Logo" />

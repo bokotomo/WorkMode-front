@@ -3,7 +3,9 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { TackCard } from '../molecules/TackCard';
 import tasks from '../../mock/tasks';
 
-interface OwnProps { }
+interface OwnProps {
+    handleOnModalOpend: Function
+}
 
 const style = {
     background: "#102133",
@@ -79,7 +81,7 @@ export const TaskBoard: React.FC<Props> = props => {
         cards.push(<TackCard title={task.title} time={task.time} />)
     })
     function openModal() {
-        alert("OK")
+        props.handleOnModalOpend(true)
     }
     return (
         <div style={style}>
