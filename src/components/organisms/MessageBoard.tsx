@@ -1,10 +1,16 @@
 import React from 'react'
+import { MessageLineBar } from '../atom/MessageLineBar';
+import { MessageUserList } from '../molecules/MessageUserList';
+import { MessageTaskProgress } from '../molecules/MessageTaskProgress';
 
 interface OwnProps { }
 
 const style = {
-    background: "#1C2D3F",
     flex: "0 1 45%",
+    display: "flex",
+    flexFlow: "column",
+    justifyContent: "space-between",
+    background: "#1C2D3F",
 };
 
 const style2 = {
@@ -42,11 +48,6 @@ const styleRoomButton = {
     padding: "0px 10px",
 }
 
-const style4 = {
-    background: "#677182",
-    height: "1px",
-};
-
 type Props = OwnProps
 export const MessageBoard: React.FC<Props> = props => {
     return (
@@ -66,8 +67,9 @@ export const MessageBoard: React.FC<Props> = props => {
                     </div>
                 </div>
             </div>
-            <div style={style4} />
-            メッセージ
+            <MessageLineBar />
+            <MessageUserList />
+            <MessageTaskProgress />
         </div>
     )
 }
