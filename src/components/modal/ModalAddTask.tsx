@@ -61,7 +61,6 @@ export const ModalAddTask: React.FC<Props> = props => {
                     <FontAwesomeIcon icon="times" />
                 </button>
                 <div>
-                    {title}
                     <input value={title} onChange={handleChange} style={{ background: "#2B4D6C", borderRadius: 20, border: "none", padding: 5, }} placeholder="タイトル" />
                 </div>
                 <div>

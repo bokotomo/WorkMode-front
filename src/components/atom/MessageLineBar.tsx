@@ -1,15 +1,11 @@
 import React from 'react'
 
-interface OwnProps { }
-
-const style = {
-    background: "#3e547a",
-    height: "1px",
-};
-
-type Props = OwnProps
+interface Props { }
 export const MessageLineBar: React.FC<Props> = props => {
     return (
-        <div style={style} />
+        <div style={{
+            background: "#3e547a",
+            height: "1px",
+        }} />
     )
 }

@@ -5,6 +5,8 @@ import { TopPage } from "../components/pages/TopPage";
 import { AppState } from "../redux/store";
 import { TaskCard } from '../types/taskBoard';
 import { Message } from '../types/message';
+import { ActiveUser } from '../types/activeUser';
+import { Room } from '../types/room';
 
 export interface TopPageHandler {
     handleOnChangeValue(value: string): void
@@ -16,6 +18,8 @@ export interface TopPageHandler {
     handleOnSetTaskDone(value: TaskCard[]): void
     handleOnAddTaskTodo(value: TaskCard): void
     handleOnSetMessage(messages: Message[]): void
+    handleOnSetActiveUser(messages: ActiveUser[]): void
+    handleOnSetRoom(rooms: Room[]): void
 }
 
 const mapStateToProps = (appState: AppState) => {
@@ -27,6 +31,8 @@ const mapStateToProps = (appState: AppState) => {
         isModalOpened: appState.state.isModalOpened,
         openedModalName: appState.state.openedModalName,
         messages: appState.state.messages,
+        activeUsers: appState.state.activeUsers,
+        rooms: appState.state.rooms,
     }
 }
 
@@ -41,6 +47,8 @@ const mapDispatchToProps = (dispatch: Dispatch) => {
         handleOnSetTaskDone: (value: TaskCard[]) => { dispatch(ActionTopPage.setTaskDone(value)) },
         handleOnAddTaskTodo: (value: TaskCard) => { dispatch(ActionTopPage.addTaskTodo(value)) },
         handleOnSetMessage: (messages: Message[]) => { dispatch(ActionTopPage.setMessage(messages)) },
+        handleOnSetActiveUser: (activeUsers: ActiveUser[]) => { dispatch(ActionTopPage.setActiveUser(activeUsers)) },
+        handleOnSetRoom: (rooms: Room[]) => { dispatch(ActionTopPage.setRoom(rooms)) },
     }
 }
 export default connect(mapStateToProps, mapDispatchToProps)(TopPage)

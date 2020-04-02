@@ -1,6 +1,8 @@
 import React from 'react'
 import { TaskCard } from '../../types/taskBoard';
 import { Message } from '../../types/message';
+import { ActiveUser } from '../../types/activeUser';
+import { Room } from '../../types/room';
 import { TopPageHandler } from '../../containers/TopPageContainer';
 import { TaskBoard } from '../organisms/TaskBoard';
 import { MessageBoard } from '../organisms/MessageBoard';
@@ -8,12 +10,8 @@ import { ModalAddTask } from '../modal/ModalAddTask';
 import { ModalDoneTask } from '../modal/ModalDoneTask';
 import { taskTodos, taskInprogresses, taskDones } from '../../mock/tasks';
 import { messages as mockMessages } from '../../mock/messages';
-
-const style = {
-    color: "white",
-    display: "flex",
-    height: "100%",
-};
+import { activeUsers } from '../../mock/activeUsers';
+import { rooms as mockRooms } from '../../mock/rooms';
 
 interface OwnProps {
     inputValue: string
@@ -25,6 +23,8 @@ interface OwnProps {
     inProgresses: TaskCard[],
     dones: TaskCard[],
     messages: Message[],
+    activeUsers: ActiveUser[],
+    rooms: Room[],
 }
 type Props = OwnProps & TopPageHandler
 export class TopPage extends React.Component<Props> {
@@ -34,11 +34,17 @@ export class TopPage extends React.Component<Props> {
         this.props.handleOnSetTaskInProgresses(taskInprogresses)
         this.props.handleOnSetTaskDone(taskDones)
         this.props.handleOnSetMessage(mockMessages)
+        this.props.handleOnSetActiveUser(activeUsers)
+        this.props.handleOnSetRoom(mockRooms)
     }
 
     render() {
         return (
-            <div style={style}>
+            <div style={{
+                color: "white",
+                display: "flex",
+                height: "100%",
+            }}>
                 <ModalAddTask
                     isModalOpened={this.props.isModalOpened}
                     openedModalName={this.props.openedModalName}
@@ -58,6 +64,8 @@ export class TopPage extends React.Component<Props> {
                 />
                 <MessageBoard
                     messages={this.props.messages}
+                    activeUsers={this.props.activeUsers}
+                    rooms={this.props.rooms}
                 />
 
                 {/*<Header title="Logo" />

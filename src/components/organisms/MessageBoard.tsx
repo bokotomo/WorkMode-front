@@ -1,4 +1,6 @@
 import React from 'react'
+import { ActiveUser } from '../../types/activeUser';
+import { Room } from '../../types/room';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { MessageLineBar } from '../atom/MessageLineBar';
 import { MessageUserList } from '../molecules/MessageUserList';
@@ -6,7 +8,9 @@ import { MessageTaskProgress } from '../molecules/MessageTaskProgress';
 import { Message } from '../../types/message';
 
 interface Props {
-    messages: Message[]
+    messages: Message[],
+    activeUsers: ActiveUser[],
+    rooms: Room[],
 }
 export const MessageBoard: React.FC<Props> = props => {
     const style = {
@@ -69,11 +73,9 @@ export const MessageBoard: React.FC<Props> = props => {
             <div style={style2}>
                 <div style={styleRoom}>
                     <select style={styleSelect}>
-                        <option value="">エンジニアもくもく会</option>
-                        <option value="">初心者エンジニア</option>
-                        <option value="">センター試験勉強</option>
-                        <option value="">読書会</option>
-                        <option value="">ゲームクリエイター</option>
+                        {props.rooms.map(room =>
+                            <option value={room.id}>{room.name}</option>
+                        )}
                     </select>
                     {/* <span style={styleRoomButton}>
                         <FontAwesomeIcon icon="caret-down" />
@@ -96,7 +98,7 @@ export const MessageBoard: React.FC<Props> = props => {
                 </div>
             </div>
             <MessageLineBar />
-            <MessageUserList />
+            <MessageUserList activeUsers={props.activeUsers} />
             <MessageTaskProgress messages={props.messages} />
         </div>
     )

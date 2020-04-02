@@ -1,11 +1,13 @@
 import React from 'react'
 import { MessageLineBar } from '../atom/MessageLineBar';
-import users from '../../mock/users';
+import { ActiveUser } from '../../types/activeUser';
 
-interface Props { }
+interface Props {
+    activeUsers: ActiveUser[],
+}
 export const MessageUserList: React.FC<Props> = props => {
     var texts: JSX.Element[] = [];
-    users.forEach(user => {
+    props.activeUsers.forEach(user => {
         texts.push(
             <div style={{
                 width: 80,
@@ -21,7 +23,7 @@ export const MessageUserList: React.FC<Props> = props => {
                         {
                             width: 40,
                             height: 40,
-                            background: user.userColor,
+                            background: user.color,
                             borderRadius: 40,
                             margin: "auto",
                         }
@@ -34,7 +36,7 @@ export const MessageUserList: React.FC<Props> = props => {
                         whiteSpace: "nowrap",
                         textAlign: "center",
                     }}>
-                        {user.userName}
+                        {user.name}
                     </div>
                 </div>
             </div>
