@@ -26,6 +26,8 @@ export const ModalAddTask: React.FC<Props> = props => {
             background: "#192A46",
             color: "white",
             width: "60%",
+            border: "none",
+            boxShadow: "0px 0px 6px #0000005c",
         }
     };
 

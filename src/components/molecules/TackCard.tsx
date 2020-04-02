@@ -1,9 +1,10 @@
 import React from 'react';
+import { TaskCard } from '../../types/taskBoard';
 
 interface Props {
-    title: string
-    time: number
+    task: TaskCard
     handleOnModalOpend: Function
+    handleOnSetSelectedTask: Function
 }
 export const TackCard: React.FC<Props> = props => {
     const styleCard = {
@@ -22,15 +23,16 @@ export const TackCard: React.FC<Props> = props => {
         color: "#8495A8",
     };
     function openDetail() {
+        props.handleOnSetSelectedTask(props.task)
         props.handleOnModalOpend("detail")
     }
     return (
         <div style={styleCard}>
             <div onClick={openDetail} style={styleTitle}>
-                {props.title}
+                {props.task.title}
             </div>
             <div style={styleTime}>
-                {props.time}h
+                {props.task.time}h
             </div>
         </div>
     )

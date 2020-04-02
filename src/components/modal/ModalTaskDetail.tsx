@@ -1,11 +1,13 @@
 import React from 'react'
 import Modal from 'react-modal'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { TaskCard } from '../../types/taskBoard';
 
 interface Props {
     isModalOpened: boolean
     handleOnModalOpend: Function
     openedModalName: string
+    selectedTask: TaskCard
 }
 export const ModalTaskDetail: React.FC<Props> = props => {
     const style = {
@@ -22,6 +24,8 @@ export const ModalTaskDetail: React.FC<Props> = props => {
             background: "#192A46",
             color: "white",
             width: "60%",
+            border: "none",
+            boxShadow: "0px 0px 6px #0000005c",
         }
     };
 
@@ -43,10 +47,18 @@ export const ModalTaskDetail: React.FC<Props> = props => {
                     color: "#F0F6FC",
                     fontWeight: 600,
                 }}>
-                    <div>タスクを追加</div>
+                    <div>タスク詳細</div>
                     <FontAwesomeIcon style={{ fontSize: 22, cursor: "pointer" }} onClick={closeModal} icon="times" />
                 </div>
-                詳細
+                <div>
+                    {props.selectedTask.title}
+                </div>
+                <div>
+                    {props.selectedTask.detail}
+                </div>
+                <div>
+                    {props.selectedTask.time}h
+                </div>
             </Modal>
         </div>
     )

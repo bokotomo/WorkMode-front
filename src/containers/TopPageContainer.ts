@@ -16,6 +16,7 @@ export interface TopPageHandler {
     handleOnSetTaskTodo(value: TaskCard[]): void
     handleOnSetTaskInProgresses(value: TaskCard[]): void
     handleOnSetTaskDone(value: TaskCard[]): void
+    handleOnSetSelectedTask(value: TaskCard): void
     handleOnAddTaskTodo(value: TaskCard): void
     handleOnSetMessage(messages: Message[]): void
     handleOnSetActiveUser(messages: ActiveUser[]): void
@@ -33,6 +34,7 @@ const mapStateToProps = (appState: AppState) => {
         messages: appState.state.messages,
         activeUsers: appState.state.activeUsers,
         rooms: appState.state.rooms,
+        selectedTask: appState.state.selectedTask,
     }
 }
 
@@ -45,6 +47,7 @@ const mapDispatchToProps = (dispatch: Dispatch) => {
         handleOnSetTaskTodo: (value: TaskCard[]) => { dispatch(ActionTopPage.setTaskTodo(value)) },
         handleOnSetTaskInProgresses: (value: TaskCard[]) => { dispatch(ActionTopPage.setTaskInProgresses(value)) },
         handleOnSetTaskDone: (value: TaskCard[]) => { dispatch(ActionTopPage.setTaskDone(value)) },
+        handleOnSetSelectedTask: (task: TaskCard) => { dispatch(ActionTopPage.setSelectedTask(task)) },
         handleOnAddTaskTodo: (value: TaskCard) => { dispatch(ActionTopPage.addTaskTodo(value)) },
         handleOnSetMessage: (messages: Message[]) => { dispatch(ActionTopPage.setMessage(messages)) },
         handleOnSetActiveUser: (activeUsers: ActiveUser[]) => { dispatch(ActionTopPage.setActiveUser(activeUsers)) },

@@ -15,6 +15,7 @@ export const ActionTopPage = {
     addTaskTodo: actionCreator<TaskCard>('ADD_TASK_DONE'),
     setTaskInProgresses: actionCreator<TaskCard[]>('SET_TASK_INPROGRESSES'),
     setTaskDone: actionCreator<TaskCard[]>('SET_TASK_DONE'),
+    setSelectedTask: actionCreator<TaskCard>('SET_SELECTED_TASK'),
     setMessage: actionCreator<Message[]>('SET_MESSAGE'),
     setActiveUser: actionCreator<ActiveUser[]>('SET_ACTIVE_USER'),
     setRoom: actionCreator<Room[]>('SET_ROOM'),

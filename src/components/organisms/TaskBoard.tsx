@@ -5,6 +5,7 @@ import { TackCard } from '../molecules/TackCard';
 
 interface Props {
     handleOnModalOpend: Function
+    handleOnSetSelectedTask: Function
     todos: TaskCard[],
     inProgresses: TaskCard[],
     dones: TaskCard[],
@@ -90,9 +91,9 @@ export const TaskBoard: React.FC<Props> = props => {
                     {props.todos.map(card =>
                         <TackCard
                             key={card.id}
-                            title={card.title}
-                            time={card.time}
+                            task={card}
                             handleOnModalOpend={props.handleOnModalOpend}
+                            handleOnSetSelectedTask={props.handleOnSetSelectedTask}
                         />
                     )}
                 </div>
@@ -110,9 +111,9 @@ export const TaskBoard: React.FC<Props> = props => {
                     {props.inProgresses.map(card =>
                         <TackCard
                             key={card.id}
-                            title={card.title}
-                            time={card.time}
+                            task={card}
                             handleOnModalOpend={props.handleOnModalOpend}
+                            handleOnSetSelectedTask={props.handleOnSetSelectedTask}
                         />
                     )}
                 </div>
@@ -129,9 +130,9 @@ export const TaskBoard: React.FC<Props> = props => {
                     {props.dones.map(card =>
                         <TackCard
                             key={card.id}
-                            title={card.title}
-                            time={card.time}
+                            task={card}
                             handleOnModalOpend={props.handleOnModalOpend}
+                            handleOnSetSelectedTask={props.handleOnSetSelectedTask}
                         />
                     )}
                 </div>

@@ -26,6 +26,7 @@ interface OwnProps {
     messages: Message[],
     activeUsers: ActiveUser[],
     rooms: Room[],
+    selectedTask: TaskCard,
 }
 type Props = OwnProps & TopPageHandler
 export class TopPage extends React.Component<Props> {
@@ -61,9 +62,11 @@ export class TopPage extends React.Component<Props> {
                     isModalOpened={this.props.isModalOpened}
                     openedModalName={this.props.openedModalName}
                     handleOnModalOpend={this.props.handleOnModalOpend}
+                    selectedTask={this.props.selectedTask}
                 />
                 <TaskBoard
                     handleOnModalOpend={this.props.handleOnModalOpend}
+                    handleOnSetSelectedTask={this.props.handleOnSetSelectedTask}
                     todos={this.props.todos}
                     inProgresses={this.props.inProgresses}
                     dones={this.props.dones}

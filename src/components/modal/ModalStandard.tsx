@@ -20,6 +20,8 @@ export const ModalStandard: React.FC<Props> = props => {
             transform: 'translate(-50%, -50%)',
             background: "#192A46",
             color: "white",
+            border: "none",
+            boxShadow: "0px 0px 6px #0000005c",
         }
     };
     function closeModal() {

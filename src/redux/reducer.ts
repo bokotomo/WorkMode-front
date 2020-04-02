@@ -14,6 +14,7 @@ export interface State {
     todos: TaskCard[]
     inProgresses: TaskCard[]
     dones: TaskCard[]
+    selectedTask: TaskCard
     messages: Message[]
     activeUsers: ActiveUser[]
     rooms: Room[]
@@ -28,6 +29,14 @@ export const initialState: State = {
     todos: [],
     inProgresses: [],
     dones: [],
+    selectedTask: {
+        id: '',
+        title: '',
+        detail: '',
+        status: '',
+        time: 0,
+        createdAt: new Date(),
+    },
     messages: [],
     activeUsers: [],
     rooms: [],
@@ -57,6 +66,9 @@ export const Reducer = reducerWithInitialState(initialState)
     })
     .case(ActionTopPage.setTaskDone, (state, dones) => {
         return { ...state, dones }
+    })
+    .case(ActionTopPage.setSelectedTask, (state, task) => {
+        return { ...state, selectedTask: task }
     })
     .case(ActionTopPage.setMessage, (state, messages) => {
         return { ...state, messages }
