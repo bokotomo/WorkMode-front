@@ -2,9 +2,7 @@ import React from 'react'
 import { MessageLineBar } from '../atom/MessageLineBar';
 import users from '../../mock/users';
 
-interface OwnProps { }
-
-type Props = OwnProps
+interface Props { }
 export const MessageUserList: React.FC<Props> = props => {
     var texts: JSX.Element[] = [];
     users.forEach(user => {

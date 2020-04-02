@@ -1,6 +1,7 @@
 import { reducerWithInitialState } from '../../node_modules/typescript-fsa-reducers';
 import { ActionTopPage } from './actions';
 import { TaskCard } from '../types/taskBoard';
+import { Message } from '../types/message';
 
 export interface State {
     inputValue: string
@@ -11,6 +12,7 @@ export interface State {
     todos: TaskCard[]
     inProgresses: TaskCard[]
     dones: TaskCard[]
+    messages: Message[]
 }
 
 export const initialState: State = {
@@ -22,6 +24,7 @@ export const initialState: State = {
     todos: [],
     inProgresses: [],
     dones: [],
+    messages: [],
 }
 
 export const Reducer = reducerWithInitialState(initialState)
@@ -48,4 +51,7 @@ export const Reducer = reducerWithInitialState(initialState)
     })
     .case(ActionTopPage.setTaskDone, (state, dones) => {
         return { ...state, dones }
+    })
+    .case(ActionTopPage.setMessage, (state, messages) => {
+        return { ...state, messages }
     })

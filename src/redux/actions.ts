@@ -1,5 +1,6 @@
 import { actionCreatorFactory } from '../../node_modules/typescript-fsa';
 import { TaskCard } from '../types/taskBoard';
+import { Message } from '../types/message';
 
 const actionCreator = actionCreatorFactory()
 
@@ -12,4 +13,5 @@ export const ActionTopPage = {
     addTaskTodo: actionCreator<TaskCard>('ADD_TASK_DONE'),
     setTaskInProgresses: actionCreator<TaskCard[]>('SET_TASK_INPROGRESSES'),
     setTaskDone: actionCreator<TaskCard[]>('SET_TASK_DONE'),
+    setMessage: actionCreator<Message[]>('SET_MESSAGE'),
 }

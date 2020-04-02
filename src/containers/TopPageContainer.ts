@@ -4,6 +4,7 @@ import { ActionTopPage } from "../redux/actions";
 import { TopPage } from "../components/pages/TopPage";
 import { AppState } from "../redux/store";
 import { TaskCard } from '../types/taskBoard';
+import { Message } from '../types/message';
 
 export interface TopPageHandler {
     handleOnChangeValue(value: string): void
@@ -14,6 +15,7 @@ export interface TopPageHandler {
     handleOnSetTaskInProgresses(value: TaskCard[]): void
     handleOnSetTaskDone(value: TaskCard[]): void
     handleOnAddTaskTodo(value: TaskCard): void
+    handleOnSetMessage(messages: Message[]): void
 }
 
 const mapStateToProps = (appState: AppState) => {
@@ -24,6 +26,7 @@ const mapStateToProps = (appState: AppState) => {
         clickCount: appState.state.clickCount,
         isModalOpened: appState.state.isModalOpened,
         openedModalName: appState.state.openedModalName,
+        messages: appState.state.messages,
     }
 }
 
@@ -37,6 +40,7 @@ const mapDispatchToProps = (dispatch: Dispatch) => {
         handleOnSetTaskInProgresses: (value: TaskCard[]) => { dispatch(ActionTopPage.setTaskInProgresses(value)) },
         handleOnSetTaskDone: (value: TaskCard[]) => { dispatch(ActionTopPage.setTaskDone(value)) },
         handleOnAddTaskTodo: (value: TaskCard) => { dispatch(ActionTopPage.addTaskTodo(value)) },
+        handleOnSetMessage: (messages: Message[]) => { dispatch(ActionTopPage.setMessage(messages)) },
     }
 }
 export default connect(mapStateToProps, mapDispatchToProps)(TopPage)

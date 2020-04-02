@@ -1,13 +1,10 @@
 import React from 'react';
 
-interface OwnProps {
+interface Props {
     title: string
     inputValue: string
     onChangeValue: Function
 }
-
-type Props = OwnProps
-
 export const TextInput: React.FC<Props> = props => {
     return (
         <div>

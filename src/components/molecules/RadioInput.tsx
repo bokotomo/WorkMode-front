@@ -1,12 +1,10 @@
 import React from 'react'
 
-interface OwnProps {
+interface Props {
     title: string
     selectedValue: string
     onChangeValue: Function
 }
-
-type Props = OwnProps
 export const RadioInput: React.FC<Props> = props => {
     return (
         <div>

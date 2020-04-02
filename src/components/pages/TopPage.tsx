@@ -1,11 +1,13 @@
 import React from 'react'
 import { TaskCard } from '../../types/taskBoard';
+import { Message } from '../../types/message';
 import { TopPageHandler } from '../../containers/TopPageContainer';
 import { TaskBoard } from '../organisms/TaskBoard';
 import { MessageBoard } from '../organisms/MessageBoard';
 import { ModalAddTask } from '../modal/ModalAddTask';
 import { ModalDoneTask } from '../modal/ModalDoneTask';
 import { taskTodos, taskInprogresses, taskDones } from '../../mock/tasks';
+import { messages as mockMessages } from '../../mock/messages';
 
 const style = {
     color: "white",
@@ -22,6 +24,7 @@ interface OwnProps {
     todos: TaskCard[],
     inProgresses: TaskCard[],
     dones: TaskCard[],
+    messages: Message[],
 }
 type Props = OwnProps & TopPageHandler
 export class TopPage extends React.Component<Props> {
@@ -30,6 +33,7 @@ export class TopPage extends React.Component<Props> {
         this.props.handleOnSetTaskTodo(taskTodos)
         this.props.handleOnSetTaskInProgresses(taskInprogresses)
         this.props.handleOnSetTaskDone(taskDones)
+        this.props.handleOnSetMessage(mockMessages)
     }
 
     render() {
@@ -52,7 +56,9 @@ export class TopPage extends React.Component<Props> {
                     inProgresses={this.props.inProgresses}
                     dones={this.props.dones}
                 />
-                <MessageBoard />
+                <MessageBoard
+                    messages={this.props.messages}
+                />
 
                 {/*<Header title="Logo" />
                 <Contents />

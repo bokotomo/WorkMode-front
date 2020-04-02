@@ -1,18 +1,18 @@
 import React from 'react'
 import { MessageLineBar } from '../atom/MessageLineBar';
-import messages from '../../mock/messages';
+import { Message } from '../../types/message';
+import moment from 'moment';
 
-interface OwnProps { }
-
-const style = {
-    display: "flex",
-    padding: 15,
-};
-
-type Props = OwnProps
+interface Props {
+    messages: Message[]
+}
 export const MessageTaskProgress: React.FC<Props> = props => {
+    const style = {
+        display: "flex",
+        padding: 15,
+    };
     var texts: any[] = [];
-    messages.forEach(message => {
+    props.messages.forEach(message => {
         texts.push(
             <div>
                 <div style={style}>
@@ -38,10 +38,10 @@ export const MessageTaskProgress: React.FC<Props> = props => {
                                 {
                                     cursor: "pointer",
                                 }
-                            } >{message.userName}</span> {message.time}
+                            } >{message.userName}</span> {moment(message.createdAt).format("YYYY-MM-DD")}
                         </div>
                         <div>
-                            {message.title}
+                            {message.text}
                             {message.status === "done" ? 'が完了しました。' : ''}
                             {message.status === "run" ? 'を実行中。' : ''}
                         </div>

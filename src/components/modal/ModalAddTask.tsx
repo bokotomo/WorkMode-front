@@ -8,7 +8,10 @@ interface Props {
     handleOnAddTaskTodo: Function
     openedModalName: string
 }
+
+// export class TopPage extends React.Component<Props> {
 export const ModalAddTask: React.FC<Props> = props => {
+    var title = "ok";
     const style = {
         background: "#677182",
     };
@@ -31,14 +34,20 @@ export const ModalAddTask: React.FC<Props> = props => {
 
     function addTask() {
         props.handleOnAddTaskTodo({
-            title: "タスクの追加",
+            title: title,
             detail: "詳細",
             status: "todo",
             time: 3,
-            createdAt: new Date("2019/01/01 12:21:00"),
+            createdAt: new Date(),
         });
         closeModal();
     }
+
+    function handleChange(e: any) {
+        title = e.target.value
+        console.log(title)
+    }
+
     return (
         <div style={style}>
             <Modal
@@ -52,7 +61,8 @@ export const ModalAddTask: React.FC<Props> = props => {
                     <FontAwesomeIcon icon="times" />
                 </button>
                 <div>
-                    <input style={{ background: "#2B4D6C", borderRadius: 20, border: "none", padding: 5, }} placeholder="タイトル" />
+                    {title}
+                    <input value={title} onChange={handleChange} style={{ background: "#2B4D6C", borderRadius: 20, border: "none", padding: 5, }} placeholder="タイトル" />
                 </div>
                 <div>
                     <textarea style={{ background: "#2B4D6C", borderRadius: 20, border: "none", padding: 5, }} placeholder="詳細を書きます。"></textarea>
