@@ -88,7 +88,12 @@ export const TaskBoard: React.FC<Props> = props => {
                     overflowY: "scroll",
                 }}>
                     {props.todos.map(card =>
-                        <TackCard key={card.id} title={card.title} time={card.time} />
+                        <TackCard
+                            key={card.id}
+                            title={card.title}
+                            time={card.time}
+                            handleOnModalOpend={props.handleOnModalOpend}
+                        />
                     )}
                 </div>
                 <div style={styleTaskAddButton}>
@@ -103,7 +108,12 @@ export const TaskBoard: React.FC<Props> = props => {
                 </div>
                 <div style={styleIn}>
                     {props.inProgresses.map(card =>
-                        <TackCard key={card.id} title={card.title} time={card.time} />
+                        <TackCard
+                            key={card.id}
+                            title={card.title}
+                            time={card.time}
+                            handleOnModalOpend={props.handleOnModalOpend}
+                        />
                     )}
                 </div>
             </div>
@@ -117,7 +127,12 @@ export const TaskBoard: React.FC<Props> = props => {
                     overflowY: "scroll",
                 }}>
                     {props.dones.map(card =>
-                        <TackCard key={card.id} title={card.title} time={card.time} />
+                        <TackCard
+                            key={card.id}
+                            title={card.title}
+                            time={card.time}
+                            handleOnModalOpend={props.handleOnModalOpend}
+                        />
                     )}
                 </div>
             </div>

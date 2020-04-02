@@ -8,6 +8,7 @@ import { TaskBoard } from '../organisms/TaskBoard';
 import { MessageBoard } from '../organisms/MessageBoard';
 import { ModalAddTask } from '../modal/ModalAddTask';
 import { ModalDoneTask } from '../modal/ModalDoneTask';
+import { ModalTaskDetail } from '../modal/ModalTaskDetail';
 import { taskTodos, taskInprogresses, taskDones } from '../../mock/tasks';
 import { messages as mockMessages } from '../../mock/messages';
 import { activeUsers } from '../../mock/activeUsers';
@@ -52,6 +53,11 @@ export class TopPage extends React.Component<Props> {
                     handleOnAddTaskTodo={this.props.handleOnAddTaskTodo}
                 />
                 <ModalDoneTask
+                    isModalOpened={this.props.isModalOpened}
+                    openedModalName={this.props.openedModalName}
+                    handleOnModalOpend={this.props.handleOnModalOpend}
+                />
+                <ModalTaskDetail
                     isModalOpened={this.props.isModalOpened}
                     openedModalName={this.props.openedModalName}
                     handleOnModalOpend={this.props.handleOnModalOpend}
