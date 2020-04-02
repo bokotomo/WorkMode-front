@@ -6,7 +6,7 @@ interface OwnProps { }
 
 type Props = OwnProps
 export const MessageUserList: React.FC<Props> = props => {
-    var texts: any[] = [];
+    var texts: JSX.Element[] = [];
     users.forEach(user => {
         texts.push(
             <div style={{

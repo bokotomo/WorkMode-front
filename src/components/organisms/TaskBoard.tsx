@@ -1,10 +1,13 @@
 import React from 'react'
+import { TaskCard } from '../../types/taskBoard';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { TackCard } from '../molecules/TackCard';
-import tasks from '../../mock/tasks';
 
 interface OwnProps {
     handleOnModalOpend: Function
+    todos: TaskCard[],
+    inProgresses: TaskCard[],
+    dones: TaskCard[],
 }
 
 const style = {
@@ -76,9 +79,17 @@ const styleIn = {
 
 type Props = OwnProps
 export const TaskBoard: React.FC<Props> = props => {
-    var cards: any[] = [];
-    tasks.forEach(task => {
-        cards.push(<TackCard title={task.title} time={task.time} />)
+    var cardTodos: JSX.Element[] = [];
+    var cardInProgresses: JSX.Element[] = [];
+    var cardDones: JSX.Element[] = [];
+    props.todos.forEach(card => {
+        cardTodos.push(<TackCard title={card.title} time={card.time} />)
+    })
+    props.inProgresses.forEach(card => {
+        cardInProgresses.push(<TackCard title={card.title} time={card.time} />)
+    })
+    props.dones.forEach(card => {
+        cardDones.push(<TackCard title={card.title} time={card.time} />)
     })
     function openModal() {
         props.handleOnModalOpend('add')
@@ -91,7 +102,7 @@ export const TaskBoard: React.FC<Props> = props => {
                     <div style={{ textAlign: "center" }}>やること</div>
                 </div>
                 <div style={styleTackCardWrapper}>
-                    {cards}
+                    {cardTodos}
                 </div>
                 <div style={styleTaskAddButton}>
                     <div onClick={openModal} style={{ textAlign: "center" }}>
@@ -104,7 +115,7 @@ export const TaskBoard: React.FC<Props> = props => {
                     <div style={{ textAlign: "center" }}>実行中</div>
                 </div>
                 <div style={styleIn}>
-                    <TackCard title="フロントでプロトタイプ作成" time={4} />
+                    {cardInProgresses}
                 </div>
             </div>
             <div style={style1}>
@@ -112,7 +123,7 @@ export const TaskBoard: React.FC<Props> = props => {
                     <div style={{ textAlign: "center" }}>完了したこと</div>
                 </div>
                 <div style={styleTackCardWrapper}>
-                    {cards}
+                    {cardDones}
                 </div>
             </div>
         </div>

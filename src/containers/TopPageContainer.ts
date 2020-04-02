@@ -1,14 +1,18 @@
 import { connect } from "react-redux";
 import { Dispatch } from "redux";
-import { TopPageActions } from "../redux/actions";
+import { ActionTopPage } from "../redux/actions";
 import { TopPage } from "../components/pages/TopPage";
 import { AppState } from "../redux/store";
+import { TaskCard } from '../types/taskBoard';
 
 export interface TopPageHandler {
     handleOnChangeValue(value: string): void
     handleOnSelectValue(value: string): void
     handleOnClick(): void
     handleOnModalOpend(value: string): void
+    handleOnSetTaskTodo(value: TaskCard[]): void
+    handleOnSetTaskInProgresses(value: TaskCard[]): void
+    handleOnSetTaskDone(value: TaskCard[]): void
 }
 
 const mapStateToProps = (appState: AppState) => {
@@ -24,10 +28,13 @@ const mapStateToProps = (appState: AppState) => {
 
 const mapDispatchToProps = (dispatch: Dispatch) => {
     return {
-        handleOnChangeValue: (value: string) => { dispatch(TopPageActions.updateTextInputValue(value)) },
-        handleOnSelectValue: (value: string) => { dispatch(TopPageActions.updateSelectedValue(value)) },
-        handleOnClick: () => { dispatch(TopPageActions.updateClickCount()) },
-        handleOnModalOpend: (value: string) => { dispatch(TopPageActions.updateModalOpened(value)) },
+        handleOnChangeValue: (value: string) => { dispatch(ActionTopPage.updateTextInputValue(value)) },
+        handleOnSelectValue: (value: string) => { dispatch(ActionTopPage.updateSelectedValue(value)) },
+        handleOnClick: () => { dispatch(ActionTopPage.updateClickCount()) },
+        handleOnModalOpend: (value: string) => { dispatch(ActionTopPage.updateModalOpened(value)) },
+        handleOnSetTaskTodo: (value: TaskCard[]) => { dispatch(ActionTopPage.setTaskTodo(value)) },
+        handleOnSetTaskInProgresses: (value: TaskCard[]) => { dispatch(ActionTopPage.setTaskInProgresses(value)) },
+        handleOnSetTaskDone: (value: TaskCard[]) => { dispatch(ActionTopPage.setTaskDone(value)) },
     }
 }
 export default connect(mapStateToProps, mapDispatchToProps)(TopPage)
