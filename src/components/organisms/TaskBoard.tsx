@@ -81,7 +81,7 @@ export const TaskBoard: React.FC<Props> = props => {
         cards.push(<TackCard title={task.title} time={task.time} />)
     })
     function openModal() {
-        props.handleOnModalOpend(true)
+        props.handleOnModalOpend('add')
     }
     return (
         <div style={style}>

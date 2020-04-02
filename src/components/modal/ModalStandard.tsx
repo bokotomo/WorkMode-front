@@ -5,9 +5,8 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 interface Props {
     isModalOpened: boolean
     handleOnModalOpend: Function
-    openedModalName: string
 }
-export const ModalAddTask: React.FC<Props> = props => {
+export const ModalStandard: React.FC<Props> = props => {
     const style = {
         background: "#677182",
     };
@@ -24,28 +23,25 @@ export const ModalAddTask: React.FC<Props> = props => {
         }
     };
     function closeModal() {
-        props.handleOnModalOpend('');
+        props.handleOnModalOpend(false);
     }
     return (
         <div style={style}>
             <Modal
-                isOpen={props.openedModalName === "add"}
+                isOpen={props.isModalOpened}
                 onRequestClose={closeModal}
                 style={customStyles}
                 contentLabel="モーダル"
             >
-                <div>タスクを追加</div>
                 <button onClick={closeModal}>
                     <FontAwesomeIcon icon="times" />
                 </button>
-                <div>
-                    <input style={{ background: "#2B4D6C", borderRadius: 20, border: "none", padding: 5, }} placeholder="タイトル" />
-                </div>
-                <div>
-                    <textarea style={{ background: "#2B4D6C", borderRadius: 20, border: "none", padding: 5, }} placeholder="詳細を書きます。"></textarea>
-                </div>
+                <div>「railsのAPI作成」を完了しますか？</div>
                 <button style={{ textAlign: "center", }} onClick={closeModal}>
-                    追加
+                    完了
+                </button>
+                <button style={{ textAlign: "center", background: "#4C6276", }} onClick={closeModal}>
+                    キャンセル
                 </button>
             </Modal>
         </div>

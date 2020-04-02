@@ -3,6 +3,7 @@ import { TopPageHandler } from '../../containers/TopPageContainer';
 import { TaskBoard } from '../organisms/TaskBoard';
 import { MessageBoard } from '../organisms/MessageBoard';
 import { ModalAddTask } from '../modal/ModalAddTask';
+import { ModalDoneTask } from '../modal/ModalDoneTask';
 
 const style = {
     color: "white",
@@ -15,6 +16,7 @@ interface OwnProps {
     selectedValue: string
     clickCount: number
     isModalOpened: boolean
+    openedModalName: string
 }
 type Props = OwnProps & TopPageHandler
 export class TopPage extends React.Component<Props> {
@@ -23,6 +25,12 @@ export class TopPage extends React.Component<Props> {
             <div style={style}>
                 <ModalAddTask
                     isModalOpened={this.props.isModalOpened}
+                    openedModalName={this.props.openedModalName}
+                    handleOnModalOpend={this.props.handleOnModalOpend}
+                />
+                <ModalDoneTask
+                    isModalOpened={this.props.isModalOpened}
+                    openedModalName={this.props.openedModalName}
                     handleOnModalOpend={this.props.handleOnModalOpend}
                 />
                 <TaskBoard handleOnModalOpend={this.props.handleOnModalOpend} />

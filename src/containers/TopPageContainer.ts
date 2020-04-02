@@ -8,7 +8,7 @@ export interface TopPageHandler {
     handleOnChangeValue(value: string): void
     handleOnSelectValue(value: string): void
     handleOnClick(): void
-    handleOnModalOpend(value: boolean): void
+    handleOnModalOpend(value: string): void
 }
 
 const mapStateToProps = (appState: AppState) => {
@@ -18,6 +18,7 @@ const mapStateToProps = (appState: AppState) => {
         selectedValue: appState.state.selectedValue,
         clickCount: appState.state.clickCount,
         isModalOpened: appState.state.isModalOpened,
+        openedModalName: appState.state.openedModalName,
     }
 }
 
@@ -26,7 +27,7 @@ const mapDispatchToProps = (dispatch: Dispatch) => {
         handleOnChangeValue: (value: string) => { dispatch(TopPageActions.updateTextInputValue(value)) },
         handleOnSelectValue: (value: string) => { dispatch(TopPageActions.updateSelectedValue(value)) },
         handleOnClick: () => { dispatch(TopPageActions.updateClickCount()) },
-        handleOnModalOpend: (value: boolean) => { dispatch(TopPageActions.updateModalOpened(value)) },
+        handleOnModalOpend: (value: string) => { dispatch(TopPageActions.updateModalOpened(value)) },
     }
 }
 export default connect(mapStateToProps, mapDispatchToProps)(TopPage)
