@@ -25,6 +25,7 @@ export const ModalAddTask: React.FC<Props> = props => {
             transform: 'translate(-50%, -50%)',
             background: "#192A46",
             color: "white",
+            width: "60%",
         }
     };
 
@@ -56,17 +57,22 @@ export const ModalAddTask: React.FC<Props> = props => {
                 style={customStyles}
                 contentLabel="モーダル"
             >
-                <div>タスクを追加</div>
-                <button onClick={closeModal}>
-                    <FontAwesomeIcon icon="times" />
-                </button>
-                <div>
-                    <input value={title} onChange={handleChange} style={{ background: "#2B4D6C", borderRadius: 20, border: "none", padding: 5, }} placeholder="タイトル" />
+                <div style={{
+                    display: "flex",
+                    justifyContent: "space-between",
+                    color: "#F0F6FC",
+                    fontWeight: 600,
+                }}>
+                    <div>タスクを追加</div>
+                    <FontAwesomeIcon style={{ fontSize: 22, cursor: "pointer" }} onClick={closeModal} icon="times" />
                 </div>
-                <div>
-                    <textarea style={{ background: "#2B4D6C", borderRadius: 20, border: "none", padding: 5, }} placeholder="詳細を書きます。"></textarea>
+                <div style={{ marginTop: 20 }}>
+                    <input value={title} onChange={handleChange} style={{ color: "white", background: "#2B4D6C", borderRadius: 20, border: "none", padding: "5px 15px", width: "100%", height: 40, lineHeight: "40px", boxSizing: "border-box" }} placeholder="タイトル" />
                 </div>
-                <button style={{ textAlign: "center", }} onClick={addTask}>
+                <div style={{ marginTop: 20 }}>
+                    <textarea style={{ color: "white", background: "#2B4D6C", width: "100%", borderRadius: 10, border: "none", padding: "5px 15px", height: 120, boxSizing: "border-box", }} placeholder="詳細を書きます。"></textarea>
+                </div>
+                <button style={{ marginTop: 20, color: "white", background: "linear-gradient(125deg, #66B7FF, #0052de)", borderRadius: 50, border: "none", width: "100%", textAlign: "center", height: 40, lineHeight: "40px", boxSizing: "border-box", cursor: "pointer" }} onClick={addTask}>
                     追加
                 </button>
             </Modal>

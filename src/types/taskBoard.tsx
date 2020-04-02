@@ -1,4 +1,5 @@
 export interface TaskCard {
+    id: string
     title: string
     detail: string
     status: string

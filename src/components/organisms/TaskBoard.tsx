@@ -34,11 +34,6 @@ export const TaskBoard: React.FC<Props> = props => {
         flex: "0 1 33.4%",
     };
 
-    const styleTackCardWrapper = {
-        flex: "0 1 100%",
-        padding: 20,
-    };
-
     const styleTitle = {
         padding: 15,
         background: "#0000005a",
@@ -87,9 +82,13 @@ export const TaskBoard: React.FC<Props> = props => {
                 <div style={styleTitleLeft}>
                     <div style={{ textAlign: "center" }}>やること</div>
                 </div>
-                <div style={styleTackCardWrapper}>
+                <div style={{
+                    flex: "0 1 100%",
+                    padding: 20,
+                    overflowY: "scroll",
+                }}>
                     {props.todos.map(card =>
-                        <TackCard key={card.title} title={card.title} time={card.time} />
+                        <TackCard key={card.id} title={card.title} time={card.time} />
                     )}
                 </div>
                 <div style={styleTaskAddButton}>
@@ -104,7 +103,7 @@ export const TaskBoard: React.FC<Props> = props => {
                 </div>
                 <div style={styleIn}>
                     {props.inProgresses.map(card =>
-                        <TackCard key={card.title} title={card.title} time={card.time} />
+                        <TackCard key={card.id} title={card.title} time={card.time} />
                     )}
                 </div>
             </div>
@@ -112,9 +111,13 @@ export const TaskBoard: React.FC<Props> = props => {
                 <div style={styleTitle}>
                     <div style={{ textAlign: "center" }}>完了したこと</div>
                 </div>
-                <div style={styleTackCardWrapper}>
+                <div style={{
+                    flex: "0 1 100%",
+                    padding: 20,
+                    overflowY: "scroll",
+                }}>
                     {props.dones.map(card =>
-                        <TackCard key={card.title} title={card.title} time={card.time} />
+                        <TackCard key={card.id} title={card.title} time={card.time} />
                     )}
                 </div>
             </div>
