@@ -81,7 +81,7 @@ export const TaskBoard: React.FC<Props> = props => {
             {/* <img src="/images/taskImage.png" /> */}
             <div style={styleLeft}>
                 <div style={styleTitleLeft}>
-                    <div style={{ textAlign: "center" }}>やること</div>
+                    <div style={{ textAlign: "center", color: "#F0F6FC" }}>やること</div>
                 </div>
                 <div style={{
                     flex: "0 1 100%",
@@ -105,7 +105,7 @@ export const TaskBoard: React.FC<Props> = props => {
             </div>
             <div style={style2}>
                 <div style={styleTitle}>
-                    <div style={{ textAlign: "center" }}>実行中</div>
+                    <div style={{ textAlign: "center", color: "#F0F6FC" }}>実行中</div>
                 </div>
                 <div style={styleIn}>
                     {props.inProgresses.map(card =>
@@ -120,7 +120,7 @@ export const TaskBoard: React.FC<Props> = props => {
             </div>
             <div style={style1}>
                 <div style={styleTitle}>
-                    <div style={{ textAlign: "center" }}>完了したこと</div>
+                    <div style={{ textAlign: "center", color: "#F0F6FC" }}>完了したこと</div>
                 </div>
                 <div style={{
                     flex: "0 1 100%",

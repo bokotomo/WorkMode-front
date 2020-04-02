@@ -7,9 +7,6 @@ interface Props {
     handleOnModalOpend: Function
 }
 export const ModalStandard: React.FC<Props> = props => {
-    const style = {
-        background: "#677182",
-    };
     const customStyles = {
         content: {
             top: '50%',
@@ -28,24 +25,22 @@ export const ModalStandard: React.FC<Props> = props => {
         props.handleOnModalOpend(false);
     }
     return (
-        <div style={style}>
-            <Modal
-                isOpen={props.isModalOpened}
-                onRequestClose={closeModal}
-                style={customStyles}
-                contentLabel="モーダル"
-            >
-                <button onClick={closeModal}>
-                    <FontAwesomeIcon icon="times" />
-                </button>
-                <div>「railsのAPI作成」を完了しますか？</div>
-                <button style={{ textAlign: "center", }} onClick={closeModal}>
-                    完了
-                </button>
-                <button style={{ textAlign: "center", background: "#4C6276", }} onClick={closeModal}>
-                    キャンセル
-                </button>
-            </Modal>
-        </div>
+        <Modal
+            isOpen={props.isModalOpened}
+            onRequestClose={closeModal}
+            style={customStyles}
+            contentLabel="モーダル"
+        >
+            <button onClick={closeModal}>
+                <FontAwesomeIcon icon="times" />
+            </button>
+            <div>「railsのAPI作成」を完了しますか？</div>
+            <button style={{ textAlign: "center", }} onClick={closeModal}>
+                完了
+            </button>
+            <button style={{ textAlign: "center", background: "#4C6276", }} onClick={closeModal}>
+                キャンセル
+            </button>
+        </Modal>
     )
 }

@@ -10,9 +10,6 @@ interface Props {
     selectedTask: TaskCard
 }
 export const ModalTaskDetail: React.FC<Props> = props => {
-    const style = {
-        background: "#677182",
-    };
     const customStyles = {
         content: {
             top: '50%',
@@ -34,32 +31,30 @@ export const ModalTaskDetail: React.FC<Props> = props => {
     }
 
     return (
-        <div style={style}>
-            <Modal
-                isOpen={props.openedModalName === "detail"}
-                onRequestClose={closeModal}
-                style={customStyles}
-                contentLabel="モーダル"
-            >
-                <div style={{
-                    display: "flex",
-                    justifyContent: "space-between",
-                    color: "#F0F6FC",
-                    fontWeight: 600,
-                }}>
-                    <div>タスク詳細</div>
-                    <FontAwesomeIcon style={{ fontSize: 22, cursor: "pointer" }} onClick={closeModal} icon="times" />
-                </div>
-                <div>
-                    {props.selectedTask.title}
-                </div>
-                <div>
-                    {props.selectedTask.detail}
-                </div>
-                <div>
-                    {props.selectedTask.time}h
-                </div>
-            </Modal>
-        </div>
+        <Modal
+            isOpen={props.openedModalName === "detail"}
+            onRequestClose={closeModal}
+            style={customStyles}
+            contentLabel="モーダル"
+        >
+            <div style={{
+                display: "flex",
+                justifyContent: "space-between",
+                color: "#F0F6FC",
+                fontWeight: 600,
+            }}>
+                <div>タスク詳細</div>
+                <FontAwesomeIcon style={{ fontSize: 22, cursor: "pointer" }} onClick={closeModal} icon="times" />
+            </div>
+            <div>
+                {props.selectedTask.title}
+            </div>
+            <div>
+                {props.selectedTask.detail}
+            </div>
+            <div>
+                {props.selectedTask.time}h
+            </div>
+        </Modal>
     )
 }
