@@ -89,7 +89,7 @@ export const TaskBoard: React.FC<Props> = props => {
                 </div>
                 <div style={styleTackCardWrapper}>
                     {props.todos.map(card =>
-                        <TackCard title={card.title} time={card.time} />
+                        <TackCard key={card.title} title={card.title} time={card.time} />
                     )}
                 </div>
                 <div style={styleTaskAddButton}>
@@ -104,7 +104,7 @@ export const TaskBoard: React.FC<Props> = props => {
                 </div>
                 <div style={styleIn}>
                     {props.inProgresses.map(card =>
-                        <TackCard title={card.title} time={card.time} />
+                        <TackCard key={card.title} title={card.title} time={card.time} />
                     )}
                 </div>
             </div>
@@ -114,7 +114,7 @@ export const TaskBoard: React.FC<Props> = props => {
                 </div>
                 <div style={styleTackCardWrapper}>
                     {props.dones.map(card =>
-                        <TackCard title={card.title} time={card.time} />
+                        <TackCard key={card.title} title={card.title} time={card.time} />
                     )}
                 </div>
             </div>

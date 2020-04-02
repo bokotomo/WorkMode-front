@@ -74,7 +74,7 @@ export const MessageBoard: React.FC<Props> = props => {
                 <div style={styleRoom}>
                     <select style={styleSelect}>
                         {props.rooms.map(room =>
-                            <option value={room.id}>{room.name}</option>
+                            <option key={room.id} value={room.id}>{room.name}</option>
                         )}
                     </select>
                     {/* <span style={styleRoomButton}>
