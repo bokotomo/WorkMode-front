@@ -1,10 +1,9 @@
 import React from 'react'
 
-interface OwnProps {
+interface Props {
     title: string
     onClick: Function
 }
-type Props = OwnProps
 export const SubmitButton: React.FC<Props> = props => {
     return (
         <div>

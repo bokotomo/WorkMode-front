@@ -65,4 +65,12 @@ export const messages: Message[] = [
         status: "run",
         createdAt: new Date("2019/01/01 12:00:00"),
     },
+    {
+        userName: "山田太郎",
+        userColor: "#8A29AD",
+        text: "全てのタスクを完了させました！おめでとうございます！",
+        progress: 70,
+        status: "run",
+        createdAt: new Date("2019/01/01 12:00:00"),
+    },
 ];
