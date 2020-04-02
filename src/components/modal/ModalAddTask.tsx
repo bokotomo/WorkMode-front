@@ -5,6 +5,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 interface Props {
     isModalOpened: boolean
     handleOnModalOpend: Function
+    handleOnAddTaskTodo: Function
     openedModalName: string
 }
 export const ModalAddTask: React.FC<Props> = props => {
@@ -23,8 +24,20 @@ export const ModalAddTask: React.FC<Props> = props => {
             color: "white",
         }
     };
+
     function closeModal() {
         props.handleOnModalOpend('');
+    }
+
+    function addTask() {
+        props.handleOnAddTaskTodo({
+            title: "タスクの追加",
+            detail: "詳細",
+            status: "todo",
+            time: 3,
+            createdAt: new Date("2019/01/01 12:21:00"),
+        });
+        closeModal();
     }
     return (
         <div style={style}>
@@ -44,7 +57,7 @@ export const ModalAddTask: React.FC<Props> = props => {
                 <div>
                     <textarea style={{ background: "#2B4D6C", borderRadius: 20, border: "none", padding: 5, }} placeholder="詳細を書きます。"></textarea>
                 </div>
-                <button style={{ textAlign: "center", }} onClick={closeModal}>
+                <button style={{ textAlign: "center", }} onClick={addTask}>
                     追加
                 </button>
             </Modal>

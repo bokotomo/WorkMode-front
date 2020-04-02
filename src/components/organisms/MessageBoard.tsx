@@ -45,10 +45,10 @@ const styleRoomCreate = {
     cursor: "pointer",
 };
 
-const styleRoomButton = {
-    cursor: "pointer",
-    padding: "0px 10px",
-}
+// const styleRoomButton = {
+//     cursor: "pointer",
+//     padding: "0px 10px",
+// }
 
 const styleSelect = {
     background: "none",

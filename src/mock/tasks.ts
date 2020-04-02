@@ -15,19 +15,33 @@ export const taskTodos: TaskCard[] = [
         time: 3,
         createdAt: new Date("2019/01/01 12:21:00"),
     },
+    {
+        title: "フロントからAPIを呼び出す",
+        detail: "詳細",
+        status: "todo",
+        time: 3,
+        createdAt: new Date("2019/01/01 12:21:00"),
+    },
+    {
+        title: "APIでタスクの状態更新",
+        detail: "詳細",
+        status: "todo",
+        time: 2,
+        createdAt: new Date("2019/01/01 12:41:00"),
+    },
 ];
 export const taskInprogresses: TaskCard[] = [
     {
-        title: "APIでタスクの追加",
+        title: "フロントでプロトタイプの作成",
         detail: "詳細",
         status: "run",
-        time: 4,
+        time: 6,
         createdAt: new Date("2019/01/01 12:31:00"),
     },
 ];
 export const taskDones: TaskCard[] = [
     {
-        title: "APIでタスクの状態更新",
+        title: "フロントの基板の作成",
         detail: "詳細",
         status: "done",
         time: 2,

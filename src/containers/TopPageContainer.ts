@@ -13,6 +13,7 @@ export interface TopPageHandler {
     handleOnSetTaskTodo(value: TaskCard[]): void
     handleOnSetTaskInProgresses(value: TaskCard[]): void
     handleOnSetTaskDone(value: TaskCard[]): void
+    handleOnAddTaskTodo(value: TaskCard): void
 }
 
 const mapStateToProps = (appState: AppState) => {
@@ -35,6 +36,7 @@ const mapDispatchToProps = (dispatch: Dispatch) => {
         handleOnSetTaskTodo: (value: TaskCard[]) => { dispatch(ActionTopPage.setTaskTodo(value)) },
         handleOnSetTaskInProgresses: (value: TaskCard[]) => { dispatch(ActionTopPage.setTaskInProgresses(value)) },
         handleOnSetTaskDone: (value: TaskCard[]) => { dispatch(ActionTopPage.setTaskDone(value)) },
+        handleOnAddTaskTodo: (value: TaskCard) => { dispatch(ActionTopPage.addTaskTodo(value)) },
     }
 }
 export default connect(mapStateToProps, mapDispatchToProps)(TopPage)

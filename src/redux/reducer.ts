@@ -40,6 +40,9 @@ export const Reducer = reducerWithInitialState(initialState)
     .case(ActionTopPage.setTaskTodo, (state, todos) => {
         return { ...state, todos }
     })
+    .case(ActionTopPage.addTaskTodo, (state, todo) => {
+        return { ...state, todos: [...state.todos, todo] }
+    })
     .case(ActionTopPage.setTaskInProgresses, (state, inProgresses) => {
         return { ...state, inProgresses }
     })

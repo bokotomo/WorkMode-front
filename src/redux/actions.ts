@@ -9,6 +9,7 @@ export const ActionTopPage = {
     updateClickCount: actionCreator('ACTION_UPDATE_CLICK_COUNT'),
     updateModalOpened: actionCreator<string>('ACTION_UPDATE_MODAL_OPENED'),
     setTaskTodo: actionCreator<TaskCard[]>('SET_TASK_TODO'),
+    addTaskTodo: actionCreator<TaskCard>('ADD_TASK_DONE'),
     setTaskInProgresses: actionCreator<TaskCard[]>('SET_TASK_INPROGRESSES'),
     setTaskDone: actionCreator<TaskCard[]>('SET_TASK_DONE'),
 }

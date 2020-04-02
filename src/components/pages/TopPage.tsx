@@ -39,6 +39,7 @@ export class TopPage extends React.Component<Props> {
                     isModalOpened={this.props.isModalOpened}
                     openedModalName={this.props.openedModalName}
                     handleOnModalOpend={this.props.handleOnModalOpend}
+                    handleOnAddTaskTodo={this.props.handleOnAddTaskTodo}
                 />
                 <ModalDoneTask
                     isModalOpened={this.props.isModalOpened}
