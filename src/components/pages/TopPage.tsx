@@ -13,7 +13,6 @@ import { taskTodos, taskInprogresses, taskDones } from '../../mock/tasks';
 import { messages as mockMessages } from '../../mock/messages';
 import { activeUsers } from '../../mock/activeUsers';
 import { rooms as mockRooms } from '../../mock/rooms';
-import { Card } from '../atom/card';
 
 interface OwnProps {
     inputValue: string
@@ -42,11 +41,6 @@ export class TopPage extends React.Component<Props> {
     }
 
     render() {
-        if (1 == 1) {
-            return (
-                <Card />
-            )
-        }
         return (
             <div style={{
                 color: "white",
@@ -73,6 +67,10 @@ export class TopPage extends React.Component<Props> {
                 <TaskBoard
                     handleOnModalOpend={this.props.handleOnModalOpend}
                     handleOnSetSelectedTask={this.props.handleOnSetSelectedTask}
+                    handleOnSetTaskTodo={this.props.handleOnSetTaskTodo}
+                    handleOnSetTaskInProgresses={this.props.handleOnSetTaskInProgresses}
+                    handleOnSetTaskDone={this.props.handleOnSetTaskDone}
+                    handleOnAddMessage={this.props.handleOnAddMessage}
                     todos={this.props.todos}
                     inProgresses={this.props.inProgresses}
                     dones={this.props.dones}

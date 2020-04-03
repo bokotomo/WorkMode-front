@@ -1,11 +1,15 @@
 import React from 'react'
 import { TaskCard } from '../../types/taskBoard';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { TackCard } from '../molecules/TackCard';
+import { TaskArea } from '../molecules/taskArea';
 
 interface Props {
     handleOnModalOpend: Function
     handleOnSetSelectedTask: Function
+    handleOnSetTaskTodo: Function
+    handleOnSetTaskInProgresses: Function
+    handleOnSetTaskDone: Function
+    handleOnAddMessage: Function
     todos: TaskCard[],
     inProgresses: TaskCard[],
     dones: TaskCard[],
@@ -19,39 +23,10 @@ export const TaskBoard: React.FC<Props> = props => {
 
     const styleLeft = {
         display: "flex",
-        flex: "0 1 33.3%",
+        width: "100%",
         background: "#25313E",
         flexFlow: "column",
         justifyContent: "space-between",
-    };
-
-    const style1 = {
-        background: "#25313E",
-        flex: "0 1 33.3%",
-    };
-
-    const style2 = {
-        background: "#273547",
-        flex: "0 1 33.4%",
-    };
-
-    const styleTitle = {
-        padding: 15,
-        background: "#0000005a",
-        height: 50,
-        lineHeight: "50px",
-        fontSize: 20,
-        fontWeight: 700,
-    };
-
-    const styleTitleLeft = {
-        flex: "0 1 50px",
-        padding: "15px 0",
-        background: "#0000005a",
-        lineHeight: "50px",
-        fontSize: 20,
-        fontWeight: 700,
-        width: "100%",
     };
 
     const styleTaskAddButton = {
@@ -64,77 +39,44 @@ export const TaskBoard: React.FC<Props> = props => {
         width: "100%",
     };
 
-    const styleIn = {
-        display: "flex",
-        // flexDirection: "column",
-        // justifyContent: "center",
-        alignItems: "center",
-        flex: "0 1 100%",
-        padding: 20,
-    };
-
     function openModal() {
         props.handleOnModalOpend('add')
     }
     return (
         <div style={style}>
             {/* <img src="/images/taskImage.png" /> */}
+
             <div style={styleLeft}>
-                <div style={styleTitleLeft}>
-                    <div style={{ textAlign: "center", color: "#F0F6FC" }}>やること</div>
-                </div>
                 <div style={{
-                    flex: "0 1 100%",
-                    padding: 20,
-                    overflowY: "scroll",
+                    display: "flex",
+                    color: "#F0F6FC",
+                    textAlign: "center",
+                    height: 80,
+                    lineHeight: "80px",
+                    fontSize: 20,
+                    fontWeight: 700,
                 }}>
-                    {props.todos.map(card =>
-                        <TackCard
-                            key={card.id}
-                            task={card}
-                            handleOnModalOpend={props.handleOnModalOpend}
-                            handleOnSetSelectedTask={props.handleOnSetSelectedTask}
-                        />
-                    )}
+                    <div style={{ flex: "0 1 33.3%", background: "#1E2833" }}>やること</div>
+                    <div style={{ flex: "0 1 33.4%", background: "#202C3B" }}>実行中</div>
+                    <div style={{ flex: "0 1 33.3%", background: "#1E2833" }}>完了したこと</div>
+                </div>
+                <div style={{ flex: "0 1 100%" }}>
+                    <TaskArea
+                        handleOnSetTaskTodo={props.handleOnSetTaskTodo}
+                        handleOnSetTaskInProgresses={props.handleOnSetTaskInProgresses}
+                        handleOnSetTaskDone={props.handleOnSetTaskDone}
+                        handleOnModalOpend={props.handleOnModalOpend}
+                        handleOnSetSelectedTask={props.handleOnSetSelectedTask}
+                        handleOnAddMessage={props.handleOnAddMessage}
+                        todos={props.todos}
+                        inProgresses={props.inProgresses}
+                        dones={props.dones}
+                    />
                 </div>
                 <div style={styleTaskAddButton}>
                     <div onClick={openModal} style={{ textAlign: "center" }}>
                         <FontAwesomeIcon icon="plus" />
                     </div>
-                </div>
-            </div>
-            <div style={style2}>
-                <div style={styleTitle}>
-                    <div style={{ textAlign: "center", color: "#F0F6FC" }}>実行中</div>
-                </div>
-                <div style={styleIn}>
-                    {props.inProgresses.map(card =>
-                        <TackCard
-                            key={card.id}
-                            task={card}
-                            handleOnModalOpend={props.handleOnModalOpend}
-                            handleOnSetSelectedTask={props.handleOnSetSelectedTask}
-                        />
-                    )}
-                </div>
-            </div>
-            <div style={style1}>
-                <div style={styleTitle}>
-                    <div style={{ textAlign: "center", color: "#F0F6FC" }}>完了したこと</div>
-                </div>
-                <div style={{
-                    flex: "0 1 100%",
-                    padding: 20,
-                    overflowY: "scroll",
-                }}>
-                    {props.dones.map(card =>
-                        <TackCard
-                            key={card.id}
-                            task={card}
-                            handleOnModalOpend={props.handleOnModalOpend}
-                            handleOnSetSelectedTask={props.handleOnSetSelectedTask}
-                        />
-                    )}
                 </div>
             </div>
         </div>

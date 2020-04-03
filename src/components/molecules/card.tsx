@@ -6,7 +6,7 @@ interface Props {
     handleOnModalOpend: Function
     handleOnSetSelectedTask: Function
 }
-export const TackCard: React.FC<Props> = props => {
+export const Card: React.FC<Props> = props => {
     const styleCard = {
         background: "#2A3B57",
         padding: "15px 10px",

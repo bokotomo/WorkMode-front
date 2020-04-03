@@ -33,6 +33,22 @@ export const taskTodos: TaskCard[] = [
         time: 2,
         createdAt: new Date("2019/01/01 12:41:00"),
     },
+    {
+        id: "14",
+        title: "APIでタスクの状態更新",
+        detail: "詳細",
+        status: "todo",
+        time: 2,
+        createdAt: new Date("2019/01/01 12:41:00"),
+    },
+    {
+        id: "15",
+        title: "APIでタスクの状態更新",
+        detail: "詳細",
+        status: "todo",
+        time: 2,
+        createdAt: new Date("2019/01/01 12:41:00"),
+    },
 ];
 export const taskInprogresses: TaskCard[] = [
     {
