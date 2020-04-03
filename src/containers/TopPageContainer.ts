@@ -19,6 +19,7 @@ export interface TopPageHandler {
     handleOnSetSelectedTask(value: TaskCard): void
     handleOnAddTaskTodo(value: TaskCard): void
     handleOnSetMessage(messages: Message[]): void
+    handleOnAddMessage(message: Message): void
     handleOnSetActiveUser(messages: ActiveUser[]): void
     handleOnSetRoom(rooms: Room[]): void
 }
@@ -50,6 +51,7 @@ const mapDispatchToProps = (dispatch: Dispatch) => {
         handleOnSetSelectedTask: (task: TaskCard) => { dispatch(ActionTopPage.setSelectedTask(task)) },
         handleOnAddTaskTodo: (value: TaskCard) => { dispatch(ActionTopPage.addTaskTodo(value)) },
         handleOnSetMessage: (messages: Message[]) => { dispatch(ActionTopPage.setMessage(messages)) },
+        handleOnAddMessage: (message: Message) => { dispatch(ActionTopPage.addMessage(message)) },
         handleOnSetActiveUser: (activeUsers: ActiveUser[]) => { dispatch(ActionTopPage.setActiveUser(activeUsers)) },
         handleOnSetRoom: (rooms: Room[]) => { dispatch(ActionTopPage.setRoom(rooms)) },
     }

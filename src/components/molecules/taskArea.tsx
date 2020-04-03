@@ -50,8 +50,29 @@ export const TaskArea: React.FC<Props> = props => {
             todos = destClone
         } else if (droppableDestination.droppableId === "inProgressArea") {
             inProgresses = destClone
+            if (droppableSource.droppableId === 'todoArea') {
+                const message = props.todos[droppableSource.index]
+                props.handleOnAddMessage({
+                    userName: "山田太郎",
+                    userColor: "#8A29AD",
+                    text: message.title,
+                    progress: 60,
+                    status: "run",
+                    createdAt: new Date(),
+                })
+            }
         } else {
             alert("よろしいですか？")
+            const message = props.inProgresses[droppableSource.index]
+            props.handleOnAddMessage({
+                userName: "山田太郎",
+                userColor: "#8A29AD",
+                text: message.title,
+                progress: 60,
+                status: "done",
+                createdAt: new Date(),
+            })
+
             dones = destClone
         }
         const result: any = {

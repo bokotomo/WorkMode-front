@@ -40,6 +40,7 @@ export const ModalAddTask: React.FC<Props> = props => {
             return
         }
         props.handleOnAddTaskTodo({
+            id: "tinko",
             title,
             detail,
             status: "todo",

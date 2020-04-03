@@ -51,7 +51,7 @@ export const MessageTaskProgress: React.FC<Props> = props => {
                                         cursor: "pointer",
                                     }
                                 } >{message.userName}</span> {
-                                    moment(message.createdAt).format("M月D日 H:ss")
+                                    moment(message.createdAt).format("M月D日 H:mm")
                                 }
                             </div>
                             <div>

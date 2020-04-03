@@ -73,6 +73,9 @@ export const Reducer = reducerWithInitialState(initialState)
     .case(ActionTopPage.setMessage, (state, messages) => {
         return { ...state, messages }
     })
+    .case(ActionTopPage.addMessage, (state, message) => {
+        return { ...state, messages: [...state.messages, message] }
+    })
     .case(ActionTopPage.setActiveUser, (state, activeUsers) => {
         return { ...state, activeUsers }
     })
