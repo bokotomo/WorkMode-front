@@ -63,54 +63,80 @@ export const Card: React.FC = () => {
         droppableSource: any,
         droppableDestination: any,
     ) => {
-        const sourceClone = Array.from(source);
-        const destClone = Array.from(destination);
+        const sourceClone = Array.from(source) as ItemType[];
+        const destClone = Array.from(destination) as ItemType[];
         const [removed] = sourceClone.splice(droppableSource.index, 1);
 
         destClone.splice(droppableDestination.index, 0, removed);
 
+        var items = state.items, item2s = state.item2s, item3s = state.item3s;
         if (droppableSource.droppableId === 'droppable1') {
-            const result: any = {
-                items: sourceClone,
-                item2s: destClone,
-                item3s: [],
-            };
-            return result;
+            items = sourceClone
+        } else if (droppableSource.droppableId === "droppable2") {
+            item2s = sourceClone
+        } else {
+            item3s = sourceClone
+        }
+        if (droppableDestination.droppableId === 'droppable1') {
+            items = destClone
+        } else if (droppableDestination.droppableId === "droppable2") {
+            item2s = destClone
+        } else {
+            item3s = destClone
         }
         const result: any = {
-            items: destClone,
-            item2s: sourceClone,
-            item3s: [],
+            items,
+            item2s,
+            item3s,
         };
         return result;
     };
 
     const getList = (id: string) => {
         if (id === 'droppable1') return state.items
-        return state.item2s
+        if (id === 'droppable2') return state.item2s
+        return state.item3s
     }
 
-    const onDragEnd = (result: any) => {
+    const onDragEnd = (result: DropResult) => {
         if (!result.destination) return;
         if (result.destination.index === result.source.index && result.source.droppableId === result.destination.droppableId) return;
 
         if (result.source.droppableId === result.destination.droppableId) {
-            const items = reorder(
-                state.items,
-                result.source.index,
-                result.destination.index
-            );
-
-            if (result.source) {
-
-            } else if (result.source) {
-
+            if (result.source.droppableId === "droppable1") {
+                const items = reorder(
+                    state.items,
+                    result.source.index,
+                    result.destination.index
+                );
+                setState({
+                    items,
+                    item2s: state.item2s,
+                    item3s: state.item3s,
+                });
+            } else if (result.source.droppableId === "droppable2") {
+                const item2s = reorder(
+                    state.item2s,
+                    result.source.index,
+                    result.destination.index
+                );
+                setState({
+                    items: state.items,
+                    item2s,
+                    item3s: state.item3s,
+                });
+            } else {
+                const item3s = reorder(
+                    state.item3s,
+                    result.source.index,
+                    result.destination.index
+                );
+                setState({
+                    items: state.items,
+                    item2s: state.item2s,
+                    item3s,
+                });
             }
-            setState({
-                items,
-                item2s: state.item2s,
-                item3s: state.item3s,
-            });
         } else {
             const res = move(
                 getList(result.source.droppableId),
@@ -118,12 +144,7 @@ export const Card: React.FC = () => {
                 result.source,
                 result.destination
             );
-
-            setState({
-                items: res.items,
-                item2s: res.item2s,
-                item3s: res.item3s,
-            });
+            setState(res);
         }
     };
 

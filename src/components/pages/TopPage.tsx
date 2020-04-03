@@ -42,7 +42,7 @@ export class TopPage extends React.Component<Props> {
     }
 
     render() {
-        if (false) {
+        if (1 == 1) {
             return (
                 <Card />
             )
