@@ -38,7 +38,7 @@ export const taskInprogresses: TaskCard[] = [
     {
         id: "5",
         title: "フロントでプロトタイプの作成",
-        detail: "詳細",
+        detail: "react+typescriptで最低限の機能を実装する。",
         status: "run",
         time: 6,
         createdAt: new Date("2019/01/01 12:31:00"),

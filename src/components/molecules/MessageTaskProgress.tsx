@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { MessageLineBar } from '../atom/MessageLineBar';
 import { Message } from '../../types/message';
 import moment from 'moment';
@@ -7,12 +7,21 @@ interface Props {
     messages: Message[]
 }
 export const MessageTaskProgress: React.FC<Props> = props => {
+    useEffect(() => {
+        scrollBottom()
+    })
+
+    function scrollBottom() {
+        const obj = document.getElementById("messageScrollArea");
+        if (obj != null) obj.scrollTop = obj.scrollHeight;
+    }
+
     const style = {
         display: "flex",
         padding: 15,
     };
     return (
-        <div style={{
+        <div id="messageScrollArea" style={{
             overflowY: "scroll",
             flex: "0 1 100%",
         }}>
