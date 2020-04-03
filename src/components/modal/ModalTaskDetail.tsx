@@ -43,11 +43,8 @@ export const ModalTaskDetail: React.FC<Props> = props => {
                 color: "#F0F6FC",
                 fontWeight: 600,
             }}>
-                <div>タスク詳細</div>
+                <div>{props.selectedTask.title}</div>
                 <FontAwesomeIcon style={{ fontSize: 22, cursor: "pointer" }} onClick={closeModal} icon="times" />
-            </div>
-            <div>
-                {props.selectedTask.title}
             </div>
             <div>
                 {props.selectedTask.detail}

@@ -42,50 +42,54 @@ export class TopPage extends React.Component<Props> {
     }
 
     render() {
+        if (false) {
+            return (
+                <Card />
+            )
+        }
         return (
-            <Card />
-            // <div style={{
-            //     color: "white",
-            //     display: "flex",
-            //     height: "100%",
-            // }}>
-            //     <ModalAddTask
-            //         isModalOpened={this.props.isModalOpened}
-            //         openedModalName={this.props.openedModalName}
-            //         handleOnModalOpend={this.props.handleOnModalOpend}
-            //         handleOnAddTaskTodo={this.props.handleOnAddTaskTodo}
-            //     />
-            //     <ModalDoneTask
-            //         isModalOpened={this.props.isModalOpened}
-            //         openedModalName={this.props.openedModalName}
-            //         handleOnModalOpend={this.props.handleOnModalOpend}
-            //     />
-            //     <ModalTaskDetail
-            //         isModalOpened={this.props.isModalOpened}
-            //         openedModalName={this.props.openedModalName}
-            //         handleOnModalOpend={this.props.handleOnModalOpend}
-            //         selectedTask={this.props.selectedTask}
-            //     />
-            //     <TaskBoard
-            //         handleOnModalOpend={this.props.handleOnModalOpend}
-            //         handleOnSetSelectedTask={this.props.handleOnSetSelectedTask}
-            //         todos={this.props.todos}
-            //         inProgresses={this.props.inProgresses}
-            //         dones={this.props.dones}
-            //     />
-            //     <MessageBoard
-            //         messages={this.props.messages}
-            //         activeUsers={this.props.activeUsers}
-            //         rooms={this.props.rooms}
-            //     />
+            <div style={{
+                color: "white",
+                display: "flex",
+                height: "100%",
+            }}>
+                <ModalAddTask
+                    isModalOpened={this.props.isModalOpened}
+                    openedModalName={this.props.openedModalName}
+                    handleOnModalOpend={this.props.handleOnModalOpend}
+                    handleOnAddTaskTodo={this.props.handleOnAddTaskTodo}
+                />
+                <ModalDoneTask
+                    isModalOpened={this.props.isModalOpened}
+                    openedModalName={this.props.openedModalName}
+                    handleOnModalOpend={this.props.handleOnModalOpend}
+                />
+                <ModalTaskDetail
+                    isModalOpened={this.props.isModalOpened}
+                    openedModalName={this.props.openedModalName}
+                    handleOnModalOpend={this.props.handleOnModalOpend}
+                    selectedTask={this.props.selectedTask}
+                />
+                <TaskBoard
+                    handleOnModalOpend={this.props.handleOnModalOpend}
+                    handleOnSetSelectedTask={this.props.handleOnSetSelectedTask}
+                    todos={this.props.todos}
+                    inProgresses={this.props.inProgresses}
+                    dones={this.props.dones}
+                />
+                <MessageBoard
+                    messages={this.props.messages}
+                    activeUsers={this.props.activeUsers}
+                    rooms={this.props.rooms}
+                />
 
-            //     {/*<Header title="Logo" />
-            //     <Contents />
-            //     <TextInput title='入力' inputValue={this.props.inputValue} onChangeValue={this.props.handleOnChangeValue} />
-            //     <RadioInput title='ラジオ' selectedValue={this.props.selectedValue} onChangeValue={this.props.handleOnSelectValue} />
-            //     <SubmitButton title='Click me' onClick={this.props.handleOnClick} />
-            //     <ShowState inputValue={this.props.inputValue} selectedValue={this.props.selectedValue} clickCount={this.props.clickCount} /> */}
-            // </div>
+                {/*<Header title="Logo" />
+                <Contents />
+                <TextInput title='入力' inputValue={this.props.inputValue} onChangeValue={this.props.handleOnChangeValue} />
+                <RadioInput title='ラジオ' selectedValue={this.props.selectedValue} onChangeValue={this.props.handleOnSelectValue} />
+                <SubmitButton title='Click me' onClick={this.props.handleOnClick} />
+                <ShowState inputValue={this.props.inputValue} selectedValue={this.props.selectedValue} clickCount={this.props.clickCount} /> */}
+            </div>
         )
     }
 }

@@ -34,9 +34,16 @@ export const Card: React.FC = () => {
             content: `Item 13`
         },
     ];
+    const initial3: ItemType[] = [
+        {
+            id: `id-23`,
+            content: `Item 23`
+        },
+    ];
     const [state, setState] = useState({
         items: initial1,
         item2s: initial2,
+        item3s: initial3,
     });
 
     const reorder = (
@@ -47,7 +54,6 @@ export const Card: React.FC = () => {
         const result = Array.from(list);
         const [removed] = result.splice(startIndex, 1);
         result.splice(endIndex, 0, removed);
-
         return result;
     };
 
@@ -67,12 +73,14 @@ export const Card: React.FC = () => {
             const result: any = {
                 items: sourceClone,
                 item2s: destClone,
+                item3s: [],
             };
             return result;
         }
         const result: any = {
             items: destClone,
             item2s: sourceClone,
+            item3s: [],
         };
         return result;
     };
@@ -93,9 +101,15 @@ export const Card: React.FC = () => {
                 result.destination.index
             );
 
+            if (result.source) {
+
+            } else if (result.source) {
+
+            }
             setState({
                 items,
                 item2s: state.item2s,
+                item3s: state.item3s,
             });
         } else {
             const res = move(
@@ -108,6 +122,7 @@ export const Card: React.FC = () => {
             setState({
                 items: res.items,
                 item2s: res.item2s,
+                item3s: res.item3s,
             });
         }
     };
@@ -126,6 +141,7 @@ export const Card: React.FC = () => {
         <div>
             <DragDropContext onDragEnd={onDragEnd}>
                 <div style={{ display: "flex" }}>
+
                     <Droppable droppableId="droppable1">
                         {provided => (
                             <div ref={provided.innerRef} {...provided.droppableProps}>
@@ -152,6 +168,7 @@ export const Card: React.FC = () => {
                             </div>
                         )}
                     </Droppable>
+
                     <Droppable droppableId="droppable2">
                         {provided => (
                             <div ref={provided.innerRef} {...provided.droppableProps}>
@@ -178,6 +195,34 @@ export const Card: React.FC = () => {
                             </div>
                         )}
                     </Droppable>
+
+                    <Droppable droppableId="droppable3">
+                        {provided => (
+                            <div ref={provided.innerRef} {...provided.droppableProps}>
+
+                                {state.item3s.map((item: ItemType, index: number) => (
+                                    <Draggable key={item.id} draggableId={item.id} index={index}>
+                                        {(provided, snapshot) => (
+                                            <div
+                                                ref={provided.innerRef}
+                                                {...provided.draggableProps}
+                                                {...provided.dragHandleProps}
+                                                style={getItemStyle(
+                                                    provided.draggableProps.style,
+                                                    snapshot.isDragging
+                                                )}
+                                            >
+                                                {item.content}
+                                            </div>
+                                        )}
+                                    </Draggable>
+                                ))}
+
+                                {provided.placeholder}
+                            </div>
+                        )}
+                    </Droppable>
+
                 </div>
             </DragDropContext>
         </div>
