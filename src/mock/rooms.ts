@@ -1,6 +1,6 @@
 import { Room } from '../types/room';
 
-export const rooms: Room[] = [
+export const mockRooms: Room[] = [
     {
         id: "1",
         name: "エンジニアもくもく会",

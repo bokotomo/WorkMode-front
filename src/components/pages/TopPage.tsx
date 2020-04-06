@@ -9,10 +9,7 @@ import { MessageBoard } from '../organisms/MessageBoard';
 import { ModalAddTask } from '../modal/ModalAddTask';
 import { ModalDoneTask } from '../modal/ModalDoneTask';
 import { ModalTaskDetail } from '../modal/ModalTaskDetail';
-import { taskTodos, taskInprogresses, taskDones } from '../../mock/tasks';
-import { messages as mockMessages } from '../../mock/messages';
-import { activeUsers } from '../../mock/activeUsers';
-import { rooms as mockRooms } from '../../mock/rooms';
+import { ModalRegisterUser } from '../modal/ModalRegisterUser';
 
 interface OwnProps {
     inputValue: string
@@ -27,17 +24,19 @@ interface OwnProps {
     activeUsers: ActiveUser[],
     rooms: Room[],
     selectedTask: TaskCard,
+    myId: string,
+    myName: string,
+    myToken: string,
 }
 type Props = OwnProps & TopPageHandler
 export class TopPage extends React.Component<Props> {
     constructor(props: Props) {
         super(props);
-        this.props.handleOnSetTaskTodo(taskTodos)
-        this.props.handleOnSetTaskInProgresses(taskInprogresses)
-        this.props.handleOnSetTaskDone(taskDones)
-        this.props.handleOnSetMessage(mockMessages)
-        this.props.handleOnSetActiveUser(activeUsers)
-        this.props.handleOnSetRoom(mockRooms)
+        this.props.handleOnSetTask()
+        this.props.handleOnSetMessage()
+        this.props.handleOnSetActiveUser()
+        this.props.handleOnSetRoom()
+        if (this.props.myToken === '') this.props.handleOnModalOpend('register')
     }
 
     render() {
@@ -47,19 +46,21 @@ export class TopPage extends React.Component<Props> {
                 display: "flex",
                 height: "100%",
             }}>
+                <ModalRegisterUser
+                    openedModalName={this.props.openedModalName}
+                    handleOnModalOpend={this.props.handleOnModalOpend}
+                    handleOnCreateUser={this.props.handleOnCreateUser}
+                />
                 <ModalAddTask
-                    isModalOpened={this.props.isModalOpened}
                     openedModalName={this.props.openedModalName}
                     handleOnModalOpend={this.props.handleOnModalOpend}
                     handleOnAddTaskTodo={this.props.handleOnAddTaskTodo}
                 />
                 <ModalDoneTask
-                    isModalOpened={this.props.isModalOpened}
                     openedModalName={this.props.openedModalName}
                     handleOnModalOpend={this.props.handleOnModalOpend}
                 />
                 <ModalTaskDetail
-                    isModalOpened={this.props.isModalOpened}
                     openedModalName={this.props.openedModalName}
                     handleOnModalOpend={this.props.handleOnModalOpend}
                     selectedTask={this.props.selectedTask}

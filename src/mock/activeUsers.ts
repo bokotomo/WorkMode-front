@@ -1,6 +1,6 @@
 import { ActiveUser } from '../types/activeUser';
 
-export const activeUsers: ActiveUser[] = [
+export const mockActiveUsers: ActiveUser[] = [
     {
         id: "1",
         name: "bokotomo",

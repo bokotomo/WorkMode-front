@@ -3,7 +3,6 @@ import Modal from 'react-modal'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
 interface Props {
-    isModalOpened: boolean
     handleOnModalOpend: Function
     openedModalName: string
 }

@@ -50,7 +50,8 @@ export const taskTodos: TaskCard[] = [
         createdAt: new Date("2019/01/01 12:41:00"),
     },
 ];
-export const taskInprogresses: TaskCard[] = [
+
+export const taskInProgresses: TaskCard[] = [
     {
         id: "5",
         title: "フロントでプロトタイプの作成",
@@ -60,6 +61,7 @@ export const taskInprogresses: TaskCard[] = [
         createdAt: new Date("2019/01/01 12:31:00"),
     },
 ];
+
 export const taskDones: TaskCard[] = [
     {
         id: "6",

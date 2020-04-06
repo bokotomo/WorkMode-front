@@ -1,14 +1,15 @@
 import React from 'react'
 import Modal from 'react-modal'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { TaskCard } from '../../types/taskBoard';
 
 interface Props {
     handleOnModalOpend: Function
+    handleOnCreateUser: Function
     openedModalName: string
-    selectedTask: TaskCard
 }
-export const ModalTaskDetail: React.FC<Props> = props => {
+
+export const ModalRegisterUser: React.FC<Props> = props => {
+    var name = '';
     const customStyles = {
         content: {
             top: '50%',
@@ -29,10 +30,22 @@ export const ModalTaskDetail: React.FC<Props> = props => {
         props.handleOnModalOpend('');
     }
 
+    function addTask() {
+        if (name === '') {
+            alert("全て入力する必要があります。")
+            return
+        }
+        props.handleOnCreateUser(name)
+        closeModal();
+    }
+
+    function handleChange(e: any) {
+        name = e.target.value
+    }
+
     return (
         <Modal
-            isOpen={props.openedModalName === "detail"}
-            onRequestClose={closeModal}
+            isOpen={props.openedModalName === "register"}
             style={customStyles}
             contentLabel="モーダル"
         >
@@ -42,21 +55,14 @@ export const ModalTaskDetail: React.FC<Props> = props => {
                 color: "#F0F6FC",
                 fontWeight: 600,
             }}>
-                <div>{props.selectedTask.title}</div>
+                <div>ゲスト登録</div>
                 <FontAwesomeIcon style={{ fontSize: 22, cursor: "pointer" }} onClick={closeModal} icon="times" />
             </div>
             <div style={{ marginTop: 20 }}>
-                {props.selectedTask.detail}
+                <input onChange={handleChange} style={{ color: "white", fontSize: 18, background: "#2B4D6C", borderRadius: 20, border: "none", padding: "5px 15px", width: "100%", height: 40, lineHeight: "40px", boxSizing: "border-box" }} placeholder="ニックネーム" />
             </div>
-            <div style={{ marginTop: 20 }}>
-                {props.selectedTask.time}h
-            </div>
-
-            <button style={{ marginTop: 20, fontSize: 18, color: "white", background: "linear-gradient(125deg, #66B7FF, #0052de)", borderRadius: 50, border: "none", width: "100%", textAlign: "center", height: 40, lineHeight: "40px", boxSizing: "border-box", cursor: "pointer" }} onClick={closeModal}>
-                編集
-            </button>
-            <button style={{ marginTop: 20, fontSize: 18, color: "white", background: "#4C6276", borderRadius: 50, border: "none", width: "100%", textAlign: "center", height: 40, lineHeight: "40px", boxSizing: "border-box", cursor: "pointer" }} onClick={closeModal}>
-                削除
+            <button style={{ marginTop: 20, fontSize: 18, color: "white", background: "linear-gradient(125deg, #66B7FF, #0052de)", borderRadius: 50, border: "none", width: "100%", textAlign: "center", height: 40, lineHeight: "40px", boxSizing: "border-box", cursor: "pointer" }} onClick={addTask}>
+                登録する
             </button>
         </Modal>
     )

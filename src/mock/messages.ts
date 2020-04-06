@@ -1,6 +1,6 @@
 import { Message } from '../types/message';
 
-export const messages: Message[] = [
+export const mockMessages: Message[] = [
     {
         userName: "tomo",
         userColor: "#1B7B89",

@@ -3,13 +3,10 @@ import Modal from 'react-modal'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
 interface Props {
-    isModalOpened: boolean
     handleOnModalOpend: Function
     handleOnAddTaskTodo: Function
     openedModalName: string
 }
-
-// export class TopPage extends React.Component<Props> {
 export const ModalAddTask: React.FC<Props> = props => {
     var title = '';
     var detail = '';
