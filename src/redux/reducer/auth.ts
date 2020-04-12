@@ -8,13 +8,13 @@ export interface StateAuth {
     token: string
 }
 
-export const initialState: StateAuth = {
+export const initialStateAuth: StateAuth = {
     id: '',
     name: '',
     token: new Cookies().get('token') || '',
 }
 
-export const ReducerAuth = reducerWithInitialState(initialState)
+export const ReducerAuth = reducerWithInitialState(initialStateAuth)
     .case(ActionAuth.createUser, (state, name) => {
         const token = "token"
         new Cookies().set('token', token, { path: '/' });

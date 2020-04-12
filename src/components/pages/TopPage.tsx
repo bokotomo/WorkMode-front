@@ -12,9 +12,6 @@ import { ModalTaskDetail } from '../modal/ModalTaskDetail';
 import { ModalRegisterUser } from '../modal/ModalRegisterUser';
 
 interface OwnProps {
-    inputValue: string
-    selectedValue: string
-    clickCount: number
     isModalOpened: boolean
     openedModalName: string
     todos: TaskCard[],
