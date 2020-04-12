@@ -20,7 +20,6 @@ export const TaskBoard: React.FC<Props> = props => {
         flex: "0 1 55%",
         display: "flex",
     };
-
     const styleLeft = {
         display: "flex",
         width: "100%",
@@ -28,7 +27,6 @@ export const TaskBoard: React.FC<Props> = props => {
         flexFlow: "column",
         justifyContent: "space-between",
     };
-
     const styleTaskAddButton = {
         flex: "0 1 80px",
         background: "linear-gradient(125deg, #66B7FF, #0052de)",

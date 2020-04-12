@@ -20,26 +20,22 @@ export const MessageBoard: React.FC<Props> = props => {
         justifyContent: "space-between",
         background: "#1C2D3F",
     };
-
     const style2 = {
         display: "flex",
         height: 40,
         padding: "20px 20px",
     };
-
     const styleRoom = {
         background: "linear-gradient(125deg, #66B7FF, #0052de)",
         padding: "7px 10px 7px 20px",
         borderRadius: "5px",
         fontWeight: 800,
     };
-
     const styleRoomCreateWrapper = {
         display: "flex",
         alignItems: "center",
         justifyContent: "center",
     }
-
     const styleRoomCreate = {
         display: "flex",
         background: "linear-gradient(125deg, #66B7FF, #0052de)",
@@ -51,12 +47,6 @@ export const MessageBoard: React.FC<Props> = props => {
         justifyContent: "center",
         cursor: "pointer",
     };
-
-    // const styleRoomButton = {
-    //     cursor: "pointer",
-    //     padding: "0px 10px",
-    // }
-
     const styleSelect = {
         background: "none",
         width: "100%",

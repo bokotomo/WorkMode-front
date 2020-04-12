@@ -1,5 +1,4 @@
 import { actionCreatorFactory } from '../../../node_modules/typescript-fsa';
-import { ActiveUser } from '../../types/activeUser';
 
 const actionCreator = actionCreatorFactory()
 

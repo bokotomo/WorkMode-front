@@ -13,5 +13,6 @@ export const initialState: StateUser = {
 
 export const ReducerUser = reducerWithInitialState(initialState)
     .case(ActionUser.setActiveUser, (state) => {
-        return { ...state, activeUsers: mockActiveUsers }
+        const activeUsers = mockActiveUsers
+        return { ...state, activeUsers }
     })
