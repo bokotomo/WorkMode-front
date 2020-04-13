@@ -2,12 +2,10 @@ import { reducerWithInitialState } from '../../../node_modules/typescript-fsa-re
 import { ActionModal } from '../actions/modal';
 
 export interface StateModal {
-    isModalOpened: boolean
     openedModalName: string
 }
 
 export const initialStateModal: StateModal = {
-    isModalOpened: true,
     openedModalName: '',
 }
 

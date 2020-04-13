@@ -35,7 +35,7 @@ export const ModalRegisterUser: React.FC<Props> = props => {
             alert("全て入力する必要があります。")
             return
         }
-        props.handleOnCreateUser(name)
+        props.handleOnCreateUser(name);
         closeModal();
     }
 

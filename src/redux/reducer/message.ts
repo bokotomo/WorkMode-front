@@ -18,14 +18,16 @@ export const ReducerMessage = reducerWithInitialState(initialStateMessage)
     })
     .case(ActionMessage.addMessage, (state, message) => {
         return {
-            ...state, messages: [...state.messages,
-            {
-                userName: initialStateAuth.name,
-                userColor: "#8A29AD",
-                text: message.title,
-                progress: message.progress,
-                status: message.status,
-                createdAt: new Date(),
-            }]
+            ...state, messages: [
+                ...state.messages,
+                {
+                    userName: initialStateAuth.name,
+                    userColor: "#8A29AD",
+                    text: message.title,
+                    progress: message.progress,
+                    status: message.status,
+                    createdAt: new Date(),
+                },
+            ]
         }
     })

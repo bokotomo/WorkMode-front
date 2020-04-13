@@ -12,7 +12,6 @@ import { ModalTaskDetail } from '../modal/ModalTaskDetail';
 import { ModalRegisterUser } from '../modal/ModalRegisterUser';
 
 interface OwnProps {
-    isModalOpened: boolean
     openedModalName: string
     todos: TaskCard[],
     inProgresses: TaskCard[],
@@ -23,17 +22,17 @@ interface OwnProps {
     selectedTask: TaskCard,
     myId: string,
     myName: string,
-    myToken: string,
+    isLogined: boolean,
 }
 type Props = OwnProps & TopPageHandler
 export class TopPage extends React.Component<Props> {
     constructor(props: Props) {
         super(props);
+        this.props.handleOnAuthentication()
         this.props.handleOnSetTask()
         this.props.handleOnSetMessage()
         this.props.handleOnSetActiveUser()
         this.props.handleOnSetRoom()
-        if (this.props.myToken === '') this.props.handleOnModalOpend('register')
     }
 
     render() {

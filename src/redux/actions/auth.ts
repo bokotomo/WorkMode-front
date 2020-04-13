@@ -1,7 +1,8 @@
 import { actionCreatorFactory } from '../../../node_modules/typescript-fsa';
+import { AreducerAuthUser } from '../../types/reducer_auth';
 
 const actionCreator = actionCreatorFactory()
 
 export const ActionAuth = {
-    createUser: actionCreator<string>('CREATE_USER'),
+    setAuth: actionCreator<AreducerAuthUser>('SET_AUTH'),
 }

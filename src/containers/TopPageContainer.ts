@@ -1,15 +1,16 @@
 import { connect } from "react-redux";
 import { Dispatch } from "redux";
+import { TopPage } from "../components/pages/TopPage";
 import { ActionUser } from "../redux/actions/user";
 import { ActionAuth } from "../redux/actions/auth";
 import { ActionTask } from "../redux/actions/task";
 import { ActionMessage } from "../redux/actions/message";
 import { ActionRoom } from "../redux/actions/room";
 import { ActionModal } from "../redux/actions/modal";
-import { TopPage } from "../components/pages/TopPage";
 import { AppState } from "../redux/store";
 import { TaskCard } from '../types/taskBoard';
 import { MessageProgress } from '../types/messageProgress';
+import { Cookies } from 'react-cookie';
 
 export interface TopPageHandler {
     handleOnModalOpend(value: string): void
@@ -17,13 +18,14 @@ export interface TopPageHandler {
     handleOnSetTaskTodo(value: TaskCard[]): void
     handleOnSetTaskInProgresses(value: TaskCard[]): void
     handleOnSetTaskDone(value: TaskCard[]): void
-    handleOnSetSelectedTask(value: TaskCard): void
-    handleOnAddTaskTodo(value: TaskCard): void
+    handleOnSetSelectedTask(task: TaskCard): void
+    handleOnAddTaskTodo(task: TaskCard): void
     handleOnSetMessage(): void
     handleOnAddMessage(message: MessageProgress): void
     handleOnSetActiveUser(): void
     handleOnSetRoom(): void
     handleOnCreateUser(name: string): void
+    handleOnAuthentication(): void
 }
 
 const mapStateToProps = (appState: AppState) => {
@@ -33,8 +35,7 @@ const mapStateToProps = (appState: AppState) => {
         dones: appState.task.dones,
         myId: appState.auth.id,
         myName: appState.auth.name,
-        myToken: appState.auth.token,
-        isModalOpened: appState.modal.isModalOpened,
+        isLogined: appState.auth.isLogined,
         openedModalName: appState.modal.openedModalName,
         messages: appState.message.messages,
         activeUsers: appState.user.activeUsers,
@@ -51,12 +52,40 @@ const mapDispatchToProps = (dispatch: Dispatch) => {
         handleOnSetTaskInProgresses: (value: TaskCard[]) => { dispatch(ActionTask.setTaskInProgresses(value)) },
         handleOnSetTaskDone: (value: TaskCard[]) => { dispatch(ActionTask.setTaskDone(value)) },
         handleOnSetSelectedTask: (task: TaskCard) => { dispatch(ActionTask.setSelectedTask(task)) },
-        handleOnAddTaskTodo: (value: TaskCard) => { dispatch(ActionTask.addTaskTodo(value)) },
+        handleOnAddTaskTodo: (task: TaskCard) => { dispatch(ActionTask.addTaskTodo(task)) },
         handleOnSetMessage: () => { dispatch(ActionMessage.setMessage()) },
         handleOnAddMessage: (messageProgress: MessageProgress) => { dispatch(ActionMessage.addMessage(messageProgress)) },
         handleOnSetActiveUser: () => { dispatch(ActionUser.setActiveUser()) },
         handleOnSetRoom: () => { dispatch(ActionRoom.setRoom()) },
-        handleOnCreateUser: (name: string) => { dispatch(ActionAuth.createUser(name)) },
+        handleOnCreateUser: (name: string) => {
+            const token = "token"
+            // request create user
+            new Cookies().set('token', token, { path: '/' });
+            const isLogined = true
+            const id = "1"
+            dispatch(ActionAuth.setAuth({
+                id,
+                name,
+                token,
+                isLogined,
+            }))
+        },
+        handleOnAuthentication: () => {
+            const token = new Cookies().get('token') || ''
+            // authentication token
+            const id = "1"
+            const name = "ttt"
+            const isLogined = token !== ''
+            dispatch(ActionAuth.setAuth({
+                id,
+                name,
+                token,
+                isLogined,
+            }))
+            if (!isLogined) {
+                dispatch(ActionModal.updateModalOpened("register"))
+            }
+        },
     }
 }
 export default connect(mapStateToProps, mapDispatchToProps)(TopPage)
