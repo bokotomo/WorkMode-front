@@ -4,9 +4,9 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { TaskCard } from '../../types/taskBoard';
 
 interface Props {
-    handleOnModalOpend: Function
-    openedModalName: string
-    selectedTask: TaskCard
+    readonly handleOnModalOpend: Function
+    readonly openedModalName: string
+    readonly selectedTask: TaskCard
 }
 export const ModalTaskDetail: React.FC<Props> = props => {
     const customStyles = {

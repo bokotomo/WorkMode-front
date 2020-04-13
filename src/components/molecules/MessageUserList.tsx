@@ -3,7 +3,7 @@ import { MessageLineBar } from '../atom/MessageLineBar';
 import { ActiveUser } from '../../types/activeUser';
 
 interface Props {
-    activeUsers: ActiveUser[],
+    readonly activeUsers: ActiveUser[],
 }
 export const MessageUserList: React.FC<Props> = props => {
     return (

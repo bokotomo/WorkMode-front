@@ -4,11 +4,11 @@ import { TaskCard } from '../../types/taskBoard';
 import { Card } from '../molecules/card';
 
 interface Props {
-    handleOnModalOpend: Function
-    handleOnSetSelectedTask: Function
-    items: TaskCard[]
-    droppableId: string
-    isCenter: boolean
+    readonly handleOnModalOpend: Function
+    readonly handleOnSetSelectedTask: Function
+    readonly items: TaskCard[]
+    readonly droppableId: string
+    readonly isCenter: boolean
 }
 export const Item: React.FC<Props> = (props) => {
     const getItemStyle = (draggableStyle: any, isDragging: any) => {

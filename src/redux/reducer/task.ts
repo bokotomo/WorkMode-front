@@ -4,10 +4,10 @@ import { TaskCard } from '../../types/taskBoard';
 import { taskTodos, taskInProgresses, taskDones } from '../../mock/tasks';
 
 export interface StateTask {
-    todos: TaskCard[]
-    inProgresses: TaskCard[]
-    dones: TaskCard[]
-    selectedTask: TaskCard
+    readonly todos: TaskCard[]
+    readonly inProgresses: TaskCard[]
+    readonly dones: TaskCard[]
+    readonly selectedTask: TaskCard
 }
 
 export const initialStateTask: StateTask = {

@@ -1,8 +1,8 @@
 import React from 'react'
 
 interface Props {
-    title: string
-    onClick: Function
+    readonly title: string
+    readonly onClick: Function
 }
 export const SubmitButton: React.FC<Props> = props => {
     return (

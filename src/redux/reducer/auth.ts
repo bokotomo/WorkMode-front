@@ -2,10 +2,10 @@ import { reducerWithInitialState } from '../../../node_modules/typescript-fsa-re
 import { ActionAuth } from '../actions/auth';
 
 export interface StateAuth {
-    id: string
-    name: string
-    token: string
-    isLogined: boolean
+    readonly id: string
+    readonly name: string
+    readonly token: string
+    readonly isLogined: boolean
 }
 
 export const initialStateAuth: StateAuth = {

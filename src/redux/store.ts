@@ -8,12 +8,12 @@ import { ReducerModal, StateModal } from './reducer/modal'
 import thunk from 'redux-thunk'
 
 export type AppState = {
-    modal: StateModal
-    auth: StateAuth
-    user: StateUser
-    task: StateTask
-    message: StateMessage
-    room: StateRoom
+    readonly modal: StateModal
+    readonly auth: StateAuth
+    readonly user: StateUser
+    readonly task: StateTask
+    readonly message: StateMessage
+    readonly room: StateRoom
 }
 
 const storeEnhancers = (window as any).__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;

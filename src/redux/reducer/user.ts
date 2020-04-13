@@ -4,7 +4,7 @@ import { ActiveUser } from '../../types/activeUser';
 import { mockActiveUsers } from '../../mock/activeUsers';
 
 export interface StateUser {
-    activeUsers: ActiveUser[]
+    readonly activeUsers: ActiveUser[]
 }
 
 export const initialState: StateUser = {

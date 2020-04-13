@@ -4,15 +4,15 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { TaskArea } from '../molecules/taskArea';
 
 interface Props {
-    handleOnModalOpend: Function
-    handleOnSetSelectedTask: Function
-    handleOnSetTaskTodo: Function
-    handleOnSetTaskInProgresses: Function
-    handleOnSetTaskDone: Function
-    handleOnAddMessage: Function
-    todos: TaskCard[],
-    inProgresses: TaskCard[],
-    dones: TaskCard[],
+    readonly handleOnModalOpend: Function
+    readonly handleOnSetSelectedTask: Function
+    readonly handleOnSetTaskTodo: Function
+    readonly handleOnSetTaskInProgresses: Function
+    readonly handleOnSetTaskDone: Function
+    readonly handleOnAddMessage: Function
+    readonly todos: TaskCard[],
+    readonly inProgresses: TaskCard[],
+    readonly dones: TaskCard[],
 }
 export const TaskBoard: React.FC<Props> = props => {
     const style = {

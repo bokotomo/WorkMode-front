@@ -2,7 +2,7 @@ import { reducerWithInitialState } from '../../../node_modules/typescript-fsa-re
 import { ActionModal } from '../actions/modal';
 
 export interface StateModal {
-    openedModalName: string
+    readonly openedModalName: string
 }
 
 export const initialStateModal: StateModal = {

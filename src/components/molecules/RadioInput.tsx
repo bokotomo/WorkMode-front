@@ -1,9 +1,9 @@
 import React from 'react'
 
 interface Props {
-    title: string
-    selectedValue: string
-    onChangeValue: Function
+    readonly title: string
+    readonly selectedValue: string
+    readonly onChangeValue: Function
 }
 export const RadioInput: React.FC<Props> = props => {
     return (

@@ -8,9 +8,9 @@ import { MessageTaskProgress } from '../molecules/MessageTaskProgress';
 import { Message } from '../../types/message';
 
 interface Props {
-    messages: Message[],
-    activeUsers: ActiveUser[],
-    rooms: Room[],
+    readonly messages: Message[],
+    readonly activeUsers: ActiveUser[],
+    readonly rooms: Room[],
 }
 export const MessageBoard: React.FC<Props> = props => {
     const style = {

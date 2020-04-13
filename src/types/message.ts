@@ -1,4 +1,5 @@
 export interface Message {
+    id: string
     userName: string
     userColor: string
     text: string

@@ -12,12 +12,12 @@ import { TaskCard } from '../types/taskBoard';
 import { MessageProgress } from '../types/messageProgress';
 import { Cookies } from 'react-cookie';
 
-// const WebSocket = require('ws');
-// const ws = new WebSocket(process.env.REACT_APP_API_ENDPOINT, {
+// const socket: WebSocket = new WebSocket(process.env.REACT_APP_API_ENDPOINT as string);
+// const wss = new WebSocket(process.env.REACT_APP_API_ENDPOINT as string, {
 //     perMessageDeflate: false
 // });
-// ws.on('open', function open() {
-//     ws.send('something');
+// socket.on('open', function open() {
+//     socket.send('something');
 // });
 
 // ws.on('message', function incoming(data: any) {

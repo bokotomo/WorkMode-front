@@ -5,7 +5,7 @@ import { Message } from '../../types/message';
 import { mockMessages } from '../../mock/messages';
 
 export interface StateMessage {
-    messages: Message[]
+    readonly messages: Message[]
 }
 
 export const initialStateMessage: StateMessage = {
@@ -21,6 +21,7 @@ export const ReducerMessage = reducerWithInitialState(initialStateMessage)
             ...state, messages: [
                 ...state.messages,
                 {
+                    id: message.id,
                     userName: initialStateAuth.name,
                     userColor: '#8A29AD',
                     text: message.title,

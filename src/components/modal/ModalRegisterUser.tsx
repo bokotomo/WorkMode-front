@@ -3,9 +3,9 @@ import Modal from 'react-modal'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
 interface Props {
-    handleOnModalOpend: Function
-    handleOnCreateUser: Function
-    openedModalName: string
+    readonly handleOnModalOpend: Function
+    readonly handleOnCreateUser: Function
+    readonly openedModalName: string
 }
 
 export const ModalRegisterUser: React.FC<Props> = props => {

@@ -4,7 +4,7 @@ import { Message } from '../../types/message';
 import moment from 'moment';
 
 interface Props {
-    messages: Message[]
+    readonly messages: Message[]
 }
 export const MessageTaskProgress: React.FC<Props> = props => {
     useEffect(() => {
@@ -26,7 +26,7 @@ export const MessageTaskProgress: React.FC<Props> = props => {
             flex: '0 1 100%',
         }}>
             {props.messages.map(message =>
-                <div key={message.text}>
+                <div key={message.id}>
                     <div style={style}>
                         <div style={
                             {

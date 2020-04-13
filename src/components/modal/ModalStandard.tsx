@@ -3,8 +3,8 @@ import Modal from 'react-modal'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
 interface Props {
-    isModalOpened: boolean
-    handleOnModalOpend: Function
+    readonly isModalOpened: boolean
+    readonly handleOnModalOpend: Function
 }
 export const ModalStandard: React.FC<Props> = props => {
     const customStyles = {

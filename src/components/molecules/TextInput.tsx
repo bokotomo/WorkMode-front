@@ -1,9 +1,9 @@
 import React from 'react';
 
 interface Props {
-    title: string
-    inputValue: string
-    onChangeValue: Function
+    readonly title: string
+    readonly inputValue: string
+    readonly onChangeValue: Function
 }
 export const TextInput: React.FC<Props> = props => {
     return (

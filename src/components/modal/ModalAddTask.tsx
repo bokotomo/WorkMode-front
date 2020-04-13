@@ -3,9 +3,9 @@ import Modal from 'react-modal'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
 interface Props {
-    handleOnModalOpend: Function
-    handleOnAddTaskTodo: Function
-    openedModalName: string
+    readonly handleOnModalOpend: Function
+    readonly handleOnAddTaskTodo: Function
+    readonly openedModalName: string
 }
 export const ModalAddTask: React.FC<Props> = props => {
     var title = '';

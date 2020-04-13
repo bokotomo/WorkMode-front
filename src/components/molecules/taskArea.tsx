@@ -2,17 +2,18 @@ import React from 'react';
 import { DragDropContext, DropResult } from 'react-beautiful-dnd';
 import { Item } from './item'
 import { TaskCard } from '../../types/taskBoard';
+import moment from 'moment'
 
 interface Props {
-    handleOnSetTaskTodo: Function
-    handleOnSetTaskInProgresses: Function
-    handleOnSetTaskDone: Function
-    handleOnModalOpend: Function
-    handleOnSetSelectedTask: Function
-    handleOnAddMessage: Function
-    todos: TaskCard[],
-    inProgresses: TaskCard[],
-    dones: TaskCard[],
+    readonly handleOnSetTaskTodo: Function
+    readonly handleOnSetTaskInProgresses: Function
+    readonly handleOnSetTaskDone: Function
+    readonly handleOnModalOpend: Function
+    readonly handleOnSetSelectedTask: Function
+    readonly handleOnAddMessage: Function
+    readonly todos: TaskCard[],
+    readonly inProgresses: TaskCard[],
+    readonly dones: TaskCard[],
 }
 export const TaskArea: React.FC<Props> = props => {
     const reorder = (
@@ -53,6 +54,7 @@ export const TaskArea: React.FC<Props> = props => {
             if (droppableSource.droppableId === 'todoArea') {
                 const message = props.todos[droppableSource.index]
                 props.handleOnAddMessage({
+                    id: moment(new Date()).format('HH:mm:ss'),
                     title: message.title,
                     progress: 60,
                     status: 'run',
@@ -62,6 +64,7 @@ export const TaskArea: React.FC<Props> = props => {
             alert('よろしいですか？')
             const message = props.inProgresses[droppableSource.index]
             props.handleOnAddMessage({
+                id: moment(new Date()).format('HH:mm:ss'),
                 title: message.title,
                 progress: 60,
                 status: 'done',

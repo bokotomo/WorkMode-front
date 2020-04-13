@@ -4,7 +4,7 @@ import { ActionRoom } from '../actions/room';
 import { mockRooms } from '../../mock/rooms';
 
 export interface StateRoom {
-    rooms: Room[]
+    readonly rooms: Room[]
 }
 
 export const initialState: StateRoom = {

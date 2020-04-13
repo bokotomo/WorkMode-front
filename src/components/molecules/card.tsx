@@ -2,9 +2,9 @@ import React from 'react';
 import { TaskCard } from '../../types/taskBoard';
 
 interface Props {
-    task: TaskCard
-    handleOnModalOpend: Function
-    handleOnSetSelectedTask: Function
+    readonly task: TaskCard
+    readonly handleOnModalOpend: Function
+    readonly handleOnSetSelectedTask: Function
 }
 export const Card: React.FC<Props> = props => {
     const styleCard = {

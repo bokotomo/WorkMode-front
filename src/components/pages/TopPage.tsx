@@ -12,17 +12,17 @@ import { ModalTaskDetail } from '../modal/ModalTaskDetail';
 import { ModalRegisterUser } from '../modal/ModalRegisterUser';
 
 interface OwnProps {
-    openedModalName: string
-    todos: TaskCard[],
-    inProgresses: TaskCard[],
-    dones: TaskCard[],
-    messages: Message[],
-    activeUsers: ActiveUser[],
-    rooms: Room[],
-    selectedTask: TaskCard,
-    myId: string,
-    myName: string,
-    isLogined: boolean,
+    readonly openedModalName: string
+    readonly todos: TaskCard[],
+    readonly inProgresses: TaskCard[],
+    readonly dones: TaskCard[],
+    readonly messages: Message[],
+    readonly activeUsers: ActiveUser[],
+    readonly rooms: Room[],
+    readonly selectedTask: TaskCard,
+    readonly myId: string,
+    readonly myName: string,
+    readonly isLogined: boolean,
 }
 type Props = OwnProps & TopPageHandler
 export class TopPage extends React.Component<Props> {
