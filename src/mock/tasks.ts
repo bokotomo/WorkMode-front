@@ -3,7 +3,7 @@ import { TaskCard } from '../types/taskBoard';
 export const taskTodos: TaskCard[] = [
     {
         id: "1",
-        title: "APIをGRPCにするべきかの調査",
+        title: "APIをGRPCにするべきかの調査" + process.env.REACT_APP_API_ENDPOINT,
         detail: "詳細",
         status: "todo",
         time: 1,
