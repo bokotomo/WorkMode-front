@@ -1,5 +1,5 @@
 import React from 'react';
-import { Draggable, Droppable } from 'react-beautiful-dnd';
+import { Draggable, Droppable, DraggingStyle, NotDraggingStyle } from 'react-beautiful-dnd';
 import { TaskCard } from '../../types/taskBoard';
 import { Card } from '../molecules/card';
 
@@ -11,9 +11,9 @@ interface Props {
     readonly isCenter: boolean
 }
 export const Item: React.FC<Props> = (props) => {
-    const getItemStyle = (draggableStyle: any, isDragging: any) => {
+    const getItemStyle = (draggableStyle: DraggingStyle | NotDraggingStyle | undefined, isDragging: boolean) => {
         return ({
-            userSelect: 'none',
+            // userSelect: 'none',
             ...draggableStyle,
         })
     };

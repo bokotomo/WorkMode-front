@@ -1,5 +1,5 @@
 import React from 'react';
-import { DragDropContext, DropResult } from 'react-beautiful-dnd';
+import { DragDropContext, DropResult, DraggableLocation } from 'react-beautiful-dnd';
 import { Item } from './item'
 import { TaskCard } from '../../types/taskBoard';
 import moment from 'moment'
@@ -28,10 +28,10 @@ export const TaskArea: React.FC<Props> = props => {
     };
 
     const move = (
-        source: any,
-        destination: any,
-        droppableSource: any,
-        droppableDestination: any,
+        source: TaskCard[],
+        destination: TaskCard[],
+        droppableSource: DraggableLocation,
+        droppableDestination: DraggableLocation,
     ) => {
         const sourceClone = Array.from(source) as TaskCard[];
         const destClone = Array.from(destination) as TaskCard[];
@@ -72,12 +72,11 @@ export const TaskArea: React.FC<Props> = props => {
 
             dones = destClone
         }
-        const result: any = {
+        return {
             todos,
             inProgresses,
             dones,
         };
-        return result;
     };
 
     const getList = (id: string) => {
