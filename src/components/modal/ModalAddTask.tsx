@@ -47,16 +47,16 @@ export const ModalAddTask: React.FC<Props> = props => {
         closeModal();
     }
 
-    function handleChange(e: any) {
+    function handleChange(e: React.ChangeEvent<HTMLInputElement>) {
         title = e.target.value
     }
 
-    function handleChangeDetail(e: any) {
+    function handleChangeDetail(e: React.ChangeEvent<HTMLTextAreaElement>) {
         detail = e.target.value
     }
 
-    function handleHourChange(e: any) {
-        time = e.target.value as number
+    function handleHourChange(e: React.ChangeEvent<HTMLInputElement>) {
+        time = parseInt(e.target.value);
     }
 
     return (

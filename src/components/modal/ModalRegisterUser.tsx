@@ -39,7 +39,7 @@ export const ModalRegisterUser: React.FC<Props> = props => {
         closeModal();
     }
 
-    function handleChange(e: any) {
+    function handleChange(e: React.ChangeEvent<HTMLInputElement>) {
         name = e.target.value
     }
 
