@@ -1,9 +1,9 @@
 export interface Message {
-    id: string
-    userName: string
-    userColor: string
-    text: string
-    progress: number
-    status: string
-    createdAt: Date
+    readonly id: string
+    readonly userName: string
+    readonly userColor: string
+    readonly text: string
+    readonly progress: number
+    readonly status: string
+    readonly createdAt: Date
 }

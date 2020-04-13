@@ -16,6 +16,7 @@ export type AppState = {
     readonly room: StateRoom
 }
 
+// 修正予定
 declare global {
     interface Window {
         __REDUX_DEVTOOLS_EXTENSION_COMPOSE__?: typeof compose;

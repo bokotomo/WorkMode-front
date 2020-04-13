@@ -1,5 +1,5 @@
 export interface ActiveUser {
-    id: string
-    name: string
-    color: string
+    readonly id: string
+    readonly name: string
+    readonly color: string
 }

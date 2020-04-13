@@ -1,8 +1,8 @@
 export interface TaskCard {
-    id: string
-    title: string
-    detail: string
-    status: string
-    time: number
-    createdAt: Date
+    readonly id: string
+    readonly title: string
+    readonly detail: string
+    readonly status: string
+    readonly time: number
+    readonly createdAt: Date
 }

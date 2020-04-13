@@ -1,6 +1,6 @@
 export interface AreducerAuthUser {
-    id: string
-    name: string
-    token: string
-    isLogined: boolean
+    readonly id: string
+    readonly name: string
+    readonly token: string
+    readonly isLogined: boolean
 }
