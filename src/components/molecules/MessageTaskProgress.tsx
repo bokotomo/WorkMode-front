@@ -12,18 +12,18 @@ export const MessageTaskProgress: React.FC<Props> = props => {
     })
 
     function scrollBottom() {
-        const obj = document.getElementById("messageScrollArea");
+        const obj = document.getElementById('messageScrollArea');
         if (obj != null) obj.scrollTop = obj.scrollHeight;
     }
 
     const style = {
-        display: "flex",
+        display: 'flex',
         padding: 15,
     };
     return (
-        <div id="messageScrollArea" style={{
-            overflowY: "scroll",
-            flex: "0 1 100%",
+        <div id='messageScrollArea' style={{
+            overflowY: 'scroll',
+            flex: '0 1 100%',
         }}>
             {props.messages.map(message =>
                 <div key={message.text}>
@@ -39,7 +39,7 @@ export const MessageTaskProgress: React.FC<Props> = props => {
                                     height: 50,
                                     background: message.userColor,
                                     borderRadius: 50,
-                                    cursor: "pointer",
+                                    cursor: 'pointer',
                                 }
                             } />
                         </div>
@@ -48,17 +48,17 @@ export const MessageTaskProgress: React.FC<Props> = props => {
                             <div>
                                 <span style={
                                     {
-                                        cursor: "pointer",
+                                        cursor: 'pointer',
                                     }
                                 } >{message.userName}</span> {
-                                    moment(message.createdAt).format("M月D日 H:mm")
+                                    moment(message.createdAt).format('M月D日 H:mm')
                                 }
                             </div>
                             <div>
                                 {message.text}
-                                {message.status === "done" ? 'が完了しました。' : ''}
-                                {message.status === "run" ? 'を実行中。' : ''}
-                                {message.status === "alldone" ? '' : ''}
+                                {message.status === 'done' ? 'が完了しました。' : ''}
+                                {message.status === 'run' ? 'を実行中。' : ''}
+                                {message.status === 'alldone' ? '' : ''}
                             </div>
                             <div>
                                 進捗率 {message.progress}%

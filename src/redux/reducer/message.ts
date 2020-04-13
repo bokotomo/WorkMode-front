@@ -22,7 +22,7 @@ export const ReducerMessage = reducerWithInitialState(initialStateMessage)
                 ...state.messages,
                 {
                     userName: initialStateAuth.name,
-                    userColor: "#8A29AD",
+                    userColor: '#8A29AD',
                     text: message.title,
                     progress: message.progress,
                     status: message.status,

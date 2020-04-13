@@ -15,10 +15,10 @@ export const ModalDoneTask: React.FC<Props> = props => {
             bottom: 'auto',
             marginRight: '-50%',
             transform: 'translate(-50%, -50%)',
-            background: "#192A46",
-            color: "white",
-            border: "none",
-            boxShadow: "0px 0px 6px #0000005c",
+            background: '#192A46',
+            color: 'white',
+            border: 'none',
+            boxShadow: '0px 0px 6px #0000005c',
         }
     };
     function closeModal() {
@@ -26,19 +26,19 @@ export const ModalDoneTask: React.FC<Props> = props => {
     }
     return (
         <Modal
-            isOpen={props.openedModalName === "done"}
+            isOpen={props.openedModalName === 'done'}
             onRequestClose={closeModal}
             style={customStyles}
-            contentLabel="モーダル"
+            contentLabel='モーダル'
         >
             <button onClick={closeModal}>
-                <FontAwesomeIcon icon="times" />
+                <FontAwesomeIcon icon='times' />
             </button>
             <div>「railsのAPI作成」を完了しますか？</div>
-            <button style={{ textAlign: "center", }} onClick={closeModal}>
+            <button style={{ textAlign: 'center', }} onClick={closeModal}>
                 完了
             </button>
-            <button style={{ textAlign: "center", background: "#4C6276", }} onClick={closeModal}>
+            <button style={{ textAlign: 'center', background: '#4C6276', }} onClick={closeModal}>
                 キャンセル
             </button>
         </Modal>

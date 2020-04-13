@@ -1,16 +1,29 @@
-import { connect } from "react-redux";
-import { Dispatch } from "redux";
-import { TopPage } from "../components/pages/TopPage";
-import { ActionUser } from "../redux/actions/user";
-import { ActionAuth } from "../redux/actions/auth";
-import { ActionTask } from "../redux/actions/task";
-import { ActionMessage } from "../redux/actions/message";
-import { ActionRoom } from "../redux/actions/room";
-import { ActionModal } from "../redux/actions/modal";
-import { AppState } from "../redux/store";
+import { connect } from 'react-redux';
+import { Dispatch } from 'redux';
+import { TopPage } from '../components/pages/TopPage';
+import { ActionUser } from '../redux/actions/user';
+import { ActionAuth } from '../redux/actions/auth';
+import { ActionTask } from '../redux/actions/task';
+import { ActionMessage } from '../redux/actions/message';
+import { ActionRoom } from '../redux/actions/room';
+import { ActionModal } from '../redux/actions/modal';
+import { AppState } from '../redux/store';
 import { TaskCard } from '../types/taskBoard';
 import { MessageProgress } from '../types/messageProgress';
 import { Cookies } from 'react-cookie';
+
+// const WebSocket = require('ws');
+// const ws = new WebSocket(process.env.REACT_APP_API_ENDPOINT, {
+//     perMessageDeflate: false
+// });
+// ws.on('open', function open() {
+//     ws.send('something');
+// });
+
+// ws.on('message', function incoming(data: any) {
+//     console.log(data);
+// });
+// alert(process.env.REACT_APP_API_ENDPOINT);
 
 export interface TopPageHandler {
     handleOnModalOpend(value: string): void
@@ -58,11 +71,11 @@ const mapDispatchToProps = (dispatch: Dispatch) => {
         handleOnSetActiveUser: () => { dispatch(ActionUser.setActiveUser()) },
         handleOnSetRoom: () => { dispatch(ActionRoom.setRoom()) },
         handleOnCreateUser: (name: string) => {
-            const token = "token"
+            const token = 'token'
             // request create user
             new Cookies().set('token', token, { path: '/' });
             const isLogined = true
-            const id = "1"
+            const id = '1'
             dispatch(ActionAuth.setAuth({
                 id,
                 name,
@@ -73,8 +86,8 @@ const mapDispatchToProps = (dispatch: Dispatch) => {
         handleOnAuthentication: () => {
             const token = new Cookies().get('token') || ''
             // authentication token
-            const id = "1"
-            const name = "ttt"
+            const id = '1'
+            const name = 'ttt'
             const isLogined = token !== ''
             dispatch(ActionAuth.setAuth({
                 id,
@@ -83,7 +96,7 @@ const mapDispatchToProps = (dispatch: Dispatch) => {
                 isLogined,
             }))
             if (!isLogined) {
-                dispatch(ActionModal.updateModalOpened("register"))
+                dispatch(ActionModal.updateModalOpened('register'))
             }
         },
     }

@@ -9,16 +9,16 @@ export const MessageUserList: React.FC<Props> = props => {
     return (
         <div>
             <div style={{
-                display: "flex",
+                display: 'flex',
             }}>
                 {props.activeUsers.map(user =>
                     <div key={user.id} style={{
                         width: 80,
                         height: 80,
-                        display: "flex",
-                        flexDirection: "column",
-                        justifyContent: "center",
-                        alignItems: "center",
+                        display: 'flex',
+                        flexDirection: 'column',
+                        justifyContent: 'center',
+                        alignItems: 'center',
                         fontSize: 13,
                     }}>
                         <div>
@@ -28,16 +28,16 @@ export const MessageUserList: React.FC<Props> = props => {
                                     height: 40,
                                     background: user.color,
                                     borderRadius: 40,
-                                    margin: "auto",
+                                    margin: 'auto',
                                 }
                             } />
                             <div style={{
                                 width: 60,
                                 marginTop: 5,
-                                overflow: "hidden",
-                                textOverflow: "ellipsis",
-                                whiteSpace: "nowrap",
-                                textAlign: "center",
+                                overflow: 'hidden',
+                                textOverflow: 'ellipsis',
+                                whiteSpace: 'nowrap',
+                                textAlign: 'center',
                             }}>
                                 {user.name}
                             </div>

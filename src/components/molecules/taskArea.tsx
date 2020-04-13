@@ -1,6 +1,6 @@
-import React from "react";
-import { DragDropContext, DropResult } from "react-beautiful-dnd";
-import { Item } from "./item"
+import React from 'react';
+import { DragDropContext, DropResult } from 'react-beautiful-dnd';
+import { Item } from './item'
 import { TaskCard } from '../../types/taskBoard';
 
 interface Props {
@@ -41,30 +41,30 @@ export const TaskArea: React.FC<Props> = props => {
         var todos = props.todos, inProgresses = props.inProgresses, dones = props.dones;
         if (droppableSource.droppableId === 'todoArea') {
             todos = sourceClone
-        } else if (droppableSource.droppableId === "inProgressArea") {
+        } else if (droppableSource.droppableId === 'inProgressArea') {
             inProgresses = sourceClone
         } else {
             dones = sourceClone
         }
         if (droppableDestination.droppableId === 'todoArea') {
             todos = destClone
-        } else if (droppableDestination.droppableId === "inProgressArea") {
+        } else if (droppableDestination.droppableId === 'inProgressArea') {
             inProgresses = destClone
             if (droppableSource.droppableId === 'todoArea') {
                 const message = props.todos[droppableSource.index]
                 props.handleOnAddMessage({
                     title: message.title,
                     progress: 60,
-                    status: "run",
+                    status: 'run',
                 })
             }
         } else {
-            alert("よろしいですか？")
+            alert('よろしいですか？')
             const message = props.inProgresses[droppableSource.index]
             props.handleOnAddMessage({
                 title: message.title,
                 progress: 60,
-                status: "done",
+                status: 'done',
             })
 
             dones = destClone
@@ -88,14 +88,14 @@ export const TaskArea: React.FC<Props> = props => {
         if (result.destination.index === result.source.index && result.source.droppableId === result.destination.droppableId) return;
 
         if (result.source.droppableId === result.destination.droppableId) {
-            if (result.source.droppableId === "todoArea") {
+            if (result.source.droppableId === 'todoArea') {
                 const todos = reorder(
                     props.todos,
                     result.source.index,
                     result.destination.index
                 );
                 props.handleOnSetTaskTodo(todos)
-            } else if (result.source.droppableId === "inProgressArea") {
+            } else if (result.source.droppableId === 'inProgressArea') {
                 const inProgresses = reorder(
                     props.inProgresses,
                     result.source.index,
@@ -125,26 +125,26 @@ export const TaskArea: React.FC<Props> = props => {
 
     return (
         <DragDropContext onDragEnd={onDragEnd}>
-            <div style={{ display: "flex", height: "100%" }}>
+            <div style={{ display: 'flex', height: '100%' }}>
                 <Item
                     handleOnModalOpend={props.handleOnModalOpend}
                     handleOnSetSelectedTask={props.handleOnSetSelectedTask}
                     items={props.todos}
-                    droppableId={"todoArea"}
+                    droppableId={'todoArea'}
                     isCenter={false}
                 />
                 <Item
                     handleOnModalOpend={props.handleOnModalOpend}
                     handleOnSetSelectedTask={props.handleOnSetSelectedTask}
                     items={props.inProgresses}
-                    droppableId={"inProgressArea"}
+                    droppableId={'inProgressArea'}
                     isCenter={true}
                 />
                 <Item
                     handleOnModalOpend={props.handleOnModalOpend}
                     handleOnSetSelectedTask={props.handleOnSetSelectedTask}
                     items={props.dones}
-                    droppableId={"doneArea"}
+                    droppableId={'doneArea'}
                     isCenter={false}
                 />
             </div>

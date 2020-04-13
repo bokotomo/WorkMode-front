@@ -5,7 +5,7 @@ import { ReducerTask, StateTask } from './reducer/task'
 import { ReducerMessage, StateMessage } from './reducer/message'
 import { ReducerRoom, StateRoom } from './reducer/room'
 import { ReducerModal, StateModal } from './reducer/modal'
-import thunk from "redux-thunk"
+import thunk from 'redux-thunk'
 
 export type AppState = {
     modal: StateModal

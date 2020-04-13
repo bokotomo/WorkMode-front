@@ -38,9 +38,9 @@ export class TopPage extends React.Component<Props> {
     render() {
         return (
             <div style={{
-                color: "white",
-                display: "flex",
-                height: "100%",
+                color: 'white',
+                display: 'flex',
+                height: '100%',
             }}>
                 <ModalRegisterUser
                     openedModalName={this.props.openedModalName}
@@ -78,7 +78,7 @@ export class TopPage extends React.Component<Props> {
                     rooms={this.props.rooms}
                 />
 
-                {/*<Header title="Logo" />
+                {/*<Header title='Logo' />
                 <Contents />
                 <TextInput title='入力' inputValue={this.props.inputValue} onChangeValue={this.props.handleOnChangeValue} />
                 <RadioInput title='ラジオ' selectedValue={this.props.selectedValue} onChangeValue={this.props.handleOnSelectValue} />

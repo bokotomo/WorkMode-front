@@ -8,11 +8,11 @@ interface Props {
 }
 export const Card: React.FC<Props> = props => {
     const styleCard = {
-        background: "#2A3B57",
-        padding: "15px 10px",
-        borderRadius: "10px",
-        cursor: "pointer",
-        boxShadow: "0px -1px 8px #00000036",
+        background: '#2A3B57',
+        padding: '15px 10px',
+        borderRadius: '10px',
+        cursor: 'pointer',
+        boxShadow: '0px -1px 8px #00000036',
         marginBottom: 15,
         fontSize: 15,
     };
@@ -20,11 +20,11 @@ export const Card: React.FC<Props> = props => {
         fontWeight: 600,
     };
     const styleTime = {
-        color: "#8495A8",
+        color: '#8495A8',
     };
     function openDetail() {
         props.handleOnSetSelectedTask(props.task)
-        props.handleOnModalOpend("detail")
+        props.handleOnModalOpend('detail')
     }
     return (
         <div style={styleCard}>
