@@ -7,30 +7,20 @@ import { ActionTask } from '../redux/actions/task';
 import { ActionMessage } from '../redux/actions/message';
 import { ActionRoom } from '../redux/actions/room';
 import { ActionModal } from '../redux/actions/modal';
+import { ActionWebSocket } from '../redux/actions/webSocket';
 import { AppState } from '../redux/store';
 import { TaskCard } from '../types/taskBoard';
 import { MessageProgress } from '../types/messageProgress';
 import { Cookies } from 'react-cookie';
-
-// const socket: WebSocket = new WebSocket(process.env.REACT_APP_API_ENDPOINT as string);
-// const wss = new WebSocket(process.env.REACT_APP_API_ENDPOINT as string, {
-//     perMessageDeflate: false
-// });
-// socket.on('open', function open() {
-//     socket.send('something');
-// });
-
-// ws.on('message', function incoming(data: any) {
-//     console.log(data);
-// });
-// alert(process.env.REACT_APP_API_ENDPOINT);
+import { onMessage, onOpen } from '../handler/websocket';
 
 export interface TopPageHandler {
-    handleOnModalOpend(value: string): void
+    handleOnSetWebSocket(): void
+    handleOnModalOpend(openedModalName: string): void
     handleOnSetTask(): void
-    handleOnSetTaskTodo(value: TaskCard[]): void
-    handleOnSetTaskInProgresses(value: TaskCard[]): void
-    handleOnSetTaskDone(value: TaskCard[]): void
+    handleOnSetTaskTodo(tasks: TaskCard[]): void
+    handleOnSetTaskInProgresses(tasks: TaskCard[]): void
+    handleOnSetTaskDone(tasks: TaskCard[]): void
     handleOnSetSelectedTask(task: TaskCard): void
     handleOnAddTaskTodo(task: TaskCard): void
     handleOnSetMessage(): void
@@ -57,13 +47,20 @@ const mapStateToProps = (appState: AppState) => {
     }
 }
 
+
 const mapDispatchToProps = (dispatch: Dispatch) => {
     return {
-        handleOnModalOpend: (value: string) => { dispatch(ActionModal.updateModalOpened(value)) },
+        handleOnSetWebSocket: () => {
+            const socket = new WebSocket(process.env.REACT_APP_API_ENDPOINT as string);
+            socket.onmessage = (message: MessageEvent) => onMessage(message, socket);
+            socket.onopen = (event: Event) => onOpen(event, socket);
+            dispatch(ActionWebSocket.setWebSocket(socket))
+        },
+        handleOnModalOpend: (openedModalName: string) => { dispatch(ActionModal.updateModalOpened(openedModalName)) },
         handleOnSetTask: () => { dispatch(ActionTask.setTask()) },
-        handleOnSetTaskTodo: (value: TaskCard[]) => { dispatch(ActionTask.setTaskTodo(value)) },
-        handleOnSetTaskInProgresses: (value: TaskCard[]) => { dispatch(ActionTask.setTaskInProgresses(value)) },
-        handleOnSetTaskDone: (value: TaskCard[]) => { dispatch(ActionTask.setTaskDone(value)) },
+        handleOnSetTaskTodo: (tasks: TaskCard[]) => { dispatch(ActionTask.setTaskTodo(tasks)) },
+        handleOnSetTaskInProgresses: (tasks: TaskCard[]) => { dispatch(ActionTask.setTaskInProgresses(tasks)) },
+        handleOnSetTaskDone: (tasks: TaskCard[]) => { dispatch(ActionTask.setTaskDone(tasks)) },
         handleOnSetSelectedTask: (task: TaskCard) => { dispatch(ActionTask.setSelectedTask(task)) },
         handleOnAddTaskTodo: (task: TaskCard) => { dispatch(ActionTask.addTaskTodo(task)) },
         handleOnSetMessage: () => { dispatch(ActionMessage.setMessage()) },

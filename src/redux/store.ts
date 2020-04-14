@@ -5,6 +5,7 @@ import { ReducerTask, StateTask } from './reducer/task'
 import { ReducerMessage, StateMessage } from './reducer/message'
 import { ReducerRoom, StateRoom } from './reducer/room'
 import { ReducerModal, StateModal } from './reducer/modal'
+import { ReducerWebSocket, StateWebSocket } from './reducer/webSocket'
 import thunk from 'redux-thunk'
 
 export type AppState = {
@@ -14,6 +15,7 @@ export type AppState = {
     readonly task: StateTask
     readonly message: StateMessage
     readonly room: StateRoom
+    readonly webSocket: StateWebSocket
 }
 
 // 修正予定
@@ -32,6 +34,7 @@ const store = createStore(
         task: ReducerTask,
         message: ReducerMessage,
         room: ReducerRoom,
+        webSocket: ReducerWebSocket,
     }),
     storeEnhancers(applyMiddleware(thunk))
 )

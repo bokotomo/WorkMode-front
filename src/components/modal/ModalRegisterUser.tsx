@@ -7,7 +7,6 @@ interface Props {
     readonly handleOnCreateUser: Function
     readonly openedModalName: string
 }
-
 export const ModalRegisterUser: React.FC<Props> = props => {
     var name = '';
     const customStyles = {
