@@ -4,7 +4,9 @@ import { ActionModal } from '../redux/actions/modal';
 
 export const requestAuthentication = (socket: WebSocket, token: string) => {
     const action = 'sendmessage'
+    const type = 'authentication'
     const data = JSON.stringify({
+        type,
         token
     })
     socket.send(JSON.stringify({ action, data }));
