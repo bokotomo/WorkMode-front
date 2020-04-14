@@ -15,7 +15,7 @@ import { Cookies } from 'react-cookie';
 import { onMessage, onOpen } from '../handler/websocket';
 
 export interface TopPageHandler {
-    handleOnSetWebSocket(): void
+    setWebSocket(): void
     handleOnModalOpend(openedModalName: string): void
     handleOnSetTask(): void
     handleOnSetTaskTodo(tasks: TaskCard[]): void
@@ -50,11 +50,11 @@ const mapStateToProps = (appState: AppState) => {
 
 const mapDispatchToProps = (dispatch: Dispatch) => {
     return {
-        handleOnSetWebSocket: () => {
+        setWebSocket: () => {
             const socket = new WebSocket(process.env.REACT_APP_API_ENDPOINT as string);
-            socket.onmessage = (message: MessageEvent) => onMessage(message, socket);
+            socket.onmessage = (message: MessageEvent) => onMessage(message, socket, dispatch);
             socket.onopen = (event: Event) => onOpen(event, socket);
-            dispatch(ActionWebSocket.setWebSocket(socket))
+            dispatch(ActionWebSocket.setWebSocket(socket));
         },
         handleOnModalOpend: (openedModalName: string) => { dispatch(ActionModal.updateModalOpened(openedModalName)) },
         handleOnSetTask: () => { dispatch(ActionTask.setTask()) },

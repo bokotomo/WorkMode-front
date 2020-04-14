@@ -28,7 +28,7 @@ type Props = OwnProps & TopPageHandler
 export class TopPage extends React.Component<Props> {
     constructor(props: Props) {
         super(props);
-        this.props.handleOnSetWebSocket()
+        this.props.setWebSocket()
         this.props.handleOnAuthentication()
         this.props.handleOnSetTask()
         this.props.handleOnSetMessage()

@@ -55,7 +55,6 @@ export const ModalRegisterUser: React.FC<Props> = props => {
                 fontWeight: 600,
             }}>
                 <div>ゲスト登録</div>
-                <FontAwesomeIcon style={{ fontSize: 22, cursor: 'pointer' }} onClick={closeModal} icon='times' />
             </div>
             <div style={{ marginTop: 20 }}>
                 <input onChange={handleChange} style={{ color: 'white', fontSize: 18, background: '#2B4D6C', borderRadius: 20, border: 'none', padding: '5px 15px', width: '100%', height: 40, lineHeight: '40px', boxSizing: 'border-box' }} placeholder='ニックネーム' />
