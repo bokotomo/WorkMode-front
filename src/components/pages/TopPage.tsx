@@ -29,7 +29,6 @@ export class TopPage extends React.Component<Props> {
     constructor(props: Props) {
         super(props);
         this.props.setWebSocket()
-        this.props.handleOnAuthentication()
         this.props.handleOnSetTask()
         this.props.handleOnSetMessage()
         this.props.handleOnSetActiveUser()
@@ -46,7 +45,7 @@ export class TopPage extends React.Component<Props> {
                 <ModalRegisterUser
                     openedModalName={this.props.openedModalName}
                     handleOnModalOpend={this.props.handleOnModalOpend}
-                    handleOnCreateUser={this.props.handleOnCreateUser}
+                    registerUser={this.props.registerUser}
                 />
                 <ModalAddTask
                     openedModalName={this.props.openedModalName}

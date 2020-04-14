@@ -4,11 +4,13 @@ import { ActionModal } from '../redux/actions/modal';
 
 export const requestAuthentication = (socket: WebSocket, token: string) => {
     const action = 'sendmessage'
-    const data = 'hello world - ' + token
+    const data = JSON.stringify({
+        token
+    })
     socket.send(JSON.stringify({ action, data }));
 };
 
-export const authentication = (message: MessageEvent, socket: WebSocket, dispatch: Dispatch) => {
+export const responseAuthentication = (message: MessageEvent, socket: WebSocket, dispatch: Dispatch) => {
     console.log(message);
     alert("KO");
     dispatch(ActionModal.updateModalOpened('register'))

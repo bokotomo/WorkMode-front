@@ -27,8 +27,7 @@ export interface TopPageHandler {
     handleOnAddMessage(message: MessageProgress): void
     handleOnSetActiveUser(): void
     handleOnSetRoom(): void
-    handleOnCreateUser(name: string): void
-    handleOnAuthentication(): void
+    registerUser(name: string): void
 }
 
 const mapStateToProps = (appState: AppState) => {
@@ -67,7 +66,7 @@ const mapDispatchToProps = (dispatch: Dispatch) => {
         handleOnAddMessage: (messageProgress: MessageProgress) => { dispatch(ActionMessage.addMessage(messageProgress)) },
         handleOnSetActiveUser: () => { dispatch(ActionUser.setActiveUser()) },
         handleOnSetRoom: () => { dispatch(ActionRoom.setRoom()) },
-        handleOnCreateUser: (name: string) => {
+        registerUser: (name: string) => {
             const token = 'token'
             // request create user
             new Cookies().set('token', token, { path: '/' });
@@ -79,22 +78,6 @@ const mapDispatchToProps = (dispatch: Dispatch) => {
                 token,
                 isLogined,
             }))
-        },
-        handleOnAuthentication: () => {
-            const token = new Cookies().get('token') || ''
-            // authentication token
-            const id = '1'
-            const name = 'ttt'
-            const isLogined = token !== ''
-            dispatch(ActionAuth.setAuth({
-                id,
-                name,
-                token,
-                isLogined,
-            }))
-            if (!isLogined) {
-                dispatch(ActionModal.updateModalOpened('register'))
-            }
         },
     }
 }

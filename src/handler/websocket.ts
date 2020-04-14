@@ -1,6 +1,6 @@
 // WebSocketのハンドリング
 import { Dispatch } from 'redux';
-import { requestAuthentication, authentication } from '../controller/authentication'
+import { requestAuthentication, responseAuthentication } from '../controller/authentication'
 import { Cookies } from 'react-cookie';
 
 // コネクション確立時
@@ -13,6 +13,6 @@ export const onOpen = (event: Event, socket: WebSocket) => {
 // メッセージ受取時
 export const onMessage = (message: MessageEvent, socket: WebSocket, dispatch: Dispatch) => {
     if (true) {
-        authentication(message, socket, dispatch);
+        responseAuthentication(message, socket, dispatch);
     }
 };

@@ -1,10 +1,9 @@
 import React from 'react'
 import Modal from 'react-modal'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
 interface Props {
     readonly handleOnModalOpend: Function
-    readonly handleOnCreateUser: Function
+    readonly registerUser: Function
     readonly openedModalName: string
 }
 export const ModalRegisterUser: React.FC<Props> = props => {
@@ -34,7 +33,7 @@ export const ModalRegisterUser: React.FC<Props> = props => {
             alert('全て入力する必要があります。')
             return
         }
-        props.handleOnCreateUser(name);
+        props.registerUser(name);
         closeModal();
     }
 
