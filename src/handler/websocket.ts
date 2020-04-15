@@ -13,6 +13,7 @@ export const onOpen = (event: Event, socket: WebSocket) => {
 // メッセージ受取時
 export const onMessage = (message: MessageEvent, socket: WebSocket, dispatch: Dispatch) => {
     if (true) {
+        console.log(message.data.role)
         responseAuthentication(message, socket, dispatch);
     }
 };
