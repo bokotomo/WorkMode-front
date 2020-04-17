@@ -46,7 +46,6 @@ const mapStateToProps = (appState: AppState) => {
     }
 }
 
-
 const mapDispatchToProps = (dispatch: Dispatch) => {
     return {
         setWebSocket: () => {

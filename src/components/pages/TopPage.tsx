@@ -77,13 +77,6 @@ export class TopPage extends React.Component<Props> {
                     activeUsers={this.props.activeUsers}
                     rooms={this.props.rooms}
                 />
-
-                {/*<Header title='Logo' />
-                <Contents />
-                <TextInput title='入力' inputValue={this.props.inputValue} onChangeValue={this.props.handleOnChangeValue} />
-                <RadioInput title='ラジオ' selectedValue={this.props.selectedValue} onChangeValue={this.props.handleOnSelectValue} />
-                <SubmitButton title='Click me' onClick={this.props.handleOnClick} />
-                <ShowState inputValue={this.props.inputValue} selectedValue={this.props.selectedValue} clickCount={this.props.clickCount} /> */}
             </div>
         )
     }
