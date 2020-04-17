@@ -12,6 +12,13 @@ export const onOpen = (event: Event, socket: WebSocket) => {
 
 // メッセージ受取時
 export const onMessage = (message: MessageEvent, socket: WebSocket, dispatch: Dispatch) => {
+    switch (message.data.role) {
+        case 'authentication':
+            alert("authentication")
+            break;
+        default:
+            throw new Error('not found routing');
+    }
     if (true) {
         console.log(message.data.role)
         responseAuthentication(message, socket, dispatch);
