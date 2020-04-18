@@ -5,10 +5,9 @@ import { responseUserCreate } from '../controller/user'
 import { Cookies } from 'react-cookie';
 
 // コネクション確立時
-export const onOpen = (event: Event, socket: WebSocket) => {
+export const onOpen = (event: Event, socket: WebSocket, dispatch: Dispatch) => {
     const token = new Cookies().get('token') || ''
-    if (token === '') return;
-    requestAuthentication(socket, token);
+    requestAuthentication(socket, dispatch, token);
 };
 
 // メッセージ受取時
