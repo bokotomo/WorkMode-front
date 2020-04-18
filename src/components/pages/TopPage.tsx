@@ -12,6 +12,7 @@ import { ModalTaskDetail } from '../modal/ModalTaskDetail';
 import { ModalRegisterUser } from '../modal/ModalRegisterUser';
 
 interface OwnProps {
+    readonly socket: WebSocket,
     readonly openedModalName: string
     readonly todos: TaskCard[],
     readonly inProgresses: TaskCard[],
@@ -45,6 +46,7 @@ export class TopPage extends React.Component<Props> {
                 <ModalRegisterUser
                     openedModalName={this.props.openedModalName}
                     handleOnModalOpend={this.props.handleOnModalOpend}
+                    socket={this.props.socket}
                     registerUser={this.props.registerUser}
                 />
                 <ModalAddTask

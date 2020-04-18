@@ -2,6 +2,7 @@ import React from 'react'
 import Modal from 'react-modal'
 
 interface Props {
+    readonly socket: WebSocket
     readonly handleOnModalOpend: Function
     readonly registerUser: Function
     readonly openedModalName: string
@@ -33,7 +34,7 @@ export const ModalRegisterUser: React.FC<Props> = props => {
             alert('全て入力する必要があります。')
             return
         }
-        props.registerUser(name);
+        props.registerUser(props.socket, name);
         closeModal();
     }
 

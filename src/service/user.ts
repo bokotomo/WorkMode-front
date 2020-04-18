@@ -2,12 +2,9 @@ import { Dispatch } from 'redux';
 import { Cookies } from 'react-cookie';
 import { requestUserCreate } from '../controller/user'
 
-export const serviceUserRegister = (dispatch: Dispatch, name: string) => {
+export const userRegister = (dispatch: Dispatch, socket: WebSocket, name: string) => {
 
-    // requestUserCreate(
-    //     {},
-    //     name,
-    // )
+    requestUserCreate(socket, name)
     alert(name)
     // , socket: WebSocket
     // request create user

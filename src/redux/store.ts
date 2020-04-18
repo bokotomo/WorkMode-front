@@ -5,7 +5,7 @@ import { ReducerTask, StateTask } from './reducer/task'
 import { ReducerMessage, StateMessage } from './reducer/message'
 import { ReducerRoom, StateRoom } from './reducer/room'
 import { ReducerModal, StateModal } from './reducer/modal'
-import { ReducerWebSocket, StateWebSocket } from './reducer/webSocket'
+import { ReducerWebSocket, StateWebSocket } from './reducer/socket'
 import thunk from 'redux-thunk'
 
 export type AppState = {
