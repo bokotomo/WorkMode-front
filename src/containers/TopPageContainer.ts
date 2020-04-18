@@ -2,17 +2,15 @@ import { connect } from 'react-redux';
 import { Dispatch } from 'redux';
 import { TopPage } from '../components/pages/TopPage';
 import { ActionUser } from '../redux/actions/user';
-import { ActionAuth } from '../redux/actions/auth';
 import { ActionTask } from '../redux/actions/task';
 import { ActionMessage } from '../redux/actions/message';
 import { ActionRoom } from '../redux/actions/room';
-import { ActionModal } from '../redux/actions/modal';
-import { ActionWebSocket } from '../redux/actions/webSocket';
 import { AppState } from '../redux/store';
 import { TaskCard } from '../types/taskBoard';
 import { MessageProgress } from '../types/messageProgress';
-import { Cookies } from 'react-cookie';
-import { onMessage, onOpen } from '../handler/websocket';
+import { serviceUserRegister } from '../service/user'
+import { serviceSetWebsocket } from '../service/websocket'
+import { serviceModalOpend } from '../service/modal'
 
 export interface TopPageHandler {
     setWebSocket(): void
@@ -48,13 +46,8 @@ const mapStateToProps = (appState: AppState) => {
 
 const mapDispatchToProps = (dispatch: Dispatch) => {
     return {
-        setWebSocket: () => {
-            const socket = new WebSocket(process.env.REACT_APP_API_ENDPOINT as string);
-            socket.onmessage = (message: MessageEvent) => onMessage(message, socket, dispatch);
-            socket.onopen = (event: Event) => onOpen(event, socket);
-            dispatch(ActionWebSocket.setWebSocket(socket));
-        },
-        handleOnModalOpend: (openedModalName: string) => { dispatch(ActionModal.updateModalOpened(openedModalName)) },
+        setWebSocket: () => serviceSetWebsocket(dispatch),
+        handleOnModalOpend: (openedModalName: string) => serviceModalOpend(dispatch, openedModalName),
         handleOnSetTask: () => { dispatch(ActionTask.setTask()) },
         handleOnSetTaskTodo: (tasks: TaskCard[]) => { dispatch(ActionTask.setTaskTodo(tasks)) },
         handleOnSetTaskInProgresses: (tasks: TaskCard[]) => { dispatch(ActionTask.setTaskInProgresses(tasks)) },
@@ -65,19 +58,7 @@ const mapDispatchToProps = (dispatch: Dispatch) => {
         handleOnAddMessage: (messageProgress: MessageProgress) => { dispatch(ActionMessage.addMessage(messageProgress)) },
         handleOnSetActiveUser: () => { dispatch(ActionUser.setActiveUser()) },
         handleOnSetRoom: () => { dispatch(ActionRoom.setRoom()) },
-        registerUser: (name: string) => {
-            const token = 'token'
-            // request create user
-            new Cookies().set('token', token, { path: '/' });
-            const isLogined = true
-            const id = '1'
-            dispatch(ActionAuth.setAuth({
-                id,
-                name,
-                token,
-                isLogined,
-            }))
-        },
+        registerUser: (name: string) => serviceUserRegister(dispatch, name),
     }
 }
 export default connect(mapStateToProps, mapDispatchToProps)(TopPage)

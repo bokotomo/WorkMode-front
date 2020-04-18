@@ -15,13 +15,9 @@ export const onMessage = (message: MessageEvent, socket: WebSocket, dispatch: Di
     const data = JSON.parse(message.data)
     switch (data.role) {
         case 'authentication':
-            alert("authentication")
+            responseAuthentication(message, socket, dispatch);
             break;
         default:
             throw new Error('not found routing');
-    }
-    if (true) {
-        console.log(data.role)
-        responseAuthentication(message, socket, dispatch);
     }
 };
