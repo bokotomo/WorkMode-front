@@ -4,6 +4,7 @@ import { requestAuthentication, responseAuthentication } from '../controller/aut
 import { responseUserCreate } from '../controller/user'
 import { Cookies } from 'react-cookie';
 
+
 // コネクション確立時
 export const onOpen = (event: Event, socket: WebSocket, dispatch: Dispatch) => {
     const token = new Cookies().get('token') || ''
@@ -21,6 +22,6 @@ export const onMessage = (message: MessageEvent, socket: WebSocket, dispatch: Di
             responseUserCreate(message, socket, dispatch);
             break;
         default:
-            throw new Error('not found routing');
+            throw new Error('not found routing: ' + message.data);
     }
 };
