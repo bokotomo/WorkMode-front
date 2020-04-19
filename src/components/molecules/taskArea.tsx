@@ -11,9 +11,11 @@ interface Props {
     readonly handleOnModalOpend: Function
     readonly handleOnSetSelectedTask: Function
     readonly handleOnAddMessage: Function
+    readonly updateTaskStatus: Function
     readonly todos: TaskCard[],
     readonly inProgresses: TaskCard[],
     readonly dones: TaskCard[],
+    readonly socket: WebSocket,
 }
 export const TaskArea: React.FC<Props> = props => {
     const reorder = (
@@ -35,9 +37,9 @@ export const TaskArea: React.FC<Props> = props => {
     ) => {
         const sourceClone = Array.from(source) as TaskCard[];
         const destClone = Array.from(destination) as TaskCard[];
-        const [removed] = sourceClone.splice(droppableSource.index, 1);
+        const [removedTask] = sourceClone.splice(droppableSource.index, 1);
 
-        destClone.splice(droppableDestination.index, 0, removed);
+        destClone.splice(droppableDestination.index, 0, removedTask);
 
         var todos = props.todos, inProgresses = props.inProgresses, dones = props.dones;
         if (droppableSource.droppableId === 'todoArea') {
@@ -49,6 +51,7 @@ export const TaskArea: React.FC<Props> = props => {
         }
         if (droppableDestination.droppableId === 'todoArea') {
             todos = destClone
+            props.updateTaskStatus(props.socket, removedTask.id, 'todo')
         } else if (droppableDestination.droppableId === 'inProgressArea') {
             inProgresses = destClone
             if (droppableSource.droppableId === 'todoArea') {
@@ -60,6 +63,7 @@ export const TaskArea: React.FC<Props> = props => {
                     status: 'run',
                 })
             }
+            props.updateTaskStatus(props.socket, removedTask.id, 'inProgress')
         } else {
             alert('よろしいですか？')
             const message = props.inProgresses[droppableSource.index]
@@ -69,6 +73,7 @@ export const TaskArea: React.FC<Props> = props => {
                 progress: 60,
                 status: 'done',
             })
+            props.updateTaskStatus(props.socket, removedTask.id, 'done')
 
             dones = destClone
         }

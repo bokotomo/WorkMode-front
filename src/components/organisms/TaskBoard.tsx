@@ -10,9 +10,11 @@ interface Props {
     readonly handleOnSetTaskInProgresses: Function
     readonly handleOnSetTaskDone: Function
     readonly handleOnAddMessage: Function
+    readonly updateTaskStatus: Function
     readonly todos: TaskCard[],
     readonly inProgresses: TaskCard[],
     readonly dones: TaskCard[],
+    readonly socket: WebSocket,
 }
 export const TaskBoard: React.FC<Props> = props => {
     const style = {
@@ -66,9 +68,11 @@ export const TaskBoard: React.FC<Props> = props => {
                         handleOnModalOpend={props.handleOnModalOpend}
                         handleOnSetSelectedTask={props.handleOnSetSelectedTask}
                         handleOnAddMessage={props.handleOnAddMessage}
+                        updateTaskStatus={props.updateTaskStatus}
                         todos={props.todos}
                         inProgresses={props.inProgresses}
                         dones={props.dones}
+                        socket={props.socket}
                     />
                 </div>
                 <div style={styleTaskAddButton}>

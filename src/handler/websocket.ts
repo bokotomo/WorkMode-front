@@ -2,9 +2,8 @@
 import { Dispatch } from 'redux';
 import { requestAuthentication, responseAuthentication } from '../controller/authentication'
 import { responseUserCreate, responseActiveUserSearch } from '../controller/user'
-import { responseTaskCreate } from '../controller/task'
+import { responseTaskCreate, responseTaskIndex, responseTaskUpdateStatus } from '../controller/task'
 import { Cookies } from 'react-cookie';
-
 
 // コネクション確立時
 export const onOpen = (event: Event, socket: WebSocket, dispatch: Dispatch) => {
@@ -26,10 +25,16 @@ export const onMessage = (message: MessageEvent, socket: WebSocket, dispatch: Di
         case 'task_create':
             responseTaskCreate(message, socket, dispatch);
             break;
+        case 'task_index':
+            responseTaskIndex(message, socket, dispatch);
+            break;
+        case 'task_update_status':
+            responseTaskUpdateStatus(message, socket, dispatch);
+            break;
         case 'active_user_search':
             responseActiveUserSearch(message, socket, dispatch);
             break;
         default:
             throw new Error('not found routing: ' + message.data);
     }
-};
+}

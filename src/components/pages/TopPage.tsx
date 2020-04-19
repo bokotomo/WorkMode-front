@@ -70,9 +70,11 @@ export class TopPage extends React.Component<Props> {
                     handleOnSetTaskInProgresses={this.props.handleOnSetTaskInProgresses}
                     handleOnSetTaskDone={this.props.handleOnSetTaskDone}
                     handleOnAddMessage={this.props.handleOnAddMessage}
+                    updateTaskStatus={this.props.updateTaskStatus}
                     todos={this.props.todos}
                     inProgresses={this.props.inProgresses}
                     dones={this.props.dones}
+                    socket={this.props.socket}
                 />
                 <MessageBoard
                     messages={this.props.messages}
