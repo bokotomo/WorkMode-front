@@ -50,6 +50,7 @@ export class TopPage extends React.Component<Props> {
                 />
                 <ModalAddTask
                     openedModalName={this.props.openedModalName}
+                    socket={this.props.socket}
                     handleOnModalOpend={this.props.handleOnModalOpend}
                     handleOnAddTaskTodo={this.props.handleOnAddTaskTodo}
                 />

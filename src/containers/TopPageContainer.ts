@@ -17,7 +17,7 @@ export interface TopPageHandler {
     handleOnSetTaskInProgresses(tasks: TaskCard[]): void
     handleOnSetTaskDone(tasks: TaskCard[]): void
     handleOnSetSelectedTask(task: TaskCard): void
-    handleOnAddTaskTodo(task: TaskCard): void
+    handleOnAddTaskTodo(socket: WebSocket, task: TaskCard): void
     handleOnSetMessage(): void
     handleOnAddMessage(message: MessageProgress): void
     handleOnSetRoom(): void
@@ -50,7 +50,7 @@ const mapDispatchToProps = (dispatch: Dispatch) => {
         handleOnSetTaskInProgresses: (tasks: TaskCard[]) => dispatch(ActionTask.setTaskInProgresses(tasks)),
         handleOnSetTaskDone: (tasks: TaskCard[]) => dispatch(ActionTask.setTaskDone(tasks)),
         handleOnSetSelectedTask: (task: TaskCard) => dispatch(ActionTask.setSelectedTask(task)),
-        handleOnAddTaskTodo: (task: TaskCard) => dispatch(ActionTask.addTaskTodo(task)),
+        handleOnAddTaskTodo: (socket: WebSocket, task: TaskCard) => service.addTask(dispatch, socket, task),
         handleOnSetMessage: () => dispatch(ActionMessage.setMessage()),
         handleOnAddMessage: (messageProgress: MessageProgress) => dispatch(ActionMessage.addMessage(messageProgress)),
         handleOnSetRoom: () => dispatch(ActionRoom.setRoom()),

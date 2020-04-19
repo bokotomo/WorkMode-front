@@ -2,6 +2,7 @@
 import { Dispatch } from 'redux';
 import { requestAuthentication, responseAuthentication } from '../controller/authentication'
 import { responseUserCreate, responseActiveUserSearch } from '../controller/user'
+import { responseTaskCreate } from '../controller/task'
 import { Cookies } from 'react-cookie';
 
 
@@ -21,6 +22,9 @@ export const onMessage = (message: MessageEvent, socket: WebSocket, dispatch: Di
             break;
         case 'user_create':
             responseUserCreate(message, socket, dispatch);
+            break;
+        case 'task_create':
+            responseTaskCreate(message, socket, dispatch);
             break;
         case 'active_user_search':
             responseActiveUserSearch(message, socket, dispatch);
