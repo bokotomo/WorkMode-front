@@ -1,6 +1,7 @@
 import { Dispatch } from 'redux';
 import { ActionAuth } from '../redux/actions/auth';
 import { Cookies } from 'react-cookie';
+import { ActionUser } from '../redux/actions/user';
 
 // ユーザ作成
 export const requestUserCreate = (socket: WebSocket, name: string) => {
@@ -26,6 +27,7 @@ export const responseUserCreate = (message: MessageEvent, socket: WebSocket, dis
         token,
         isLogined,
     }))
+    requestActiveUserSearch(socket, token)
 }
 
 // ユーザ一覧取得
@@ -41,5 +43,14 @@ export const requestActiveUserSearch = (socket: WebSocket, token: string) => {
 
 export const responseActiveUserSearch = (message: MessageEvent, socket: WebSocket, dispatch: Dispatch) => {
     const data = JSON.parse(message.data)
+    const users = data.users
+    const activeUsers = users.map(({ id, name }: { id: string, name: string }) => {
+        return {
+            id,
+            name,
+            color: '#1B7B89',
+        }
+    });
 
+    dispatch(ActionUser.setActiveUser(activeUsers))
 }

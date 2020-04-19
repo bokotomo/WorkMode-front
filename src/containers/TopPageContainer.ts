@@ -1,7 +1,6 @@
 import { connect } from 'react-redux';
 import { Dispatch } from 'redux';
 import { TopPage } from '../components/pages/TopPage';
-import { ActionUser } from '../redux/actions/user';
 import { ActionTask } from '../redux/actions/task';
 import { ActionMessage } from '../redux/actions/message';
 import { ActionRoom } from '../redux/actions/room';
@@ -21,7 +20,6 @@ export interface TopPageHandler {
     handleOnAddTaskTodo(task: TaskCard): void
     handleOnSetMessage(): void
     handleOnAddMessage(message: MessageProgress): void
-    handleOnSetActiveUser(): void
     handleOnSetRoom(): void
     registerUser(socket: WebSocket, name: string): void
 }
@@ -55,7 +53,6 @@ const mapDispatchToProps = (dispatch: Dispatch) => {
         handleOnAddTaskTodo: (task: TaskCard) => dispatch(ActionTask.addTaskTodo(task)),
         handleOnSetMessage: () => dispatch(ActionMessage.setMessage()),
         handleOnAddMessage: (messageProgress: MessageProgress) => dispatch(ActionMessage.addMessage(messageProgress)),
-        handleOnSetActiveUser: () => dispatch(ActionUser.setActiveUser()),
         handleOnSetRoom: () => dispatch(ActionRoom.setRoom()),
         registerUser: (socket: WebSocket, name: string) => service.userRegister(dispatch, socket, name),
     }

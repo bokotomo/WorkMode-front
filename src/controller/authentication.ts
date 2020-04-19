@@ -23,7 +23,7 @@ export const responseAuthentication = (message: MessageEvent, socket: WebSocket,
     if (!isLogined) {
         dispatch(ActionModal.updateModalOpened('register'))
     } else {
-        const token = new Cookies().get('token') || ''
-        requestActiveUserSearch(socket, token)
+        // const token = new Cookies().get('token') || ''
+        // requestActiveUserSearch(socket, token)
     }
 };

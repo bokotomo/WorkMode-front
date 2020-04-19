@@ -32,7 +32,6 @@ export class TopPage extends React.Component<Props> {
         this.props.setWebSocket()
         this.props.handleOnSetTask()
         this.props.handleOnSetMessage()
-        this.props.handleOnSetActiveUser()
         this.props.handleOnSetRoom()
     }
 
