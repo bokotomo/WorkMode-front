@@ -63,7 +63,7 @@ export const TaskArea: React.FC<Props> = props => {
                     status: 'run',
                 })
             }
-            props.updateTaskStatus(props.socket, removedTask.id, 'inProgress')
+            props.updateTaskStatus(props.socket, removedTask.id, 'inprogress')
         } else {
             alert('よろしいですか？')
             const message = props.inProgresses[droppableSource.index]
