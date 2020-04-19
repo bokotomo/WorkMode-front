@@ -27,3 +27,19 @@ export const responseUserCreate = (message: MessageEvent, socket: WebSocket, dis
         isLogined,
     }))
 }
+
+// ユーザ一覧取得
+export const requestActiveUserSearch = (socket: WebSocket, token: string) => {
+    const action = 'sendmessage'
+    const role = 'active_user_search'
+    const data = {
+        role,
+        token,
+    }
+    socket.send(JSON.stringify({ action, data }));
+};
+
+export const responseActiveUserSearch = (message: MessageEvent, socket: WebSocket, dispatch: Dispatch) => {
+    const data = JSON.parse(message.data)
+
+}

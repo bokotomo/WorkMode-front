@@ -1,5 +1,7 @@
 import { Dispatch } from 'redux';
 import { ActionModal } from '../redux/actions/modal';
+import { requestActiveUserSearch } from '../controller/user'
+import { Cookies } from 'react-cookie';
 
 export const requestAuthentication = (socket: WebSocket, dispatch: Dispatch, token: string) => {
     if (token === '') {
@@ -17,7 +19,11 @@ export const requestAuthentication = (socket: WebSocket, dispatch: Dispatch, tok
 
 export const responseAuthentication = (message: MessageEvent, socket: WebSocket, dispatch: Dispatch) => {
     const data = JSON.parse(message.data)
-    console.log(message.data);
     const isLogined = data.isLogined;
-    if (!isLogined) dispatch(ActionModal.updateModalOpened('register'))
+    if (!isLogined) {
+        dispatch(ActionModal.updateModalOpened('register'))
+    } else {
+        const token = new Cookies().get('token') || ''
+        requestActiveUserSearch(socket, token)
+    }
 };
