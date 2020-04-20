@@ -41,7 +41,7 @@ export const TaskArea: React.FC<Props> = props => {
 
         destClone.splice(droppableDestination.index, 0, removedTask);
 
-        var todos = props.todos, inProgresses = props.inProgresses, dones = props.dones;
+        let todos = props.todos, inProgresses = props.inProgresses, dones = props.dones;
         if (droppableSource.droppableId === 'todoArea') {
             todos = sourceClone
         } else if (droppableSource.droppableId === 'inProgressArea') {

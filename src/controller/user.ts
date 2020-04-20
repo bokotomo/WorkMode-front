@@ -44,11 +44,12 @@ export const requestActiveUserSearch = (socket: WebSocket, token: string) => {
 export const responseActiveUserSearch = (message: MessageEvent, socket: WebSocket, dispatch: Dispatch) => {
     const data = JSON.parse(message.data)
     const users = data.users
+    const color = data.color
     const activeUsers = users.map(({ id, name }: { id: string, name: string }) => {
         return {
             id,
             name,
-            color: '#1B7B89',
+            color,
         }
     });
 

@@ -10,6 +10,7 @@ export const MessageUserList: React.FC<Props> = props => {
         <div>
             <div style={{
                 display: 'flex',
+                height: 80,
             }}>
                 {props.activeUsers.map(user =>
                     <div key={user.id} style={{

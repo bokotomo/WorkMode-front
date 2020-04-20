@@ -1,7 +1,7 @@
 import React from 'react'
 import { ActiveUser } from '../../types/activeUser';
 import { Room } from '../../types/room';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+// import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { MessageLineBar } from '../atom/MessageLineBar';
 import { MessageUserList } from '../molecules/MessageUserList';
 import { MessageTaskProgress } from '../molecules/MessageTaskProgress';
@@ -31,22 +31,22 @@ export const MessageBoard: React.FC<Props> = props => {
         borderRadius: '5px',
         fontWeight: 800,
     };
-    const styleRoomCreateWrapper = {
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'center',
-    }
-    const styleRoomCreate = {
-        display: 'flex',
-        background: 'linear-gradient(125deg, #66B7FF, #0052de)',
-        width: '30px',
-        height: '30px',
-        marginLeft: '10px',
-        borderRadius: '100px',
-        alignItems: 'center',
-        justifyContent: 'center',
-        cursor: 'pointer',
-    };
+    // const styleRoomCreateWrapper = {
+    //     display: 'flex',
+    //     alignItems: 'center',
+    //     justifyContent: 'center',
+    // }
+    // const styleRoomCreate = {
+    //     display: 'flex',
+    //     background: 'linear-gradient(125deg, #66B7FF, #0052de)',
+    //     width: '30px',
+    //     height: '30px',
+    //     marginLeft: '10px',
+    //     borderRadius: '100px',
+    //     alignItems: 'center',
+    //     justifyContent: 'center',
+    //     cursor: 'pointer',
+    // };
     const styleSelect = {
         background: 'none',
         width: '100%',
@@ -72,6 +72,7 @@ export const MessageBoard: React.FC<Props> = props => {
                     </span> */}
                 </div>
 
+                {/* 一時的に消す
                 <div style={styleRoomCreateWrapper}>
                     <div style={styleRoomCreate}>
                         <FontAwesomeIcon icon='plus' />
@@ -86,6 +87,7 @@ export const MessageBoard: React.FC<Props> = props => {
                 }}>
                     <FontAwesomeIcon icon='moon' />
                 </div>
+                */}
             </div>
             <MessageLineBar />
             <MessageUserList activeUsers={props.activeUsers} />

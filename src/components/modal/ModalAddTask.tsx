@@ -96,10 +96,10 @@ export const ModalAddTask: React.FC<Props> = props => {
                 <FontAwesomeIcon style={{ fontSize: 22, cursor: 'pointer' }} onClick={closeModal} icon='times' />
             </div>
             <div style={{ marginTop: 20 }}>
-                <input onChange={handleChange} style={{ color: 'white', fontSize: 18, background: '#2B4D6C', borderRadius: 20, border: 'none', padding: '5px 15px', width: '100%', height: 40, lineHeight: '40px', boxSizing: 'border-box' }} placeholder='タイトル' />
+                <input onChange={handleChange} style={{ color: 'white', fontSize: 18, background: '#2B4D6C', borderRadius: 20, border: 'none', padding: '5px 15px', width: '100%', height: 40, lineHeight: '40px', boxSizing: 'border-box' }} placeholder='タイトル' maxLength={25} />
             </div>
             <div style={{ marginTop: 20 }}>
-                <textarea onChange={handleChangeDetail} style={{ color: 'white', fontSize: 18, background: '#2B4D6C', width: '100%', borderRadius: 10, border: 'none', padding: '5px 15px', height: 120, boxSizing: 'border-box', }} placeholder='詳細を書きます。'></textarea>
+                <textarea onChange={handleChangeDetail} style={{ color: 'white', fontSize: 18, background: '#2B4D6C', width: '100%', borderRadius: 10, border: 'none', padding: '5px 15px', height: 120, boxSizing: 'border-box', }} placeholder='詳細を書きます。' maxLength={200}></textarea>
             </div>
             <div style={{ marginTop: 20 }}>
                 予定時間：
