@@ -42,6 +42,18 @@ export const requestTaskUpdateStatus = (socket: WebSocket, dispatch: Dispatch, t
     socket.send(JSON.stringify({ action, data }));
 };
 
-export const responseTaskUpdateStatus = (message: MessageEvent, socket: WebSocket, dispatch: Dispatch) => {
-    const data = JSON.parse(message.data)
+export const responseTaskUpdateStatus = (message: MessageEvent, socket: WebSocket, dispatch: Dispatch) => { };
+
+export const responseTaskDelete = (message: MessageEvent, socket: WebSocket, dispatch: Dispatch) => { };
+
+export const requestTaskDelete = (socket: WebSocket, dispatch: Dispatch, token: string, taskId: string) => {
+    const action = 'sendmessage'
+    const role = 'task_delete'
+    const data = {
+        role,
+        token,
+        taskId,
+    }
+    socket.send(JSON.stringify({ action, data }));
+    dispatch(ActionTask.deleteTask(taskId))
 };

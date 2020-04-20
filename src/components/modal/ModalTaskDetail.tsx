@@ -5,8 +5,10 @@ import { TaskCard } from '../../types/taskBoard';
 
 interface Props {
     readonly handleOnModalOpend: Function
+    readonly deleteTask: Function
     readonly openedModalName: string
     readonly selectedTask: TaskCard
+    readonly socket: WebSocket,
 }
 export const ModalTaskDetail: React.FC<Props> = props => {
     const customStyles = {
@@ -27,6 +29,18 @@ export const ModalTaskDetail: React.FC<Props> = props => {
 
     function closeModal() {
         props.handleOnModalOpend('');
+    }
+
+    function deleteTask() {
+        const isYes = window.confirm('削除しても宜しいですか？');
+        if (isYes) {
+            props.deleteTask(props.socket, props.selectedTask.id)
+            closeModal()
+        }
+    }
+
+    function editTask() {
+        alert("OK2")
     }
 
     return (
@@ -52,10 +66,10 @@ export const ModalTaskDetail: React.FC<Props> = props => {
                 {props.selectedTask.time}h
             </div>
 
-            <button style={{ marginTop: 20, fontSize: 18, color: 'white', background: 'linear-gradient(125deg, #66B7FF, #0052de)', borderRadius: 50, border: 'none', width: '100%', textAlign: 'center', height: 40, lineHeight: '40px', boxSizing: 'border-box', cursor: 'pointer' }} onClick={closeModal}>
+            <button onClick={editTask} style={{ marginTop: 20, fontSize: 18, color: 'white', background: 'linear-gradient(125deg, #66B7FF, #0052de)', borderRadius: 50, border: 'none', width: '100%', textAlign: 'center', height: 40, lineHeight: '40px', boxSizing: 'border-box', cursor: 'pointer' }}>
                 編集
             </button>
-            <button style={{ marginTop: 20, fontSize: 18, color: 'white', background: '#4C6276', borderRadius: 50, border: 'none', width: '100%', textAlign: 'center', height: 40, lineHeight: '40px', boxSizing: 'border-box', cursor: 'pointer' }} onClick={closeModal}>
+            <button onClick={deleteTask} style={{ marginTop: 20, fontSize: 18, color: 'white', background: '#4C6276', borderRadius: 50, border: 'none', width: '100%', textAlign: 'center', height: 40, lineHeight: '40px', boxSizing: 'border-box', cursor: 'pointer' }}>
                 削除
             </button>
         </Modal>

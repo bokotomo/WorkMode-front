@@ -10,4 +10,5 @@ export const ActionTask = {
     setTaskInProgresses: actionCreator<TaskCard[]>('SET_TASK_INPROGRESSES'),
     setTaskDone: actionCreator<TaskCard[]>('SET_TASK_DONE'),
     setSelectedTask: actionCreator<TaskCard>('SET_SELECTED_TASK'),
+    deleteTask: actionCreator<string>('DELETE_TASK'),
 }

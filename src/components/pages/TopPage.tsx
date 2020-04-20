@@ -11,6 +11,7 @@ import { ModalDoneTask } from '../modal/ModalDoneTask';
 import { ModalTaskDetail } from '../modal/ModalTaskDetail';
 import { ModalRegisterUser } from '../modal/ModalRegisterUser';
 
+// 各コンポーネントからreduxを呼び出すこともできるが、引数として渡した方がより厳密なのと、このページ量だと必要ないためやってない。
 interface OwnProps {
     readonly socket: WebSocket,
     readonly openedModalName: string
@@ -30,7 +31,6 @@ export class TopPage extends React.Component<Props> {
     constructor(props: Props) {
         super(props);
         this.props.setWebSocket()
-        this.props.handleOnSetTask()
         this.props.handleOnSetMessage()
         this.props.handleOnSetRoom()
     }
@@ -61,7 +61,9 @@ export class TopPage extends React.Component<Props> {
                 <ModalTaskDetail
                     openedModalName={this.props.openedModalName}
                     handleOnModalOpend={this.props.handleOnModalOpend}
+                    deleteTask={this.props.deleteTask}
                     selectedTask={this.props.selectedTask}
+                    socket={this.props.socket}
                 />
                 <TaskBoard
                     handleOnModalOpend={this.props.handleOnModalOpend}

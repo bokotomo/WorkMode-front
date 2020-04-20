@@ -2,7 +2,7 @@ import { Dispatch } from 'redux';
 import { modalOpend } from './modal';
 import { userRegister } from './user'
 import { setWebsocket } from './socket'
-import { addTask, updateTaskStatus } from './task'
+import { addTask, updateTaskStatus, deleteTask } from './task'
 import { TaskCard } from '../types/taskBoard';
 
 export const service = {
@@ -11,4 +11,5 @@ export const service = {
     setWebsocket: (dispatch: Dispatch) => setWebsocket(dispatch),
     addTask: (dispatch: Dispatch, socket: WebSocket, task: TaskCard) => addTask(dispatch, socket, task),
     updateTaskStatus: (dispatch: Dispatch, socket: WebSocket, taskId: string, status: string) => updateTaskStatus(dispatch, socket, taskId, status),
+    deleteTask: (dispatch: Dispatch, socket: WebSocket, taskId: string) => deleteTask(dispatch, socket, taskId),
 }

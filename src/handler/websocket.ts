@@ -2,7 +2,7 @@
 import { Dispatch } from 'redux';
 import { requestAuthentication, responseAuthentication } from '../controller/authentication'
 import { responseUserCreate, responseActiveUserSearch } from '../controller/user'
-import { responseTaskCreate, responseTaskIndex, responseTaskUpdateStatus } from '../controller/task'
+import { responseTaskCreate, responseTaskIndex, responseTaskUpdateStatus, responseTaskDelete } from '../controller/task'
 import { Cookies } from 'react-cookie';
 
 // コネクション確立時
@@ -30,6 +30,9 @@ export const onMessage = (message: MessageEvent, socket: WebSocket, dispatch: Di
             break;
         case 'task_update_status':
             responseTaskUpdateStatus(message, socket, dispatch);
+            break;
+        case 'task_delete':
+            responseTaskDelete(message, socket, dispatch);
             break;
         case 'active_user_search':
             responseActiveUserSearch(message, socket, dispatch);

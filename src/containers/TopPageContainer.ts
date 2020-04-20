@@ -23,6 +23,7 @@ export interface TopPageHandler {
     handleOnAddMessage(message: MessageProgress): void
     handleOnSetRoom(): void
     registerUser(socket: WebSocket, name: string): void
+    deleteTask(socket: WebSocket, taskId: string): void
 }
 
 const mapStateToProps = (appState: AppState) => {
@@ -57,6 +58,7 @@ const mapDispatchToProps = (dispatch: Dispatch) => {
         handleOnAddMessage: (messageProgress: MessageProgress) => dispatch(ActionMessage.addMessage(messageProgress)),
         handleOnSetRoom: () => dispatch(ActionRoom.setRoom()),
         registerUser: (socket: WebSocket, name: string) => service.userRegister(dispatch, socket, name),
+        deleteTask: (socket: WebSocket, taskId: string) => service.deleteTask(dispatch, socket, taskId),
     }
 }
 export default connect(mapStateToProps, mapDispatchToProps)(TopPage)
