@@ -27,7 +27,6 @@ export const responseUserCreate = (message: MessageEvent, socket: WebSocket, dis
         token,
         isLogined,
     }))
-    requestActiveUserSearch(socket, token)
 }
 
 // ユーザ一覧取得
@@ -44,8 +43,7 @@ export const requestActiveUserSearch = (socket: WebSocket, token: string) => {
 export const responseActiveUserSearch = (message: MessageEvent, socket: WebSocket, dispatch: Dispatch) => {
     const data = JSON.parse(message.data)
     const users = data.users
-    const color = data.color
-    const activeUsers = users.map(({ id, name }: { id: string, name: string }) => {
+    const activeUsers = users.map(({ id, name, color }: { id: string, name: string, color: string }) => {
         return {
             id,
             name,
