@@ -20,7 +20,7 @@ export const requestTaskCreate = (socket: WebSocket, dispatch: Dispatch, token: 
 
 export const responseTaskCreate = (message: MessageEvent, socket: WebSocket, dispatch: Dispatch) => {
     const data = JSON.parse(message.data)
-    dispatch(ActionTask.setTaskTodo(data.tasks));
+    dispatch(ActionTask.setTaskTodo(data.taskTodos));
 };
 
 export const responseTaskIndex = (message: MessageEvent, socket: WebSocket, dispatch: Dispatch) => {

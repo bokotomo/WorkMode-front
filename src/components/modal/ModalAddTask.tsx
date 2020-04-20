@@ -9,9 +9,9 @@ interface Props {
     readonly openedModalName: string
 }
 export const ModalAddTask: React.FC<Props> = props => {
-    var title = '';
-    var detail = '';
-    var time = 0;
+    let title = '';
+    let detail = '';
+    let time = 0;
     const customStyles = {
         content: {
             top: '50%',
@@ -60,7 +60,23 @@ export const ModalAddTask: React.FC<Props> = props => {
     }
 
     function handleHourChange(e: React.ChangeEvent<HTMLInputElement>) {
-        time = parseInt(e.target.value);
+        const timeTmp = Number(e.target.value);
+        if (!timeTmp) {
+            // [TODO]
+            e.target.value = '0.5';
+            return;
+        }
+        if (timeTmp > 12) {
+            // [TODO]
+            e.target.value = '12';
+            return;
+        }
+        if (timeTmp < 0.5) {
+            // [TODO]
+            e.target.value = '0.5';
+            return;
+        }
+        time = timeTmp;
     }
 
     return (
@@ -87,7 +103,7 @@ export const ModalAddTask: React.FC<Props> = props => {
             </div>
             <div style={{ marginTop: 20 }}>
                 予定時間：
-                <input type='number' onChange={handleHourChange} style={{ color: 'white', fontSize: 18, background: '#2B4D6C', borderRadius: 20, border: 'none', padding: '5px 15px', width: 60, height: 40, lineHeight: '40px', boxSizing: 'border-box' }} placeholder='1' min={0} />
+                <input type='number' onChange={handleHourChange} style={{ color: 'white', fontSize: 18, background: '#2B4D6C', borderRadius: 20, border: 'none', padding: '5px 15px', width: 100, height: 40, lineHeight: '40px', boxSizing: 'border-box' }} placeholder='1' min={0.5} max={12} step={0.1} />
             </div>
 
             <button style={{ marginTop: 20, fontSize: 18, color: 'white', background: 'linear-gradient(125deg, #66B7FF, #0052de)', borderRadius: 50, border: 'none', width: '100%', textAlign: 'center', height: 40, lineHeight: '40px', boxSizing: 'border-box', cursor: 'pointer' }} onClick={addTask}>

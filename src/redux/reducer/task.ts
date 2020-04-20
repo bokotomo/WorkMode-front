@@ -45,7 +45,7 @@ export const ReducerTask = reducerWithInitialState(initialStateTask)
     })
     .case(ActionTask.deleteTask, (state, taskId) => {
         const todos = state.todos.filter(task => task.id !== taskId)
-        const inProgresses = state.todos.filter(task => task.id !== taskId)
-        const dones = state.todos.filter(task => task.id !== taskId)
+        const inProgresses = state.inProgresses.filter(task => task.id !== taskId)
+        const dones = state.dones.filter(task => task.id !== taskId)
         return { ...state, todos, inProgresses, dones }
     })
