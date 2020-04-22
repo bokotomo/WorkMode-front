@@ -2,14 +2,16 @@ import { reducerWithInitialState } from '../../../node_modules/typescript-fsa-re
 import { ActionModal } from '../actions/modal';
 
 export interface StateModal {
-    readonly openedModalName: string
+  readonly openedModalName: string;
 }
 
 export const initialStateModal: StateModal = {
-    openedModalName: '',
-}
+  openedModalName: '',
+};
 
-export const ReducerModal = reducerWithInitialState(initialStateModal)
-    .case(ActionModal.updateModalOpened, (state, openedModalName) => {
-        return { ...state, openedModalName }
-    })
+export const ReducerModal = reducerWithInitialState(initialStateModal).case(
+  ActionModal.updateModalOpened,
+  (state, openedModalName) => {
+    return { ...state, openedModalName };
+  }
+);

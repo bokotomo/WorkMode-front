@@ -4,14 +4,16 @@ import { ActionRoom } from '../actions/room';
 import { mockRooms } from '../../mock/rooms';
 
 export interface StateRoom {
-    readonly rooms: Room[]
+  readonly rooms: Room[];
 }
 
 export const initialState: StateRoom = {
-    rooms: [],
-}
+  rooms: [],
+};
 
-export const ReducerRoom = reducerWithInitialState(initialState)
-    .case(ActionRoom.setRoom, (state) => {
-        return { ...state, rooms: mockRooms }
-    })
+export const ReducerRoom = reducerWithInitialState(initialState).case(
+  ActionRoom.setRoom,
+  (state) => {
+    return { ...state, rooms: mockRooms };
+  }
+);

@@ -3,14 +3,16 @@ import { ActionUser } from '../actions/user';
 import { ActiveUser } from '../../types/activeUser';
 
 export interface StateUser {
-    readonly activeUsers: ActiveUser[]
+  readonly activeUsers: ActiveUser[];
 }
 
 export const initialState: StateUser = {
-    activeUsers: [],
-}
+  activeUsers: [],
+};
 
-export const ReducerUser = reducerWithInitialState(initialState)
-    .case(ActionUser.setActiveUser, (state, activeUsers) => {
-        return { ...state, activeUsers }
-    })
+export const ReducerUser = reducerWithInitialState(initialState).case(
+  ActionUser.setActiveUser,
+  (state, activeUsers) => {
+    return { ...state, activeUsers };
+  }
+);

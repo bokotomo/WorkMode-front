@@ -1,7 +1,7 @@
 import { actionCreatorFactory } from '../../../node_modules/typescript-fsa';
 
-const actionCreator = actionCreatorFactory()
+const actionCreator = actionCreatorFactory();
 
 export const ActionWebSocket = {
-    setWebSocket: actionCreator<WebSocket>('SET_WEBSOCKET'),
-}
+  setWebSocket: actionCreator<WebSocket>('SET_WEBSOCKET'),
+};

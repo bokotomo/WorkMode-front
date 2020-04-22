@@ -1,4 +1,6 @@
-html, body, #root {
+html,
+body,
+#root {
   height: 100%;
 }
 
@@ -16,6 +18,7 @@ code {
     monospace;
 }
 
-input, textarea:focus {
+input,
+textarea:focus {
   outline: 0;
 }
