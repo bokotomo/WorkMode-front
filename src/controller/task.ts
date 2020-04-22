@@ -39,7 +39,12 @@ export const requestTaskUpdateStatus = (socket: WebSocket, dispatch: Dispatch, t
         taskId,
         status,
     }
-    socket.send(JSON.stringify({ action, data }));
+    try {
+        socket.send(JSON.stringify({ action, data }));
+    } catch (err) {
+        // テス
+        console.log(err)
+    }
 };
 
 export const responseTaskUpdateStatus = (message: MessageEvent, socket: WebSocket, dispatch: Dispatch) => { };
