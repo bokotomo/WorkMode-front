@@ -1,7 +1,7 @@
 import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { TaskCard } from '../../types/taskBoard';
-import { TaskArea } from '../molecules/taskArea';
+import { TaskCard } from '@/types/taskBoard';
+import { TaskArea } from '@/components/molecules/taskArea';
 
 interface Props {
   readonly handleOnModalOpend: Function;

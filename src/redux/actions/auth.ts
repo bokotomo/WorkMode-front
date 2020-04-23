@@ -1,5 +1,5 @@
+import { AreducerAuthUser } from '@/types/reducer_auth';
 import { actionCreatorFactory } from '../../../node_modules/typescript-fsa';
-import { AreducerAuthUser } from '../../types/reducer_auth';
 
 const actionCreator = actionCreatorFactory();
 

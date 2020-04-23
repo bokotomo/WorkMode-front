@@ -1,8 +1,8 @@
+import { ActionMessage } from '@/redux/actions/message';
+import { initialStateAuth } from '@/redux/reducer/auth';
+import { Message } from '@/types/message';
+import { mockMessages } from '@/mock/messages';
 import { reducerWithInitialState } from '../../../node_modules/typescript-fsa-reducers';
-import { ActionMessage } from '../actions/message';
-import { initialStateAuth } from './auth';
-import { Message } from '../../types/message';
-import { mockMessages } from '../../mock/messages';
 
 export interface StateMessage {
   readonly messages: Message[];

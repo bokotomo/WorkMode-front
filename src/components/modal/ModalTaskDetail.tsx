@@ -1,7 +1,7 @@
 import React from 'react';
 import Modal from 'react-modal';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { TaskCard } from '../../types/taskBoard';
+import { TaskCard } from '@/types/taskBoard';
 
 interface Props {
   readonly handleOnModalOpend: Function;

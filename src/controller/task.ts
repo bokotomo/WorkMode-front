@@ -1,7 +1,7 @@
 import { Dispatch } from 'redux';
-import { TaskCard } from '../types/taskBoard';
-import { ActionModal } from '../redux/actions/modal';
-import { ActionTask } from '../redux/actions/task';
+import { TaskCard } from '@/types/taskBoard';
+import { ActionModal } from '@/redux/actions/modal';
+import { ActionTask } from '@/redux/actions/task';
 
 export const requestTaskCreate = (
   socket: WebSocket,

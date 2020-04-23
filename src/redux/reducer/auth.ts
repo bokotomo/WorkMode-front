@@ -1,5 +1,5 @@
+import { ActionAuth } from '@/redux/actions/auth';
 import { reducerWithInitialState } from '../../../node_modules/typescript-fsa-reducers';
-import { ActionAuth } from '../actions/auth';
 
 export interface StateAuth {
   readonly id: string;

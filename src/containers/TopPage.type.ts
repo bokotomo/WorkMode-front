@@ -1,5 +1,5 @@
-import { TaskCard } from '../types/taskBoard';
-import { MessageProgress } from '../types/messageProgress';
+import { TaskCard } from '@/types/taskBoard';
+import { MessageProgress } from '@/types/messageProgress';
 
 export interface TopPageHandler {
   setWebSocket(): void;

@@ -1,15 +1,15 @@
 import React from 'react';
-import { TaskCard } from '../../types/taskBoard';
-import { Message } from '../../types/message';
-import { ActiveUser } from '../../types/activeUser';
-import { Room } from '../../types/room';
-import { TopPageHandler } from '../../containers/TopPage.type';
-import { TaskBoard } from '../organisms/TaskBoard';
-import { MessageBoard } from '../organisms/MessageBoard';
-import { ModalAddTask } from '../modal/ModalAddTask';
-import { ModalDoneTask } from '../modal/ModalDoneTask';
-import { ModalTaskDetail } from '../modal/ModalTaskDetail';
-import { ModalRegisterUser } from '../modal/ModalRegisterUser';
+import { TaskCard } from '@/types/taskBoard';
+import { Message } from '@/types/message';
+import { ActiveUser } from '@/types/activeUser';
+import { Room } from '@/types/room';
+import { TopPageHandler } from '@/containers/TopPage.type';
+import { TaskBoard } from '@/components/organisms/TaskBoard';
+import { MessageBoard } from '@/components/organisms/MessageBoard';
+import { ModalAddTask } from '@/components/modal/ModalAddTask';
+import { ModalDoneTask } from '@/components/modal/ModalDoneTask';
+import { ModalTaskDetail } from '@/components/modal/ModalTaskDetail';
+import { ModalRegisterUser } from '@/components/modal/ModalRegisterUser';
 
 // 各コンポーネントからreduxを呼び出すこともできるが、引数として渡した方がより厳密なのと、このページ量だと必要ないためやってない。
 interface OwnProps {

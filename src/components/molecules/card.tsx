@@ -4,7 +4,7 @@ import {
   DraggingStyle,
   NotDraggingStyle,
 } from 'react-beautiful-dnd';
-import { TaskCard } from '../../types/taskBoard';
+import { TaskCard } from '@/types/taskBoard';
 
 interface Props {
   readonly task: TaskCard;

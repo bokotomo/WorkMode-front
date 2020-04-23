@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import moment from 'moment';
-import { MessageLineBar } from '../atom/MessageLineBar';
-import { Message } from '../../types/message';
+import { Message } from '@/types/message';
+import { MessageLineBar } from '@/components/atom/MessageLineBar';
 
 interface Props {
   readonly messages: Message[];

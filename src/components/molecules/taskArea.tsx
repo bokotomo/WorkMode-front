@@ -5,8 +5,8 @@ import {
   DraggableLocation,
 } from 'react-beautiful-dnd';
 import moment from 'moment';
-import { Item } from './item';
-import { TaskCard } from '../../types/taskBoard';
+import { TaskCard } from '@/types/taskBoard';
+import { Item } from '@/components/molecules/item';
 
 interface Props {
   readonly handleOnSetTaskTodo: Function;

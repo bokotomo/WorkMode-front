@@ -1,7 +1,7 @@
+import { ActionTask } from '@/redux/actions/task';
+import { TaskCard } from '@/types/taskBoard';
+import { taskTodos, taskInProgresses, taskDones } from '@/mock/tasks';
 import { reducerWithInitialState } from '../../../node_modules/typescript-fsa-reducers';
-import { ActionTask } from '../actions/task';
-import { TaskCard } from '../../types/taskBoard';
-import { taskTodos, taskInProgresses, taskDones } from '../../mock/tasks';
 
 export interface StateTask {
   readonly todos: TaskCard[];

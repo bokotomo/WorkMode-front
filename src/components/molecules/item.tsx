@@ -1,7 +1,7 @@
 import React from 'react';
 import { Droppable } from 'react-beautiful-dnd';
-import { TaskCard } from '../../types/taskBoard';
-import { Card } from './card';
+import { TaskCard } from '@/types/taskBoard';
+import { Card } from '@/components/molecules/card';
 
 interface Props {
   readonly handleOnModalOpend: Function;

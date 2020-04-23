@@ -1,7 +1,7 @@
+import { Room } from '@/types/room';
+import { ActionRoom } from '@/redux/actions/room';
+import { mockRooms } from '@/mock/rooms';
 import { reducerWithInitialState } from '../../../node_modules/typescript-fsa-reducers';
-import { Room } from '../../types/room';
-import { ActionRoom } from '../actions/room';
-import { mockRooms } from '../../mock/rooms';
 
 export interface StateRoom {
   readonly rooms: Room[];

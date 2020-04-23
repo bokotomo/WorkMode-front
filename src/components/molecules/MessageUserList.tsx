@@ -1,6 +1,6 @@
 import React from 'react';
-import { MessageLineBar } from '../atom/MessageLineBar';
-import { ActiveUser } from '../../types/activeUser';
+import { ActiveUser } from '@/types/activeUser';
+import { MessageLineBar } from '@/components/atom/MessageLineBar';
 
 interface Props {
   readonly activeUsers: ActiveUser[];

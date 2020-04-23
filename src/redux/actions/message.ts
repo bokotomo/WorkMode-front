@@ -1,5 +1,5 @@
+import { MessageProgress } from '@/types/messageProgress';
 import { actionCreatorFactory } from '../../../node_modules/typescript-fsa';
-import { MessageProgress } from '../../types/messageProgress';
 
 const actionCreator = actionCreatorFactory();
 

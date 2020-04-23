@@ -1,5 +1,5 @@
+import { TaskCard } from '@/types/taskBoard';
 import { actionCreatorFactory } from '../../../node_modules/typescript-fsa';
-import { TaskCard } from '../../types/taskBoard';
 
 const actionCreator = actionCreatorFactory();
 

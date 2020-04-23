@@ -1,5 +1,5 @@
 import { reducerWithInitialState } from 'typescript-fsa-reducers';
-import { ActionWebSocket } from '../actions/socket';
+import { ActionWebSocket } from '@/redux/actions/socket';
 
 export interface StateWebSocket {
   readonly socket: WebSocket;

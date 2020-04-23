@@ -1,9 +1,9 @@
 import { Dispatch } from 'redux';
-import { modalOpend } from './modal';
-import { userRegister } from './user';
-import { setWebsocket } from './socket';
-import { addTask, updateTaskStatus, deleteTask } from './task';
-import { TaskCard } from '../types/taskBoard';
+import { TaskCard } from '@/types/taskBoard';
+import { modalOpend } from '@/service/modal';
+import { userRegister } from '@/service/user';
+import { setWebsocket } from '@/service/socket';
+import { addTask, updateTaskStatus, deleteTask } from '@/service/task';
 
 export const service = {
   modalOpend: (dispatch: Dispatch, openedModalName: string) =>

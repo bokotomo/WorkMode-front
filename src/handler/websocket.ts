@@ -4,17 +4,17 @@ import { Cookies } from 'react-cookie';
 import {
   requestAuthentication,
   responseAuthentication,
-} from '../controller/authentication';
+} from '@/controller/authentication';
 import {
   responseUserCreate,
   responseActiveUserSearch,
-} from '../controller/user';
+} from '@/controller/user';
 import {
   responseTaskCreate,
   responseTaskIndex,
   responseTaskUpdateStatus,
   responseTaskDelete,
-} from '../controller/task';
+} from '@/controller/task';
 
 // コネクション確立時
 export const onOpen = (event: Event, socket: WebSocket, dispatch: Dispatch) => {

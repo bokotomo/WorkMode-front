@@ -1,13 +1,13 @@
 import { connect } from 'react-redux';
 import { Dispatch } from 'redux';
-import { TopPage } from '../components/pages/TopPage';
-import { ActionTask } from '../redux/actions/task';
-import { ActionMessage } from '../redux/actions/message';
-import { ActionRoom } from '../redux/actions/room';
-import { AppState } from '../redux/store';
-import { TaskCard } from '../types/taskBoard';
-import { MessageProgress } from '../types/messageProgress';
-import { service } from '../service/service';
+import { TopPage } from '@/components/pages/TopPage';
+import { ActionTask } from '@/redux/actions/task';
+import { ActionMessage } from '@/redux/actions/message';
+import { ActionRoom } from '@/redux/actions/room';
+import { AppState } from '@/redux/store';
+import { TaskCard } from '@/types/taskBoard';
+import { MessageProgress } from '@/types/messageProgress';
+import { service } from '@/service/service';
 
 const mapStateToProps = (appState: AppState) => {
   return {

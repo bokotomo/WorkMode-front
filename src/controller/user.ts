@@ -1,7 +1,7 @@
 import { Dispatch } from 'redux';
 import { Cookies } from 'react-cookie';
-import { ActionAuth } from '../redux/actions/auth';
-import { ActionUser } from '../redux/actions/user';
+import { ActionAuth } from '@/redux/actions/auth';
+import { ActionUser } from '@/redux/actions/user';
 
 // ユーザ作成
 export const requestUserCreate = (socket: WebSocket, name: string) => {

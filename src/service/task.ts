@@ -1,6 +1,6 @@
 import { Dispatch } from 'redux';
 import { Cookies } from 'react-cookie';
-import { TaskCard } from '../types/taskBoard';
+import { TaskCard } from '@/types/taskBoard';
 import {
   requestTaskCreate,
   requestTaskUpdateStatus,

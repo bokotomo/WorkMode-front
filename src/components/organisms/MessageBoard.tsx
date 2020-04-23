@@ -1,11 +1,11 @@
 import React from 'react';
-import { ActiveUser } from '../../types/activeUser';
-import { Room } from '../../types/room';
+import { ActiveUser } from '@/types/activeUser';
+import { Room } from '@/types/room';
+import { Message } from '@/types/message';
 // import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { MessageLineBar } from '../atom/MessageLineBar';
-import { MessageUserList } from '../molecules/MessageUserList';
-import { MessageTaskProgress } from '../molecules/MessageTaskProgress';
-import { Message } from '../../types/message';
+import { MessageLineBar } from '@/components/atom/MessageLineBar';
+import { MessageUserList } from '@/components/molecules/MessageUserList';
+import { MessageTaskProgress } from '@/components/molecules/MessageTaskProgress';
 
 interface Props {
   readonly messages: Message[];

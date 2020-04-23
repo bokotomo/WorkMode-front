@@ -1,12 +1,12 @@
 import { combineReducers, createStore, compose, applyMiddleware } from 'redux';
 import thunk from 'redux-thunk';
-import { ReducerAuth, StateAuth } from './reducer/auth';
-import { ReducerUser, StateUser } from './reducer/user';
-import { ReducerTask, StateTask } from './reducer/task';
-import { ReducerMessage, StateMessage } from './reducer/message';
-import { ReducerRoom, StateRoom } from './reducer/room';
-import { ReducerModal, StateModal } from './reducer/modal';
-import { ReducerWebSocket, StateWebSocket } from './reducer/socket';
+import { ReducerAuth, StateAuth } from '@/redux/reducer/auth';
+import { ReducerUser, StateUser } from '@/redux/reducer/user';
+import { ReducerTask, StateTask } from '@/redux/reducer/task';
+import { ReducerMessage, StateMessage } from '@/redux/reducer/message';
+import { ReducerRoom, StateRoom } from '@/redux/reducer/room';
+import { ReducerModal, StateModal } from '@/redux/reducer/modal';
+import { ReducerWebSocket, StateWebSocket } from '@/redux/reducer/socket';
 
 export type AppState = {
   readonly modal: StateModal;
