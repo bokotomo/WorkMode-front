@@ -23,6 +23,7 @@ export const onMessage = (
   socket: WebSocket,
   dispatch: Dispatch
 ) => {
+  const tomo = null;
   const data = JSON.parse(message.data);
   console.log(data);
   switch (data.role) {
