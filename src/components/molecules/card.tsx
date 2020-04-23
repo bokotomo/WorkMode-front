@@ -10,7 +10,6 @@ interface Props {
   readonly task: TaskCard;
   readonly handleOnModalOpend: Function;
   readonly handleOnSetSelectedTask: Function;
-  readonly id: string;
   readonly index: number;
 }
 export const Card: React.FC<Props> = (props) => {
@@ -21,11 +20,9 @@ export const Card: React.FC<Props> = (props) => {
       borderRadius: '10px',
       cursor: 'pointer',
       boxShadow: '0px -1px 8px #00000036',
-      marginBottom: 15,
       fontSize: 15,
       color: 'white',
-      display: 'block',
-      width: '100%',
+      marginBottom: 15,
     },
     title: {
       fontWeight: 600,
@@ -41,6 +38,7 @@ export const Card: React.FC<Props> = (props) => {
     return {
       // userSelect: 'none',
       ...draggableStyle,
+      ...style.card,
     };
   };
   function openDetail() {
@@ -48,23 +46,29 @@ export const Card: React.FC<Props> = (props) => {
     props.handleOnModalOpend('detail');
   }
   return (
-    <Draggable draggableId={props.id} index={props.index}>
-      {(provided, snapshot) => (
-        <div
-          ref={provided.innerRef}
-          {...provided.draggableProps}
-          {...provided.dragHandleProps}
-          style={getItemStyle(
-            provided.draggableProps.style,
-            snapshot.isDragging
-          )}
-        >
-          <button onClick={openDetail} type="button" style={style.card}>
-            <div style={style.title}>{props.task.title}</div>
-            <div style={style.time}>{props.task.time}h</div>
-          </button>
-        </div>
-      )}
+    <Draggable draggableId={props.task.id} index={props.index}>
+      {(provided, snapshot) => {
+        return (
+          <div style={{ boxSizing: 'border-box', width: '100%' }}>
+            <div
+              tabIndex={props.index}
+              role="button"
+              onClick={openDetail}
+              onKeyDown={openDetail}
+              ref={provided.innerRef}
+              {...provided.draggableProps}
+              {...provided.dragHandleProps}
+              style={getItemStyle(
+                provided.draggableProps.style,
+                snapshot.isDragging
+              )}
+            >
+              <div style={style.title}>{props.task.title}</div>
+              <div style={style.time}>予定：{props.task.time}h</div>
+            </div>
+          </div>
+        );
+      }}
     </Draggable>
   );
 };

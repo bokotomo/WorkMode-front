@@ -8,17 +8,19 @@ export const userCreated = (
   socket: WebSocket,
   dispatch: Dispatch
 ) => {
-  const data = JSON.parse(message.data);
-  const id = data.id as string;
-  const name = data.name as string;
-  const token = data.token as string;
+  interface ResponseUserCreated {
+    id: string;
+    name: string;
+    token: string;
+  }
+  const data: ResponseUserCreated = JSON.parse(message.data);
   const isLogined = true;
-  new Cookies().set('token', token, { path: '/' });
+  new Cookies().set('token', data.token, { path: '/' });
   dispatch(
     ActionAuth.setAuth({
-      id,
-      name,
-      token,
+      id: data.id,
+      name: data.name,
+      token: data.token,
       isLogined,
     })
   );
@@ -29,16 +31,16 @@ export const activeUserSearch = (
   socket: WebSocket,
   dispatch: Dispatch
 ) => {
-  interface responseUser {
+  interface ResponseUser {
     id: string;
     name: string;
     color: string;
   }
-  interface responseUsers {
-    users: responseUser[];
+  interface ResponseUsers {
+    users: ResponseUser[];
   }
-  const data: responseUsers = JSON.parse(message.data);
-  const activeUsers = data.users.map(({ id, name, color }: responseUser) => {
+  const data: ResponseUsers = JSON.parse(message.data);
+  const activeUsers = data.users.map(({ id, name, color }: ResponseUser) => {
     return {
       id,
       name,

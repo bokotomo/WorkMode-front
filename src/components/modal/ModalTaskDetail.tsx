@@ -66,7 +66,7 @@ export const ModalTaskDetail: React.FC<Props> = (props) => {
         />
       </div>
       <div style={{ marginTop: 20 }}>{props.selectedTask.detail}</div>
-      <div style={{ marginTop: 20 }}>{props.selectedTask.time}h</div>
+      <div style={{ marginTop: 20 }}>予定時間：{props.selectedTask.time}h</div>
 
       <button
         type="button"

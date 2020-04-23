@@ -27,7 +27,6 @@ export const Item: React.FC<Props> = (props) => {
           {props.items.map((item: TaskCard, index: number) => (
             <Card
               key={item.id}
-              id={item.id}
               task={item}
               index={index}
               handleOnModalOpend={props.handleOnModalOpend}

@@ -7,9 +7,10 @@ export const taskCreated = (
   socket: WebSocket,
   dispatch: Dispatch
 ) => {
-  const data: {
+  interface ResponseTaskCreated {
     taskTodos: TaskCard[];
-  } = JSON.parse(message.data);
+  }
+  const data: ResponseTaskCreated = JSON.parse(message.data);
   dispatch(ActionTask.setTaskTodo(data.taskTodos));
 };
 
@@ -18,11 +19,12 @@ export const taskIndex = (
   socket: WebSocket,
   dispatch: Dispatch
 ) => {
-  const data: {
+  interface ResponseTaskIndex {
     todoList: TaskCard[];
     inprogressList: TaskCard[];
     doneList: TaskCard[];
-  } = JSON.parse(message.data);
+  }
+  const data: ResponseTaskIndex = JSON.parse(message.data);
   dispatch(ActionTask.setTaskTodo(data.todoList));
   dispatch(ActionTask.setTaskInProgresses(data.inprogressList));
   dispatch(ActionTask.setTaskDone(data.doneList));
