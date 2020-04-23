@@ -6,7 +6,8 @@ export const authentication = (
   socket: WebSocket,
   dispatch: Dispatch
 ) => {
-  const data = JSON.parse(message.data);
-  const isLogined = data.isLogined as boolean;
-  if (!isLogined) dispatch(ActionModal.updateModalOpened('register'));
+  const data: {
+    isLogined: Boolean;
+  } = JSON.parse(message.data);
+  if (!data.isLogined) dispatch(ActionModal.updateModalOpened('register'));
 };

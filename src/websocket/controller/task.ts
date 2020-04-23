@@ -7,7 +7,9 @@ export const taskCreated = (
   socket: WebSocket,
   dispatch: Dispatch
 ) => {
-  const data = JSON.parse(message.data);
+  const data: {
+    taskTodos: TaskCard[];
+  } = JSON.parse(message.data);
   dispatch(ActionTask.setTaskTodo(data.taskTodos));
 };
 
@@ -16,10 +18,14 @@ export const taskIndex = (
   socket: WebSocket,
   dispatch: Dispatch
 ) => {
-  const data = JSON.parse(message.data);
-  dispatch(ActionTask.setTaskTodo(data.todoList as TaskCard[]));
-  dispatch(ActionTask.setTaskInProgresses(data.inprogressList as TaskCard[]));
-  dispatch(ActionTask.setTaskDone(data.doneList as TaskCard[]));
+  const data: {
+    todoList: TaskCard[];
+    inprogressList: TaskCard[];
+    doneList: TaskCard[];
+  } = JSON.parse(message.data);
+  dispatch(ActionTask.setTaskTodo(data.todoList));
+  dispatch(ActionTask.setTaskInProgresses(data.inprogressList));
+  dispatch(ActionTask.setTaskDone(data.doneList));
 };
 
 export const taskUpdateStatus = (

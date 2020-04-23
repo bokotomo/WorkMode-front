@@ -29,14 +29,16 @@ export const activeUserSearch = (
   socket: WebSocket,
   dispatch: Dispatch
 ) => {
-  const data = JSON.parse(message.data);
   interface responseUser {
     id: string;
     name: string;
     color: string;
   }
-  const users = data.users as responseUser[];
-  const activeUsers = users.map(({ id, name, color }: responseUser) => {
+  interface responseUsers {
+    users: responseUser[];
+  }
+  const data: responseUsers = JSON.parse(message.data);
+  const activeUsers = data.users.map(({ id, name, color }: responseUser) => {
     return {
       id,
       name,
