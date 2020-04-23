@@ -5,7 +5,7 @@ import {
   requestTaskCreate,
   requestTaskUpdateStatus,
   requestTaskDelete,
-} from '../controller/task';
+} from '@/websocket/request/task';
 
 export const addTask = (
   dispatch: Dispatch,

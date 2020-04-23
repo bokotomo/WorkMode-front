@@ -18,13 +18,3 @@ export const requestAuthentication = (
   };
   socket.send(JSON.stringify({ action, data }));
 };
-
-export const responseAuthentication = (
-  message: MessageEvent,
-  socket: WebSocket,
-  dispatch: Dispatch
-) => {
-  const data = JSON.parse(message.data);
-  const isLogined = data.isLogined as boolean;
-  if (!isLogined) dispatch(ActionModal.updateModalOpened('register'));
-};

@@ -23,26 +23,6 @@ export const requestTaskCreate = (
   socket.send(JSON.stringify({ action, data }));
 };
 
-export const responseTaskCreate = (
-  message: MessageEvent,
-  socket: WebSocket,
-  dispatch: Dispatch
-) => {
-  const data = JSON.parse(message.data);
-  dispatch(ActionTask.setTaskTodo(data.taskTodos));
-};
-
-export const responseTaskIndex = (
-  message: MessageEvent,
-  socket: WebSocket,
-  dispatch: Dispatch
-) => {
-  const data = JSON.parse(message.data);
-  dispatch(ActionTask.setTaskTodo(data.todoList as TaskCard[]));
-  dispatch(ActionTask.setTaskInProgresses(data.inprogressList as TaskCard[]));
-  dispatch(ActionTask.setTaskDone(data.doneList as TaskCard[]));
-};
-
 export const requestTaskUpdateStatus = (
   socket: WebSocket,
   dispatch: Dispatch,
@@ -65,18 +45,6 @@ export const requestTaskUpdateStatus = (
     console.log(err);
   }
 };
-
-export const responseTaskUpdateStatus = (
-  message: MessageEvent,
-  socket: WebSocket,
-  dispatch: Dispatch
-) => {};
-
-export const responseTaskDelete = (
-  message: MessageEvent,
-  socket: WebSocket,
-  dispatch: Dispatch
-) => {};
 
 export const requestTaskDelete = (
   socket: WebSocket,

@@ -1,5 +1,5 @@
 import { Dispatch } from 'redux';
-import { requestUserCreate } from '@/controller/user';
+import { requestUserCreate } from '@/websocket/request/user';
 
 export const userRegister = (
   dispatch: Dispatch,

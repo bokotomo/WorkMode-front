@@ -1,20 +1,15 @@
-// WebSocketのハンドリング
+// WebSocketのハンドリング（APIで言うルーティング的立ち位置）
 import { Dispatch } from 'redux';
 import { Cookies } from 'react-cookie';
+import { authentication } from '@/websocket/controller/authentication';
+import { requestAuthentication } from '@/websocket/request/authentication';
+import { userCreated, activeUserSearch } from '@/websocket/controller/user';
 import {
-  requestAuthentication,
-  responseAuthentication,
-} from '@/controller/authentication';
-import {
-  responseUserCreate,
-  responseActiveUserSearch,
-} from '@/controller/user';
-import {
-  responseTaskCreate,
-  responseTaskIndex,
-  responseTaskUpdateStatus,
-  responseTaskDelete,
-} from '@/controller/task';
+  taskCreated,
+  taskIndex,
+  taskUpdateStatus,
+  taskDelete,
+} from '@/websocket/controller/task';
 
 // コネクション確立時
 export const onOpen = (event: Event, socket: WebSocket, dispatch: Dispatch) => {
@@ -32,25 +27,25 @@ export const onMessage = (
   console.log(data);
   switch (data.role) {
     case 'authentication':
-      responseAuthentication(message, socket, dispatch);
+      authentication(message, socket, dispatch);
       break;
     case 'user_create':
-      responseUserCreate(message, socket, dispatch);
+      userCreated(message, socket, dispatch);
       break;
     case 'task_create':
-      responseTaskCreate(message, socket, dispatch);
+      taskCreated(message, socket, dispatch);
       break;
     case 'task_index':
-      responseTaskIndex(message, socket, dispatch);
+      taskIndex(message, socket, dispatch);
       break;
     case 'task_update_status':
-      responseTaskUpdateStatus(message, socket, dispatch);
+      taskUpdateStatus(message, socket, dispatch);
       break;
     case 'task_delete':
-      responseTaskDelete(message, socket, dispatch);
+      taskDelete(message, socket, dispatch);
       break;
     case 'active_user_search':
-      responseActiveUserSearch(message, socket, dispatch);
+      activeUserSearch(message, socket, dispatch);
       break;
     default: {
       const output = `not found routing:  ${JSON.stringify(message.data)}`;

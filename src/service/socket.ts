@@ -1,5 +1,5 @@
 import { Dispatch } from 'redux';
-import { onMessage, onOpen } from '@/handler/websocket';
+import { onMessage, onOpen } from '@/websocket/handler';
 import { ActionWebSocket } from '@/redux/actions/socket';
 
 export const setWebsocket = (dispatch: Dispatch) => {
