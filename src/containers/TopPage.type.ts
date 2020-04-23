@@ -10,7 +10,6 @@ export interface TopPageHandler {
   handleOnSetSelectedTask(task: TaskCard): void;
   handleOnAddTaskTodo(socket: WebSocket, task: TaskCard): void;
   updateTaskStatus(socket: WebSocket, taskId: string, status: string): void;
-  handleOnSetMessage(): void;
   handleOnAddMessage(message: MessageProgress): void;
   handleOnSetRoom(): void;
   registerUser(socket: WebSocket, name: string): void;

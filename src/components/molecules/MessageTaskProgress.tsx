@@ -61,10 +61,10 @@ export const MessageTaskProgress: React.FC<Props> = (props) => {
               <div>
                 {message.text}
                 {message.status === 'done' ? 'が完了しました。' : ''}
-                {message.status === 'run' ? 'を実行中。' : ''}
+                {message.status === 'inprogress' ? 'を実行中。' : ''}
                 {message.status === 'alldone' ? '' : ''}
               </div>
-              <div>進捗率 {message.progress}%</div>
+              {/* <div></div> */}
             </div>
           </div>
 

@@ -1,7 +1,6 @@
 import { ActionMessage } from '@/redux/actions/message';
 import { initialStateAuth } from '@/redux/reducer/auth';
 import { Message } from '@/types/message';
-import { mockMessages } from '@/mock/messages';
 import { reducerWithInitialState } from '../../../node_modules/typescript-fsa-reducers';
 
 export interface StateMessage {
@@ -13,8 +12,8 @@ export const initialStateMessage: StateMessage = {
 };
 
 export const ReducerMessage = reducerWithInitialState(initialStateMessage)
-  .case(ActionMessage.setMessage, (state) => {
-    return { ...state, messages: mockMessages };
+  .case(ActionMessage.setMessage, (state, messages) => {
+    return { ...state, messages };
   })
   .case(ActionMessage.addMessage, (state, message) => {
     return {

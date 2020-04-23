@@ -43,7 +43,6 @@ const mapDispatchToProps = (dispatch: Dispatch) => {
       service.addTask(dispatch, socket, task),
     updateTaskStatus: (socket: WebSocket, taskId: string, status: string) =>
       service.updateTaskStatus(dispatch, socket, taskId, status),
-    handleOnSetMessage: () => dispatch(ActionMessage.setMessage()),
     handleOnAddMessage: (messageProgress: MessageProgress) =>
       dispatch(ActionMessage.addMessage(messageProgress)),
     handleOnSetRoom: () => dispatch(ActionRoom.setRoom()),
