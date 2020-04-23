@@ -19,11 +19,7 @@ Modal.setAppElement('#root');
 library.add(fab, faPlus, faCaretDown, faThumbsUp, faEdit, faTimes, faMoon);
 
 const App: React.FC = () => {
-  return (
-    <React.Fragment>
-      <TopPageContainer />
-    </React.Fragment>
-  );
+  return <TopPageContainer />;
 };
 
 export default withCookies(App);

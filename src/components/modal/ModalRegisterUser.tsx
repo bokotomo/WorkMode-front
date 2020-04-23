@@ -78,6 +78,7 @@ export const ModalRegisterUser: React.FC<Props> = (props) => {
         />
       </div>
       <button
+        type="button"
         style={{
           marginTop: 20,
           fontSize: 18,

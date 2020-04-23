@@ -1,6 +1,6 @@
 import { Dispatch } from 'redux';
-import { ActionAuth } from '../redux/actions/auth';
 import { Cookies } from 'react-cookie';
+import { ActionAuth } from '../redux/actions/auth';
 import { ActionUser } from '../redux/actions/user';
 
 // ユーザ作成
@@ -20,9 +20,9 @@ export const responseUserCreate = (
   dispatch: Dispatch
 ) => {
   const data = JSON.parse(message.data);
-  const id = data.id;
-  const name = data.name;
-  const token = data.token;
+  const id = data.id as string;
+  const name = data.name as string;
+  const token = data.token as string;
   const isLogined = true;
   new Cookies().set('token', token, { path: '/' });
   dispatch(
@@ -52,16 +52,19 @@ export const responseActiveUserSearch = (
   dispatch: Dispatch
 ) => {
   const data = JSON.parse(message.data);
-  const users = data.users;
-  const activeUsers = users.map(
-    ({ id, name, color }: { id: string; name: string; color: string }) => {
-      return {
-        id,
-        name,
-        color,
-      };
-    }
-  );
+  interface responseUser {
+    id: string;
+    name: string;
+    color: string;
+  }
+  const users = data.users as responseUser[];
+  const activeUsers = users.map(({ id, name, color }: responseUser) => {
+    return {
+      id,
+      name,
+      color,
+    };
+  });
 
   dispatch(ActionUser.setActiveUser(activeUsers));
 };

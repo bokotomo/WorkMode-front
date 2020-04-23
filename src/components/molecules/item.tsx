@@ -6,7 +6,7 @@ import {
   NotDraggingStyle,
 } from 'react-beautiful-dnd';
 import { TaskCard } from '../../types/taskBoard';
-import { Card } from '../molecules/card';
+import { Card } from './card';
 
 interface Props {
   readonly handleOnModalOpend: Function;

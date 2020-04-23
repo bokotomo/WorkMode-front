@@ -16,6 +16,9 @@ export const Card: React.FC<Props> = (props) => {
       boxShadow: '0px -1px 8px #00000036',
       marginBottom: 15,
       fontSize: 15,
+      color: 'white',
+      display: 'block',
+      width: '100%',
     },
     title: {
       fontWeight: 600,
@@ -29,11 +32,9 @@ export const Card: React.FC<Props> = (props) => {
     props.handleOnModalOpend('detail');
   }
   return (
-    <div style={style.card}>
-      <div onClick={openDetail} style={style.title}>
-        {props.task.title}
-      </div>
+    <button onClick={openDetail} type="button" style={style.card}>
+      <div style={style.title}>{props.task.title}</div>
       <div style={style.time}>{props.task.time}h</div>
-    </div>
+    </button>
   );
 };

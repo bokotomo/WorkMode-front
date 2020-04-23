@@ -4,9 +4,9 @@ import {
   DropResult,
   DraggableLocation,
 } from 'react-beautiful-dnd';
+import moment from 'moment';
 import { Item } from './item';
 import { TaskCard } from '../../types/taskBoard';
-import moment from 'moment';
 
 interface Props {
   readonly handleOnSetTaskTodo: Function;
@@ -45,9 +45,9 @@ export const TaskArea: React.FC<Props> = (props) => {
 
     destClone.splice(droppableDestination.index, 0, removedTask);
 
-    let todos = props.todos,
-      inProgresses = props.inProgresses,
-      dones = props.dones;
+    let todos = props.todos as TaskCard[];
+    let inProgresses = props.inProgresses as TaskCard[];
+    let dones = props.dones as TaskCard[];
     if (droppableSource.droppableId === 'todoArea') {
       todos = sourceClone;
     } else if (droppableSource.droppableId === 'inProgressArea') {
@@ -147,21 +147,21 @@ export const TaskArea: React.FC<Props> = (props) => {
           handleOnModalOpend={props.handleOnModalOpend}
           handleOnSetSelectedTask={props.handleOnSetSelectedTask}
           items={props.todos}
-          droppableId={'todoArea'}
+          droppableId="todoArea"
           isCenter={false}
         />
         <Item
           handleOnModalOpend={props.handleOnModalOpend}
           handleOnSetSelectedTask={props.handleOnSetSelectedTask}
           items={props.inProgresses}
-          droppableId={'inProgressArea'}
+          droppableId="inProgressArea"
           isCenter={true}
         />
         <Item
           handleOnModalOpend={props.handleOnModalOpend}
           handleOnSetSelectedTask={props.handleOnSetSelectedTask}
           items={props.dones}
-          droppableId={'doneArea'}
+          droppableId="doneArea"
           isCenter={false}
         />
       </div>

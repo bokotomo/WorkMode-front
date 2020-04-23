@@ -1,5 +1,6 @@
 // WebSocketのハンドリング
 import { Dispatch } from 'redux';
+import { Cookies } from 'react-cookie';
 import {
   requestAuthentication,
   responseAuthentication,
@@ -14,7 +15,6 @@ import {
   responseTaskUpdateStatus,
   responseTaskDelete,
 } from '../controller/task';
-import { Cookies } from 'react-cookie';
 
 // コネクション確立時
 export const onOpen = (event: Event, socket: WebSocket, dispatch: Dispatch) => {
@@ -52,7 +52,9 @@ export const onMessage = (
     case 'active_user_search':
       responseActiveUserSearch(message, socket, dispatch);
       break;
-    default:
-      throw new Error('not found routing: ' + message.data);
+    default: {
+      const output = `not found routing:  ${JSON.stringify(message.data)}`;
+      throw new Error(output);
+    }
   }
 };

@@ -133,7 +133,7 @@ export const ModalAddTask: React.FC<Props> = (props) => {
           }}
           placeholder="詳細を書きます。"
           maxLength={200}
-        ></textarea>
+        />
       </div>
       <div style={{ marginTop: 20 }}>
         予定時間：
@@ -160,6 +160,7 @@ export const ModalAddTask: React.FC<Props> = (props) => {
       </div>
 
       <button
+        type="button"
         style={{
           marginTop: 20,
           fontSize: 18,

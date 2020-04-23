@@ -3,7 +3,7 @@ import { TaskCard } from '../../types/taskBoard';
 import { Message } from '../../types/message';
 import { ActiveUser } from '../../types/activeUser';
 import { Room } from '../../types/room';
-import { TopPageHandler } from '../../containers/TopPageContainer';
+import { TopPageHandler } from '../../containers/TopPage.type';
 import { TaskBoard } from '../organisms/TaskBoard';
 import { MessageBoard } from '../organisms/MessageBoard';
 import { ModalAddTask } from '../modal/ModalAddTask';

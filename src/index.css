@@ -22,3 +22,10 @@ input,
 textarea:focus {
   outline: 0;
 }
+
+button {
+  text-align: left;
+  border: none;
+  background: none;
+  cursor: pointer;
+}

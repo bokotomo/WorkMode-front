@@ -1,6 +1,6 @@
 import React from 'react';
-import { TaskCard } from '../../types/taskBoard';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { TaskCard } from '../../types/taskBoard';
 import { TaskArea } from '../molecules/taskArea';
 
 interface Props {
@@ -82,9 +82,21 @@ export const TaskBoard: React.FC<Props> = (props) => {
           />
         </div>
         <div style={styleTaskAddButton}>
-          <div onClick={openModal} style={{ textAlign: 'center' }}>
+          <button
+            type="button"
+            onClick={openModal}
+            style={{
+              display: 'block',
+              fontSize: 24,
+              color: 'white',
+              width: '100%',
+              height: '100%',
+              margin: 'auto',
+              textAlign: 'center',
+            }}
+          >
             <FontAwesomeIcon icon="plus" />
-          </div>
+          </button>
         </div>
       </div>
     </div>

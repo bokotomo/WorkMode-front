@@ -31,14 +31,19 @@ export const ModalDoneTask: React.FC<Props> = (props) => {
       style={customStyles}
       contentLabel="モーダル"
     >
-      <button onClick={closeModal}>
+      <button type="button" onClick={closeModal}>
         <FontAwesomeIcon icon="times" />
       </button>
       <div>「railsのAPI作成」を完了しますか？</div>
-      <button style={{ textAlign: 'center' }} onClick={closeModal}>
+      <button
+        type="button"
+        style={{ textAlign: 'center' }}
+        onClick={closeModal}
+      >
         完了
       </button>
       <button
+        type="button"
         style={{ textAlign: 'center', background: '#4C6276' }}
         onClick={closeModal}
       >

@@ -69,6 +69,7 @@ export const ModalTaskDetail: React.FC<Props> = (props) => {
       <div style={{ marginTop: 20 }}>{props.selectedTask.time}h</div>
 
       <button
+        type="button"
         onClick={editTask}
         style={{
           marginTop: 20,
@@ -88,6 +89,7 @@ export const ModalTaskDetail: React.FC<Props> = (props) => {
         編集
       </button>
       <button
+        type="button"
         onClick={deleteTask}
         style={{
           marginTop: 20,
