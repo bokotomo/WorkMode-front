@@ -18,35 +18,38 @@ interface Props {
 }
 export const TaskBoard: React.FC<Props> = (props) => {
   const style = {
-    background: '#102133',
-    flex: '0 1 55%',
-    display: 'flex',
-  };
-  const styleLeft = {
-    display: 'flex',
-    width: '100%',
-    background: '#25313E',
-    flexFlow: 'column',
-    justifyContent: 'space-between',
-  };
-  const styleTaskAddButton = {
-    flex: '0 1 80px',
-    background: 'linear-gradient(125deg, #66B7FF, #0052de)',
-    fontSize: 30,
-    fontWeight: 700,
-    lineHeight: '80px',
-    cursor: 'pointer',
-    width: '100%',
+    taskBoard: {
+      background: '#102133',
+      flex: '0 1 55%',
+      display: 'flex',
+    },
+    left: {
+      display: 'flex',
+      width: '100%',
+      background: '#25313E',
+      flexFlow: 'column',
+      justifyContent: 'space-between',
+    },
+    taskAddButton: {
+      flex: '0 1 80px',
+      background: 'linear-gradient(125deg, #66B7FF, #0052de)',
+      fontSize: 30,
+      fontWeight: 700,
+      lineHeight: '80px',
+      cursor: 'pointer',
+      width: '100%',
+    },
   };
 
   function openModal() {
     props.handleOnModalOpend('add');
   }
+
   return (
-    <div style={style}>
+    <div style={style.taskBoard}>
       {/* <img src='/images/taskImage.png' /> */}
 
-      <div style={styleLeft}>
+      <div style={style.left}>
         <div
           style={{
             display: 'flex',
@@ -81,7 +84,7 @@ export const TaskBoard: React.FC<Props> = (props) => {
             socket={props.socket}
           />
         </div>
-        <div style={styleTaskAddButton}>
+        <div style={style.taskAddButton}>
           <button
             type="button"
             onClick={openModal}
