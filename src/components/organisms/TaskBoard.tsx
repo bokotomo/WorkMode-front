@@ -9,7 +9,6 @@ interface Props {
   readonly handleOnSetTaskTodo: Function;
   readonly handleOnSetTaskInProgresses: Function;
   readonly handleOnSetTaskDone: Function;
-  readonly handleOnAddMessage: Function;
   readonly updateTaskStatus: Function;
   readonly todos: TaskCard[];
   readonly inProgresses: TaskCard[];
@@ -76,7 +75,6 @@ export const TaskBoard: React.FC<Props> = (props) => {
             handleOnSetTaskDone={props.handleOnSetTaskDone}
             handleOnModalOpend={props.handleOnModalOpend}
             handleOnSetSelectedTask={props.handleOnSetSelectedTask}
-            handleOnAddMessage={props.handleOnAddMessage}
             updateTaskStatus={props.updateTaskStatus}
             todos={props.todos}
             inProgresses={props.inProgresses}

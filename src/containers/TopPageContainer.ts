@@ -2,11 +2,9 @@ import { connect } from 'react-redux';
 import { Dispatch } from 'redux';
 import { TopPage } from '@/components/pages/TopPage';
 import { ActionTask } from '@/redux/actions/task';
-import { ActionMessage } from '@/redux/actions/message';
 import { ActionRoom } from '@/redux/actions/room';
 import { AppState } from '@/redux/store';
 import { TaskCard } from '@/types/taskBoard';
-import { MessageProgress } from '@/types/messageProgress';
 import { service } from '@/service/service';
 
 const mapStateToProps = (appState: AppState) => {
@@ -43,8 +41,6 @@ const mapDispatchToProps = (dispatch: Dispatch) => {
       service.addTask(dispatch, socket, task),
     updateTaskStatus: (socket: WebSocket, taskId: string, status: string) =>
       service.updateTaskStatus(dispatch, socket, taskId, status),
-    handleOnAddMessage: (messageProgress: MessageProgress) =>
-      dispatch(ActionMessage.addMessage(messageProgress)),
     handleOnSetRoom: () => dispatch(ActionRoom.setRoom()),
     registerUser: (socket: WebSocket, name: string) =>
       service.userRegister(dispatch, socket, name),

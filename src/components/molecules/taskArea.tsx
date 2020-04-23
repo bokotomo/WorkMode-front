@@ -4,7 +4,6 @@ import {
   DropResult,
   DraggableLocation,
 } from 'react-beautiful-dnd';
-import moment from 'moment';
 import { TaskCard } from '@/types/taskBoard';
 import { Item } from '@/components/molecules/item';
 
@@ -14,7 +13,6 @@ interface Props {
   readonly handleOnSetTaskDone: Function;
   readonly handleOnModalOpend: Function;
   readonly handleOnSetSelectedTask: Function;
-  readonly handleOnAddMessage: Function;
   readonly updateTaskStatus: Function;
   readonly todos: TaskCard[];
   readonly inProgresses: TaskCard[];
@@ -60,27 +58,10 @@ export const TaskArea: React.FC<Props> = (props) => {
       props.updateTaskStatus(props.socket, removedTask.id, 'todo');
     } else if (droppableDestination.droppableId === 'inProgressArea') {
       inProgresses = destClone;
-      if (droppableSource.droppableId === 'todoArea') {
-        const message = props.todos[droppableSource.index];
-        props.handleOnAddMessage({
-          id: moment(new Date()).format('HH:mm:ss'),
-          title: message.title,
-          progress: 60,
-          status: 'run',
-        });
-      }
       props.updateTaskStatus(props.socket, removedTask.id, 'inprogress');
     } else {
       alert('よろしいですか？');
-      const message = props.inProgresses[droppableSource.index];
-      props.handleOnAddMessage({
-        id: moment(new Date()).format('HH:mm:ss'),
-        title: message.title,
-        progress: 60,
-        status: 'done',
-      });
       props.updateTaskStatus(props.socket, removedTask.id, 'done');
-
       dones = destClone;
     }
     return {

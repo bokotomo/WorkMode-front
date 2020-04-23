@@ -1,5 +1,4 @@
 import { ActionMessage } from '@/redux/actions/message';
-import { initialStateAuth } from '@/redux/reducer/auth';
 import { Message } from '@/types/message';
 import { reducerWithInitialState } from '../../../node_modules/typescript-fsa-reducers';
 
@@ -18,17 +17,6 @@ export const ReducerMessage = reducerWithInitialState(initialStateMessage)
   .case(ActionMessage.addMessage, (state, message) => {
     return {
       ...state,
-      messages: [
-        ...state.messages,
-        {
-          id: message.id,
-          userName: initialStateAuth.name,
-          userColor: '#8A29AD',
-          text: message.title,
-          progress: message.progress,
-          status: message.status,
-          createdAt: new Date(),
-        },
-      ],
+      messages: [...state.messages, message],
     };
   });

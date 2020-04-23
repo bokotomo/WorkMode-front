@@ -2,6 +2,7 @@ import React, { useEffect } from 'react';
 import moment from 'moment';
 import { Message } from '@/types/message';
 import { MessageLineBar } from '@/components/atom/MessageLineBar';
+import { UserIconItemMessage } from '@/components/atom/UserIconItemMessage';
 
 interface Props {
   readonly messages: Message[];
@@ -36,14 +37,9 @@ export const MessageTaskProgress: React.FC<Props> = (props) => {
                 paddingRight: 15,
               }}
             >
-              <div
-                style={{
-                  width: 50,
-                  height: 50,
-                  background: message.userColor,
-                  borderRadius: 50,
-                  cursor: 'pointer',
-                }}
+              <UserIconItemMessage
+                name={message.userName}
+                color={message.userColor}
               />
             </div>
 

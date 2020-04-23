@@ -4,7 +4,10 @@ import { Cookies } from 'react-cookie';
 import { authentication } from '@/websocket/controller/authentication';
 import { requestAuthentication } from '@/websocket/request/authentication';
 import { userCreated, activeUserSearch } from '@/websocket/controller/user';
-import { messageProgressIndex } from '@/websocket/controller/message';
+import {
+  messageProgressIndex,
+  messageProgressFind,
+} from '@/websocket/controller/message';
 import {
   taskCreated,
   taskIndex,
@@ -47,6 +50,9 @@ export const onMessage = (
       break;
     case 'message_progress_index':
       messageProgressIndex(message, socket, dispatch);
+      break;
+    case 'message_progress_added':
+      messageProgressFind(message, socket, dispatch);
       break;
     case 'active_user_search':
       activeUserSearch(message, socket, dispatch);

@@ -1,6 +1,7 @@
 import React from 'react';
 import { ActiveUser } from '@/types/activeUser';
 import { MessageLineBar } from '@/components/atom/MessageLineBar';
+import { UserIconItem } from '@/components/atom/UserIconItem';
 
 interface Props {
   readonly activeUsers: ActiveUser[];
@@ -28,15 +29,7 @@ export const MessageUserList: React.FC<Props> = (props) => {
             }}
           >
             <div>
-              <div
-                style={{
-                  width: 40,
-                  height: 40,
-                  background: user.color,
-                  borderRadius: 40,
-                  margin: 'auto',
-                }}
-              />
+              <UserIconItem name={user.name} color={user.color} />
               <div
                 style={{
                   width: 60,

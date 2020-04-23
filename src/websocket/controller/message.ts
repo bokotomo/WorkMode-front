@@ -34,3 +34,34 @@ export const messageProgressIndex = (
 
   dispatch(ActionMessage.setMessage(domainMessages));
 };
+
+export const messageProgressFind = (
+  message: MessageEvent,
+  socket: WebSocket,
+  dispatch: Dispatch
+) => {
+  interface ReponseMessage {
+    readonly id: string;
+    readonly userName: string;
+    readonly userColor: string;
+    readonly text: string;
+    readonly status: string;
+    readonly createdAt: string;
+  }
+  interface ResponseMessageProgress {
+    message: ReponseMessage;
+  }
+  const data: ResponseMessageProgress = JSON.parse(message.data);
+  const resMessage = data.message as ReponseMessage;
+  const domainMessage = {
+    id: resMessage.id,
+    userName: resMessage.userName,
+    userColor: resMessage.userColor,
+    text: resMessage.text,
+    progress: 0,
+    status: resMessage.status,
+    createdAt: moment(resMessage.createdAt, 'YYYY/MM/DD HH:mm:ss').toDate(),
+  } as Message;
+
+  dispatch(ActionMessage.addMessage(domainMessage));
+};

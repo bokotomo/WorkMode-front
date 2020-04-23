@@ -72,7 +72,6 @@ export class TopPage extends React.Component<Props> {
           handleOnSetTaskTodo={this.props.handleOnSetTaskTodo}
           handleOnSetTaskInProgresses={this.props.handleOnSetTaskInProgresses}
           handleOnSetTaskDone={this.props.handleOnSetTaskDone}
-          handleOnAddMessage={this.props.handleOnAddMessage}
           updateTaskStatus={this.props.updateTaskStatus}
           todos={this.props.todos}
           inProgresses={this.props.inProgresses}

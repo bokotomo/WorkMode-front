@@ -68,7 +68,7 @@ export const Card: React.FC<Props> = (props) => {
           )}
         >
           <div style={style.title}>{props.task.title}</div>
-          <div style={style.time}>予定：{props.task.time}h</div>
+          <div style={style.time}>{props.task.time}h</div>
         </div>
       )}
     </Draggable>

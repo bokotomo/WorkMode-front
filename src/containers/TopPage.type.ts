@@ -1,5 +1,4 @@
 import { TaskCard } from '@/types/taskBoard';
-import { MessageProgress } from '@/types/messageProgress';
 
 export interface TopPageHandler {
   setWebSocket(): void;
@@ -10,7 +9,6 @@ export interface TopPageHandler {
   handleOnSetSelectedTask(task: TaskCard): void;
   handleOnAddTaskTodo(socket: WebSocket, task: TaskCard): void;
   updateTaskStatus(socket: WebSocket, taskId: string, status: string): void;
-  handleOnAddMessage(message: MessageProgress): void;
   handleOnSetRoom(): void;
   registerUser(socket: WebSocket, name: string): void;
   deleteTask(socket: WebSocket, taskId: string): void;
