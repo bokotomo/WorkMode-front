@@ -11,23 +11,29 @@ interface Props {
   readonly isCenter: boolean;
 }
 export const Item: React.FC<Props> = (props) => {
+  interface StyleItem {
+    item: React.CSSProperties;
+  }
+  const style: StyleItem = {
+    item: {
+      background: props.isCenter ? '#273547' : '#25313E',
+      width: props.isCenter ? '33.4%' : '33.3%',
+      padding: 10,
+      overflowY: 'scroll',
+    },
+  };
   return (
     <Droppable droppableId={props.droppableId}>
       {(provided) => (
         <div
           ref={provided.innerRef}
           {...provided.droppableProps}
-          style={{
-            background: props.isCenter ? '#273547' : '#25313E',
-            width: props.isCenter ? '33.4%' : '33.3%',
-            padding: 10,
-            overflowY: 'scroll',
-          }}
+          style={style.item}
         >
-          {props.items.map((item: TaskCard, index: number) => (
+          {props.items.map((task: TaskCard, index: number) => (
             <Card
-              key={item.id}
-              task={item}
+              key={task.id}
+              task={task}
               index={index}
               handleOnModalOpend={props.handleOnModalOpend}
               handleOnSetSelectedTask={props.handleOnSetSelectedTask}
