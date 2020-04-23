@@ -1,10 +1,5 @@
 import React from 'react';
-import {
-  Draggable,
-  Droppable,
-  DraggingStyle,
-  NotDraggingStyle,
-} from 'react-beautiful-dnd';
+import { Droppable } from 'react-beautiful-dnd';
 import { TaskCard } from '../../types/taskBoard';
 import { Card } from './card';
 
@@ -16,15 +11,6 @@ interface Props {
   readonly isCenter: boolean;
 }
 export const Item: React.FC<Props> = (props) => {
-  const getItemStyle = (
-    draggableStyle: DraggingStyle | NotDraggingStyle | undefined,
-    isDragging: boolean
-  ) => {
-    return {
-      // userSelect: 'none',
-      ...draggableStyle,
-    };
-  };
   return (
     <Droppable droppableId={props.droppableId}>
       {(provided) => (
@@ -39,27 +25,15 @@ export const Item: React.FC<Props> = (props) => {
           }}
         >
           {props.items.map((item: TaskCard, index: number) => (
-            <Draggable key={item.id} draggableId={item.id} index={index}>
-              {(provided, snapshot) => (
-                <div
-                  ref={provided.innerRef}
-                  {...provided.draggableProps}
-                  {...provided.dragHandleProps}
-                  style={getItemStyle(
-                    provided.draggableProps.style,
-                    snapshot.isDragging
-                  )}
-                >
-                  <Card
-                    task={item}
-                    handleOnModalOpend={props.handleOnModalOpend}
-                    handleOnSetSelectedTask={props.handleOnSetSelectedTask}
-                  />
-                </div>
-              )}
-            </Draggable>
+            <Card
+              key={item.id}
+              id={item.id}
+              task={item}
+              index={index}
+              handleOnModalOpend={props.handleOnModalOpend}
+              handleOnSetSelectedTask={props.handleOnSetSelectedTask}
+            />
           ))}
-
           {provided.placeholder}
         </div>
       )}

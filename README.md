@@ -4,5 +4,12 @@
 npm start
 ```
 
-# API   
-https://github.com/bokotomo/WorkMode-api  
+・before git push
+
+```
+npm run lint-fix
+```
+
+# API
+
+https://github.com/bokotomo/WorkMode-api

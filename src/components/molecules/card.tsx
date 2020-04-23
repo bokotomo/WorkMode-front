@@ -1,10 +1,17 @@
 import React from 'react';
+import {
+  Draggable,
+  DraggingStyle,
+  NotDraggingStyle,
+} from 'react-beautiful-dnd';
 import { TaskCard } from '../../types/taskBoard';
 
 interface Props {
   readonly task: TaskCard;
   readonly handleOnModalOpend: Function;
   readonly handleOnSetSelectedTask: Function;
+  readonly id: string;
+  readonly index: number;
 }
 export const Card: React.FC<Props> = (props) => {
   const style = {
@@ -27,14 +34,37 @@ export const Card: React.FC<Props> = (props) => {
       color: '#8495A8',
     },
   };
+  const getItemStyle = (
+    draggableStyle: DraggingStyle | NotDraggingStyle | undefined,
+    isDragging: boolean
+  ) => {
+    return {
+      // userSelect: 'none',
+      ...draggableStyle,
+    };
+  };
   function openDetail() {
     props.handleOnSetSelectedTask(props.task);
     props.handleOnModalOpend('detail');
   }
   return (
-    <button onClick={openDetail} type="button" style={style.card}>
-      <div style={style.title}>{props.task.title}</div>
-      <div style={style.time}>{props.task.time}h</div>
-    </button>
+    <Draggable draggableId={props.id} index={props.index}>
+      {(provided, snapshot) => (
+        <div
+          ref={provided.innerRef}
+          {...provided.draggableProps}
+          {...provided.dragHandleProps}
+          style={getItemStyle(
+            provided.draggableProps.style,
+            snapshot.isDragging
+          )}
+        >
+          <button onClick={openDetail} type="button" style={style.card}>
+            <div style={style.title}>{props.task.title}</div>
+            <div style={style.time}>{props.task.time}h</div>
+          </button>
+        </div>
+      )}
+    </Draggable>
   );
 };
