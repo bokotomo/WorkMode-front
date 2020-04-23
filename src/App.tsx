@@ -1,7 +1,6 @@
 import React from 'react';
 import Modal from 'react-modal';
 import { withCookies } from 'react-cookie';
-import './App.css';
 import { library } from '@fortawesome/fontawesome-svg-core';
 import { fab } from '@fortawesome/free-brands-svg-icons';
 import {
@@ -18,8 +17,6 @@ Modal.setAppElement('#root');
 
 library.add(fab, faPlus, faCaretDown, faThumbsUp, faEdit, faTimes, faMoon);
 
-const App: React.FC = () => {
-  return <TopPageContainer />;
-};
+const App: React.FC = () => <TopPageContainer />;
 
 export default withCookies(App);

@@ -4,7 +4,6 @@ import { actionCreatorFactory } from '../../../node_modules/typescript-fsa';
 const actionCreator = actionCreatorFactory();
 
 export const ActionTask = {
-  setTask: actionCreator('SET_TASK'),
   setTaskTodo: actionCreator<TaskCard[]>('SET_TASK_TODO'),
   addTaskTodo: actionCreator<TaskCard>('ADD_TASK_DONE'),
   setTaskInProgresses: actionCreator<TaskCard[]>('SET_TASK_INPROGRESSES'),

@@ -1,6 +1,5 @@
 import { ActionTask } from '@/redux/actions/task';
 import { TaskCard } from '@/types/taskBoard';
-import { taskTodos, taskInProgresses, taskDones } from '@/mock/tasks';
 import { reducerWithInitialState } from '../../../node_modules/typescript-fsa-reducers';
 
 export interface StateTask {
@@ -25,14 +24,6 @@ export const initialStateTask: StateTask = {
 };
 
 export const ReducerTask = reducerWithInitialState(initialStateTask)
-  .case(ActionTask.setTask, (state) => {
-    return {
-      ...state,
-      todos: taskTodos,
-      inProgresses: taskInProgresses,
-      dones: taskDones,
-    };
-  })
   .case(ActionTask.setTaskTodo, (state, todos) => {
     return { ...state, todos };
   })

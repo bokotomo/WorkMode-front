@@ -11,7 +11,6 @@ import { ModalDoneTask } from '@/components/modal/ModalDoneTask';
 import { ModalTaskDetail } from '@/components/modal/ModalTaskDetail';
 import { ModalRegisterUser } from '@/components/modal/ModalRegisterUser';
 
-// 各コンポーネントからreduxを呼び出すこともできるが、引数として渡した方がより厳密なのと、このページ量だと必要ないためやってない。
 interface OwnProps {
   readonly socket: WebSocket;
   readonly openedModalName: string;
@@ -35,6 +34,7 @@ export class TopPage extends React.Component<Props> {
     this.props.handleOnSetRoom();
   }
 
+  // 各コンポーネントからreduxを呼び出すこともできるが、引数として渡した方がより厳密なのと、このページ量だと必要ないためやってない。
   render() {
     return (
       <div

@@ -4,7 +4,6 @@ import { MessageProgress } from '@/types/messageProgress';
 export interface TopPageHandler {
   setWebSocket(): void;
   handleOnModalOpend(openedModalName: string): void;
-  handleOnSetTask(): void;
   handleOnSetTaskTodo(tasks: TaskCard[]): void;
   handleOnSetTaskInProgresses(tasks: TaskCard[]): void;
   handleOnSetTaskDone(tasks: TaskCard[]): void;

@@ -31,7 +31,6 @@ const mapDispatchToProps = (dispatch: Dispatch) => {
     setWebSocket: () => service.setWebsocket(dispatch),
     handleOnModalOpend: (openedModalName: string) =>
       service.modalOpend(dispatch, openedModalName),
-    handleOnSetTask: () => dispatch(ActionTask.setTask()),
     handleOnSetTaskTodo: (tasks: TaskCard[]) =>
       dispatch(ActionTask.setTaskTodo(tasks)),
     handleOnSetTaskInProgresses: (tasks: TaskCard[]) =>
