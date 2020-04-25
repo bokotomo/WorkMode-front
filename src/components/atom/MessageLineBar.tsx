@@ -3,7 +3,7 @@ import React from 'react';
 export const MessageLineBar: React.FC = () => (
   <div
     style={{
-      background: '#3e547a',
+      background: '#2F466B',
       height: 1,
     }}
   />

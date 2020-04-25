@@ -46,19 +46,6 @@ export const MessageBoard: React.FC<Props> = (props) => {
   //     justifyContent: 'center',
   //     cursor: 'pointer',
   // };
-  const styleSelect = {
-    webkitAppearance: 'none',
-    backgroundImage: 'none',
-    background: 'none',
-    width: '100%',
-    height: '100%',
-    border: 'none',
-    color: 'white',
-    cursor: 'pointer',
-    padding: '7px 30px 7px 20px',
-    fontWeight: 600,
-    fontSize: 14,
-  };
 
   return (
     <div style={style}>
@@ -69,7 +56,21 @@ export const MessageBoard: React.FC<Props> = (props) => {
               icon="caret-down"
               style={{ position: 'absolute', right: 10, top: 8 }}
             />
-            <select style={styleSelect}>
+            <select
+              style={{
+                WebkitAppearance: 'none',
+                backgroundImage: 'none',
+                background: 'none',
+                border: 'none',
+                width: '100%',
+                height: '100%',
+                color: 'white',
+                cursor: 'pointer',
+                padding: '7px 30px 7px 20px',
+                fontWeight: 600,
+                fontSize: 14,
+              }}
+            >
               {props.rooms.map((room) => (
                 <option key={room.id} value={room.id}>
                   {room.name}

@@ -19,4 +19,13 @@ export const ReducerMessage = reducerWithInitialState(initialStateMessage)
       ...state,
       messages: [...state.messages, message],
     };
+  })
+  .case(ActionMessage.deleteMessages, (state, messageIds) => {
+    const messages = state.messages.filter(
+      (message) => !messageIds.includes(message.id)
+    );
+    return {
+      ...state,
+      messages,
+    };
   });

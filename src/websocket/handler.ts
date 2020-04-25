@@ -7,6 +7,7 @@ import { userCreated, activeUserSearch } from '@/websocket/controller/user';
 import {
   messageProgressIndex,
   messageProgressFind,
+  messageProgressDelete,
 } from '@/websocket/controller/message';
 import {
   taskCreated,
@@ -53,6 +54,9 @@ export const onMessage = (
       break;
     case 'message_progress_added':
       messageProgressFind(message, socket, dispatch);
+      break;
+    case 'message_progress_deleted':
+      messageProgressDelete(message, socket, dispatch);
       break;
     case 'active_user_search':
       activeUserSearch(message, socket, dispatch);

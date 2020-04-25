@@ -65,3 +65,21 @@ export const messageProgressFind = (
 
   dispatch(ActionMessage.addMessage(domainMessage));
 };
+
+export const messageProgressDelete = (
+  message: MessageEvent,
+  socket: WebSocket,
+  dispatch: Dispatch
+) => {
+  interface ReponseMessage {
+    readonly id: string;
+  }
+  interface ResponseMessageProgress {
+    messages: ReponseMessage[];
+  }
+  const data: ResponseMessageProgress = JSON.parse(message.data);
+  const resMessages = data.messages as ReponseMessage[];
+  const domainMessageIds = resMessages.map(({ id }) => id);
+
+  dispatch(ActionMessage.deleteMessages(domainMessageIds));
+};

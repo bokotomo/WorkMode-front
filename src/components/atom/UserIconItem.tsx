@@ -9,6 +9,7 @@ export const UserIconItem: React.FC<Props> = (props) => {
   return (
     <div
       style={{
+        position: 'relative',
         width: 40,
         height: 40,
         lineHeight: '40px',
@@ -21,6 +22,18 @@ export const UserIconItem: React.FC<Props> = (props) => {
         fontWeight: 900,
       }}
     >
+      <div
+        style={{
+          position: 'absolute',
+          background: '#48BB33',
+          border: '1px solid #8EBD84',
+          borderRadius: 10,
+          width: 10,
+          height: 10,
+          right: 0,
+          bottom: 0,
+        }}
+      />
       {getTopName(props.name)}
     </div>
   );
