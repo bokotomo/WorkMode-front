@@ -21,6 +21,7 @@ export const ModalRegisterUser: React.FC<Props> = (props) => {
       color: 'white',
       width: '60%',
       border: 'none',
+      cursor: 'auto',
       boxShadow: '0px 0px 6px #0000005c',
     },
   };
@@ -46,6 +47,7 @@ export const ModalRegisterUser: React.FC<Props> = (props) => {
     <Modal
       isOpen={props.openedModalName === 'register'}
       style={customStyles}
+      overlayClassName="modalOverLayWrapper"
       contentLabel="モーダル"
     >
       <div

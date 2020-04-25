@@ -23,6 +23,16 @@ textarea:focus {
   outline: 0;
 }
 
+.modalOverLayWrapper {
+  position: absolute;
+  background: #364e5e7a;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+}
+
 button {
   text-align: left;
   border: none;

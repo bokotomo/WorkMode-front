@@ -32,7 +32,7 @@ export const MessageUserList: React.FC<Props> = (props) => {
               <UserIconItem name={user.name} color={user.color} />
               <div
                 style={{
-                  width: 60,
+                  width: 80,
                   marginTop: 5,
                   overflow: 'hidden',
                   textOverflow: 'ellipsis',

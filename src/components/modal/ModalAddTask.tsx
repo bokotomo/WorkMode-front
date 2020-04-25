@@ -24,6 +24,7 @@ export const ModalAddTask: React.FC<Props> = (props) => {
       color: 'white',
       width: '60%',
       border: 'none',
+      cursor: 'auto',
       boxShadow: '0px 0px 6px #0000005c',
     },
   };
@@ -66,6 +67,7 @@ export const ModalAddTask: React.FC<Props> = (props) => {
       isOpen={props.openedModalName === 'add'}
       onRequestClose={closeModal}
       style={customStyles}
+      overlayClassName="modalOverLayWrapper"
       contentLabel="モーダル"
     >
       <div

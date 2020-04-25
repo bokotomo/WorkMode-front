@@ -2,7 +2,7 @@ import React from 'react';
 import { ActiveUser } from '@/types/activeUser';
 import { Room } from '@/types/room';
 import { Message } from '@/types/message';
-// import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { MessageLineBar } from '@/components/atom/MessageLineBar';
 import { MessageUserList } from '@/components/molecules/MessageUserList';
 import { MessageTaskProgress } from '@/components/molecules/MessageTaskProgress';
@@ -27,7 +27,6 @@ export const MessageBoard: React.FC<Props> = (props) => {
   };
   const styleRoom = {
     background: 'linear-gradient(125deg, #66B7FF, #0052de)',
-    padding: '7px 10px 7px 20px',
     borderRadius: '5px',
     fontWeight: 800,
   };
@@ -48,12 +47,15 @@ export const MessageBoard: React.FC<Props> = (props) => {
   //     cursor: 'pointer',
   // };
   const styleSelect = {
+    webkitAppearance: 'none',
+    backgroundImage: 'none',
     background: 'none',
     width: '100%',
     height: '100%',
     border: 'none',
     color: 'white',
     cursor: 'pointer',
+    padding: '7px 30px 7px 20px',
     fontWeight: 600,
     fontSize: 14,
   };
@@ -62,16 +64,19 @@ export const MessageBoard: React.FC<Props> = (props) => {
     <div style={style}>
       <div style={style2}>
         <div style={styleRoom}>
-          <select style={styleSelect}>
-            {props.rooms.map((room) => (
-              <option key={room.id} value={room.id}>
-                {room.name}
-              </option>
-            ))}
-          </select>
-          {/* <span style={styleRoomButton}>
-                        <FontAwesomeIcon icon='caret-down' />
-                    </span> */}
+          <div style={{ position: 'relative' }}>
+            <FontAwesomeIcon
+              icon="caret-down"
+              style={{ position: 'absolute', right: 10, top: 8 }}
+            />
+            <select style={styleSelect}>
+              {props.rooms.map((room) => (
+                <option key={room.id} value={room.id}>
+                  {room.name}
+                </option>
+              ))}
+            </select>
+          </div>
         </div>
 
         {/* 一時的に消す

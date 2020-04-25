@@ -18,6 +18,7 @@ export const ModalStandard: React.FC<Props> = (props) => {
       background: '#192A46',
       color: 'white',
       border: 'none',
+      cursor: 'auto',
       boxShadow: '0px 0px 6px #0000005c',
     },
   };
@@ -29,6 +30,7 @@ export const ModalStandard: React.FC<Props> = (props) => {
       isOpen={props.isModalOpened}
       onRequestClose={closeModal}
       style={customStyles}
+      overlayClassName="modalOverLayWrapper"
       contentLabel="モーダル"
     >
       <button type="button" onClick={closeModal}>

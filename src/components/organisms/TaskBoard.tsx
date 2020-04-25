@@ -39,6 +39,13 @@ export const TaskBoard: React.FC<Props> = (props) => {
       width: '100%',
     },
   };
+  const taskNotExist = () => {
+    return (
+      props.todos.length === 0 &&
+      props.inProgresses.length === 0 &&
+      props.dones.length === 0
+    );
+  };
 
   function openModal() {
     props.handleOnModalOpend('add');
@@ -69,18 +76,31 @@ export const TaskBoard: React.FC<Props> = (props) => {
           </div>
         </div>
         <div style={{ flex: '0 1 100%' }}>
-          <TaskArea
-            handleOnSetTaskTodo={props.handleOnSetTaskTodo}
-            handleOnSetTaskInProgresses={props.handleOnSetTaskInProgresses}
-            handleOnSetTaskDone={props.handleOnSetTaskDone}
-            handleOnModalOpend={props.handleOnModalOpend}
-            handleOnSetSelectedTask={props.handleOnSetSelectedTask}
-            updateTaskStatus={props.updateTaskStatus}
-            todos={props.todos}
-            inProgresses={props.inProgresses}
-            dones={props.dones}
-            socket={props.socket}
-          />
+          {taskNotExist() && (
+            <div
+              style={{
+                width: '100%',
+                paddingTop: 100,
+                textAlign: 'center',
+              }}
+            >
+              下のボタンからタスクを追加しましょう。
+            </div>
+          )}
+          {!taskNotExist() && (
+            <TaskArea
+              handleOnSetTaskTodo={props.handleOnSetTaskTodo}
+              handleOnSetTaskInProgresses={props.handleOnSetTaskInProgresses}
+              handleOnSetTaskDone={props.handleOnSetTaskDone}
+              handleOnModalOpend={props.handleOnModalOpend}
+              handleOnSetSelectedTask={props.handleOnSetSelectedTask}
+              updateTaskStatus={props.updateTaskStatus}
+              todos={props.todos}
+              inProgresses={props.inProgresses}
+              dones={props.dones}
+              socket={props.socket}
+            />
+          )}
         </div>
         <div style={style.taskAddButton}>
           <button
