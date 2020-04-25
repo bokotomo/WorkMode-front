@@ -27,6 +27,18 @@ export const ModalTaskDetail: React.FC<Props> = (props) => {
     },
   };
 
+  const getDetail = (text: string) => {
+    return text.split('\n').map((p, index) => {
+      const k = `${p}-${index}`;
+      return (
+        <React.Fragment key={k}>
+          {p}
+          <br />
+        </React.Fragment>
+      );
+    });
+  };
+
   function closeModal() {
     props.handleOnModalOpend('');
   }
@@ -40,7 +52,7 @@ export const ModalTaskDetail: React.FC<Props> = (props) => {
   }
 
   function editTask() {
-    alert('OK2');
+    alert('編集モードへ切り替え');
   }
 
   return (
@@ -65,8 +77,11 @@ export const ModalTaskDetail: React.FC<Props> = (props) => {
           icon="times"
         />
       </div>
-      <div style={{ marginTop: 20 }}>{props.selectedTask.detail}</div>
-      <div style={{ marginTop: 20 }}>予定時間：{props.selectedTask.time}h</div>
+      <div style={{ marginTop: 20 }}>
+        {getDetail(props.selectedTask.detail)}
+      </div>
+      <div style={{ marginTop: 20 }}>予定時間 {props.selectedTask.time}h</div>
+      <div style={{ marginTop: 20 }}>開始時間 11:25</div>
 
       <button
         type="button"
