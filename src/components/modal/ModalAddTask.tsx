@@ -58,21 +58,6 @@ export const ModalAddTask: React.FC<Props> = (props) => {
 
   function handleHourChange(e: React.ChangeEvent<HTMLInputElement>) {
     const timeTmp = Number(e.target.value);
-    if (!timeTmp) {
-      // [TODO]
-      e.target.value = '0.5';
-      return;
-    }
-    if (timeTmp > 12) {
-      // [TODO]
-      e.target.value = '12';
-      return;
-    }
-    if (timeTmp < 0.5) {
-      // [TODO]
-      e.target.value = '0.5';
-      return;
-    }
     time = timeTmp;
   }
 
@@ -155,7 +140,7 @@ export const ModalAddTask: React.FC<Props> = (props) => {
           placeholder="1"
           min={0.5}
           max={12}
-          step={0.1}
+          step={0.5}
         />
       </div>
 

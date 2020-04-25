@@ -37,15 +37,24 @@ export const TaskArea: React.FC<Props> = (props) => {
     droppableSource: DraggableLocation,
     droppableDestination: DraggableLocation
   ) => {
+    let todos = props.todos as TaskCard[];
+    let inProgresses = props.inProgresses as TaskCard[];
+    let dones = props.dones as TaskCard[];
+    if (droppableDestination.droppableId === 'doneArea') {
+      const isYes = window.confirm('完了しますか？');
+      if (!isYes)
+        return {
+          todos,
+          inProgresses,
+          dones,
+        };
+    }
     const sourceClone = Array.from(source) as TaskCard[];
     const destClone = Array.from(destination) as TaskCard[];
     const [removedTask] = sourceClone.splice(droppableSource.index, 1);
 
     destClone.splice(droppableDestination.index, 0, removedTask);
 
-    let todos = props.todos as TaskCard[];
-    let inProgresses = props.inProgresses as TaskCard[];
-    let dones = props.dones as TaskCard[];
     if (droppableSource.droppableId === 'todoArea') {
       todos = sourceClone;
     } else if (droppableSource.droppableId === 'inProgressArea') {
@@ -60,7 +69,6 @@ export const TaskArea: React.FC<Props> = (props) => {
       inProgresses = destClone;
       props.updateTaskStatus(props.socket, removedTask.id, 'inprogress');
     } else {
-      alert('よろしいですか？');
       props.updateTaskStatus(props.socket, removedTask.id, 'done');
       dones = destClone;
     }
