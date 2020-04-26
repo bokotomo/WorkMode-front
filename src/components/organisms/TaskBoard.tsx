@@ -1,4 +1,5 @@
-import React, { CSSProperties } from 'react';
+import React from 'react';
+import { style } from 'typestyle';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { TaskCard } from '@/types/taskBoard';
 import { TaskArea } from '@/components/molecules/taskArea';
@@ -16,25 +17,20 @@ interface Props {
   readonly socket: WebSocket;
 }
 export const TaskBoard: React.FC<Props> = (props) => {
-  interface StyleTaskBoar {
-    taskBoard: CSSProperties;
-    left: CSSProperties;
-    taskAddButton: CSSProperties;
-  }
-  const style: StyleTaskBoar = {
-    taskBoard: {
+  const css = {
+    taskBoard: style({
       background: '#102133',
       flex: '0 1 55%',
       display: 'flex',
-    },
-    left: {
+    }),
+    left: style({
       display: 'flex',
       width: '100%',
       background: '#25313E',
       flexFlow: 'column',
       justifyContent: 'space-between',
-    },
-    taskAddButton: {
+    }),
+    taskAddButton: style({
       flex: '0 1 80px',
       background: 'linear-gradient(125deg, #66B7FF, #0052de)',
       fontSize: 30,
@@ -42,7 +38,7 @@ export const TaskBoard: React.FC<Props> = (props) => {
       lineHeight: '80px',
       cursor: 'pointer',
       width: '100%',
-    },
+    }),
   };
   const taskNotExist = () => {
     return (
@@ -57,10 +53,10 @@ export const TaskBoard: React.FC<Props> = (props) => {
   }
 
   return (
-    <div style={style.taskBoard}>
+    <div className={css.taskBoard}>
       {/* <img src='/images/taskImage.png' /> */}
 
-      <div style={style.left}>
+      <div className={css.left}>
         <div
           style={{
             display: 'flex',
@@ -135,7 +131,7 @@ export const TaskBoard: React.FC<Props> = (props) => {
             />
           )}
         </div>
-        <div style={style.taskAddButton}>
+        <div className={css.taskAddButton}>
           <button
             type="button"
             onClick={openModal}

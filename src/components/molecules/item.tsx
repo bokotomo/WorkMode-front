@@ -1,4 +1,5 @@
 import React from 'react';
+import { style } from 'typestyle';
 import { Droppable } from 'react-beautiful-dnd';
 import { TaskCard } from '@/types/taskBoard';
 import { Card } from '@/components/molecules/card';
@@ -11,16 +12,13 @@ interface Props {
   readonly isCenter: boolean;
 }
 export const Item: React.FC<Props> = (props) => {
-  interface StyleItem {
-    item: React.CSSProperties;
-  }
-  const style: StyleItem = {
-    item: {
+  const css = {
+    item: style({
       background: props.isCenter ? '#273547' : '#25313E',
       width: props.isCenter ? '33.4%' : '33.3%',
       padding: 10,
       overflowY: 'scroll',
-    },
+    }),
   };
   return (
     <Droppable droppableId={props.droppableId}>
@@ -28,7 +26,7 @@ export const Item: React.FC<Props> = (props) => {
         <div
           ref={provided.innerRef}
           {...provided.droppableProps}
-          style={style.item}
+          className={css.item}
         >
           {props.items.map((task: TaskCard, index: number) => (
             <Card

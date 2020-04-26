@@ -1,4 +1,5 @@
 import React from 'react';
+import { style } from 'typestyle';
 import { ActiveUser } from '@/types/activeUser';
 import { Room } from '@/types/room';
 import { Message } from '@/types/message';
@@ -13,22 +14,38 @@ interface Props {
   readonly rooms: Room[];
 }
 export const MessageBoard: React.FC<Props> = (props) => {
-  const style = {
-    flex: '0 1 45%',
-    display: 'flex',
-    flexFlow: 'column',
-    justifyContent: 'space-between',
-    background: '#1C2D3F',
-  };
-  const style2 = {
-    display: 'flex',
-    height: 40,
-    padding: '20px 20px',
-  };
-  const styleRoom = {
-    background: 'linear-gradient(125deg, #66B7FF, #0052de)',
-    borderRadius: '5px',
-    fontWeight: 800,
+  const css = {
+    messageBoard: style({
+      flex: '0 1 45%',
+      display: 'flex',
+      flexFlow: 'column',
+      justifyContent: 'space-between',
+      background: '#1C2D3F',
+    }),
+    messageArea: style({
+      display: 'flex',
+      height: 40,
+      padding: '20px 20px',
+    }),
+    roomArea: style({
+      background: 'linear-gradient(125deg, #66B7FF, #0052de)',
+      borderRadius: '5px',
+      fontWeight: 800,
+    }),
+    caretDown: style({ position: 'absolute', right: 10, top: 8 }),
+    select: style({
+      '-webkit-appearance': 'none',
+      backgroundImage: 'none',
+      background: 'none',
+      border: 'none',
+      width: '100%',
+      height: '100%',
+      color: 'white',
+      cursor: 'pointer',
+      padding: '7px 30px 7px 20px',
+      fontWeight: 600,
+      fontSize: 14,
+    }),
   };
   // const styleRoomCreateWrapper = {
   //     display: 'flex',
@@ -48,29 +65,12 @@ export const MessageBoard: React.FC<Props> = (props) => {
   // };
 
   return (
-    <div style={style}>
-      <div style={style2}>
-        <div style={styleRoom}>
+    <div className={css.messageBoard}>
+      <div className={css.messageArea}>
+        <div className={css.roomArea}>
           <div style={{ position: 'relative' }}>
-            <FontAwesomeIcon
-              icon="caret-down"
-              style={{ position: 'absolute', right: 10, top: 8 }}
-            />
-            <select
-              style={{
-                WebkitAppearance: 'none',
-                backgroundImage: 'none',
-                background: 'none',
-                border: 'none',
-                width: '100%',
-                height: '100%',
-                color: 'white',
-                cursor: 'pointer',
-                padding: '7px 30px 7px 20px',
-                fontWeight: 600,
-                fontSize: 14,
-              }}
-            >
+            <FontAwesomeIcon icon="caret-down" className={css.caretDown} />
+            <select className={css.select}>
               {props.rooms.map((room) => (
                 <option key={room.id} value={room.id}>
                   {room.name}

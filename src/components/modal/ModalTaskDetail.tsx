@@ -18,6 +18,22 @@ export const ModalTaskDetail: React.FC<Props> = (props) => {
   let detail = props.selectedTask.detail as string;
   let time = props.selectedTask.time as number;
   const css = {
+    modal: {
+      content: {
+        top: '50%',
+        left: '50%',
+        right: 'auto',
+        bottom: 'auto',
+        marginRight: '-50%',
+        transform: 'translate(-50%, -50%)',
+        background: '#192A46',
+        color: 'white',
+        width: '60%',
+        border: 'none',
+        cursor: 'auto',
+        boxShadow: '0px 0px 6px #0000005c',
+      },
+    },
     titleArea: style({
       display: 'flex',
       justifyContent: 'space-between',
@@ -85,22 +101,6 @@ export const ModalTaskDetail: React.FC<Props> = (props) => {
       boxSizing: 'border-box',
       cursor: 'pointer',
     }),
-    modal: {
-      content: {
-        top: '50%',
-        left: '50%',
-        right: 'auto',
-        bottom: 'auto',
-        marginRight: '-50%',
-        transform: 'translate(-50%, -50%)',
-        background: '#192A46',
-        color: 'white',
-        width: '60%',
-        border: 'none',
-        cursor: 'auto',
-        boxShadow: '0px 0px 6px #0000005c',
-      },
-    },
   };
 
   const getDetail = (text: string) => {

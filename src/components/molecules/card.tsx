@@ -1,4 +1,5 @@
 import React from 'react';
+import { style } from 'typestyle';
 import {
   Draggable,
   DraggingStyle,
@@ -13,12 +14,7 @@ interface Props {
   readonly index: number;
 }
 export const Card: React.FC<Props> = (props) => {
-  interface StyleCard {
-    card: React.CSSProperties;
-    title: React.CSSProperties;
-    time: React.CSSProperties;
-  }
-  const style: StyleCard = {
+  const css = {
     card: {
       background: '#2A3B57',
       padding: '15px 10px',
@@ -30,12 +26,12 @@ export const Card: React.FC<Props> = (props) => {
       marginBottom: 15,
       boxSizing: 'border-box',
     },
-    title: {
+    title: style({
       fontWeight: 600,
-    },
-    time: {
+    }),
+    time: style({
       color: '#8495A8',
-    },
+    }),
   };
 
   const getItemStyle = (
@@ -45,7 +41,7 @@ export const Card: React.FC<Props> = (props) => {
     return {
       userSelect: 'none',
       ...draggableStyle,
-      ...style.card,
+      ...css.card,
     } as React.CSSProperties;
   };
 
@@ -70,8 +66,8 @@ export const Card: React.FC<Props> = (props) => {
             snapshot.isDragging
           )}
         >
-          <div style={style.title}>{props.task.title}</div>
-          <div style={style.time}>{props.task.time}h</div>
+          <div className={css.title}>{props.task.title}</div>
+          <div className={css.time}>{props.task.time}h</div>
         </div>
       )}
     </Draggable>
