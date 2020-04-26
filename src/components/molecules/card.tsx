@@ -37,6 +37,7 @@ export const Card: React.FC<Props> = (props) => {
       color: '#8495A8',
     },
   };
+
   const getItemStyle = (
     draggableStyle: DraggingStyle | NotDraggingStyle | undefined,
     isDragging: boolean
@@ -47,10 +48,12 @@ export const Card: React.FC<Props> = (props) => {
       ...style.card,
     } as React.CSSProperties;
   };
+
   function openDetail() {
     props.handleOnSetSelectedTask(props.task);
     props.handleOnModalOpend('detail');
   }
+
   return (
     <Draggable draggableId={props.task.id} index={props.index}>
       {(provided, snapshot) => (

@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import Modal from 'react-modal';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { TaskCard } from '@/types/taskBoard';
+import moment from 'moment';
 
 interface Props {
   readonly handleOnModalOpend: Function;
@@ -44,12 +45,18 @@ export const ModalTaskDetail: React.FC<Props> = (props) => {
     });
   };
 
+  const getStartTime = () => {
+    if (typeof props.selectedTask.startTime === 'string') return <></>;
+    return <>開始時間 {moment(props.selectedTask.startTime).format('HH:mm')}</>;
+  };
+
   const editButtonText = () => {
     if (isEditMode) return <>保存</>;
     return <>編集</>;
   };
 
   function closeModal() {
+    setIsEditMode(false);
     props.handleOnModalOpend('');
   }
 
@@ -82,6 +89,11 @@ export const ModalTaskDetail: React.FC<Props> = (props) => {
       setIsEditMode(true);
       return;
     }
+    if (detail === '' || time === 0) {
+      alert('全て入力する必要があります。');
+      return;
+    }
+
     const isChangedTask =
       detail !== props.selectedTask.detail || time !== props.selectedTask.time;
     if (isChangedTask)
@@ -91,7 +103,6 @@ export const ModalTaskDetail: React.FC<Props> = (props) => {
         time,
       });
 
-    setIsEditMode(false);
     closeModal();
   }
 
@@ -168,7 +179,7 @@ export const ModalTaskDetail: React.FC<Props> = (props) => {
         )}
         {!isEditMode && ` ${props.selectedTask.time}h`}
       </div>
-      <div style={{ marginTop: 20 }}>開始時間 11:25</div>
+      <div style={{ marginTop: 20 }}>{getStartTime()}</div>
 
       <button
         type="button"

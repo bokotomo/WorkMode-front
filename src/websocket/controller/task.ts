@@ -1,6 +1,7 @@
 import { Dispatch } from 'redux';
-import { TaskCard } from '@/types/taskBoard';
+import { ResponseTaskCard } from '@/types/taskBoard';
 import { ActionTask } from '@/redux/actions/task';
+import { adapterTask } from '@/websocket/adapter/task';
 
 export const taskCreated = (
   message: MessageEvent,
@@ -8,10 +9,11 @@ export const taskCreated = (
   dispatch: Dispatch
 ) => {
   interface ResponseTaskCreated {
-    taskTodos: TaskCard[];
+    taskTodos: ResponseTaskCard[];
   }
   const data: ResponseTaskCreated = JSON.parse(message.data);
-  dispatch(ActionTask.setTaskTodo(data.taskTodos));
+  const taskTodos = data.taskTodos.map((item) => adapterTask(item));
+  dispatch(ActionTask.setTaskTodo(taskTodos));
 };
 
 export const taskIndex = (
@@ -20,14 +22,17 @@ export const taskIndex = (
   dispatch: Dispatch
 ) => {
   interface ResponseTaskIndex {
-    todoList: TaskCard[];
-    inprogressList: TaskCard[];
-    doneList: TaskCard[];
+    todoList: ResponseTaskCard[];
+    inprogressList: ResponseTaskCard[];
+    doneList: ResponseTaskCard[];
   }
   const data: ResponseTaskIndex = JSON.parse(message.data);
-  dispatch(ActionTask.setTaskTodo(data.todoList));
-  dispatch(ActionTask.setTaskInProgresses(data.inprogressList));
-  dispatch(ActionTask.setTaskDone(data.doneList));
+  const todoList = data.todoList.map((item) => adapterTask(item));
+  const inprogressList = data.inprogressList.map((item) => adapterTask(item));
+  const doneList = data.doneList.map((item) => adapterTask(item));
+  dispatch(ActionTask.setTaskTodo(todoList));
+  dispatch(ActionTask.setTaskInProgresses(inprogressList));
+  dispatch(ActionTask.setTaskDone(doneList));
 };
 
 export const taskUpdateStatus = (

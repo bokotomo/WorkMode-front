@@ -38,12 +38,7 @@ export const requestTaskUpdateStatus = (
     taskId,
     status,
   };
-  try {
-    socket.send(JSON.stringify({ action, data }));
-  } catch (err) {
-    // テス
-    console.log(err);
-  }
+  socket.send(JSON.stringify({ action, data }));
 };
 
 export const requestTaskDelete = (

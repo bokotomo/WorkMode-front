@@ -20,6 +20,7 @@ export const initialStateTask: StateTask = {
     status: '',
     time: 0,
     createdAt: new Date(),
+    startTime: new Date(),
   },
 };
 
