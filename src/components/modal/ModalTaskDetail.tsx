@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { style } from 'typestyle';
 import Modal from 'react-modal';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { TaskCard } from '@/types/taskBoard';
@@ -16,20 +17,89 @@ export const ModalTaskDetail: React.FC<Props> = (props) => {
   const [isEditMode, setIsEditMode] = useState(false);
   let detail = props.selectedTask.detail as string;
   let time = props.selectedTask.time as number;
-  const customStyles = {
-    content: {
-      top: '50%',
-      left: '50%',
-      right: 'auto',
-      bottom: 'auto',
-      marginRight: '-50%',
-      transform: 'translate(-50%, -50%)',
-      background: '#192A46',
+  const css = {
+    titleArea: style({
+      display: 'flex',
+      justifyContent: 'space-between',
+      color: '#F0F6FC',
+      fontWeight: 600,
+    }),
+    times: style({
+      fontSize: 22,
+      cursor: 'pointer',
+      $nest: {
+        '&:hover': {
+          opacity: '0.6',
+        },
+      },
+    }),
+    textarea: style({
       color: 'white',
-      width: '60%',
+      fontSize: 18,
+      background: '#2B4D6C',
+      width: '100%',
+      borderRadius: 10,
       border: 'none',
-      cursor: 'auto',
-      boxShadow: '0px 0px 6px #0000005c',
+      padding: '5px 15px',
+      height: 120,
+      boxSizing: 'border-box',
+    }),
+    input: style({
+      marginLeft: 10,
+      color: 'white',
+      fontSize: 18,
+      background: '#2B4D6C',
+      borderRadius: 20,
+      border: 'none',
+      padding: '5px 15px',
+      width: 100,
+      height: 40,
+      lineHeight: '40px',
+      boxSizing: 'border-box',
+    }),
+    buttonOK: style({
+      marginTop: 20,
+      fontSize: 18,
+      color: 'white',
+      background: 'linear-gradient(125deg, #66B7FF, #0052de)',
+      borderRadius: 50,
+      border: 'none',
+      width: '100%',
+      textAlign: 'center',
+      height: 40,
+      lineHeight: '40px',
+      boxSizing: 'border-box',
+      cursor: 'pointer',
+    }),
+    buttonNO: style({
+      marginTop: 20,
+      fontSize: 18,
+      color: 'white',
+      background: '#4C6276',
+      borderRadius: 50,
+      border: 'none',
+      width: '100%',
+      textAlign: 'center',
+      height: 40,
+      lineHeight: '40px',
+      boxSizing: 'border-box',
+      cursor: 'pointer',
+    }),
+    modal: {
+      content: {
+        top: '50%',
+        left: '50%',
+        right: 'auto',
+        bottom: 'auto',
+        marginRight: '-50%',
+        transform: 'translate(-50%, -50%)',
+        background: '#192A46',
+        color: 'white',
+        width: '60%',
+        border: 'none',
+        cursor: 'auto',
+        boxShadow: '0px 0px 6px #0000005c',
+      },
     },
   };
 
@@ -110,40 +180,24 @@ export const ModalTaskDetail: React.FC<Props> = (props) => {
     <Modal
       isOpen={props.openedModalName === 'detail'}
       onRequestClose={closeModal}
-      style={customStyles}
+      style={css.modal}
       overlayClassName="modalOverLayWrapper"
       contentLabel="モーダル"
     >
-      <div
-        style={{
-          display: 'flex',
-          justifyContent: 'space-between',
-          color: '#F0F6FC',
-          fontWeight: 600,
-        }}
-      >
+      <div className={css.titleArea}>
         <div>{props.selectedTask.title}</div>
         <FontAwesomeIcon
-          style={{ fontSize: 22, cursor: 'pointer' }}
+          className={css.times}
           onClick={closeModal}
           icon="times"
         />
       </div>
+
       <div style={{ marginTop: 20 }}>
         {isEditMode && (
           <textarea
             onChange={handleChangeDetail}
-            style={{
-              color: 'white',
-              fontSize: 18,
-              background: '#2B4D6C',
-              width: '100%',
-              borderRadius: 10,
-              border: 'none',
-              padding: '5px 15px',
-              height: 120,
-              boxSizing: 'border-box',
-            }}
+            className={css.textarea}
             placeholder="詳細を書きます。"
             maxLength={200}
             defaultValue={props.selectedTask.detail}
@@ -151,25 +205,14 @@ export const ModalTaskDetail: React.FC<Props> = (props) => {
         )}
         {!isEditMode && getDetail(props.selectedTask.detail)}
       </div>
+
       <div style={{ marginTop: 20 }}>
         予定時間
         {isEditMode && (
           <input
             type="number"
             onChange={handleHourChange}
-            style={{
-              marginLeft: 10,
-              color: 'white',
-              fontSize: 18,
-              background: '#2B4D6C',
-              borderRadius: 20,
-              border: 'none',
-              padding: '5px 15px',
-              width: 100,
-              height: 40,
-              lineHeight: '40px',
-              boxSizing: 'border-box',
-            }}
+            className={css.input}
             placeholder="1"
             min={0.5}
             max={12}
@@ -179,46 +222,14 @@ export const ModalTaskDetail: React.FC<Props> = (props) => {
         )}
         {!isEditMode && ` ${props.selectedTask.time}h`}
       </div>
+
       <div style={{ marginTop: 20 }}>{getStartTime()}</div>
 
-      <button
-        type="button"
-        onClick={okButton}
-        style={{
-          marginTop: 20,
-          fontSize: 18,
-          color: 'white',
-          background: 'linear-gradient(125deg, #66B7FF, #0052de)',
-          borderRadius: 50,
-          border: 'none',
-          width: '100%',
-          textAlign: 'center',
-          height: 40,
-          lineHeight: '40px',
-          boxSizing: 'border-box',
-          cursor: 'pointer',
-        }}
-      >
+      <button type="button" onClick={okButton} className={css.buttonOK}>
         {editButtonText()}
       </button>
-      <button
-        type="button"
-        onClick={noButton}
-        style={{
-          marginTop: 20,
-          fontSize: 18,
-          color: 'white',
-          background: '#4C6276',
-          borderRadius: 50,
-          border: 'none',
-          width: '100%',
-          textAlign: 'center',
-          height: 40,
-          lineHeight: '40px',
-          boxSizing: 'border-box',
-          cursor: 'pointer',
-        }}
-      >
+
+      <button type="button" onClick={noButton} className={css.buttonNO}>
         {!isEditMode && <>削除</>}
         {isEditMode && <>キャンセル</>}
       </button>
