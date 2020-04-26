@@ -86,6 +86,11 @@ export const ModalTaskDetail: React.FC<Props> = (props) => {
       lineHeight: '40px',
       boxSizing: 'border-box',
       cursor: 'pointer',
+      $nest: {
+        '&:hover': {
+          opacity: '0.9',
+        },
+      },
     }),
     buttonNO: style({
       marginTop: 20,
@@ -100,6 +105,11 @@ export const ModalTaskDetail: React.FC<Props> = (props) => {
       lineHeight: '40px',
       boxSizing: 'border-box',
       cursor: 'pointer',
+      $nest: {
+        '&:hover': {
+          opacity: '0.9',
+        },
+      },
     }),
   };
 

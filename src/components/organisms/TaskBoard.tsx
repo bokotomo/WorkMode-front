@@ -30,7 +30,31 @@ export const TaskBoard: React.FC<Props> = (props) => {
       flexFlow: 'column',
       justifyContent: 'space-between',
     }),
-    taskAddButton: style({
+    taskStatusArea: style({
+      display: 'flex',
+      color: '#F0F6FC',
+      textAlign: 'center',
+      height: 80,
+      fontSize: 20,
+      fontWeight: 700,
+    }),
+    taskStatusTitle: style({
+      flex: '0 1 33.3%',
+      background: '#1E2833',
+      display: 'flex',
+      height: '100%',
+      justifyContent: 'center',
+      alignItems: 'center',
+    }),
+    taskStatusTitleCenter: style({
+      flex: '0 1 33.4%',
+      background: '#202C3B',
+      display: 'flex',
+      height: '100%',
+      justifyContent: 'center',
+      alignItems: 'center',
+    }),
+    buttonTaskAdd: style({
       flex: '0 1 80px',
       background: 'linear-gradient(125deg, #66B7FF, #0052de)',
       fontSize: 30,
@@ -38,6 +62,15 @@ export const TaskBoard: React.FC<Props> = (props) => {
       lineHeight: '80px',
       cursor: 'pointer',
       width: '100%',
+    }),
+    buttonTaskAddPlus: style({
+      display: 'block',
+      fontSize: 24,
+      color: 'white',
+      width: '100%',
+      height: '100%',
+      margin: 'auto',
+      textAlign: 'center',
     }),
   };
   const taskNotExist = () => {
@@ -57,52 +90,10 @@ export const TaskBoard: React.FC<Props> = (props) => {
       {/* <img src='/images/taskImage.png' /> */}
 
       <div className={css.left}>
-        <div
-          style={{
-            display: 'flex',
-            color: '#F0F6FC',
-            textAlign: 'center',
-            height: 80,
-            fontSize: 20,
-            fontWeight: 700,
-          }}
-        >
-          <div
-            style={{
-              flex: '0 1 33.3%',
-              background: '#1E2833',
-              display: 'flex',
-              height: '100%',
-              justifyContent: 'center',
-              alignItems: 'center',
-            }}
-          >
-            やること
-          </div>
-          <div
-            style={{
-              flex: '0 1 33.4%',
-              background: '#202C3B',
-              display: 'flex',
-              height: '100%',
-              justifyContent: 'center',
-              alignItems: 'center',
-            }}
-          >
-            実行中
-          </div>
-          <div
-            style={{
-              flex: '0 1 33.3%',
-              background: '#1E2833',
-              display: 'flex',
-              height: '100%',
-              justifyContent: 'center',
-              alignItems: 'center',
-            }}
-          >
-            完了したこと
-          </div>
+        <div className={css.taskStatusArea}>
+          <div className={css.taskStatusTitle}>やること</div>
+          <div className={css.taskStatusTitleCenter}>実行中</div>
+          <div className={css.taskStatusTitle}>完了したこと</div>
         </div>
         <div style={{ flex: '0 1 100%' }}>
           {taskNotExist() && (
@@ -131,19 +122,11 @@ export const TaskBoard: React.FC<Props> = (props) => {
             />
           )}
         </div>
-        <div className={css.taskAddButton}>
+        <div className={css.buttonTaskAdd}>
           <button
             type="button"
             onClick={openModal}
-            style={{
-              display: 'block',
-              fontSize: 24,
-              color: 'white',
-              width: '100%',
-              height: '100%',
-              margin: 'auto',
-              textAlign: 'center',
-            }}
+            className={css.buttonTaskAddPlus}
           >
             <FontAwesomeIcon icon="plus" />
           </button>

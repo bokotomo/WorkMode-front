@@ -36,7 +36,15 @@ export const ModalAddTask: React.FC<Props> = (props) => {
       color: '#F0F6FC',
       fontWeight: 600,
     }),
-    times: style({ fontSize: 22, cursor: 'pointer' }),
+    times: style({
+      fontSize: 22,
+      cursor: 'pointer',
+      $nest: {
+        '&:hover': {
+          opacity: '0.6',
+        },
+      },
+    }),
     inputTitle: style({
       color: 'white',
       fontSize: 18,
@@ -85,6 +93,11 @@ export const ModalAddTask: React.FC<Props> = (props) => {
       lineHeight: '40px',
       boxSizing: 'border-box',
       cursor: 'pointer',
+      $nest: {
+        '&:hover': {
+          opacity: '0.9',
+        },
+      },
     }),
   };
 
