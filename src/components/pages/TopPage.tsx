@@ -62,6 +62,7 @@ export class TopPage extends React.Component<Props> {
         <ModalTaskDetail
           openedModalName={this.props.openedModalName}
           handleOnModalOpend={this.props.handleOnModalOpend}
+          updateTask={this.props.updateTask}
           deleteTask={this.props.deleteTask}
           selectedTask={this.props.selectedTask}
           socket={this.props.socket}

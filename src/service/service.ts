@@ -3,7 +3,12 @@ import { TaskCard } from '@/types/taskBoard';
 import { modalOpend } from '@/service/modal';
 import { userRegister } from '@/service/user';
 import { setWebsocket } from '@/service/socket';
-import { addTask, updateTaskStatus, deleteTask } from '@/service/task';
+import {
+  addTask,
+  updateTaskStatus,
+  deleteTask,
+  updateTask,
+} from '@/service/task';
 
 export const service = {
   modalOpend: (dispatch: Dispatch, openedModalName: string) =>
@@ -21,4 +26,6 @@ export const service = {
   ) => updateTaskStatus(dispatch, socket, taskId, status),
   deleteTask: (dispatch: Dispatch, socket: WebSocket, taskId: string) =>
     deleteTask(dispatch, socket, taskId),
+  updateTask: (dispatch: Dispatch, socket: WebSocket, task: TaskCard) =>
+    updateTask(dispatch, socket, task),
 };

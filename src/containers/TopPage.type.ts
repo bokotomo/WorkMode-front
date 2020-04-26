@@ -12,4 +12,5 @@ export interface TopPageHandler {
   handleOnSetRoom(): void;
   registerUser(socket: WebSocket, name: string): void;
   deleteTask(socket: WebSocket, taskId: string): void;
+  updateTask(socket: WebSocket, task: TaskCard): void;
 }

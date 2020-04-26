@@ -62,3 +62,20 @@ export const requestTaskDelete = (
   socket.send(JSON.stringify({ action, data }));
   dispatch(ActionTask.deleteTask(taskId));
 };
+
+export const requestTaskUpdate = (
+  socket: WebSocket,
+  dispatch: Dispatch,
+  token: string,
+  task: TaskCard
+) => {
+  const action = 'sendmessage';
+  const role = 'task_update';
+  const data = {
+    role,
+    token,
+    task,
+  };
+  socket.send(JSON.stringify({ action, data }));
+  dispatch(ActionTask.updateTask(task));
+};

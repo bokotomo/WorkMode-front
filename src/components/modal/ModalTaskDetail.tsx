@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Modal from 'react-modal';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { TaskCard } from '@/types/taskBoard';
@@ -6,11 +6,15 @@ import { TaskCard } from '@/types/taskBoard';
 interface Props {
   readonly handleOnModalOpend: Function;
   readonly deleteTask: Function;
+  readonly updateTask: Function;
   readonly openedModalName: string;
   readonly selectedTask: TaskCard;
   readonly socket: WebSocket;
 }
 export const ModalTaskDetail: React.FC<Props> = (props) => {
+  const [isEditMode, setIsEditMode] = useState(false);
+  let detail = props.selectedTask.detail as string;
+  let time = props.selectedTask.time as number;
   const customStyles = {
     content: {
       top: '50%',
@@ -40,8 +44,21 @@ export const ModalTaskDetail: React.FC<Props> = (props) => {
     });
   };
 
+  const editButtonText = () => {
+    if (isEditMode) return <>保存</>;
+    return <>編集</>;
+  };
+
   function closeModal() {
     props.handleOnModalOpend('');
+  }
+
+  function handleChangeDetail(e: React.ChangeEvent<HTMLTextAreaElement>) {
+    detail = e.target.value;
+  }
+
+  function handleHourChange(e: React.ChangeEvent<HTMLInputElement>) {
+    time = Number(e.target.value);
   }
 
   function deleteTask() {
@@ -52,8 +69,30 @@ export const ModalTaskDetail: React.FC<Props> = (props) => {
     }
   }
 
-  function editTask() {
-    alert('編集モードへ切り替え');
+  function noButton() {
+    if (isEditMode) {
+      setIsEditMode(false);
+      return;
+    }
+    deleteTask();
+  }
+
+  function okButton() {
+    if (!isEditMode) {
+      setIsEditMode(true);
+      return;
+    }
+    const isChangedTask =
+      detail !== props.selectedTask.detail || time !== props.selectedTask.time;
+    if (isChangedTask)
+      props.updateTask(props.socket, {
+        id: props.selectedTask.id,
+        detail,
+        time,
+      });
+
+    setIsEditMode(false);
+    closeModal();
   }
 
   return (
@@ -80,14 +119,60 @@ export const ModalTaskDetail: React.FC<Props> = (props) => {
         />
       </div>
       <div style={{ marginTop: 20 }}>
-        {getDetail(props.selectedTask.detail)}
+        {isEditMode && (
+          <textarea
+            onChange={handleChangeDetail}
+            style={{
+              color: 'white',
+              fontSize: 18,
+              background: '#2B4D6C',
+              width: '100%',
+              borderRadius: 10,
+              border: 'none',
+              padding: '5px 15px',
+              height: 120,
+              boxSizing: 'border-box',
+            }}
+            placeholder="詳細を書きます。"
+            maxLength={200}
+            defaultValue={props.selectedTask.detail}
+          />
+        )}
+        {!isEditMode && getDetail(props.selectedTask.detail)}
       </div>
-      <div style={{ marginTop: 20 }}>予定時間 {props.selectedTask.time}h</div>
+      <div style={{ marginTop: 20 }}>
+        予定時間
+        {isEditMode && (
+          <input
+            type="number"
+            onChange={handleHourChange}
+            style={{
+              marginLeft: 10,
+              color: 'white',
+              fontSize: 18,
+              background: '#2B4D6C',
+              borderRadius: 20,
+              border: 'none',
+              padding: '5px 15px',
+              width: 100,
+              height: 40,
+              lineHeight: '40px',
+              boxSizing: 'border-box',
+            }}
+            placeholder="1"
+            min={0.5}
+            max={12}
+            step={0.5}
+            defaultValue={props.selectedTask.time}
+          />
+        )}
+        {!isEditMode && ` ${props.selectedTask.time}h`}
+      </div>
       <div style={{ marginTop: 20 }}>開始時間 11:25</div>
 
       <button
         type="button"
-        onClick={editTask}
+        onClick={okButton}
         style={{
           marginTop: 20,
           fontSize: 18,
@@ -103,11 +188,11 @@ export const ModalTaskDetail: React.FC<Props> = (props) => {
           cursor: 'pointer',
         }}
       >
-        編集
+        {editButtonText()}
       </button>
       <button
         type="button"
-        onClick={deleteTask}
+        onClick={noButton}
         style={{
           marginTop: 20,
           fontSize: 18,
@@ -123,7 +208,8 @@ export const ModalTaskDetail: React.FC<Props> = (props) => {
           cursor: 'pointer',
         }}
       >
-        削除
+        {!isEditMode && <>削除</>}
+        {isEditMode && <>キャンセル</>}
       </button>
     </Modal>
   );

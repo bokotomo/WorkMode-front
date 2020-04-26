@@ -46,4 +46,31 @@ export const ReducerTask = reducerWithInitialState(initialStateTask)
     );
     const dones = state.dones.filter((task) => task.id !== taskId);
     return { ...state, todos, inProgresses, dones };
+  })
+  .case(ActionTask.updateTask, (state, task) => {
+    const todos = state.todos.map((item) => {
+      if (item.id !== task.id) return item;
+      return {
+        ...item,
+        detail: task.detail,
+        time: task.time,
+      };
+    });
+    const inProgresses = state.inProgresses.map((item) => {
+      if (item.id !== task.id) return item;
+      return {
+        ...item,
+        detail: task.detail,
+        time: task.time,
+      };
+    });
+    const dones = state.dones.map((item) => {
+      if (item.id !== task.id) return item;
+      return {
+        ...item,
+        detail: task.detail,
+        time: task.time,
+      };
+    });
+    return { ...state, todos, inProgresses, dones };
   });

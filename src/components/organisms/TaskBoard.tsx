@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { CSSProperties } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { TaskCard } from '@/types/taskBoard';
 import { TaskArea } from '@/components/molecules/taskArea';
@@ -16,7 +16,12 @@ interface Props {
   readonly socket: WebSocket;
 }
 export const TaskBoard: React.FC<Props> = (props) => {
-  const style = {
+  interface StyleTaskBoar {
+    taskBoard: CSSProperties;
+    left: CSSProperties;
+    taskAddButton: CSSProperties;
+  }
+  const style: StyleTaskBoar = {
     taskBoard: {
       background: '#102133',
       flex: '0 1 55%',
@@ -62,16 +67,44 @@ export const TaskBoard: React.FC<Props> = (props) => {
             color: '#F0F6FC',
             textAlign: 'center',
             height: 80,
-            lineHeight: '80px',
             fontSize: 20,
             fontWeight: 700,
           }}
         >
-          <div style={{ flex: '0 1 33.3%', background: '#1E2833' }}>
+          <div
+            style={{
+              flex: '0 1 33.3%',
+              background: '#1E2833',
+              display: 'flex',
+              height: '100%',
+              justifyContent: 'center',
+              alignItems: 'center',
+            }}
+          >
             やること
           </div>
-          <div style={{ flex: '0 1 33.4%', background: '#202C3B' }}>実行中</div>
-          <div style={{ flex: '0 1 33.3%', background: '#1E2833' }}>
+          <div
+            style={{
+              flex: '0 1 33.4%',
+              background: '#202C3B',
+              display: 'flex',
+              height: '100%',
+              justifyContent: 'center',
+              alignItems: 'center',
+            }}
+          >
+            実行中
+          </div>
+          <div
+            style={{
+              flex: '0 1 33.3%',
+              background: '#1E2833',
+              display: 'flex',
+              height: '100%',
+              justifyContent: 'center',
+              alignItems: 'center',
+            }}
+          >
             完了したこと
           </div>
         </div>

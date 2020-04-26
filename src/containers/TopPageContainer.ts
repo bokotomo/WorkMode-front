@@ -46,6 +46,8 @@ const mapDispatchToProps = (dispatch: Dispatch) => {
       service.userRegister(dispatch, socket, name),
     deleteTask: (socket: WebSocket, taskId: string) =>
       service.deleteTask(dispatch, socket, taskId),
+    updateTask: (socket: WebSocket, task: TaskCard) =>
+      service.updateTask(dispatch, socket, task),
   };
 };
 export default connect(mapStateToProps, mapDispatchToProps)(TopPage);

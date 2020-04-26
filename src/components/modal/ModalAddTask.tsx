@@ -100,7 +100,7 @@ export const ModalAddTask: React.FC<Props> = (props) => {
             lineHeight: '40px',
             boxSizing: 'border-box',
           }}
-          placeholder="タイトル"
+          placeholder="わかりやすいタスク名"
           maxLength={25}
         />
       </div>

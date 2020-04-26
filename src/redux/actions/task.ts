@@ -10,4 +10,5 @@ export const ActionTask = {
   setTaskDone: actionCreator<TaskCard[]>('SET_TASK_DONE'),
   setSelectedTask: actionCreator<TaskCard>('SET_SELECTED_TASK'),
   deleteTask: actionCreator<string>('DELETE_TASK'),
+  updateTask: actionCreator<TaskCard>('UPDATE_TASK'),
 };

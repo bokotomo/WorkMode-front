@@ -5,6 +5,7 @@ import {
   requestTaskCreate,
   requestTaskUpdateStatus,
   requestTaskDelete,
+  requestTaskUpdate,
 } from '@/websocket/request/task';
 
 export const addTask = (
@@ -33,4 +34,13 @@ export const deleteTask = (
 ) => {
   const token = new Cookies().get('token') || '';
   requestTaskDelete(socket, dispatch, token, taskId);
+};
+
+export const updateTask = (
+  dispatch: Dispatch,
+  socket: WebSocket,
+  task: TaskCard
+) => {
+  const token = new Cookies().get('token') || '';
+  requestTaskUpdate(socket, dispatch, token, task);
 };
