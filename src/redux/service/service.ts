@@ -1,14 +1,14 @@
 import { Dispatch } from 'redux';
 import { TaskCard } from '@/types/taskBoard';
-import { modalOpend } from '@/service/modal';
-import { userRegister } from '@/service/user';
-import { setWebsocket } from '@/service/socket';
+import { modalOpend } from '@/redux/service/modal';
+import { userRegister } from '@/redux/service/user';
+import { setWebsocket } from '@/redux/service/socket';
 import {
   addTask,
   updateTaskStatus,
   deleteTask,
   updateTask,
-} from '@/service/task';
+} from '@/redux/service/task';
 
 export const service = {
   modalOpend: (dispatch: Dispatch, openedModalName: string) =>

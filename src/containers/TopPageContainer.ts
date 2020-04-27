@@ -4,8 +4,8 @@ import { TopPage } from '@/components/pages/TopPage';
 import { ActionTask } from '@/redux/actions/task';
 import { ActionRoom } from '@/redux/actions/room';
 import { AppState } from '@/redux/store';
+import { service } from '@/redux/service/service';
 import { TaskCard } from '@/types/taskBoard';
-import { service } from '@/service/service';
 
 const mapStateToProps = (appState: AppState) => {
   return {
