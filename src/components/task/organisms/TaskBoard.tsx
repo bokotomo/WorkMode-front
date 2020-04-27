@@ -3,6 +3,7 @@ import { style, color, hover } from '@/css/style';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { TaskCard } from '@/types/taskBoard';
 import { TaskArea } from '@/components/task/molecules/taskArea';
+import { IconCafe } from '@/components/svg/IconCafe';
 
 interface Props {
   readonly handleOnModalOpend: Function;
@@ -103,12 +104,25 @@ export const TaskBoard: React.FC<Props> = (props) => {
           {taskNotExist() && (
             <div
               style={{
-                width: '100%',
-                paddingTop: 100,
+                width: 500,
+                fontSize: 20,
+                fontWeight: 800,
+                margin: 'auto',
+                marginTop: 200,
+                opacity: 0.95,
+                padding: '30px 0',
+                background: 'linear-gradient(90deg, #BFC2FF, #23ACFF)',
+                borderRadius: '150px',
+                border: '2px solid white',
                 textAlign: 'center',
               }}
             >
-              下のボタンからタスクを追加しましょう。
+              <div style={{ marginBottom: 10 }}>
+                <IconCafe width={50} height={50} />
+              </div>
+              下のボタンから、
+              <br />
+              タスクを追加してみましょう！
             </div>
           )}
           {!taskNotExist() && (
