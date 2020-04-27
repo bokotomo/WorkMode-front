@@ -1,5 +1,5 @@
 import React from 'react';
-import { style } from 'typestyle';
+import { style, color } from '@/css/style';
 import { ActiveUser } from '@/types/activeUser';
 import { Room } from '@/types/room';
 import { Message } from '@/types/message';
@@ -40,7 +40,7 @@ export const MessageBoard: React.FC<Props> = (props) => {
       border: 'none',
       width: '100%',
       height: '100%',
-      color: 'white',
+      color: color.white,
       cursor: 'pointer',
       padding: '7px 30px 7px 20px',
       fontWeight: 600,

@@ -10,9 +10,6 @@ interface Props {
   readonly openedModalName: string;
 }
 export const ModalAddTask: React.FC<Props> = (props) => {
-  let title = '';
-  let detail = '';
-  let time = 0;
   const css = {
     modal: {
       content: {
@@ -94,12 +91,15 @@ export const ModalAddTask: React.FC<Props> = (props) => {
       }),
     },
   };
+  let title = '';
+  let detail = '';
+  let time = 0;
 
-  function closeModal() {
+  const closeModal = () => {
     props.handleOnModalOpend('');
-  }
+  };
 
-  function addTask() {
+  const addTask = () => {
     if (title === '' || detail === '' || time === 0) {
       alert('全て入力する必要があります。');
       return;
@@ -113,20 +113,20 @@ export const ModalAddTask: React.FC<Props> = (props) => {
       createdAt: new Date(),
     });
     closeModal();
-  }
+  };
 
-  function handleChange(e: React.ChangeEvent<HTMLInputElement>) {
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     title = e.target.value;
-  }
+  };
 
-  function handleChangeDetail(e: React.ChangeEvent<HTMLTextAreaElement>) {
+  const handleChangeDetail = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
     detail = e.target.value;
-  }
+  };
 
-  function handleHourChange(e: React.ChangeEvent<HTMLInputElement>) {
+  const handleHourChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const timeTmp = Number(e.target.value);
     time = timeTmp;
-  }
+  };
 
   return (
     <Modal

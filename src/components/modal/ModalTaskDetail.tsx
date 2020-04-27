@@ -14,9 +14,6 @@ interface Props {
   readonly socket: WebSocket;
 }
 export const ModalTaskDetail: React.FC<Props> = (props) => {
-  const [isEditMode, setIsEditMode] = useState(false);
-  let detail = props.selectedTask.detail as string;
-  let time = props.selectedTask.time as number;
   const css = {
     modal: {
       content: {
@@ -102,6 +99,10 @@ export const ModalTaskDetail: React.FC<Props> = (props) => {
       }),
     },
   };
+
+  const [isEditMode, setIsEditMode] = useState(false);
+  let detail = props.selectedTask.detail as string;
+  let time = props.selectedTask.time as number;
 
   const getDetail = (text: string) => {
     return text.split('\n').map((p, index) => {

@@ -1,5 +1,5 @@
 import React from 'react';
-import { style } from 'typestyle';
+import { style, color } from '@/css/style';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { TaskCard } from '@/types/taskBoard';
 import { TaskArea } from '@/components/molecules/taskArea';
@@ -68,13 +68,14 @@ export const TaskBoard: React.FC<Props> = (props) => {
     buttonTaskAddPlus: style({
       display: 'block',
       fontSize: 24,
-      color: 'white',
+      color: color.white,
       width: '100%',
       height: '100%',
       margin: 'auto',
       textAlign: 'center',
     }),
   };
+
   const taskNotExist = () => {
     return (
       props.todos.length === 0 &&

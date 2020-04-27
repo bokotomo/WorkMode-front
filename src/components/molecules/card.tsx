@@ -1,5 +1,5 @@
 import React from 'react';
-import { style } from 'typestyle';
+import { style } from '@/css/style';
 import {
   Draggable,
   DraggingStyle,

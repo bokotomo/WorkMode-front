@@ -1,5 +1,5 @@
 import React from 'react';
-import { style } from 'typestyle';
+import { style } from '@/css/style';
 import { Droppable } from 'react-beautiful-dnd';
 import { TaskCard } from '@/types/taskBoard';
 import { Card } from '@/components/molecules/card';
