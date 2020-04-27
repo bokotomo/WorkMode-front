@@ -16,7 +16,7 @@ interface Props {
 export const Card: React.FC<Props> = (props) => {
   const css = {
     card: {
-      background: '#2A3B57',
+      background: '#294063',
       padding: '15px 10px',
       borderRadius: '10px',
       cursor: 'pointer',
