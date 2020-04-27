@@ -5,8 +5,8 @@ import { Room } from '@/types/room';
 import { Message } from '@/types/message';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { MessageLineBar } from '@/components/atom/MessageLineBar';
-import { MessageUserList } from '@/components/toppage/molecules/MessageUserList';
-import { MessageTaskProgress } from '@/components/toppage/molecules/MessageTaskProgress';
+import { MessageUserList } from '@/components/task/molecules/MessageUserList';
+import { MessageTaskProgress } from '@/components/task/molecules/MessageTaskProgress';
 
 interface Props {
   readonly messages: Message[];

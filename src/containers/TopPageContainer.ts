@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 import { Dispatch } from 'redux';
-import { TopPage } from '@/components/toppage/Base';
+import { TopPage } from '@/components/task/Base';
 import { ActionTask } from '@/redux/actions/task';
 import { ActionRoom } from '@/redux/actions/room';
 import { AppState } from '@/redux/store';

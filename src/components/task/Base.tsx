@@ -4,12 +4,12 @@ import { Message } from '@/types/message';
 import { ActiveUser } from '@/types/activeUser';
 import { Room } from '@/types/room';
 import { TopPageHandler } from '@/containers/TopPage.type';
-import { TaskBoard } from '@/components/toppage/organisms/TaskBoard';
-import { MessageBoard } from '@/components/toppage/organisms/MessageBoard';
-import { ModalAddTask } from '@/components/modal/ModalAddTask';
-import { ModalDoneTask } from '@/components/modal/ModalDoneTask';
-import { ModalTaskDetail } from '@/components/modal/ModalTaskDetail';
-import { ModalRegisterUser } from '@/components/modal/ModalRegisterUser';
+import { TaskBoard } from '@/components/task/organisms/TaskBoard';
+import { MessageBoard } from '@/components/task/organisms/MessageBoard';
+import { ModalAddTask } from '@/components/task/modal/ModalAddTask';
+import { ModalDoneTask } from '@/components/task/modal/ModalDoneTask';
+import { ModalTaskDetail } from '@/components/task/modal/ModalTaskDetail';
+import { ModalRegisterUser } from '@/components/task/modal/ModalRegisterUser';
 
 interface OwnProps {
   readonly socket: WebSocket;
