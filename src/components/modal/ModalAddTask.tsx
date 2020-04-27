@@ -1,5 +1,5 @@
 import React from 'react';
-import { style } from 'typestyle';
+import { style, hover, color } from '@/css/style';
 import Modal from 'react-modal';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
@@ -23,7 +23,7 @@ export const ModalAddTask: React.FC<Props> = (props) => {
         marginRight: '-50%',
         transform: 'translate(-50%, -50%)',
         background: '#192A46',
-        color: 'white',
+        color: color.white,
         width: '60%',
         border: 'none',
         cursor: 'auto',
@@ -37,18 +37,14 @@ export const ModalAddTask: React.FC<Props> = (props) => {
       fontWeight: 600,
     }),
     times: style({
+      ...hover.icon,
       fontSize: 22,
       cursor: 'pointer',
-      $nest: {
-        '&:hover': {
-          opacity: '0.6',
-        },
-      },
     }),
     inputTitle: style({
-      color: 'white',
+      color: color.white,
       fontSize: 18,
-      background: '#2B4D6C',
+      background: color.input,
       borderRadius: 20,
       border: 'none',
       padding: '5px 15px',
@@ -58,9 +54,9 @@ export const ModalAddTask: React.FC<Props> = (props) => {
       boxSizing: 'border-box',
     }),
     textarea: style({
-      color: 'white',
+      color: color.white,
       fontSize: 18,
-      background: '#2B4D6C',
+      background: color.input,
       width: '100%',
       borderRadius: 10,
       border: 'none',
@@ -69,9 +65,9 @@ export const ModalAddTask: React.FC<Props> = (props) => {
       boxSizing: 'border-box',
     }),
     time: style({
-      color: 'white',
+      color: color.white,
       fontSize: 18,
-      background: '#2B4D6C',
+      background: color.input,
       borderRadius: 20,
       border: 'none',
       padding: '5px 15px',
@@ -80,25 +76,23 @@ export const ModalAddTask: React.FC<Props> = (props) => {
       lineHeight: '40px',
       boxSizing: 'border-box',
     }),
-    buttonOK: style({
-      marginTop: 20,
-      fontSize: 18,
-      color: 'white',
-      background: 'linear-gradient(125deg, #66B7FF, #0052de)',
-      borderRadius: 50,
-      border: 'none',
-      width: '100%',
-      textAlign: 'center',
-      height: 40,
-      lineHeight: '40px',
-      boxSizing: 'border-box',
-      cursor: 'pointer',
-      $nest: {
-        '&:hover': {
-          opacity: '0.9',
-        },
-      },
-    }),
+    button: {
+      ok: style({
+        ...hover.button,
+        marginTop: 20,
+        fontSize: 18,
+        color: color.white,
+        background: color.buttonOK,
+        borderRadius: 50,
+        border: 'none',
+        width: '100%',
+        textAlign: 'center',
+        height: 40,
+        lineHeight: '40px',
+        boxSizing: 'border-box',
+        cursor: 'pointer',
+      }),
+    },
   };
 
   function closeModal() {
@@ -180,7 +174,7 @@ export const ModalAddTask: React.FC<Props> = (props) => {
         />
       </div>
 
-      <button type="button" className={css.buttonOK} onClick={addTask}>
+      <button type="button" className={css.button.ok} onClick={addTask}>
         追加
       </button>
     </Modal>

@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { style } from 'typestyle';
+import { style, hover, color } from '@/css/style';
 import Modal from 'react-modal';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { TaskCard } from '@/types/taskBoard';
@@ -27,7 +27,7 @@ export const ModalTaskDetail: React.FC<Props> = (props) => {
         marginRight: '-50%',
         transform: 'translate(-50%, -50%)',
         background: '#192A46',
-        color: 'white',
+        color: color.white,
         width: '60%',
         border: 'none',
         cursor: 'auto',
@@ -41,18 +41,14 @@ export const ModalTaskDetail: React.FC<Props> = (props) => {
       fontWeight: 600,
     }),
     times: style({
+      ...hover.icon,
       fontSize: 22,
       cursor: 'pointer',
-      $nest: {
-        '&:hover': {
-          opacity: '0.6',
-        },
-      },
     }),
     textarea: style({
-      color: 'white',
+      color: color.white,
       fontSize: 18,
-      background: '#2B4D6C',
+      background: color.input,
       width: '100%',
       borderRadius: 10,
       border: 'none',
@@ -62,9 +58,9 @@ export const ModalTaskDetail: React.FC<Props> = (props) => {
     }),
     input: style({
       marginLeft: 10,
-      color: 'white',
+      color: color.white,
       fontSize: 18,
-      background: '#2B4D6C',
+      background: color.input,
       borderRadius: 20,
       border: 'none',
       padding: '5px 15px',
@@ -73,44 +69,38 @@ export const ModalTaskDetail: React.FC<Props> = (props) => {
       lineHeight: '40px',
       boxSizing: 'border-box',
     }),
-    buttonOK: style({
-      marginTop: 20,
-      fontSize: 18,
-      color: 'white',
-      background: 'linear-gradient(125deg, #66B7FF, #0052de)',
-      borderRadius: 50,
-      border: 'none',
-      width: '100%',
-      textAlign: 'center',
-      height: 40,
-      lineHeight: '40px',
-      boxSizing: 'border-box',
-      cursor: 'pointer',
-      $nest: {
-        '&:hover': {
-          opacity: '0.9',
-        },
-      },
-    }),
-    buttonNO: style({
-      marginTop: 20,
-      fontSize: 18,
-      color: 'white',
-      background: '#4C6276',
-      borderRadius: 50,
-      border: 'none',
-      width: '100%',
-      textAlign: 'center',
-      height: 40,
-      lineHeight: '40px',
-      boxSizing: 'border-box',
-      cursor: 'pointer',
-      $nest: {
-        '&:hover': {
-          opacity: '0.9',
-        },
-      },
-    }),
+    button: {
+      ok: style({
+        ...hover.button,
+        marginTop: 20,
+        fontSize: 18,
+        color: color.white,
+        background: color.buttonOK,
+        borderRadius: 50,
+        border: 'none',
+        width: '100%',
+        textAlign: 'center',
+        height: 40,
+        lineHeight: '40px',
+        boxSizing: 'border-box',
+        cursor: 'pointer',
+      }),
+      no: style({
+        ...hover.button,
+        marginTop: 20,
+        fontSize: 18,
+        color: color.white,
+        background: color.buttonNO,
+        borderRadius: 50,
+        border: 'none',
+        width: '100%',
+        textAlign: 'center',
+        height: 40,
+        lineHeight: '40px',
+        boxSizing: 'border-box',
+        cursor: 'pointer',
+      }),
+    },
   };
 
   const getDetail = (text: string) => {
@@ -235,11 +225,11 @@ export const ModalTaskDetail: React.FC<Props> = (props) => {
 
       <div style={{ marginTop: 20 }}>{getStartTime()}</div>
 
-      <button type="button" onClick={okButton} className={css.buttonOK}>
+      <button type="button" onClick={okButton} className={css.button.ok}>
         {editButtonText()}
       </button>
 
-      <button type="button" onClick={noButton} className={css.buttonNO}>
+      <button type="button" onClick={noButton} className={css.button.no}>
         {!isEditMode && <>削除</>}
         {isEditMode && <>キャンセル</>}
       </button>

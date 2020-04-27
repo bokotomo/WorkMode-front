@@ -30,30 +30,32 @@ export const TaskBoard: React.FC<Props> = (props) => {
       flexFlow: 'column',
       justifyContent: 'space-between',
     }),
-    taskStatusArea: style({
-      display: 'flex',
-      color: '#F0F6FC',
-      textAlign: 'center',
-      height: 80,
-      fontSize: 20,
-      fontWeight: 700,
-    }),
-    taskStatusTitle: style({
-      flex: '0 1 33.3%',
-      background: '#1E2833',
-      display: 'flex',
-      height: '100%',
-      justifyContent: 'center',
-      alignItems: 'center',
-    }),
-    taskStatusTitleCenter: style({
-      flex: '0 1 33.4%',
-      background: '#202C3B',
-      display: 'flex',
-      height: '100%',
-      justifyContent: 'center',
-      alignItems: 'center',
-    }),
+    taskStatus: {
+      area: style({
+        display: 'flex',
+        color: '#F0F6FC',
+        textAlign: 'center',
+        height: 80,
+        fontSize: 20,
+        fontWeight: 700,
+      }),
+      title: style({
+        flex: '0 1 33.3%',
+        background: '#1E2833',
+        display: 'flex',
+        height: '100%',
+        justifyContent: 'center',
+        alignItems: 'center',
+      }),
+      titleCenter: style({
+        flex: '0 1 33.4%',
+        background: '#202C3B',
+        display: 'flex',
+        height: '100%',
+        justifyContent: 'center',
+        alignItems: 'center',
+      }),
+    },
     buttonTaskAdd: style({
       flex: '0 1 80px',
       background: 'linear-gradient(125deg, #66B7FF, #0052de)',
@@ -90,10 +92,10 @@ export const TaskBoard: React.FC<Props> = (props) => {
       {/* <img src='/images/taskImage.png' /> */}
 
       <div className={css.left}>
-        <div className={css.taskStatusArea}>
-          <div className={css.taskStatusTitle}>やること</div>
-          <div className={css.taskStatusTitleCenter}>実行中</div>
-          <div className={css.taskStatusTitle}>完了したこと</div>
+        <div className={css.taskStatus.area}>
+          <div className={css.taskStatus.title}>やること</div>
+          <div className={css.taskStatus.titleCenter}>実行中</div>
+          <div className={css.taskStatus.title}>完了したこと</div>
         </div>
         <div style={{ flex: '0 1 100%' }}>
           {taskNotExist() && (
