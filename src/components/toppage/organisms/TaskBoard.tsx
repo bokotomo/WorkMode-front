@@ -2,7 +2,7 @@ import React from 'react';
 import { style, color, hover } from '@/css/style';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { TaskCard } from '@/types/taskBoard';
-import { TaskArea } from '@/components/molecules/taskArea';
+import { TaskArea } from '@/components/toppage/molecules/taskArea';
 
 interface Props {
   readonly handleOnModalOpend: Function;

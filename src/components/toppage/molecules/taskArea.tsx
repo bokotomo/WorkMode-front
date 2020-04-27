@@ -5,7 +5,7 @@ import {
   DraggableLocation,
 } from 'react-beautiful-dnd';
 import { TaskCard } from '@/types/taskBoard';
-import { Item } from '@/components/molecules/item';
+import { Item } from '@/components/toppage/molecules/item';
 
 interface Props {
   readonly handleOnSetTaskTodo: Function;

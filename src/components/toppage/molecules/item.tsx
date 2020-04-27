@@ -2,7 +2,7 @@ import React from 'react';
 import { style } from '@/css/style';
 import { Droppable } from 'react-beautiful-dnd';
 import { TaskCard } from '@/types/taskBoard';
-import { Card } from '@/components/molecules/card';
+import { Card } from '@/components/toppage/molecules/card';
 
 interface Props {
   readonly handleOnModalOpend: Function;
