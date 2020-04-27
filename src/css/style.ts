@@ -25,4 +25,11 @@ export const hover = {
       },
     },
   },
+  card: {
+    $nest: {
+      '&:hover': {
+        opacity: '0.85',
+      },
+    },
+  },
 };

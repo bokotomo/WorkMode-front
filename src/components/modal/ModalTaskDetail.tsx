@@ -118,7 +118,9 @@ export const ModalTaskDetail: React.FC<Props> = (props) => {
 
   const getStartTime = () => {
     if (typeof props.selectedTask.startTime === 'string') return <></>;
-    return <>開始時間 {moment(props.selectedTask.startTime).format('HH:mm')}</>;
+    return (
+      <>開始時間 {moment(props.selectedTask.startTime).format('M/D HH:mm')}</>
+    );
   };
 
   const editButtonText = () => {

@@ -1,5 +1,5 @@
 import React from 'react';
-import { style, color } from '@/css/style';
+import { style, color, hover } from '@/css/style';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { TaskCard } from '@/types/taskBoard';
 import { TaskArea } from '@/components/molecules/taskArea';
@@ -57,6 +57,7 @@ export const TaskBoard: React.FC<Props> = (props) => {
       }),
     },
     buttonTaskAdd: style({
+      ...hover.button,
       flex: '0 1 80px',
       background: 'linear-gradient(125deg, #66B7FF, #0052de)',
       fontSize: 30,

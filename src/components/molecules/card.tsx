@@ -1,5 +1,5 @@
 import React from 'react';
-import { style } from '@/css/style';
+import { style, hover } from '@/css/style';
 import {
   Draggable,
   DraggingStyle,
@@ -26,6 +26,9 @@ export const Card: React.FC<Props> = (props) => {
       marginBottom: 15,
       boxSizing: 'border-box',
     },
+    cardHover: style({
+      ...hover.card,
+    }),
     title: style({
       fontWeight: 600,
     }),
@@ -54,6 +57,7 @@ export const Card: React.FC<Props> = (props) => {
     <Draggable draggableId={props.task.id} index={props.index}>
       {(provided, snapshot) => (
         <div
+          className={css.cardHover}
           tabIndex={props.index}
           role="button"
           onClick={openDetail}
