@@ -160,7 +160,8 @@ export const ModalSendReaction: React.FC<Props> = (props) => {
   };
 
   const onClickReaction = (id: string) => {
-    alert(id);
+    // alert(id);
+    return;
   };
 
   return (
@@ -181,12 +182,7 @@ export const ModalSendReaction: React.FC<Props> = (props) => {
       </div>
       <div className={css.reaction.wrapper}>
         {reactions.map((reaction) => (
-          <button
-            key={reaction.id}
-            type="button"
-            onClick={onClickReaction(reaction.id)}
-            className={css.reaction.item}
-          >
+          <button key={reaction.id} type="button" className={css.reaction.item}>
             <div className={css.reaction.itemInner}>
               {reaction.icon(90, 90)}
               <div className={css.reaction.name}>{reaction.name}</div>
