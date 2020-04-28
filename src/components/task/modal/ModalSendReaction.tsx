@@ -22,7 +22,7 @@ export const ModalSendReaction: React.FC<Props> = (props) => {
         background: '#192A46',
         border: 'none',
         color: color.white,
-        width: '50%',
+        width: '45%',
         cursor: 'auto',
         boxShadow: '0px 0px 6px #0000005c',
       },
@@ -37,6 +37,30 @@ export const ModalSendReaction: React.FC<Props> = (props) => {
       fontSize: 22,
       cursor: 'pointer',
     }),
+    reaction: {
+      item: style({
+        borderRadius: '15px',
+        flex: '0 1 23%',
+        marginBottom: 20,
+        padding: 1,
+        textAlign: 'center',
+        background: '#916440',
+        cursor: 'pointer',
+        color: '#FDE6D2',
+        fontSize: 18,
+        $nest: {
+          '&:hover': {
+            background: 'linear-gradient(125deg, #F1CA7F, #FE8B5C)',
+            color: '#FFCB9E',
+          },
+        },
+      }),
+      itemInner: style({
+        borderRadius: '15px',
+        padding: '20px 0',
+        background: '#192A46',
+      }),
+    },
     button: {
       ok: style({
         ...hover.button,
@@ -55,6 +79,72 @@ export const ModalSendReaction: React.FC<Props> = (props) => {
       }),
     },
   };
+  const reactions = [
+    {
+      id: '1',
+      name: 'coffee',
+      havednumber: 10,
+      icon: (width: number, height: number) => (
+        <IconTapioka width={width} height={height} />
+      ),
+    },
+    {
+      id: '2',
+      name: 'beer',
+      havednumber: 6,
+      icon: (width: number, height: number) => (
+        <IconTapioka width={width} height={height} />
+      ),
+    },
+    {
+      id: '3',
+      name: 'beer',
+      havednumber: 6,
+      icon: (width: number, height: number) => (
+        <IconTapioka width={width} height={height} />
+      ),
+    },
+    {
+      id: '4',
+      name: 'beer',
+      havednumber: 6,
+      icon: (width: number, height: number) => (
+        <IconTapioka width={width} height={height} />
+      ),
+    },
+    {
+      id: '5',
+      name: 'beer',
+      havednumber: 6,
+      icon: (width: number, height: number) => (
+        <IconTapioka width={width} height={height} />
+      ),
+    },
+    {
+      id: '6',
+      name: 'beer',
+      havednumber: 6,
+      icon: (width: number, height: number) => (
+        <IconTapioka width={width} height={height} />
+      ),
+    },
+    {
+      id: '7',
+      name: 'beer',
+      havednumber: 6,
+      icon: (width: number, height: number) => (
+        <IconTapioka width={width} height={height} />
+      ),
+    },
+    {
+      id: '8',
+      name: 'beer',
+      havednumber: 6,
+      icon: (width: number, height: number) => (
+        <IconTapioka width={width} height={height} />
+      ),
+    },
+  ];
 
   const closeModal = () => {
     props.handleOnModalOpend('');
@@ -81,59 +171,19 @@ export const ModalSendReaction: React.FC<Props> = (props) => {
           marginTop: 20,
           display: 'flex',
           justifyContent: 'space-between',
+          flexWrap: 'wrap',
+          padding: '0 20px',
         }}
       >
-        <div
-          style={{
-            border: '1px solid #916440',
-            borderRadius: '10px',
-            flex: '0 1 23%',
-            height: 80,
-          }}
-        >
-          <div>Coffee</div>
-          <div>残り: 11</div>
-          <IconTapioka width={30} height={30} />
-        </div>
-
-        <div
-          style={{
-            border: '1px solid #916440',
-            borderRadius: '10px',
-            flex: '0 1 23%',
-            height: 80,
-          }}
-        >
-          <div>Coffee</div>
-          <div>残り: 11</div>
-          <IconTapioka width={30} height={30} />
-        </div>
-
-        <div
-          style={{
-            border: '1px solid #916440',
-            borderRadius: '10px',
-            flex: '0 1 23%',
-            height: 80,
-          }}
-        >
-          <div>Coffee</div>
-          <div>残り: 11</div>
-          <IconTapioka width={30} height={30} />
-        </div>
-
-        <div
-          style={{
-            border: '1px solid #916440',
-            borderRadius: '10px',
-            flex: '0 1 23%',
-            height: 80,
-          }}
-        >
-          <div>Coffee</div>
-          <div>残り: 11</div>
-          <IconTapioka width={30} height={30} />
-        </div>
+        {reactions.map((reaction) => (
+          <div className={css.reaction.item}>
+            <div className={css.reaction.itemInner}>
+              {reaction.icon(100, 100)}
+              <div>{reaction.name}</div>
+              <div>残り: {reaction.havednumber}</div>
+            </div>
+          </div>
+        ))}
       </div>
     </Modal>
   );
