@@ -61,8 +61,6 @@ export const ModalSendReaction: React.FC<Props> = (props) => {
     props.handleOnModalOpend('');
   };
 
-  const addTask = () => {};
-
   return (
     <Modal
       isOpen={props.openedModalName === 'sendReaction'}

@@ -11,13 +11,7 @@ export const IconTapioka: React.FC<Props> = (props) => (
     viewBox="0 0 109 109"
     version="1.1"
   >
-    <g
-      id="Page-1"
-      stroke="none"
-      strokeWidth="1"
-      fill="none"
-      fill-rule="evenodd"
-    >
+    <g id="Page-1" stroke="none" strokeWidth="1" fill="none" fillRule="evenodd">
       <g id="tocobird_tapioka">
         <g id="Group-2" transform="translate(6.000000, 0.000000)">
           <circle id="Oval-3" fill="#FBE6DA" cx="15.5" cy="26.5" r="15.5" />
