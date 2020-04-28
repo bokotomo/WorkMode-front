@@ -1,13 +1,44 @@
 import React, { useEffect } from 'react';
 import moment from 'moment';
+import { style } from '@/css/style';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { Message } from '@/types/message';
 import { MessageLineBar } from '@/components/atom/MessageLineBar';
 import { UserIconItemMessage } from '@/components/atom/UserIconItemMessage';
 
 interface Props {
+  readonly handleOnModalOpend: Function;
   readonly messages: Message[];
+  readonly myId: string;
 }
 export const MessageTaskProgress: React.FC<Props> = (props) => {
+  const css = {
+    message: {
+      area: style({
+        display: 'flex',
+        padding: 15,
+      }),
+      userIcon: style({
+        paddingRight: 15,
+      }),
+    },
+    reaction: {
+      area: style({
+        display: 'flex',
+        marginTop: 5,
+      }),
+      button: style({
+        padding: '2px 10px',
+        background: '#20435B',
+        border: '1px solid #3E6A9B',
+        borderRadius: '50px',
+        fontSize: 12,
+        color: 'white',
+        cursor: 'pointer',
+      }),
+      icon: style({ opacity: 0.4 }),
+    },
+  };
   useEffect(() => {
     scrollBottom();
   });
@@ -17,10 +48,10 @@ export const MessageTaskProgress: React.FC<Props> = (props) => {
     if (obj != null) obj.scrollTop = obj.scrollHeight;
   }
 
-  const style = {
-    display: 'flex',
-    padding: 15,
+  const onClickReaction = () => {
+    props.handleOnModalOpend('sendReaction');
   };
+
   return (
     <div
       id="messageScrollArea"
@@ -31,12 +62,8 @@ export const MessageTaskProgress: React.FC<Props> = (props) => {
     >
       {props.messages.map((message) => (
         <div key={message.id}>
-          <div style={style}>
-            <div
-              style={{
-                paddingRight: 15,
-              }}
-            >
+          <div className={css.message.area}>
+            <div className={css.message.userIcon}>
               <UserIconItemMessage
                 name={message.userName}
                 color={message.userColor}
@@ -54,13 +81,28 @@ export const MessageTaskProgress: React.FC<Props> = (props) => {
                 </span>{' '}
                 {moment(message.createdAt).format('M月D日 H:mm')}
               </div>
+
               <div>
                 {message.text}
-                {message.status === 'done' ? 'が完了しました。' : ''}
-                {message.status === 'inprogress' ? 'を実行中。' : ''}
-                {message.status === 'alldone' ? '' : ''}
+                {message.status === 'done' && 'が完了しました。'}
+                {message.status === 'inprogress' && 'を実行中。'}
+                {message.status === 'alldone' && ''}
               </div>
-              {/* <div></div> */}
+
+              {message.userId !== props.myId && (
+                <div className={css.reaction.area}>
+                  <button
+                    type="button"
+                    onClick={onClickReaction}
+                    className={css.reaction.button}
+                  >
+                    <FontAwesomeIcon
+                      icon="plus"
+                      className={css.reaction.icon}
+                    />
+                  </button>
+                </div>
+              )}
             </div>
           </div>
 

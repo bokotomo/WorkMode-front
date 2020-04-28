@@ -10,6 +10,7 @@ export const messageProgressIndex = (
 ) => {
   interface ReponseMessage {
     readonly id: string;
+    readonly userId: string;
     readonly userName: string;
     readonly userColor: string;
     readonly text: string;
@@ -23,6 +24,7 @@ export const messageProgressIndex = (
   const domainMessages = data.messages.map((resMessage: ReponseMessage) => {
     return {
       id: resMessage.id,
+      userId: resMessage.userId,
       userName: resMessage.userName,
       userColor: resMessage.userColor,
       text: resMessage.text,

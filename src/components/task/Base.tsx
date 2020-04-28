@@ -10,7 +10,7 @@ import { ModalAddTask } from '@/components/task/modal/ModalAddTask';
 import { ModalDoneTask } from '@/components/task/modal/ModalDoneTask';
 import { ModalTaskDetail } from '@/components/task/modal/ModalTaskDetail';
 import { ModalRegisterUser } from '@/components/task/modal/ModalRegisterUser';
-import { ModalSendItem } from '@/components/task/modal/ModalSendItem';
+import { ModalSendReaction } from '@/components/task/modal/ModalSendReaction';
 
 interface OwnProps {
   readonly socket: WebSocket;
@@ -68,7 +68,7 @@ export class TopPage extends React.Component<Props> {
           selectedTask={this.props.selectedTask}
           socket={this.props.socket}
         />
-        <ModalSendItem
+        <ModalSendReaction
           openedModalName={this.props.openedModalName}
           handleOnModalOpend={this.props.handleOnModalOpend}
           socket={this.props.socket}
@@ -86,6 +86,8 @@ export class TopPage extends React.Component<Props> {
           socket={this.props.socket}
         />
         <MessageBoard
+          handleOnModalOpend={this.props.handleOnModalOpend}
+          myId={this.props.myId}
           messages={this.props.messages}
           activeUsers={this.props.activeUsers}
           rooms={this.props.rooms}

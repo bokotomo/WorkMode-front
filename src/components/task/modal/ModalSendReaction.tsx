@@ -2,13 +2,14 @@ import React from 'react';
 import { style, hover, color } from '@/css/style';
 import Modal from 'react-modal';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { IconTapioka } from '@/components/svg/IconTapioka';
 
 interface Props {
   readonly socket: WebSocket;
   readonly handleOnModalOpend: Function;
   readonly openedModalName: string;
 }
-export const ModalSendItem: React.FC<Props> = (props) => {
+export const ModalSendReaction: React.FC<Props> = (props) => {
   const css = {
     modal: {
       content: {
@@ -60,29 +61,25 @@ export const ModalSendItem: React.FC<Props> = (props) => {
     props.handleOnModalOpend('');
   };
 
-  const addTask = () => {
-    alert('OK');
-  };
+  const addTask = () => {};
 
   return (
     <Modal
-      isOpen={props.openedModalName === 'sendItem'}
+      isOpen={props.openedModalName === 'sendReaction'}
       onRequestClose={closeModal}
       style={css.modal}
       overlayClassName="modalOverLayWrapper"
       contentLabel="モーダル"
     >
       <div className={css.titleArea}>
-        <div>タスクを追加</div>
+        <div>何を送りますか？</div>
         <FontAwesomeIcon
           className={css.times}
           onClick={closeModal}
           icon="times"
         />
+        <IconTapioka width={30} height={30} />
       </div>
-      <button type="button" className={css.button.ok} onClick={addTask}>
-        追加
-      </button>
     </Modal>
   );
 };
