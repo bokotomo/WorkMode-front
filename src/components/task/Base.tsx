@@ -10,6 +10,7 @@ import { ModalAddTask } from '@/components/task/modal/ModalAddTask';
 import { ModalDoneTask } from '@/components/task/modal/ModalDoneTask';
 import { ModalTaskDetail } from '@/components/task/modal/ModalTaskDetail';
 import { ModalRegisterUser } from '@/components/task/modal/ModalRegisterUser';
+import { ModalSendItem } from '@/components/task/modal/ModalSendItem';
 
 interface OwnProps {
   readonly socket: WebSocket;
@@ -65,6 +66,11 @@ export class TopPage extends React.Component<Props> {
           updateTask={this.props.updateTask}
           deleteTask={this.props.deleteTask}
           selectedTask={this.props.selectedTask}
+          socket={this.props.socket}
+        />
+        <ModalSendItem
+          openedModalName={this.props.openedModalName}
+          handleOnModalOpend={this.props.handleOnModalOpend}
           socket={this.props.socket}
         />
         <TaskBoard
