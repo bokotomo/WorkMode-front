@@ -38,11 +38,18 @@ export const ModalSendReaction: React.FC<Props> = (props) => {
       cursor: 'pointer',
     }),
     reaction: {
+      wrapper: style({
+        marginTop: 20,
+        display: 'flex',
+        justifyContent: 'space-between',
+        flexWrap: 'wrap',
+        padding: '0 20px',
+      }),
       item: style({
         borderRadius: '15px',
         flex: '0 1 23%',
         marginBottom: 20,
-        padding: 1,
+        padding: 2,
         textAlign: 'center',
         background: '#916440',
         cursor: 'pointer',
@@ -60,6 +67,8 @@ export const ModalSendReaction: React.FC<Props> = (props) => {
         padding: '20px 0',
         background: '#192A46',
       }),
+      name: style({ fontSize: 22 }),
+      havedNumber: style({ fontSize: 16 }),
     },
     button: {
       ok: style({
@@ -82,7 +91,7 @@ export const ModalSendReaction: React.FC<Props> = (props) => {
   const reactions = [
     {
       id: '1',
-      name: 'coffee',
+      name: 'Coffee',
       havednumber: 10,
       icon: (width: number, height: number) => (
         <IconTapioka width={width} height={height} />
@@ -90,7 +99,7 @@ export const ModalSendReaction: React.FC<Props> = (props) => {
     },
     {
       id: '2',
-      name: 'beer',
+      name: 'Beer',
       havednumber: 6,
       icon: (width: number, height: number) => (
         <IconTapioka width={width} height={height} />
@@ -98,7 +107,7 @@ export const ModalSendReaction: React.FC<Props> = (props) => {
     },
     {
       id: '3',
-      name: 'beer',
+      name: 'Good',
       havednumber: 6,
       icon: (width: number, height: number) => (
         <IconTapioka width={width} height={height} />
@@ -106,7 +115,7 @@ export const ModalSendReaction: React.FC<Props> = (props) => {
     },
     {
       id: '4',
-      name: 'beer',
+      name: 'Love',
       havednumber: 6,
       icon: (width: number, height: number) => (
         <IconTapioka width={width} height={height} />
@@ -114,7 +123,7 @@ export const ModalSendReaction: React.FC<Props> = (props) => {
     },
     {
       id: '5',
-      name: 'beer',
+      name: 'Wine',
       havednumber: 6,
       icon: (width: number, height: number) => (
         <IconTapioka width={width} height={height} />
@@ -122,7 +131,7 @@ export const ModalSendReaction: React.FC<Props> = (props) => {
     },
     {
       id: '6',
-      name: 'beer',
+      name: 'Tapioka',
       havednumber: 6,
       icon: (width: number, height: number) => (
         <IconTapioka width={width} height={height} />
@@ -130,7 +139,7 @@ export const ModalSendReaction: React.FC<Props> = (props) => {
     },
     {
       id: '7',
-      name: 'beer',
+      name: 'Cake',
       havednumber: 6,
       icon: (width: number, height: number) => (
         <IconTapioka width={width} height={height} />
@@ -138,7 +147,7 @@ export const ModalSendReaction: React.FC<Props> = (props) => {
     },
     {
       id: '8',
-      name: 'beer',
+      name: 'Cat',
       havednumber: 6,
       icon: (width: number, height: number) => (
         <IconTapioka width={width} height={height} />
@@ -148,6 +157,10 @@ export const ModalSendReaction: React.FC<Props> = (props) => {
 
   const closeModal = () => {
     props.handleOnModalOpend('');
+  };
+
+  const onClickReaction = (id: string) => {
+    alert(id);
   };
 
   return (
@@ -166,23 +179,22 @@ export const ModalSendReaction: React.FC<Props> = (props) => {
           icon="times"
         />
       </div>
-      <div
-        style={{
-          marginTop: 20,
-          display: 'flex',
-          justifyContent: 'space-between',
-          flexWrap: 'wrap',
-          padding: '0 20px',
-        }}
-      >
+      <div className={css.reaction.wrapper}>
         {reactions.map((reaction) => (
-          <div key={reaction.id} className={css.reaction.item}>
+          <button
+            key={reaction.id}
+            type="button"
+            onClick={onClickReaction(reaction.id)}
+            className={css.reaction.item}
+          >
             <div className={css.reaction.itemInner}>
-              {reaction.icon(100, 100)}
-              <div>{reaction.name}</div>
-              <div>残り: {reaction.havednumber}</div>
+              {reaction.icon(90, 90)}
+              <div className={css.reaction.name}>{reaction.name}</div>
+              <div className={css.reaction.havedNumber}>
+                残り: {reaction.havednumber}
+              </div>
             </div>
-          </div>
+          </button>
         ))}
       </div>
     </Modal>
