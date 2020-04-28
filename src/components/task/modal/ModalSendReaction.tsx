@@ -176,7 +176,7 @@ export const ModalSendReaction: React.FC<Props> = (props) => {
         }}
       >
         {reactions.map((reaction) => (
-          <div className={css.reaction.item}>
+          <div key={reaction.id} className={css.reaction.item}>
             <div className={css.reaction.itemInner}>
               {reaction.icon(100, 100)}
               <div>{reaction.name}</div>
