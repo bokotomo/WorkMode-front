@@ -20,9 +20,9 @@ export const ModalSendReaction: React.FC<Props> = (props) => {
         marginRight: '-50%',
         transform: 'translate(-50%, -50%)',
         background: '#192A46',
-        color: color.white,
-        width: '60%',
         border: 'none',
+        color: color.white,
+        width: '50%',
         cursor: 'auto',
         boxShadow: '0px 0px 6px #0000005c',
       },
@@ -30,7 +30,6 @@ export const ModalSendReaction: React.FC<Props> = (props) => {
     titleArea: style({
       display: 'flex',
       justifyContent: 'space-between',
-      color: '#F0F6FC',
       fontWeight: 600,
     }),
     times: style({
@@ -76,7 +75,65 @@ export const ModalSendReaction: React.FC<Props> = (props) => {
           onClick={closeModal}
           icon="times"
         />
-        <IconTapioka width={30} height={30} />
+      </div>
+      <div
+        style={{
+          marginTop: 20,
+          display: 'flex',
+          justifyContent: 'space-between',
+        }}
+      >
+        <div
+          style={{
+            border: '1px solid #916440',
+            borderRadius: '10px',
+            flex: '0 1 23%',
+            height: 80,
+          }}
+        >
+          <div>Coffee</div>
+          <div>残り: 11</div>
+          <IconTapioka width={30} height={30} />
+        </div>
+
+        <div
+          style={{
+            border: '1px solid #916440',
+            borderRadius: '10px',
+            flex: '0 1 23%',
+            height: 80,
+          }}
+        >
+          <div>Coffee</div>
+          <div>残り: 11</div>
+          <IconTapioka width={30} height={30} />
+        </div>
+
+        <div
+          style={{
+            border: '1px solid #916440',
+            borderRadius: '10px',
+            flex: '0 1 23%',
+            height: 80,
+          }}
+        >
+          <div>Coffee</div>
+          <div>残り: 11</div>
+          <IconTapioka width={30} height={30} />
+        </div>
+
+        <div
+          style={{
+            border: '1px solid #916440',
+            borderRadius: '10px',
+            flex: '0 1 23%',
+            height: 80,
+          }}
+        >
+          <div>Coffee</div>
+          <div>残り: 11</div>
+          <IconTapioka width={30} height={30} />
+        </div>
       </div>
     </Modal>
   );
