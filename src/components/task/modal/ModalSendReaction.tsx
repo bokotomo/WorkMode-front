@@ -159,10 +159,10 @@ export const ModalSendReaction: React.FC<Props> = (props) => {
     props.handleOnModalOpend('');
   };
 
-  const onClickReaction = (id: string) => {
-    // alert(id);
-    return;
-  };
+  // const onClickReaction = (id: string) => {
+  //   // alert(id);
+  //   return;
+  // };
 
   return (
     <Modal
