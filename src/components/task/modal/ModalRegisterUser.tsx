@@ -5,7 +5,6 @@ import {
   CognitoUserPool,
   CognitoUserAttribute,
 } from 'amazon-cognito-identity-js';
-import awsConfiguration from '@/awsConfiguration';
 
 interface Props {
   readonly socket: WebSocket;
@@ -70,39 +69,62 @@ export const ModalRegisterUser: React.FC<Props> = (props) => {
 
   const [email, setEmail] = useState<string>('');
   const [password, setPassword] = useState<string>('');
+  const [nickName, setNickName] = useState<string>('');
   const [name, setName] = useState<string>('');
-  const userPool = new CognitoUserPool({
-    UserPoolId: awsConfiguration.UserPoolId,
-    ClientId: awsConfiguration.ClientId,
-  });
-
-  const closeModal = () => {
-    props.handleOnModalOpend('');
+  const newUserPool = () => {
+    const userPoolId = process.env.REACT_APP_AUTH_USER_POOL_ID as string;
+    const clientId = process.env.REACT_APP_AUTH_CLIENT_ID as string;
+    return new CognitoUserPool({
+      UserPoolId: userPoolId,
+      ClientId: clientId,
+    });
   };
 
+  const closeModal = () => props.handleOnModalOpend('');
+
   const addTask = () => {
-    alert(name);
     if (name === '') {
       alert('全て入力する必要があります。');
       return;
     }
     // props.registerUser(props.socket, name);
-    // closeModal();
+    closeModal();
   };
 
-  const signUp = () => {};
+  const signUp = () => {
+    const attributeList = [
+      new CognitoUserAttribute({
+        Name: 'email',
+        Value: email,
+      }),
+      new CognitoUserAttribute({
+        Name: 'nickname',
+        Value: nickName,
+      }),
+    ];
+    const userPool = newUserPool();
+    userPool.signUp(email, password, attributeList, [], (err, res) => {
+      console.log(res);
+      if (err) {
+        console.error(err);
+        return;
+      }
+      setEmail('');
+      setPassword('');
+    });
+  };
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) =>
     setName(e.target.value);
-  };
 
-  const handleEmail = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleEmail = (e: React.ChangeEvent<HTMLInputElement>) =>
     setEmail(e.target.value);
-  };
 
-  const handlePassword = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handlePassword = (e: React.ChangeEvent<HTMLInputElement>) =>
     setPassword(e.target.value);
-  };
+
+  const handleNickName = (e: React.ChangeEvent<HTMLInputElement>) =>
+    setNickName(e.target.value);
 
   return (
     <Modal
@@ -134,11 +156,20 @@ export const ModalRegisterUser: React.FC<Props> = (props) => {
         </div>
         <div style={{ marginTop: 20 }}>
           <input
+            type="text"
+            onChange={handleNickName}
+            className={css.inputName}
+            placeholder="ニックネーム"
+            maxLength={50}
+          />
+        </div>
+        <div style={{ marginTop: 20 }}>
+          <input
             type="email"
             onChange={handleEmail}
             className={css.inputName}
             placeholder="メールアドレス"
-            maxLength={12}
+            maxLength={100}
           />
         </div>
         <div style={{ marginTop: 20 }}>
@@ -147,7 +178,8 @@ export const ModalRegisterUser: React.FC<Props> = (props) => {
             onChange={handlePassword}
             className={css.inputName}
             placeholder="パスワード(8文字以上/大文字/小文字/記号/数字含む)"
-            maxLength={12}
+            minLength={8}
+            maxLength={50}
           />
         </div>
         <button type="button" className={css.button.ok} onClick={signUp}>
