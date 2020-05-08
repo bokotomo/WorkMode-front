@@ -1,6 +1,11 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Modal from 'react-modal';
 import { style, hover, color } from '@/css/style';
+import {
+  CognitoUserPool,
+  CognitoUserAttribute,
+} from 'amazon-cognito-identity-js';
+import awsConfiguration from '@/awsConfiguration';
 
 interface Props {
   readonly socket: WebSocket;
@@ -63,24 +68,41 @@ export const ModalRegisterUser: React.FC<Props> = (props) => {
     },
   };
 
-  let name = '';
+  const [email, setEmail] = useState<string>('');
+  const [password, setPassword] = useState<string>('');
+  const [name, setName] = useState<string>('');
+  const userPool = new CognitoUserPool({
+    UserPoolId: awsConfiguration.UserPoolId,
+    ClientId: awsConfiguration.ClientId,
+  });
 
-  function closeModal() {
+  const closeModal = () => {
     props.handleOnModalOpend('');
-  }
+  };
 
-  function addTask() {
+  const addTask = () => {
+    alert(name);
     if (name === '') {
       alert('全て入力する必要があります。');
       return;
     }
-    props.registerUser(props.socket, name);
-    closeModal();
-  }
+    // props.registerUser(props.socket, name);
+    // closeModal();
+  };
 
-  function handleChange(e: React.ChangeEvent<HTMLInputElement>) {
-    name = e.target.value;
-  }
+  const signUp = () => {};
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setName(e.target.value);
+  };
+
+  const handleEmail = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setEmail(e.target.value);
+  };
+
+  const handlePassword = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setPassword(e.target.value);
+  };
 
   return (
     <Modal
@@ -89,20 +111,49 @@ export const ModalRegisterUser: React.FC<Props> = (props) => {
       overlayClassName="modalOverLayWrapper"
       contentLabel="モーダル"
     >
-      <div className={css.titleArea}>
-        <div>ゲスト登録（一定期間するとログインできなくなります。）</div>
+      <div>
+        <div className={css.titleArea}>
+          <div>ゲスト登録（一定期間するとログインできなくなります。）</div>
+        </div>
+        <div style={{ marginTop: 20 }}>
+          <input
+            onChange={handleChange}
+            className={css.inputName}
+            placeholder="ニックネーム"
+            maxLength={12}
+          />
+        </div>
+        <button type="button" className={css.button.ok} onClick={addTask}>
+          ゲスト登録する
+        </button>
       </div>
+
       <div style={{ marginTop: 20 }}>
-        <input
-          onChange={handleChange}
-          className={css.inputName}
-          placeholder="ニックネーム"
-          maxLength={12}
-        />
+        <div className={css.titleArea}>
+          <div>メールアドレス登録</div>
+        </div>
+        <div style={{ marginTop: 20 }}>
+          <input
+            type="email"
+            onChange={handleEmail}
+            className={css.inputName}
+            placeholder="メールアドレス"
+            maxLength={12}
+          />
+        </div>
+        <div style={{ marginTop: 20 }}>
+          <input
+            type="password"
+            onChange={handlePassword}
+            className={css.inputName}
+            placeholder="パスワード(8文字以上/大文字/小文字/記号/数字含む)"
+            maxLength={12}
+          />
+        </div>
+        <button type="button" className={css.button.ok} onClick={signUp}>
+          メールアドレス登録する
+        </button>
       </div>
-      <button type="button" className={css.button.ok} onClick={addTask}>
-        登録する
-      </button>
     </Modal>
   );
 };
