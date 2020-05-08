@@ -70,7 +70,7 @@ export const ModalRegisterUser: React.FC<Props> = (props) => {
   const [email, setEmail] = useState<string>('');
   const [password, setPassword] = useState<string>('');
   const [nickName, setNickName] = useState<string>('');
-  const [name, setName] = useState<string>('');
+
   const newUserPool = () => {
     const userPoolId = process.env.REACT_APP_AUTH_USER_POOL_ID as string;
     const clientId = process.env.REACT_APP_AUTH_CLIENT_ID as string;
@@ -83,15 +83,19 @@ export const ModalRegisterUser: React.FC<Props> = (props) => {
   const closeModal = () => props.handleOnModalOpend('');
 
   const addTask = () => {
-    if (name === '') {
+    if (nickName === '') {
       alert('全て入力する必要があります。');
       return;
     }
-    // props.registerUser(props.socket, name);
+    // props.registerUser(props.socket, nickName);
     closeModal();
   };
 
   const signUp = () => {
+    if (email === '' || nickName === '' || password === '') {
+      alert('全て入力する必要があります。');
+      return;
+    }
     const attributeList = [
       new CognitoUserAttribute({
         Name: 'email',
@@ -109,13 +113,11 @@ export const ModalRegisterUser: React.FC<Props> = (props) => {
         console.error(err);
         return;
       }
-      setEmail('');
-      setPassword('');
     });
   };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) =>
-    setName(e.target.value);
+    setNickName(e.target.value);
 
   const handleEmail = (e: React.ChangeEvent<HTMLInputElement>) =>
     setEmail(e.target.value);

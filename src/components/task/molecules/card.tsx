@@ -48,10 +48,10 @@ export const Card: React.FC<Props> = (props) => {
     } as React.CSSProperties;
   };
 
-  function openDetail() {
+  const openDetail = () => {
     props.handleOnSetSelectedTask(props.task);
     props.handleOnModalOpend('detail');
-  }
+  };
 
   return (
     <Draggable draggableId={props.task.id} index={props.index}>

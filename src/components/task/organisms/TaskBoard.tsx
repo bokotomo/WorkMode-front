@@ -86,9 +86,9 @@ export const TaskBoard: React.FC<Props> = (props) => {
     );
   };
 
-  function openModal() {
+  const openModal = () => {
     props.handleOnModalOpend('add');
-  }
+  };
 
   return (
     <div className={css.taskBoard}>

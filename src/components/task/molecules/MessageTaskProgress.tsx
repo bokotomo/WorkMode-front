@@ -43,10 +43,10 @@ export const MessageTaskProgress: React.FC<Props> = (props) => {
     scrollBottom();
   });
 
-  function scrollBottom() {
+  const scrollBottom = () => {
     const obj = document.getElementById('messageScrollArea');
     if (obj != null) obj.scrollTop = obj.scrollHeight;
-  }
+  };
 
   const onClickReaction = () => {
     props.handleOnModalOpend('sendReaction');

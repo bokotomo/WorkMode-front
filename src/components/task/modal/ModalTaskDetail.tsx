@@ -143,10 +143,9 @@ export const ModalTaskDetail: React.FC<Props> = (props) => {
 
   function deleteTask() {
     const isYes = window.confirm('削除しても宜しいですか？');
-    if (isYes) {
-      props.deleteTask(props.socket, props.selectedTask.id);
-      closeModal();
-    }
+    if (!isYes) return;
+    props.deleteTask(props.socket, props.selectedTask.id);
+    closeModal();
   }
 
   function noButton() {
