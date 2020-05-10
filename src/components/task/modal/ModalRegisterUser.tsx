@@ -1,12 +1,6 @@
 import React, { useState } from 'react';
 import Modal from 'react-modal';
 import { style, hover, color } from '@/css/style';
-import {
-  CognitoUserPool,
-  CognitoUser,
-  CognitoUserAttribute,
-  AuthenticationDetails,
-} from 'amazon-cognito-identity-js';
 
 interface Props {
   readonly socket: WebSocket;
@@ -92,15 +86,6 @@ export const ModalRegisterUser: React.FC<Props> = (props) => {
   const [loginEmail, setLoginEmail] = useState<string>('');
   const [loginPassword, setLoginPassword] = useState<string>('');
 
-  const newUserPool = () => {
-    const userPoolId = process.env.REACT_APP_AUTH_USER_POOL_ID as string;
-    const clientId = process.env.REACT_APP_AUTH_CLIENT_ID as string;
-    return new CognitoUserPool({
-      UserPoolId: userPoolId,
-      ClientId: clientId,
-    });
-  };
-
   const closeModal = () => props.handleOnModalOpend('');
 
   const addTask = () => {
@@ -122,31 +107,7 @@ export const ModalRegisterUser: React.FC<Props> = (props) => {
       alert('パスワードは、８文字以上でないといけません');
       return;
     }
-    const attributeList = [
-      new CognitoUserAttribute({
-        Name: 'email',
-        Value: email,
-      }),
-      new CognitoUserAttribute({
-        Name: 'nickname',
-        Value: nickName,
-      }),
-    ];
-    const userPool = newUserPool();
-    userPool.signUp(email, password, attributeList, [], (err, res) => {
-      console.log(res);
-      if (err) {
-        console.error(err);
-        alert(err.message);
-      } else {
-        alert(
-          '登録を受け付けました。メールアドレスに送られる確認リンクをクリックして登録を完了してください。'
-        );
-      }
-      setEmail('');
-      setPassword('');
-      setNickName('');
-    });
+    alert('apiへ送信');
   };
 
   const signIn = () => {
@@ -158,29 +119,7 @@ export const ModalRegisterUser: React.FC<Props> = (props) => {
       alert('パスワードは、８文字以上でないといけません');
       return;
     }
-    const authenticationDetails = new AuthenticationDetails({
-      Username: loginEmail,
-      Password: loginPassword,
-    });
-    const userPool = newUserPool();
-    const cognitoUser = new CognitoUser({
-      Username: loginEmail,
-      Pool: userPool,
-    });
-
-    cognitoUser.authenticateUser(authenticationDetails, {
-      onSuccess: (result) => {
-        console.log(result);
-        const accessToken = result.getAccessToken().getJwtToken();
-        console.log(accessToken);
-        setLoginEmail('');
-        setLoginPassword('');
-      },
-      onFailure: (err) => {
-        console.error(err);
-        alert(err.message);
-      },
-    });
+    alert('apiへ送信');
   };
 
   const changeRegisterMode = () => setIsRegisterMode(!isRegisterMode);
