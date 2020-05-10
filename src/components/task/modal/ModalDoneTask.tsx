@@ -54,9 +54,7 @@ export const ModalDoneTask: React.FC<Props> = (props) => {
     }),
   };
 
-  function closeModal() {
-    props.handleOnModalOpend('');
-  }
+  const closeModal = () => props.handleOnModalOpend('');
 
   return (
     <Modal

@@ -3,7 +3,9 @@ import Modal from 'react-modal';
 import { style, hover, color } from '@/css/style';
 import {
   CognitoUserPool,
+  CognitoUser,
   CognitoUserAttribute,
+  AuthenticationDetails,
 } from 'amazon-cognito-identity-js';
 
 interface Props {
@@ -64,12 +66,31 @@ export const ModalRegisterUser: React.FC<Props> = (props) => {
         boxSizing: 'border-box',
         cursor: 'pointer',
       }),
+      register: style({
+        ...hover.button,
+        marginTop: 20,
+        fontSize: 18,
+        color: color.white,
+        background: 'linear-gradient(125deg, #66dcff, #0078de)',
+        borderRadius: 50,
+        border: 'none',
+        width: '100%',
+        textAlign: 'center',
+        height: 40,
+        lineHeight: '40px',
+        boxSizing: 'border-box',
+        cursor: 'pointer',
+      }),
     },
   };
 
+  const [isRegisterMode, setIsRegisterMode] = useState<boolean>(false);
   const [email, setEmail] = useState<string>('');
   const [password, setPassword] = useState<string>('');
   const [nickName, setNickName] = useState<string>('');
+  const [guestName, setGuestName] = useState<string>('');
+  const [loginEmail, setLoginEmail] = useState<string>('');
+  const [loginPassword, setLoginPassword] = useState<string>('');
 
   const newUserPool = () => {
     const userPoolId = process.env.REACT_APP_AUTH_USER_POOL_ID as string;
@@ -83,17 +104,22 @@ export const ModalRegisterUser: React.FC<Props> = (props) => {
   const closeModal = () => props.handleOnModalOpend('');
 
   const addTask = () => {
-    if (nickName === '') {
+    if (guestName === '') {
       alert('全て入力する必要があります。');
       return;
     }
-    // props.registerUser(props.socket, nickName);
+    props.registerUser(props.socket, guestName);
     closeModal();
+    setNickName('');
   };
 
   const signUp = () => {
     if (email === '' || nickName === '' || password === '') {
       alert('全て入力する必要があります。');
+      return;
+    }
+    if (password.length < 8) {
+      alert('パスワードは、８文字以上でないといけません');
       return;
     }
     const attributeList = [
@@ -111,13 +137,56 @@ export const ModalRegisterUser: React.FC<Props> = (props) => {
       console.log(res);
       if (err) {
         console.error(err);
-        return;
+        alert(err.message);
+      } else {
+        alert(
+          '登録を受け付けました。メールアドレスに送られる確認リンクをクリックして登録を完了してください。'
+        );
       }
+      setEmail('');
+      setPassword('');
+      setNickName('');
     });
   };
 
+  const signIn = () => {
+    if (loginEmail === '' || loginPassword === '') {
+      alert('全て入力する必要があります。');
+      return;
+    }
+    if (loginPassword.length < 8) {
+      alert('パスワードは、８文字以上でないといけません');
+      return;
+    }
+    const authenticationDetails = new AuthenticationDetails({
+      Username: loginEmail,
+      Password: loginPassword,
+    });
+    const userPool = newUserPool();
+    const cognitoUser = new CognitoUser({
+      Username: loginEmail,
+      Pool: userPool,
+    });
+
+    cognitoUser.authenticateUser(authenticationDetails, {
+      onSuccess: (result) => {
+        console.log(result);
+        const accessToken = result.getAccessToken().getJwtToken();
+        console.log(accessToken);
+        setLoginEmail('');
+        setLoginPassword('');
+      },
+      onFailure: (err) => {
+        console.error(err);
+        alert(err.message);
+      },
+    });
+  };
+
+  const changeRegisterMode = () => setIsRegisterMode(!isRegisterMode);
+
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) =>
-    setNickName(e.target.value);
+    setGuestName(e.target.value);
 
   const handleEmail = (e: React.ChangeEvent<HTMLInputElement>) =>
     setEmail(e.target.value);
@@ -127,6 +196,12 @@ export const ModalRegisterUser: React.FC<Props> = (props) => {
 
   const handleNickName = (e: React.ChangeEvent<HTMLInputElement>) =>
     setNickName(e.target.value);
+
+  const handleLoginEmail = (e: React.ChangeEvent<HTMLInputElement>) =>
+    setLoginEmail(e.target.value);
+
+  const handleLoginPassword = (e: React.ChangeEvent<HTMLInputElement>) =>
+    setLoginPassword(e.target.value);
 
   return (
     <Modal
@@ -141,6 +216,7 @@ export const ModalRegisterUser: React.FC<Props> = (props) => {
         </div>
         <div style={{ marginTop: 20 }}>
           <input
+            value={guestName}
             onChange={handleChange}
             className={css.inputName}
             placeholder="ニックネーム"
@@ -153,39 +229,86 @@ export const ModalRegisterUser: React.FC<Props> = (props) => {
       </div>
 
       <div style={{ marginTop: 20 }}>
-        <div className={css.titleArea}>
-          <div>メールアドレス登録</div>
-        </div>
-        <div style={{ marginTop: 20 }}>
-          <input
-            type="text"
-            onChange={handleNickName}
-            className={css.inputName}
-            placeholder="ニックネーム"
-            maxLength={50}
-          />
-        </div>
-        <div style={{ marginTop: 20 }}>
-          <input
-            type="email"
-            onChange={handleEmail}
-            className={css.inputName}
-            placeholder="メールアドレス"
-            maxLength={100}
-          />
-        </div>
-        <div style={{ marginTop: 20 }}>
-          <input
-            type="password"
-            onChange={handlePassword}
-            className={css.inputName}
-            placeholder="パスワード(8文字以上/大文字/小文字/記号/数字含む)"
-            minLength={8}
-            maxLength={50}
-          />
-        </div>
-        <button type="button" className={css.button.ok} onClick={signUp}>
-          メールアドレス登録する
+        {!isRegisterMode && (
+          <div>
+            <div className={css.titleArea}>
+              <div>ログイン</div>
+            </div>
+            <div style={{ marginTop: 20 }}>
+              <input
+                type="email"
+                value={loginEmail}
+                onChange={handleLoginEmail}
+                className={css.inputName}
+                placeholder="メールアドレス"
+                maxLength={100}
+              />
+            </div>
+            <div style={{ marginTop: 20 }}>
+              <input
+                type="password"
+                value={loginPassword}
+                onChange={handleLoginPassword}
+                className={css.inputName}
+                placeholder="パスワード"
+                minLength={8}
+                maxLength={50}
+              />
+            </div>
+            <button type="button" className={css.button.ok} onClick={signIn}>
+              ログイン
+            </button>
+          </div>
+        )}
+
+        {isRegisterMode && (
+          <div>
+            <div className={css.titleArea}>
+              <div>新規登録（メールアドレスに確認リンクが届きます。）</div>
+            </div>
+            <div style={{ marginTop: 20 }}>
+              <input
+                type="text"
+                value={nickName}
+                onChange={handleNickName}
+                className={css.inputName}
+                placeholder="ニックネーム"
+                maxLength={50}
+              />
+            </div>
+            <div style={{ marginTop: 20 }}>
+              <input
+                type="email"
+                value={email}
+                onChange={handleEmail}
+                className={css.inputName}
+                placeholder="メールアドレス"
+                maxLength={100}
+              />
+            </div>
+            <div style={{ marginTop: 20 }}>
+              <input
+                type="password"
+                value={password}
+                onChange={handlePassword}
+                className={css.inputName}
+                placeholder="パスワード(8文字以上/大文字/小文字/記号/数字含む)"
+                minLength={8}
+                maxLength={50}
+              />
+            </div>
+            <button type="button" className={css.button.ok} onClick={signUp}>
+              登録をする
+            </button>
+          </div>
+        )}
+        <button
+          type="button"
+          className={css.button.register}
+          onClick={changeRegisterMode}
+        >
+          {!isRegisterMode && <>新規登録はこちら</>}
+          {isRegisterMode && <>ログインはこちら</>}
         </button>
       </div>
     </Modal>

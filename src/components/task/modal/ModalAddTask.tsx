@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { style, hover, color } from '@/css/style';
 import Modal from 'react-modal';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -91,13 +91,11 @@ export const ModalAddTask: React.FC<Props> = (props) => {
       }),
     },
   };
-  let title = '';
-  let detail = '';
-  let time = 0;
+  const [title, setTitle] = useState<string>('');
+  const [detail, setDetail] = useState<string>('');
+  const [time, setTime] = useState<number>(0);
 
-  const closeModal = () => {
-    props.handleOnModalOpend('');
-  };
+  const closeModal = () => props.handleOnModalOpend('');
 
   const addTask = () => {
     if (title === '' || detail === '' || time === 0) {
@@ -115,18 +113,14 @@ export const ModalAddTask: React.FC<Props> = (props) => {
     closeModal();
   };
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    title = e.target.value;
-  };
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) =>
+    setTitle(e.target.value);
 
-  const handleChangeDetail = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
-    detail = e.target.value;
-  };
+  const handleChangeDetail = (e: React.ChangeEvent<HTMLTextAreaElement>) =>
+    setDetail(e.target.value);
 
-  const handleHourChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const timeTmp = Number(e.target.value);
-    time = timeTmp;
-  };
+  const handleHourChange = (e: React.ChangeEvent<HTMLInputElement>) =>
+    setTime(Number(e.target.value));
 
   return (
     <Modal

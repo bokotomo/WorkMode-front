@@ -128,35 +128,35 @@ export const ModalTaskDetail: React.FC<Props> = (props) => {
     return <>編集</>;
   };
 
-  function closeModal() {
+  const closeModal = () => {
     setIsEditMode(false);
     props.handleOnModalOpend('');
-  }
+  };
 
-  function handleChangeDetail(e: React.ChangeEvent<HTMLTextAreaElement>) {
+  const handleChangeDetail = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
     detail = e.target.value;
-  }
+  };
 
-  function handleHourChange(e: React.ChangeEvent<HTMLInputElement>) {
+  const handleHourChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     time = Number(e.target.value);
-  }
+  };
 
-  function deleteTask() {
+  const deleteTask = () => {
     const isYes = window.confirm('削除しても宜しいですか？');
     if (!isYes) return;
     props.deleteTask(props.socket, props.selectedTask.id);
     closeModal();
-  }
+  };
 
-  function noButton() {
+  const noButton = () => {
     if (isEditMode) {
       setIsEditMode(false);
       return;
     }
     deleteTask();
-  }
+  };
 
-  function okButton() {
+  const okButton = () => {
     if (!isEditMode) {
       setIsEditMode(true);
       return;
@@ -176,7 +176,7 @@ export const ModalTaskDetail: React.FC<Props> = (props) => {
       });
 
     closeModal();
-  }
+  };
 
   return (
     <Modal
