@@ -48,7 +48,9 @@ export class TopPage extends React.Component<Props> {
           openedModalName={this.props.openedModalName}
           handleOnModalOpend={this.props.handleOnModalOpend}
           socket={this.props.socket}
+          registerGuestUser={this.props.registerGuestUser}
           registerUser={this.props.registerUser}
+          signin={this.props.signin}
         />
         <ModalAddTask
           openedModalName={this.props.openedModalName}

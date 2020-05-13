@@ -5,7 +5,9 @@ import { style, hover, color } from '@/css/style';
 interface Props {
   readonly socket: WebSocket;
   readonly handleOnModalOpend: Function;
+  readonly registerGuestUser: Function;
   readonly registerUser: Function;
+  readonly signin: Function;
   readonly openedModalName: string;
 }
 export const ModalRegisterUser: React.FC<Props> = (props) => {
@@ -75,6 +77,21 @@ export const ModalRegisterUser: React.FC<Props> = (props) => {
         boxSizing: 'border-box',
         cursor: 'pointer',
       }),
+      twitter: style({
+        ...hover.button,
+        marginTop: 20,
+        fontSize: 18,
+        color: color.white,
+        background: '#00acee',
+        borderRadius: 50,
+        border: 'none',
+        width: '100%',
+        textAlign: 'center',
+        height: 40,
+        lineHeight: '40px',
+        boxSizing: 'border-box',
+        cursor: 'pointer',
+      }),
     },
   };
 
@@ -88,17 +105,17 @@ export const ModalRegisterUser: React.FC<Props> = (props) => {
 
   const closeModal = () => props.handleOnModalOpend('');
 
-  const addTask = () => {
+  const createGuestUser = () => {
     if (guestName === '') {
       alert('全て入力する必要があります。');
       return;
     }
-    props.registerUser(props.socket, guestName);
+    props.registerGuestUser(props.socket, guestName);
     closeModal();
     setNickName('');
   };
 
-  const signUp = () => {
+  const signup = () => {
     if (email === '' || nickName === '' || password === '') {
       alert('全て入力する必要があります。');
       return;
@@ -108,9 +125,10 @@ export const ModalRegisterUser: React.FC<Props> = (props) => {
       return;
     }
     alert('apiへ送信');
+    props.registerUser(props.socket, email, nickName, password);
   };
 
-  const signIn = () => {
+  const signin = () => {
     if (loginEmail === '' || loginPassword === '') {
       alert('全て入力する必要があります。');
       return;
@@ -120,6 +138,7 @@ export const ModalRegisterUser: React.FC<Props> = (props) => {
       return;
     }
     alert('apiへ送信');
+    props.signin(props.socket, loginEmail, loginPassword);
   };
 
   const changeRegisterMode = () => setIsRegisterMode(!isRegisterMode);
@@ -162,7 +181,11 @@ export const ModalRegisterUser: React.FC<Props> = (props) => {
             maxLength={12}
           />
         </div>
-        <button type="button" className={css.button.ok} onClick={addTask}>
+        <button
+          type="button"
+          className={css.button.ok}
+          onClick={createGuestUser}
+        >
           ゲスト登録する
         </button>
       </div>
@@ -194,7 +217,7 @@ export const ModalRegisterUser: React.FC<Props> = (props) => {
                 maxLength={50}
               />
             </div>
-            <button type="button" className={css.button.ok} onClick={signIn}>
+            <button type="button" className={css.button.ok} onClick={signin}>
               ログイン
             </button>
           </div>
@@ -236,11 +259,12 @@ export const ModalRegisterUser: React.FC<Props> = (props) => {
                 maxLength={50}
               />
             </div>
-            <button type="button" className={css.button.ok} onClick={signUp}>
+            <button type="button" className={css.button.ok} onClick={signup}>
               登録をする
             </button>
           </div>
         )}
+
         <button
           type="button"
           className={css.button.register}

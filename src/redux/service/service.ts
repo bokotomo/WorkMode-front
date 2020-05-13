@@ -15,6 +15,10 @@ export const service = {
     modalOpend(dispatch, openedModalName),
   userRegister: (dispatch: Dispatch, socket: WebSocket, name: string) =>
     userRegister(dispatch, socket, name),
+  userRegisterGuest: (dispatch: Dispatch, socket: WebSocket, name: string) =>
+    userRegisterGuest(dispatch, socket, name),
+  userSignin: (dispatch: Dispatch, socket: WebSocket, name: string) =>
+    userSignin(dispatch, socket, name),
   setWebsocket: (dispatch: Dispatch) => setWebsocket(dispatch),
   addTask: (dispatch: Dispatch, socket: WebSocket, task: TaskCard) =>
     addTask(dispatch, socket, task),

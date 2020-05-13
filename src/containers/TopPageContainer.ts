@@ -42,8 +42,16 @@ const mapDispatchToProps = (dispatch: Dispatch) => {
     updateTaskStatus: (socket: WebSocket, taskId: string, status: string) =>
       service.updateTaskStatus(dispatch, socket, taskId, status),
     handleOnSetRoom: () => dispatch(ActionRoom.setRoom()),
-    registerUser: (socket: WebSocket, name: string) =>
-      service.userRegister(dispatch, socket, name),
+    registerGuestUser: (socket: WebSocket, name: string) =>
+      service.userRegisterGuest(dispatch, socket, name),
+    registerUser: (
+      socket: WebSocket,
+      name: string,
+      email: string,
+      password: string
+    ) => service.userRegister(dispatch, socket, name, email, password),
+    signin: (socket: WebSocket, email: string, password: string) =>
+      service.userSignin(dispatch, socket, email, password),
     deleteTask: (socket: WebSocket, taskId: string) =>
       service.deleteTask(dispatch, socket, taskId),
     updateTask: (socket: WebSocket, task: TaskCard) =>
