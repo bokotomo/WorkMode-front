@@ -124,7 +124,6 @@ export const ModalRegisterUser: React.FC<Props> = (props) => {
       alert('パスワードは、８文字以上でないといけません');
       return;
     }
-    alert('apiへ送信');
     props.registerUser(props.socket, email, nickName, password);
   };
 
@@ -137,7 +136,6 @@ export const ModalRegisterUser: React.FC<Props> = (props) => {
       alert('パスワードは、８文字以上でないといけません');
       return;
     }
-    alert('apiへ送信');
     props.signin(props.socket, loginEmail, loginPassword);
   };
 
@@ -168,27 +166,29 @@ export const ModalRegisterUser: React.FC<Props> = (props) => {
       overlayClassName="modalOverLayWrapper"
       contentLabel="モーダル"
     >
-      <div>
-        <div className={css.titleArea}>
-          <div>ゲスト登録（一定期間するとログインできなくなります。）</div>
+      {!isRegisterMode && (
+        <div>
+          <div className={css.titleArea}>
+            <div>ゲスト登録（一定期間するとログインできなくなります。）</div>
+          </div>
+          <div style={{ marginTop: 20 }}>
+            <input
+              value={guestName}
+              onChange={handleChange}
+              className={css.inputName}
+              placeholder="ニックネーム"
+              maxLength={12}
+            />
+          </div>
+          <button
+            type="button"
+            className={css.button.ok}
+            onClick={createGuestUser}
+          >
+            ゲスト登録する
+          </button>
         </div>
-        <div style={{ marginTop: 20 }}>
-          <input
-            value={guestName}
-            onChange={handleChange}
-            className={css.inputName}
-            placeholder="ニックネーム"
-            maxLength={12}
-          />
-        </div>
-        <button
-          type="button"
-          className={css.button.ok}
-          onClick={createGuestUser}
-        >
-          ゲスト登録する
-        </button>
-      </div>
+      )}
 
       <div style={{ marginTop: 20 }}>
         {!isRegisterMode && (

@@ -1,5 +1,9 @@
 import { Dispatch } from 'redux';
-import { requestUserCreate } from '@/websocket/request/user';
+import {
+  requestUserCreate,
+  requestUserGuestCreate,
+  requestUserSignin,
+} from '@/websocket/request/user';
 
 // ユーザ新規登録
 export const userRegister = (
@@ -27,4 +31,6 @@ export const userSignin = (
   socket: WebSocket,
   email: string,
   password: string
-) => {};
+) => {
+  requestUserSignin(socket, email, password);
+};
