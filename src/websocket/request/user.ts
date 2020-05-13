@@ -13,7 +13,6 @@ export const requestUserCreate = (
     name,
     password,
   };
-  console.log(data);
   socket.send(JSON.stringify({ action, data }));
 };
 
@@ -25,7 +24,6 @@ export const requestUserGuestCreate = (socket: WebSocket, name: string) => {
     role,
     name,
   };
-  console.log(data);
   socket.send(JSON.stringify({ action, data }));
 };
 
@@ -42,7 +40,6 @@ export const requestUserSignin = (
     email,
     password,
   };
-  console.log(data);
   socket.send(JSON.stringify({ action, data }));
 };
 
