@@ -3,7 +3,7 @@ import { Dispatch } from 'redux';
 import { TopPage } from '@/components/task/Base';
 import { ActionTask } from '@/redux/actions/task';
 import { ActionRoom } from '@/redux/actions/room';
-import { AppState } from '@/redux/store';
+import { AppState } from '@/redux/reducer';
 import { service } from '@/redux/service/service';
 import { TaskCard } from '@/types/taskBoard';
 

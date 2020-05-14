@@ -1,5 +1,5 @@
 import { ActionModal } from '@/redux/actions/modal';
-import { reducerWithInitialState } from '../../../node_modules/typescript-fsa-reducers';
+import { reducerWithInitialState } from 'typescript-fsa-reducers';
 
 export interface StateModal {
   readonly openedModalName: string;

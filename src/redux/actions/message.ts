@@ -1,5 +1,5 @@
 import { Message } from '@/types/message';
-import { actionCreatorFactory } from '../../../node_modules/typescript-fsa';
+import { actionCreatorFactory } from 'typescript-fsa';
 
 const actionCreator = actionCreatorFactory();
 

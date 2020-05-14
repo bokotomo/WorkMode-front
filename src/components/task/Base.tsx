@@ -3,7 +3,6 @@ import { TaskCard } from '@/types/taskBoard';
 import { Message } from '@/types/message';
 import { ActiveUser } from '@/types/activeUser';
 import { Room } from '@/types/room';
-import { TopPageHandler } from '@/containers/TopPage.type';
 import { TaskBoard } from '@/components/task/organisms/TaskBoard';
 import { MessageBoard } from '@/components/task/organisms/MessageBoard';
 import { ModalAddTask } from '@/components/task/modal/ModalAddTask';
@@ -26,10 +25,31 @@ interface OwnProps {
   readonly myName: string;
   readonly isLogined: boolean;
 }
-type Props = OwnProps & TopPageHandler;
+interface Handler {
+  setWebSocket(): void;
+  handleOnModalOpend(openedModalName: string): void;
+  handleOnSetTaskTodo(tasks: TaskCard[]): void;
+  handleOnSetTaskInProgresses(tasks: TaskCard[]): void;
+  handleOnSetTaskDone(tasks: TaskCard[]): void;
+  handleOnSetSelectedTask(task: TaskCard): void;
+  handleOnAddTaskTodo(socket: WebSocket, task: TaskCard): void;
+  updateTaskStatus(socket: WebSocket, taskId: string, status: string): void;
+  handleOnSetRoom(): void;
+  registerGuestUser(socket: WebSocket, name: string): void;
+  registerUser(
+    socket: WebSocket,
+    email: string,
+    name: string,
+    password: string
+  ): void;
+  signin(socket: WebSocket, email: string, password: string): void;
+  deleteTask(socket: WebSocket, taskId: string): void;
+  updateTask(socket: WebSocket, task: TaskCard): void;
+}
+
+type Props = OwnProps & Handler;
 export class TopPage extends React.Component<Props> {
-  constructor(props: Props) {
-    super(props);
+  componentDidMount() {
     this.props.setWebSocket();
     this.props.handleOnSetRoom();
   }

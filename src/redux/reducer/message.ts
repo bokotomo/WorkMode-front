@@ -1,6 +1,6 @@
 import { ActionMessage } from '@/redux/actions/message';
 import { Message } from '@/types/message';
-import { reducerWithInitialState } from '../../../node_modules/typescript-fsa-reducers';
+import { reducerWithInitialState } from 'typescript-fsa-reducers';
 
 export interface StateMessage {
   readonly messages: Message[];
