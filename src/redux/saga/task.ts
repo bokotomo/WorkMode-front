@@ -15,7 +15,7 @@ function* create(action: { type: string; payload: TaskCard }) {
   const task = action.payload;
   const token = new Cookies().get('token') || '';
   if (token === '') {
-    put(ActionModal.updateModalOpened('register'));
+    yield put(ActionModal.updateModalOpened('register'));
     return;
   }
   const role = 'task_create';
@@ -32,7 +32,7 @@ function* deleteTask(action: { type: string; payload: string }) {
   const taskId = action.payload;
   const token = new Cookies().get('token') || '';
   if (token === '') {
-    put(ActionModal.updateModalOpened('register'));
+    yield put(ActionModal.updateModalOpened('register'));
     return;
   }
   const role = 'task_delete';
@@ -43,14 +43,14 @@ function* deleteTask(action: { type: string; payload: string }) {
   };
   const socket = yield select((state) => state.webSocket.socket);
   socket.send(JSON.stringify({ action: 'sendmessage', data }));
-  put(ActionTask.deleteTask(taskId));
+  yield put(ActionTask.deleteTask(taskId));
 }
 
 function* update(action: { type: string; payload: TaskCard }) {
   const task = action.payload;
   const token = new Cookies().get('token') || '';
   if (token === '') {
-    put(ActionModal.updateModalOpened('register'));
+    yield put(ActionModal.updateModalOpened('register'));
     return;
   }
   const role = 'task_update';
@@ -61,24 +61,22 @@ function* update(action: { type: string; payload: TaskCard }) {
   };
   const socket = yield select((state) => state.webSocket.socket);
   socket.send(JSON.stringify({ action: 'sendmessage', data }));
-  put(ActionTask.updateTask(task));
+  yield put(ActionTask.updateTask(task));
 }
 
 function* updateStatus(action: { type: string; payload: TaskCard }) {
   const task = action.payload;
-  const taskId = task.id;
-  const status = task.status;
   const token = new Cookies().get('token') || '';
   if (token === '') {
-    put(ActionModal.updateModalOpened('register'));
+    yield put(ActionModal.updateModalOpened('register'));
     return;
   }
   const role = 'task_update_status';
   const data = {
     role,
     token,
-    taskId,
-    status,
+    taskId: task.id,
+    status: task.status,
   };
   const socket = yield select((state) => state.webSocket.socket);
   socket.send(JSON.stringify({ action: 'sendmessage', data }));

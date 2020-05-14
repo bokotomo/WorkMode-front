@@ -2,7 +2,6 @@
 import { Dispatch } from 'redux';
 import { Cookies } from 'react-cookie';
 import { authentication } from '@/websocket/controller/authentication';
-import { requestAuthentication } from '@/websocket/request/authentication';
 import { userCreated, activeUserSearch } from '@/websocket/controller/user';
 import {
   messageProgressIndex,
@@ -15,11 +14,12 @@ import {
   taskUpdateStatus,
   taskDelete,
 } from '@/websocket/controller/task';
+import { ActionAuth } from '@/redux/action/auth';
 
 // コネクション確立時
 export const onOpen = (event: Event, socket: WebSocket, dispatch: Dispatch) => {
   const token = new Cookies().get('token') || '';
-  requestAuthentication(socket, dispatch, token);
+  dispatch(ActionAuth.requestAuthentication(token));
 };
 
 // メッセージ受取時

@@ -3,9 +3,12 @@ import { Dispatch } from 'redux';
 import { TopPage } from '@/components/task/Base';
 import { ActionTask } from '@/redux/action/task';
 import { ActionRoom } from '@/redux/action/room';
+import { ActionAuth } from '@/redux/action/auth';
+import { ActionModal } from '@/redux/action/modal';
 import { AppState } from '@/redux/reducer';
-import { service } from '@/redux/service/service';
+import service from '@/redux/service';
 import { TaskCard } from '@/types/taskBoard';
+import { User } from '@/types/user';
 
 const mapStateToProps = (appState: AppState) => {
   return {
@@ -28,7 +31,7 @@ const mapDispatchToProps = (dispatch: Dispatch) => {
   return {
     setWebSocket: () => service.setWebsocket(dispatch),
     handleOnModalOpend: (openedModalName: string) =>
-      service.modalOpend(dispatch, openedModalName),
+      dispatch(ActionModal.updateModalOpened(openedModalName)),
     handleOnSetTaskTodo: (tasks: TaskCard[]) =>
       dispatch(ActionTask.setTaskTodo(tasks)),
     handleOnSetTaskInProgresses: (tasks: TaskCard[]) =>
@@ -38,26 +41,35 @@ const mapDispatchToProps = (dispatch: Dispatch) => {
     handleOnSetSelectedTask: (task: TaskCard) =>
       dispatch(ActionTask.setSelectedTask(task)),
 
+    // task
     handleOnAddTaskTodo: (socket: WebSocket, task: TaskCard) =>
       dispatch(ActionTask.requestTaskCreate(task)),
     updateTaskStatus: (socket: WebSocket, taskId: string, status: string) =>
-      service.updateTaskStatus(dispatch, socket, taskId, status),
+      dispatch(
+        ActionTask.requestTaskUpdateStatus({ id: taskId, status } as TaskCard)
+      ),
     deleteTask: (socket: WebSocket, taskId: string) =>
-      service.deleteTask(dispatch, socket, taskId),
+      dispatch(ActionTask.requestTaskDelete(taskId)),
     updateTask: (socket: WebSocket, task: TaskCard) =>
-      service.updateTask(dispatch, socket, task),
+      dispatch(ActionTask.requestTaskUpdate(task)),
 
+    // room
     handleOnSetRoom: () => dispatch(ActionRoom.setRoom()),
+
+    // user
     registerGuestUser: (socket: WebSocket, name: string) =>
-      service.userRegisterGuest(dispatch, socket, name),
+      dispatch(ActionAuth.requestUserRegisterGuest(name)),
     registerUser: (
       socket: WebSocket,
       name: string,
       email: string,
       password: string
-    ) => service.userRegister(dispatch, socket, name, email, password),
+    ) =>
+      dispatch(
+        ActionAuth.requestUserRegister({ name, password, email } as User)
+      ),
     signin: (socket: WebSocket, email: string, password: string) =>
-      service.userSignin(dispatch, socket, email, password),
+      dispatch(ActionAuth.requestUserSignin({ email, password } as User)),
   };
 };
 export default connect(mapStateToProps, mapDispatchToProps)(TopPage);
