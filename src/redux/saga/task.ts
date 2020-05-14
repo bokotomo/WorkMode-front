@@ -5,10 +5,10 @@ import { ActionModal } from '@/redux/action/modal';
 import { TaskCard } from '@/types/taskBoard';
 
 export function* watchTask() {
-  yield takeEvery(ActionTask.requestTaskCreate, create);
-  yield takeEvery(ActionTask.requestTaskDelete, deleteTask);
-  yield takeEvery(ActionTask.requestTaskUpdate, update);
-  yield takeEvery(ActionTask.requestTaskUpdateStatus, updateStatus);
+  yield takeEvery(ActionTask.requestCreate, create);
+  yield takeEvery(ActionTask.requestDelete, deleteTask);
+  yield takeEvery(ActionTask.requestUpdate, update);
+  yield takeEvery(ActionTask.requestUpdateStatus, updateStatus);
 }
 
 function* create(action: { type: string; payload: TaskCard }) {
@@ -43,7 +43,7 @@ function* deleteTask(action: { type: string; payload: string }) {
   };
   const socket = yield select((state) => state.webSocket.socket);
   socket.send(JSON.stringify({ action: 'sendmessage', data }));
-  yield put(ActionTask.deleteTask(taskId));
+  yield put(ActionTask.delete(taskId));
 }
 
 function* update(action: { type: string; payload: TaskCard }) {
@@ -61,7 +61,7 @@ function* update(action: { type: string; payload: TaskCard }) {
   };
   const socket = yield select((state) => state.webSocket.socket);
   socket.send(JSON.stringify({ action: 'sendmessage', data }));
-  yield put(ActionTask.updateTask(task));
+  yield put(ActionTask.update(task));
 }
 
 function* updateStatus(action: { type: string; payload: TaskCard }) {

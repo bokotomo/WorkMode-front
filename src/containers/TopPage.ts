@@ -12,7 +12,6 @@ import { User } from '@/types/user';
 
 const mapStateToProps = (appState: AppState) => {
   return {
-    socket: appState.webSocket.socket,
     todos: appState.task.todos,
     inProgresses: appState.task.inProgresses,
     dones: appState.task.dones,
@@ -42,33 +41,26 @@ const mapDispatchToProps = (dispatch: Dispatch) => {
       dispatch(ActionTask.setSelectedTask(task)),
 
     // task
-    handleOnAddTaskTodo: (socket: WebSocket, task: TaskCard) =>
-      dispatch(ActionTask.requestTaskCreate(task)),
-    updateTaskStatus: (socket: WebSocket, taskId: string, status: string) =>
+    handleOnAddTaskTodo: (task: TaskCard) =>
+      dispatch(ActionTask.requestCreate(task)),
+    updateTaskStatus: (taskId: string, status: string) =>
       dispatch(
-        ActionTask.requestTaskUpdateStatus({ id: taskId, status } as TaskCard)
+        ActionTask.requestUpdateStatus({ id: taskId, status } as TaskCard)
       ),
-    deleteTask: (socket: WebSocket, taskId: string) =>
-      dispatch(ActionTask.requestTaskDelete(taskId)),
-    updateTask: (socket: WebSocket, task: TaskCard) =>
-      dispatch(ActionTask.requestTaskUpdate(task)),
+    deleteTask: (taskId: string) => dispatch(ActionTask.requestDelete(taskId)),
+    updateTask: (task: TaskCard) => dispatch(ActionTask.requestUpdate(task)),
 
     // room
     handleOnSetRoom: () => dispatch(ActionRoom.setRoom()),
 
     // user
-    registerGuestUser: (socket: WebSocket, name: string) =>
+    registerGuestUser: (name: string) =>
       dispatch(ActionAuth.requestUserRegisterGuest(name)),
-    registerUser: (
-      socket: WebSocket,
-      name: string,
-      email: string,
-      password: string
-    ) =>
+    registerUser: (name: string, email: string, password: string) =>
       dispatch(
         ActionAuth.requestUserRegister({ name, password, email } as User)
       ),
-    signin: (socket: WebSocket, email: string, password: string) =>
+    signin: (email: string, password: string) =>
       dispatch(ActionAuth.requestUserSignin({ email, password } as User)),
   };
 };

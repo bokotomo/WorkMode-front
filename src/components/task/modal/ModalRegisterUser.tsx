@@ -3,7 +3,6 @@ import Modal from 'react-modal';
 import { style, hover, color } from '@/css/style';
 
 interface Props {
-  readonly socket: WebSocket;
   readonly handleOnModalOpend: Function;
   readonly registerGuestUser: Function;
   readonly registerUser: Function;
@@ -110,7 +109,7 @@ export const ModalRegisterUser: React.FC<Props> = (props) => {
       alert('全て入力する必要があります。');
       return;
     }
-    props.registerGuestUser(props.socket, guestName);
+    props.registerGuestUser(guestName);
     closeModal();
     setNickName('');
   };
@@ -124,7 +123,7 @@ export const ModalRegisterUser: React.FC<Props> = (props) => {
       alert('パスワードは、８文字以上でないといけません');
       return;
     }
-    props.registerUser(props.socket, email, nickName, password);
+    props.registerUser(email, nickName, password);
   };
 
   const signin = () => {
@@ -136,7 +135,7 @@ export const ModalRegisterUser: React.FC<Props> = (props) => {
       alert('パスワードは、８文字以上でないといけません');
       return;
     }
-    props.signin(props.socket, loginEmail, loginPassword);
+    props.signin(loginEmail, loginPassword);
   };
 
   const changeRegisterMode = () => setIsRegisterMode(!isRegisterMode);

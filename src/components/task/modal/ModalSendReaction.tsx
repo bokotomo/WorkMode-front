@@ -5,7 +5,6 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { IconTapioka } from '@/components/svg/IconTapioka';
 
 interface Props {
-  readonly socket: WebSocket;
   readonly handleOnModalOpend: Function;
   readonly openedModalName: string;
 }

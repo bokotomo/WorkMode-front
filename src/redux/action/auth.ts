@@ -5,7 +5,7 @@ import { actionCreatorFactory } from 'typescript-fsa';
 const actionCreator = actionCreatorFactory();
 
 export const ActionAuth = {
-  setAuth: actionCreator<ReducerAuthUser>('SET_AUTH'),
+  setAuth: actionCreator<ReducerAuthUser>('AUTH_SET'),
   requestAuthentication: actionCreator<string>('REQUEST_AUTHENTICATION'),
   requestUserRegister: actionCreator<User>('REQUEST_USER_REGISTER'),
   requestUserRegisterGuest: actionCreator<string>(

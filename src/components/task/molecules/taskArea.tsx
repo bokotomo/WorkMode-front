@@ -17,7 +17,6 @@ interface Props {
   readonly todos: TaskCard[];
   readonly inProgresses: TaskCard[];
   readonly dones: TaskCard[];
-  readonly socket: WebSocket;
 }
 export const TaskArea: React.FC<Props> = (props) => {
   const reorder = (
@@ -64,12 +63,12 @@ export const TaskArea: React.FC<Props> = (props) => {
     }
     if (droppableDestination.droppableId === 'todoArea') {
       todos = destClone;
-      props.updateTaskStatus(props.socket, removedTask.id, 'todo');
+      props.updateTaskStatus(removedTask.id, 'todo');
     } else if (droppableDestination.droppableId === 'inProgressArea') {
       inProgresses = destClone;
-      props.updateTaskStatus(props.socket, removedTask.id, 'inprogress');
+      props.updateTaskStatus(removedTask.id, 'inprogress');
     } else {
-      props.updateTaskStatus(props.socket, removedTask.id, 'done');
+      props.updateTaskStatus(removedTask.id, 'done');
       dones = destClone;
     }
     return {

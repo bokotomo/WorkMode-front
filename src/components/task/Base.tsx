@@ -12,7 +12,6 @@ import { ModalRegisterUser } from '@/components/task/modal/ModalRegisterUser';
 import { ModalSendReaction } from '@/components/task/modal/ModalSendReaction';
 
 interface OwnProps {
-  readonly socket: WebSocket;
   readonly openedModalName: string;
   readonly todos: TaskCard[];
   readonly inProgresses: TaskCard[];
@@ -32,19 +31,14 @@ interface Handler {
   handleOnSetTaskInProgresses(tasks: TaskCard[]): void;
   handleOnSetTaskDone(tasks: TaskCard[]): void;
   handleOnSetSelectedTask(task: TaskCard): void;
-  handleOnAddTaskTodo(socket: WebSocket, task: TaskCard): void;
-  updateTaskStatus(socket: WebSocket, taskId: string, status: string): void;
+  handleOnAddTaskTodo(task: TaskCard): void;
+  updateTaskStatus(taskId: string, status: string): void;
   handleOnSetRoom(): void;
-  registerGuestUser(socket: WebSocket, name: string): void;
-  registerUser(
-    socket: WebSocket,
-    email: string,
-    name: string,
-    password: string
-  ): void;
-  signin(socket: WebSocket, email: string, password: string): void;
-  deleteTask(socket: WebSocket, taskId: string): void;
-  updateTask(socket: WebSocket, task: TaskCard): void;
+  registerGuestUser(name: string): void;
+  registerUser(email: string, name: string, password: string): void;
+  signin(email: string, password: string): void;
+  deleteTask(taskId: string): void;
+  updateTask(task: TaskCard): void;
 }
 
 type Props = OwnProps & Handler;
@@ -67,14 +61,12 @@ export class TopPage extends React.Component<Props> {
         <ModalRegisterUser
           openedModalName={this.props.openedModalName}
           handleOnModalOpend={this.props.handleOnModalOpend}
-          socket={this.props.socket}
           registerGuestUser={this.props.registerGuestUser}
           registerUser={this.props.registerUser}
           signin={this.props.signin}
         />
         <ModalAddTask
           openedModalName={this.props.openedModalName}
-          socket={this.props.socket}
           handleOnModalOpend={this.props.handleOnModalOpend}
           handleOnAddTaskTodo={this.props.handleOnAddTaskTodo}
         />
@@ -88,12 +80,10 @@ export class TopPage extends React.Component<Props> {
           updateTask={this.props.updateTask}
           deleteTask={this.props.deleteTask}
           selectedTask={this.props.selectedTask}
-          socket={this.props.socket}
         />
         <ModalSendReaction
           openedModalName={this.props.openedModalName}
           handleOnModalOpend={this.props.handleOnModalOpend}
-          socket={this.props.socket}
         />
         <TaskBoard
           handleOnModalOpend={this.props.handleOnModalOpend}
@@ -105,7 +95,6 @@ export class TopPage extends React.Component<Props> {
           todos={this.props.todos}
           inProgresses={this.props.inProgresses}
           dones={this.props.dones}
-          socket={this.props.socket}
         />
         <MessageBoard
           handleOnModalOpend={this.props.handleOnModalOpend}

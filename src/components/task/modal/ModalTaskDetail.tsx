@@ -11,7 +11,6 @@ interface Props {
   readonly updateTask: Function;
   readonly openedModalName: string;
   readonly selectedTask: TaskCard;
-  readonly socket: WebSocket;
 }
 export const ModalTaskDetail: React.FC<Props> = (props) => {
   const css = {
@@ -144,7 +143,7 @@ export const ModalTaskDetail: React.FC<Props> = (props) => {
   const deleteTask = () => {
     const isYes = window.confirm('削除しても宜しいですか？');
     if (!isYes) return;
-    props.deleteTask(props.socket, props.selectedTask.id);
+    props.deleteTask(props.selectedTask.id);
     closeModal();
   };
 
@@ -169,7 +168,7 @@ export const ModalTaskDetail: React.FC<Props> = (props) => {
     const isChangedTask =
       detail !== props.selectedTask.detail || time !== props.selectedTask.time;
     if (isChangedTask)
-      props.updateTask(props.socket, {
+      props.updateTask({
         id: props.selectedTask.id,
         detail,
         time,

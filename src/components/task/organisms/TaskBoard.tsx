@@ -15,7 +15,6 @@ interface Props {
   readonly todos: TaskCard[];
   readonly inProgresses: TaskCard[];
   readonly dones: TaskCard[];
-  readonly socket: WebSocket;
 }
 export const TaskBoard: React.FC<Props> = (props) => {
   const css = {
@@ -136,7 +135,6 @@ export const TaskBoard: React.FC<Props> = (props) => {
               todos={props.todos}
               inProgresses={props.inProgresses}
               dones={props.dones}
-              socket={props.socket}
             />
           )}
         </div>

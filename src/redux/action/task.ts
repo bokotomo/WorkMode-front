@@ -4,18 +4,16 @@ import { actionCreatorFactory } from 'typescript-fsa';
 const actionCreator = actionCreatorFactory();
 
 export const ActionTask = {
-  setTaskTodo: actionCreator<TaskCard[]>('SET_TASK_TODO'),
-  addTaskTodo: actionCreator<TaskCard>('ADD_TASK_DONE'),
-  setTaskInProgresses: actionCreator<TaskCard[]>('SET_TASK_INPROGRESSES'),
-  setTaskDone: actionCreator<TaskCard[]>('SET_TASK_DONE'),
-  setSelectedTask: actionCreator<TaskCard>('SET_SELECTED_TASK'),
-  deleteTask: actionCreator<string>('DELETE_TASK'),
-  updateTask: actionCreator<TaskCard>('UPDATE_TASK'),
+  setTaskTodo: actionCreator<TaskCard[]>('TASK_SET_TODO'),
+  addTaskTodo: actionCreator<TaskCard>('TASK_ADD_DONE'),
+  setTaskInProgresses: actionCreator<TaskCard[]>('TASK_SET_INPROGRESSES'),
+  setTaskDone: actionCreator<TaskCard[]>('TASK_SET_TASK'),
+  setSelectedTask: actionCreator<TaskCard>('TASK_SET_SELECTED'),
+  delete: actionCreator<string>('TASK_DELETE'),
+  update: actionCreator<TaskCard>('TASK_UPDATE'),
 
-  requestTaskCreate: actionCreator<TaskCard>('REQUEST_TASK_CREATE'),
-  requestTaskDelete: actionCreator<string>('REQUEST_TASK_DELETE'),
-  requestTaskUpdate: actionCreator<TaskCard>('REQUEST_TASK_UPDATE'),
-  requestTaskUpdateStatus: actionCreator<TaskCard>(
-    'REQUEST_TASK_UPDATE_STATUS'
-  ),
+  requestCreate: actionCreator<TaskCard>('TASK_REQUEST_CREATE'),
+  requestDelete: actionCreator<string>('TASK_REQUEST_DELETE'),
+  requestUpdate: actionCreator<TaskCard>('TASK_REQUEST_UPDATE'),
+  requestUpdateStatus: actionCreator<TaskCard>('TASK_REQUEST_UPDATE_STATUS'),
 };

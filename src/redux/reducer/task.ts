@@ -40,7 +40,7 @@ export const ReducerTask = reducerWithInitialState(initialStateTask)
   .case(ActionTask.setSelectedTask, (state, task) => {
     return { ...state, selectedTask: task };
   })
-  .case(ActionTask.deleteTask, (state, taskId) => {
+  .case(ActionTask.delete, (state, taskId) => {
     const todos = state.todos.filter((task) => task.id !== taskId);
     const inProgresses = state.inProgresses.filter(
       (task) => task.id !== taskId
@@ -48,7 +48,7 @@ export const ReducerTask = reducerWithInitialState(initialStateTask)
     const dones = state.dones.filter((task) => task.id !== taskId);
     return { ...state, todos, inProgresses, dones };
   })
-  .case(ActionTask.updateTask, (state, task) => {
+  .case(ActionTask.update, (state, task) => {
     const todos = state.todos.map((item) => {
       if (item.id !== task.id) return item;
       return {

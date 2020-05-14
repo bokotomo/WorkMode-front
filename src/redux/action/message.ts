@@ -4,7 +4,7 @@ import { actionCreatorFactory } from 'typescript-fsa';
 const actionCreator = actionCreatorFactory();
 
 export const ActionMessage = {
-  setMessage: actionCreator<Message[]>('SET_MESSAGE'),
-  addMessage: actionCreator<Message>('ADD_MESSAGE'),
-  deleteMessages: actionCreator<string[]>('DELETE_MESSAGE'),
+  setMessage: actionCreator<Message[]>('MESSAGE_SET'),
+  addMessage: actionCreator<Message>('MESSAGE_ADD'),
+  deleteMessages: actionCreator<string[]>('MESSAGE_DELETE'),
 };

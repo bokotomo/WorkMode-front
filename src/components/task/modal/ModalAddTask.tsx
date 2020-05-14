@@ -4,7 +4,6 @@ import Modal from 'react-modal';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 interface Props {
-  readonly socket: WebSocket;
   readonly handleOnModalOpend: Function;
   readonly handleOnAddTaskTodo: Function;
   readonly openedModalName: string;
@@ -102,7 +101,7 @@ export const ModalAddTask: React.FC<Props> = (props) => {
       alert('全て入力する必要があります。');
       return;
     }
-    props.handleOnAddTaskTodo(props.socket, {
+    props.handleOnAddTaskTodo({
       id: '',
       title,
       detail,
