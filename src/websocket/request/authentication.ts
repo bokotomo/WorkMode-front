@@ -1,5 +1,5 @@
 import { Dispatch } from 'redux';
-import { ActionModal } from '@/redux/actions/modal';
+import { ActionModal } from '@/redux/action/modal';
 
 export const requestAuthentication = (
   socket: WebSocket,

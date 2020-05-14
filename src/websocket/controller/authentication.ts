@@ -1,7 +1,7 @@
 import { Dispatch } from 'redux';
 import { Cookies } from 'react-cookie';
-import { ActionModal } from '@/redux/actions/modal';
-import { ActionAuth } from '@/redux/actions/auth';
+import { ActionModal } from '@/redux/action/modal';
+import { ActionAuth } from '@/redux/action/auth';
 
 export const authentication = (
   message: MessageEvent,

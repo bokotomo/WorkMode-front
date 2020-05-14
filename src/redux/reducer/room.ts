@@ -1,5 +1,5 @@
 import { Room } from '@/types/room';
-import { ActionRoom } from '@/redux/actions/room';
+import { ActionRoom } from '@/redux/action/room';
 import { mockRooms } from '@/mock/rooms';
 import { reducerWithInitialState } from 'typescript-fsa-reducers';
 

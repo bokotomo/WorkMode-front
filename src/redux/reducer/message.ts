@@ -1,4 +1,4 @@
-import { ActionMessage } from '@/redux/actions/message';
+import { ActionMessage } from '@/redux/action/message';
 import { Message } from '@/types/message';
 import { reducerWithInitialState } from 'typescript-fsa-reducers';
 

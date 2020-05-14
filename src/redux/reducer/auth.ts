@@ -1,4 +1,4 @@
-import { ActionAuth } from '@/redux/actions/auth';
+import { ActionAuth } from '@/redux/action/auth';
 import { reducerWithInitialState } from 'typescript-fsa-reducers';
 
 export interface StateAuth {

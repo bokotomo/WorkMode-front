@@ -1,4 +1,4 @@
-import { ActionTask } from '@/redux/actions/task';
+import { ActionTask } from '@/redux/action/task';
 import { TaskCard } from '@/types/taskBoard';
 import { reducerWithInitialState } from 'typescript-fsa-reducers';
 

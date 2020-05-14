@@ -34,7 +34,7 @@ export const onMessage = (
     case 'authentication':
       authentication(message, socket, dispatch);
       break;
-    case 'user_create':
+    case 'user_create_guest':
       userCreated(message, socket, dispatch);
       break;
     case 'task_create':

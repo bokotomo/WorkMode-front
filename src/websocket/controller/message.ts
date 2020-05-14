@@ -1,6 +1,6 @@
 import { Dispatch } from 'redux';
 import { Message } from '@/types/message';
-import { ActionMessage } from '@/redux/actions/message';
+import { ActionMessage } from '@/redux/action/message';
 import moment from 'moment';
 
 export const messageProgressIndex = (

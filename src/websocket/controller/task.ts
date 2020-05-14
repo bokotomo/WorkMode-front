@@ -1,6 +1,6 @@
 import { Dispatch } from 'redux';
 import { ResponseTaskCard } from '@/types/taskBoard';
-import { ActionTask } from '@/redux/actions/task';
+import { ActionTask } from '@/redux/action/task';
 import { adapterTask } from '@/websocket/adapter/task';
 
 export const taskCreated = (

@@ -1,8 +1,8 @@
 import { connect } from 'react-redux';
 import { Dispatch } from 'redux';
 import { TopPage } from '@/components/task/Base';
-import { ActionTask } from '@/redux/actions/task';
-import { ActionRoom } from '@/redux/actions/room';
+import { ActionTask } from '@/redux/action/task';
+import { ActionRoom } from '@/redux/action/room';
 import { AppState } from '@/redux/reducer';
 import { service } from '@/redux/service/service';
 import { TaskCard } from '@/types/taskBoard';

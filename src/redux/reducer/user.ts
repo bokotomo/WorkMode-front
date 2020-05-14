@@ -1,4 +1,4 @@
-import { ActionUser } from '@/redux/actions/user';
+import { ActionUser } from '@/redux/action/user';
 import { ActiveUser } from '@/types/activeUser';
 import { reducerWithInitialState } from 'typescript-fsa-reducers';
 

@@ -1,6 +1,6 @@
 import { Dispatch } from 'redux';
 import { onMessage, onOpen } from '@/websocket/handler';
-import { ActionWebSocket } from '@/redux/actions/socket';
+import { ActionWebSocket } from '@/redux/action/socket';
 
 export const setWebsocket = (dispatch: Dispatch) => {
   const endpoint = process.env.REACT_APP_API_ENDPOINT as string;

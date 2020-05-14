@@ -1,4 +1,4 @@
-import { ActionModal } from '@/redux/actions/modal';
+import { ActionModal } from '@/redux/action/modal';
 import { reducerWithInitialState } from 'typescript-fsa-reducers';
 
 export interface StateModal {
