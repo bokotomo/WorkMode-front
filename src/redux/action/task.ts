@@ -11,4 +11,11 @@ export const ActionTask = {
   setSelectedTask: actionCreator<TaskCard>('SET_SELECTED_TASK'),
   deleteTask: actionCreator<string>('DELETE_TASK'),
   updateTask: actionCreator<TaskCard>('UPDATE_TASK'),
+
+  requestTaskCreate: actionCreator<TaskCard>('REQUEST_TASK_CREATE'),
+  requestTaskDelete: actionCreator<string>('REQUEST_TASK_DELETE'),
+  requestTaskUpdate: actionCreator<TaskCard>('REQUEST_TASK_UPDATE'),
+  requestTaskUpdateStatus: actionCreator<TaskCard>(
+    'REQUEST_TASK_UPDATE_STATUS'
+  ),
 };

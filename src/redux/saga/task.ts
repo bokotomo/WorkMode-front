@@ -1,46 +1,85 @@
-import { Dispatch } from 'redux';
 import { Cookies } from 'react-cookie';
+import { put, takeEvery, select } from 'redux-saga/effects';
+import { ActionTask } from '@/redux/action/task';
+import { ActionModal } from '@/redux/action/modal';
 import { TaskCard } from '@/types/taskBoard';
-import {
-  requestTaskCreate,
-  requestTaskUpdateStatus,
-  requestTaskDelete,
-  requestTaskUpdate,
-} from '@/websocket/request/task';
 
-export const addTask = (
-  dispatch: Dispatch,
-  socket: WebSocket,
-  task: TaskCard
-) => {
-  const token = new Cookies().get('token') || '';
-  requestTaskCreate(socket, dispatch, token, task);
-};
+export function* watchTask() {
+  yield takeEvery(ActionTask.requestTaskCreate, create);
+  yield takeEvery(ActionTask.requestTaskDelete, deleteTask);
+  yield takeEvery(ActionTask.requestTaskUpdate, update);
+  yield takeEvery(ActionTask.requestTaskUpdateStatus, updateStatus);
+}
 
-export const updateTaskStatus = (
-  dispatch: Dispatch,
-  socket: WebSocket,
-  taskId: string,
-  status: string
-) => {
+function* create(action: { type: string; payload: TaskCard }) {
+  const task = action.payload;
   const token = new Cookies().get('token') || '';
-  requestTaskUpdateStatus(socket, dispatch, token, taskId, status);
-};
+  if (token === '') {
+    put(ActionModal.updateModalOpened('register'));
+    return;
+  }
+  const role = 'task_create';
+  const data = {
+    role,
+    token,
+    task,
+  };
+  const socket = yield select((state) => state.webSocket.socket);
+  socket.send(JSON.stringify({ action: 'sendmessage', data }));
+}
 
-export const deleteTask = (
-  dispatch: Dispatch,
-  socket: WebSocket,
-  taskId: string
-) => {
+function* deleteTask(action: { type: string; payload: string }) {
+  const taskId = action.payload;
   const token = new Cookies().get('token') || '';
-  requestTaskDelete(socket, dispatch, token, taskId);
-};
+  if (token === '') {
+    put(ActionModal.updateModalOpened('register'));
+    return;
+  }
+  const role = 'task_delete';
+  const data = {
+    role,
+    token,
+    taskId,
+  };
+  const socket = yield select((state) => state.webSocket.socket);
+  socket.send(JSON.stringify({ action: 'sendmessage', data }));
+  put(ActionTask.deleteTask(taskId));
+}
 
-export const updateTask = (
-  dispatch: Dispatch,
-  socket: WebSocket,
-  task: TaskCard
-) => {
+function* update(action: { type: string; payload: TaskCard }) {
+  const task = action.payload;
   const token = new Cookies().get('token') || '';
-  requestTaskUpdate(socket, dispatch, token, task);
-};
+  if (token === '') {
+    put(ActionModal.updateModalOpened('register'));
+    return;
+  }
+  const role = 'task_update';
+  const data = {
+    role,
+    token,
+    task,
+  };
+  const socket = yield select((state) => state.webSocket.socket);
+  socket.send(JSON.stringify({ action: 'sendmessage', data }));
+  put(ActionTask.updateTask(task));
+}
+
+function* updateStatus(action: { type: string; payload: TaskCard }) {
+  const task = action.payload;
+  const taskId = task.id;
+  const status = task.status;
+  const token = new Cookies().get('token') || '';
+  if (token === '') {
+    put(ActionModal.updateModalOpened('register'));
+    return;
+  }
+  const role = 'task_update_status';
+  const data = {
+    role,
+    token,
+    taskId,
+    status,
+  };
+  const socket = yield select((state) => state.webSocket.socket);
+  socket.send(JSON.stringify({ action: 'sendmessage', data }));
+}

@@ -37,10 +37,16 @@ const mapDispatchToProps = (dispatch: Dispatch) => {
       dispatch(ActionTask.setTaskDone(tasks)),
     handleOnSetSelectedTask: (task: TaskCard) =>
       dispatch(ActionTask.setSelectedTask(task)),
+
     handleOnAddTaskTodo: (socket: WebSocket, task: TaskCard) =>
-      service.addTask(dispatch, socket, task),
+      dispatch(ActionTask.requestTaskCreate(task)),
     updateTaskStatus: (socket: WebSocket, taskId: string, status: string) =>
       service.updateTaskStatus(dispatch, socket, taskId, status),
+    deleteTask: (socket: WebSocket, taskId: string) =>
+      service.deleteTask(dispatch, socket, taskId),
+    updateTask: (socket: WebSocket, task: TaskCard) =>
+      service.updateTask(dispatch, socket, task),
+
     handleOnSetRoom: () => dispatch(ActionRoom.setRoom()),
     registerGuestUser: (socket: WebSocket, name: string) =>
       service.userRegisterGuest(dispatch, socket, name),
@@ -52,10 +58,6 @@ const mapDispatchToProps = (dispatch: Dispatch) => {
     ) => service.userRegister(dispatch, socket, name, email, password),
     signin: (socket: WebSocket, email: string, password: string) =>
       service.userSignin(dispatch, socket, email, password),
-    deleteTask: (socket: WebSocket, taskId: string) =>
-      service.deleteTask(dispatch, socket, taskId),
-    updateTask: (socket: WebSocket, task: TaskCard) =>
-      service.updateTask(dispatch, socket, task),
   };
 };
 export default connect(mapStateToProps, mapDispatchToProps)(TopPage);
