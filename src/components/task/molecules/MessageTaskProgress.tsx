@@ -41,14 +41,14 @@ export const MessageTaskProgress: React.FC<Props> = (props) => {
       icon: style({ opacity: 0.4 }),
     },
   };
-  useEffect(() => {
-    scrollBottom();
-  });
-
   const scrollBottom = () => {
     const obj = document.getElementById('messageScrollArea');
     if (obj != null) obj.scrollTop = obj.scrollHeight;
   };
+
+  useEffect(() => {
+    scrollBottom();
+  });
 
   const onClickReaction = () =>
     dispatch(ActionModal.updateModalOpened('sendReaction'));

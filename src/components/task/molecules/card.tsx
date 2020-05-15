@@ -50,7 +50,7 @@ export const Card: React.FC<Props> = (props) => {
     } as React.CSSProperties;
   };
 
-  const openDetail = () => {
+  const onOpenDetail = () => {
     props.handleOnSetSelectedTask(props.task);
     dispatch(ActionModal.updateModalOpened('detail'));
   };
@@ -62,8 +62,8 @@ export const Card: React.FC<Props> = (props) => {
           className={css.cardHover}
           tabIndex={props.index}
           role="button"
-          onClick={openDetail}
-          onKeyDown={openDetail}
+          onClick={onOpenDetail}
+          onKeyDown={onOpenDetail}
           ref={provided.innerRef}
           {...provided.draggableProps}
           {...provided.dragHandleProps}

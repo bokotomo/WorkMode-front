@@ -158,12 +158,12 @@ export const ModalSendReaction: React.FC<Props> = (props) => {
     },
   ];
 
-  const closeModal = () => dispatch(ActionModal.updateModalOpened(''));
+  const onCloseModal = () => dispatch(ActionModal.updateModalOpened(''));
 
   return (
     <Modal
       isOpen={openedModalName === 'sendReaction'}
-      onRequestClose={closeModal}
+      onRequestClose={onCloseModal}
       style={css.modal}
       overlayClassName="modalOverLayWrapper"
       contentLabel="モーダル"
@@ -172,7 +172,7 @@ export const ModalSendReaction: React.FC<Props> = (props) => {
         <div>何を送りますか？</div>
         <FontAwesomeIcon
           className={css.times}
-          onClick={closeModal}
+          onClick={onCloseModal}
           icon="times"
         />
       </div>

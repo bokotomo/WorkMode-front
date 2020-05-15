@@ -87,7 +87,7 @@ export const TaskBoard: React.FC<Props> = (props) => {
     );
   };
 
-  const openModal = () => dispatch(ActionModal.updateModalOpened('add'));
+  const onOpenModal = () => dispatch(ActionModal.updateModalOpened('add'));
 
   return (
     <div className={css.taskBoard}>
@@ -140,7 +140,7 @@ export const TaskBoard: React.FC<Props> = (props) => {
         <div className={css.buttonTaskAdd}>
           <button
             type="button"
-            onClick={openModal}
+            onClick={onOpenModal}
             className={css.buttonTaskAddPlus}
           >
             <FontAwesomeIcon icon="plus" />

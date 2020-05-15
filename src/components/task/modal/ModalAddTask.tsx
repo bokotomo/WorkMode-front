@@ -105,7 +105,9 @@ export const ModalAddTask: React.FC<Props> = (props) => {
 
   const closeModal = () => dispatch(ActionModal.updateModalOpened(''));
 
-  const addTask = () => {
+  const onCloseModal = () => closeModal();
+
+  const onAddTask = () => {
     if (title === '' || detail === '' || time === 0) {
       alert('全て入力する必要があります。');
       return;
@@ -121,19 +123,19 @@ export const ModalAddTask: React.FC<Props> = (props) => {
     closeModal();
   };
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) =>
+  const onChangeTitle = (e: React.ChangeEvent<HTMLInputElement>) =>
     setTitle(e.target.value);
 
-  const handleChangeDetail = (e: React.ChangeEvent<HTMLTextAreaElement>) =>
+  const onChangeDetail = (e: React.ChangeEvent<HTMLTextAreaElement>) =>
     setDetail(e.target.value);
 
-  const handleHourChange = (e: React.ChangeEvent<HTMLInputElement>) =>
+  const onChangeHour = (e: React.ChangeEvent<HTMLInputElement>) =>
     setTime(Number(e.target.value));
 
   return (
     <Modal
       isOpen={openedModalName === 'add'}
-      onRequestClose={closeModal}
+      onRequestClose={onCloseModal}
       style={css.modal}
       overlayClassName="modalOverLayWrapper"
       contentLabel="モーダル"
@@ -142,14 +144,14 @@ export const ModalAddTask: React.FC<Props> = (props) => {
         <div>タスクを追加</div>
         <FontAwesomeIcon
           className={css.times}
-          onClick={closeModal}
+          onClick={onCloseModal}
           icon="times"
         />
       </div>
 
       <div style={{ marginTop: 20 }}>
         <input
-          onChange={handleChange}
+          onChange={onChangeTitle}
           className={css.inputTitle}
           placeholder="わかりやすいタスク名"
           maxLength={25}
@@ -157,7 +159,7 @@ export const ModalAddTask: React.FC<Props> = (props) => {
       </div>
       <div style={{ marginTop: 20 }}>
         <textarea
-          onChange={handleChangeDetail}
+          onChange={onChangeDetail}
           className={css.textarea}
           placeholder="詳細を書きます。"
           maxLength={200}
@@ -167,7 +169,7 @@ export const ModalAddTask: React.FC<Props> = (props) => {
         予定時間：
         <input
           type="number"
-          onChange={handleHourChange}
+          onChange={onChangeHour}
           className={css.time}
           placeholder="1"
           min={0.5}
@@ -176,7 +178,7 @@ export const ModalAddTask: React.FC<Props> = (props) => {
         />
       </div>
 
-      <button type="button" className={css.button.ok} onClick={addTask}>
+      <button type="button" className={css.button.ok} onClick={onAddTask}>
         追加
       </button>
     </Modal>

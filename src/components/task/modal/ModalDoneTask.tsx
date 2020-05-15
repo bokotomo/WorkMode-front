@@ -58,24 +58,24 @@ export const ModalDoneTask: React.FC<Props> = (props) => {
     }),
   };
 
-  const closeModal = () => dispatch(ActionModal.updateModalOpened(''));
+  const onCloseModal = () => dispatch(ActionModal.updateModalOpened(''));
 
   return (
     <Modal
       isOpen={openedModalName === 'done'}
-      onRequestClose={closeModal}
+      onRequestClose={onCloseModal}
       style={css.modal}
       overlayClassName="modalOverLayWrapper"
       contentLabel="モーダル"
     >
-      <button type="button" onClick={closeModal}>
+      <button type="button" onClick={onCloseModal}>
         <FontAwesomeIcon icon="times" />
       </button>
       <div>タイトル</div>
-      <button type="button" className={css.buttonOK} onClick={closeModal}>
+      <button type="button" className={css.buttonOK} onClick={onCloseModal}>
         完了
       </button>
-      <button type="button" className={css.buttonNO} onClick={closeModal}>
+      <button type="button" className={css.buttonNO} onClick={onCloseModal}>
         キャンセル
       </button>
     </Modal>

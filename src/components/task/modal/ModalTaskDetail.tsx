@@ -105,8 +105,8 @@ export const ModalTaskDetail: React.FC<Props> = (props) => {
   };
 
   const [isEditMode, setIsEditMode] = useState(false);
-  let detail = props.selectedTask.detail as string;
-  let time = props.selectedTask.time as number;
+  const [detail, setDetail] = useState(props.selectedTask.detail);
+  const [time, setTime] = useState(props.selectedTask.time);
 
   const getDetail = (text: string) => {
     return text.split('\n').map((p, index) => {
@@ -127,22 +127,9 @@ export const ModalTaskDetail: React.FC<Props> = (props) => {
     );
   };
 
-  const editButtonText = () => {
-    if (isEditMode) return <>保存</>;
-    return <>編集</>;
-  };
-
   const closeModal = () => {
     setIsEditMode(false);
     dispatch(ActionModal.updateModalOpened(''));
-  };
-
-  const handleChangeDetail = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
-    detail = e.target.value;
-  };
-
-  const handleHourChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    time = Number(e.target.value);
   };
 
   const deleteTask = () => {
@@ -152,7 +139,15 @@ export const ModalTaskDetail: React.FC<Props> = (props) => {
     closeModal();
   };
 
-  const noButton = () => {
+  const onCloseModal = () => closeModal();
+
+  const onChangeDetail = (e: React.ChangeEvent<HTMLTextAreaElement>) =>
+    setDetail(e.target.value);
+
+  const onChangeHour = (e: React.ChangeEvent<HTMLInputElement>) =>
+    setTime(parseInt(e.target.value, 10));
+
+  const onNoButton = () => {
     if (isEditMode) {
       setIsEditMode(false);
       return;
@@ -160,7 +155,7 @@ export const ModalTaskDetail: React.FC<Props> = (props) => {
     deleteTask();
   };
 
-  const okButton = () => {
+  const onOkButton = () => {
     if (!isEditMode) {
       setIsEditMode(true);
       return;
@@ -185,7 +180,7 @@ export const ModalTaskDetail: React.FC<Props> = (props) => {
   return (
     <Modal
       isOpen={openedModalName === 'detail'}
-      onRequestClose={closeModal}
+      onRequestClose={onCloseModal}
       style={css.modal}
       overlayClassName="modalOverLayWrapper"
       contentLabel="モーダル"
@@ -194,7 +189,7 @@ export const ModalTaskDetail: React.FC<Props> = (props) => {
         <div>{props.selectedTask.title}</div>
         <FontAwesomeIcon
           className={css.times}
-          onClick={closeModal}
+          onClick={onCloseModal}
           icon="times"
         />
       </div>
@@ -202,7 +197,7 @@ export const ModalTaskDetail: React.FC<Props> = (props) => {
       <div style={{ marginTop: 20 }}>
         {isEditMode && (
           <textarea
-            onChange={handleChangeDetail}
+            onChange={onChangeDetail}
             className={css.textarea}
             placeholder="詳細を書きます。"
             maxLength={200}
@@ -217,7 +212,7 @@ export const ModalTaskDetail: React.FC<Props> = (props) => {
         {isEditMode && (
           <input
             type="number"
-            onChange={handleHourChange}
+            onChange={onChangeHour}
             className={css.input}
             placeholder="1"
             min={0.5}
@@ -231,11 +226,12 @@ export const ModalTaskDetail: React.FC<Props> = (props) => {
 
       <div style={{ marginTop: 20 }}>{getStartTime()}</div>
 
-      <button type="button" onClick={okButton} className={css.button.ok}>
-        {editButtonText()}
+      <button type="button" onClick={onOkButton} className={css.button.ok}>
+        {isEditMode && <>保存</>}
+        {!isEditMode && <>編集</>}
       </button>
 
-      <button type="button" onClick={noButton} className={css.button.no}>
+      <button type="button" onClick={onNoButton} className={css.button.no}>
         {!isEditMode && <>削除</>}
         {isEditMode && <>キャンセル</>}
       </button>

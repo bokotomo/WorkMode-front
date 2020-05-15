@@ -109,7 +109,7 @@ export const ModalRegisterUser: React.FC<Props> = (props) => {
 
   const closeModal = () => dispatch(ActionModal.updateModalOpened(''));
 
-  const createGuestUser = () => {
+  const onCreateGuestUser = () => {
     if (guestName === '') {
       alert('全て入力する必要があります。');
       return;
@@ -119,7 +119,7 @@ export const ModalRegisterUser: React.FC<Props> = (props) => {
     setNickName('');
   };
 
-  const signup = () => {
+  const onSignup = () => {
     if (email === '' || nickName === '' || password === '') {
       alert('全て入力する必要があります。');
       return;
@@ -131,7 +131,7 @@ export const ModalRegisterUser: React.FC<Props> = (props) => {
     props.registerUser(email, nickName, password);
   };
 
-  const signin = () => {
+  const onSignin = () => {
     if (loginEmail === '' || loginPassword === '') {
       alert('全て入力する必要があります。');
       return;
@@ -143,24 +143,24 @@ export const ModalRegisterUser: React.FC<Props> = (props) => {
     props.signin(loginEmail, loginPassword);
   };
 
-  const changeRegisterMode = () => setIsRegisterMode(!isRegisterMode);
+  const onChangeRegisterMode = () => setIsRegisterMode(!isRegisterMode);
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) =>
+  const onChange = (e: React.ChangeEvent<HTMLInputElement>) =>
     setGuestName(e.target.value);
 
-  const handleEmail = (e: React.ChangeEvent<HTMLInputElement>) =>
+  const onChangeEmail = (e: React.ChangeEvent<HTMLInputElement>) =>
     setEmail(e.target.value);
 
-  const handlePassword = (e: React.ChangeEvent<HTMLInputElement>) =>
-    setPassword(e.target.value);
-
-  const handleNickName = (e: React.ChangeEvent<HTMLInputElement>) =>
+  const onChangeNickName = (e: React.ChangeEvent<HTMLInputElement>) =>
     setNickName(e.target.value);
 
-  const handleLoginEmail = (e: React.ChangeEvent<HTMLInputElement>) =>
+  const onChangePassword = (e: React.ChangeEvent<HTMLInputElement>) =>
+    setPassword(e.target.value);
+
+  const onChangeLoginEmail = (e: React.ChangeEvent<HTMLInputElement>) =>
     setLoginEmail(e.target.value);
 
-  const handleLoginPassword = (e: React.ChangeEvent<HTMLInputElement>) =>
+  const onChangeLoginPassword = (e: React.ChangeEvent<HTMLInputElement>) =>
     setLoginPassword(e.target.value);
 
   return (
@@ -178,7 +178,7 @@ export const ModalRegisterUser: React.FC<Props> = (props) => {
           <div style={{ marginTop: 20 }}>
             <input
               value={guestName}
-              onChange={handleChange}
+              onChange={onChange}
               className={css.inputName}
               placeholder="ニックネーム"
               maxLength={12}
@@ -187,7 +187,7 @@ export const ModalRegisterUser: React.FC<Props> = (props) => {
           <button
             type="button"
             className={css.button.ok}
-            onClick={createGuestUser}
+            onClick={onCreateGuestUser}
           >
             ゲスト登録する
           </button>
@@ -204,7 +204,7 @@ export const ModalRegisterUser: React.FC<Props> = (props) => {
               <input
                 type="email"
                 value={loginEmail}
-                onChange={handleLoginEmail}
+                onChange={onChangeLoginEmail}
                 className={css.inputName}
                 placeholder="メールアドレス"
                 maxLength={100}
@@ -214,14 +214,14 @@ export const ModalRegisterUser: React.FC<Props> = (props) => {
               <input
                 type="password"
                 value={loginPassword}
-                onChange={handleLoginPassword}
+                onChange={onChangeLoginPassword}
                 className={css.inputName}
                 placeholder="パスワード"
                 minLength={8}
                 maxLength={50}
               />
             </div>
-            <button type="button" className={css.button.ok} onClick={signin}>
+            <button type="button" className={css.button.ok} onClick={onSignin}>
               ログイン
             </button>
           </div>
@@ -236,7 +236,7 @@ export const ModalRegisterUser: React.FC<Props> = (props) => {
               <input
                 type="text"
                 value={nickName}
-                onChange={handleNickName}
+                onChange={onChangeNickName}
                 className={css.inputName}
                 placeholder="ニックネーム"
                 maxLength={50}
@@ -246,7 +246,7 @@ export const ModalRegisterUser: React.FC<Props> = (props) => {
               <input
                 type="email"
                 value={email}
-                onChange={handleEmail}
+                onChange={onChangeEmail}
                 className={css.inputName}
                 placeholder="メールアドレス"
                 maxLength={100}
@@ -256,14 +256,14 @@ export const ModalRegisterUser: React.FC<Props> = (props) => {
               <input
                 type="password"
                 value={password}
-                onChange={handlePassword}
+                onChange={onChangePassword}
                 className={css.inputName}
                 placeholder="パスワード(8文字以上/大文字/小文字/記号/数字含む)"
                 minLength={8}
                 maxLength={50}
               />
             </div>
-            <button type="button" className={css.button.ok} onClick={signup}>
+            <button type="button" className={css.button.ok} onClick={onSignup}>
               登録をする
             </button>
           </div>
@@ -272,7 +272,7 @@ export const ModalRegisterUser: React.FC<Props> = (props) => {
         <button
           type="button"
           className={css.button.register}
-          onClick={changeRegisterMode}
+          onClick={onChangeRegisterMode}
         >
           {!isRegisterMode && <>新規登録はこちら</>}
           {isRegisterMode && <>ログインはこちら</>}
