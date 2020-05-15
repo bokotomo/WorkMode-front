@@ -1,6 +1,6 @@
-import { ActionUser } from '@/redux/actions/user';
+import { ActionUser } from '@/redux/action/user';
 import { ActiveUser } from '@/types/activeUser';
-import { reducerWithInitialState } from '../../../node_modules/typescript-fsa-reducers';
+import { reducerWithInitialState } from 'typescript-fsa-reducers';
 
 export interface StateUser {
   readonly activeUsers: ActiveUser[];

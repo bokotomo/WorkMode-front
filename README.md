@@ -13,3 +13,20 @@ npm run lint-fix
 # API
 
 https://github.com/bokotomo/WorkMode-api
+
+## メモ
+
+・reduxHooks はモーダル処理だけに限定して使用してみてる。  
+あまり広く使いすぎると関心がごちゃごちゃになるので、reduxhooks は用途を制限して使う方がいい気がしてる。  
+・onClick とかの Dom から呼び出す関数名には、on プレフィックスを付けてる。
+
+## Check Production
+
+check production by nginx and docker
+
+```
+cd ./infrastructure/docker
+docker-compose up -d
+
+// open http://localhost:9998
+```

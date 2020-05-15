@@ -7,10 +7,12 @@ import './css/index.css';
 import store from './redux/store';
 
 ReactDOM.render(
-  <CookiesProvider>
-    <Provider store={store}>
-      <App />
-    </Provider>
-  </CookiesProvider>,
+  <React.StrictMode>
+    <CookiesProvider>
+      <Provider store={store}>
+        <App />
+      </Provider>
+    </CookiesProvider>
+  </React.StrictMode>,
   document.getElementById('root')
 );

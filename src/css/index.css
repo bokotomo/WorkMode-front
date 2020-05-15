@@ -23,9 +23,26 @@ textarea:focus {
   outline: 0;
 }
 
+.modalOverLayWrapper {
+  position: absolute;
+  background: #4955776e;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+}
+
 button {
   text-align: left;
   border: none;
   background: none;
   cursor: pointer;
+}
+
+input:focus,
+select:focus,
+textarea:focus,
+button:focus {
+  outline: none;
 }

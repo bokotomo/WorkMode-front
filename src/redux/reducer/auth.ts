@@ -1,5 +1,6 @@
-import { ActionAuth } from '@/redux/actions/auth';
-import { reducerWithInitialState } from '../../../node_modules/typescript-fsa-reducers';
+import { ActionAuth } from '@/redux/action/auth';
+import { reducerWithInitialState } from 'typescript-fsa-reducers';
+import { Cookies } from 'react-cookie';
 
 export interface StateAuth {
   readonly id: string;
@@ -11,19 +12,19 @@ export interface StateAuth {
 export const initialStateAuth: StateAuth = {
   id: '',
   name: '',
-  token: '',
+  token: new Cookies().get('token') || '',
   isLogined: false,
 };
 
 export const ReducerAuth = reducerWithInitialState(initialStateAuth).case(
   ActionAuth.setAuth,
-  (state, reducerAuthUser) => {
+  (state, user) => {
     return {
       ...state,
-      id: reducerAuthUser.id,
-      name: reducerAuthUser.name,
-      token: reducerAuthUser.token,
-      isLogined: reducerAuthUser.isLogined,
+      id: user.id,
+      name: user.name,
+      token: user.token,
+      isLogined: user.isLogined,
     };
   }
 );

@@ -1,8 +1,6 @@
-import { ActionMessage } from '@/redux/actions/message';
-import { initialStateAuth } from '@/redux/reducer/auth';
+import { ActionMessage } from '@/redux/action/message';
 import { Message } from '@/types/message';
-import { mockMessages } from '@/mock/messages';
-import { reducerWithInitialState } from '../../../node_modules/typescript-fsa-reducers';
+import { reducerWithInitialState } from 'typescript-fsa-reducers';
 
 export interface StateMessage {
   readonly messages: Message[];
@@ -13,23 +11,21 @@ export const initialStateMessage: StateMessage = {
 };
 
 export const ReducerMessage = reducerWithInitialState(initialStateMessage)
-  .case(ActionMessage.setMessage, (state) => {
-    return { ...state, messages: mockMessages };
+  .case(ActionMessage.setMessage, (state, messages) => {
+    return { ...state, messages };
   })
   .case(ActionMessage.addMessage, (state, message) => {
     return {
       ...state,
-      messages: [
-        ...state.messages,
-        {
-          id: message.id,
-          userName: initialStateAuth.name,
-          userColor: '#8A29AD',
-          text: message.title,
-          progress: message.progress,
-          status: message.status,
-          createdAt: new Date(),
-        },
-      ],
+      messages: [...state.messages, message],
+    };
+  })
+  .case(ActionMessage.deleteMessages, (state, messageIds) => {
+    const messages = state.messages.filter(
+      (message) => !messageIds.includes(message.id)
+    );
+    return {
+      ...state,
+      messages,
     };
   });
