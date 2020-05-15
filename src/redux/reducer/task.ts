@@ -25,16 +25,16 @@ export const initialStateTask: StateTask = {
 };
 
 export const ReducerTask = reducerWithInitialState(initialStateTask)
-  .case(ActionTask.setTaskTodo, (state, todos) => {
+  .case(ActionTask.setTodo, (state, todos) => {
     return { ...state, todos };
   })
-  .case(ActionTask.addTaskTodo, (state, todo) => {
+  .case(ActionTask.addTodo, (state, todo) => {
     return { ...state, todos: [...state.todos, todo] };
   })
-  .case(ActionTask.setTaskInProgresses, (state, inProgresses) => {
+  .case(ActionTask.setInProgresses, (state, inProgresses) => {
     return { ...state, inProgresses };
   })
-  .case(ActionTask.setTaskDone, (state, dones) => {
+  .case(ActionTask.setDone, (state, dones) => {
     return { ...state, dones };
   })
   .case(ActionTask.setSelectedTask, (state, task) => {

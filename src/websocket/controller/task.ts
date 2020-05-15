@@ -13,7 +13,7 @@ export const taskCreated = (
   }
   const data: ResponseTaskCreated = JSON.parse(message.data);
   const taskTodos = data.taskTodos.map((item) => adapterTask(item));
-  dispatch(ActionTask.setTaskTodo(taskTodos));
+  dispatch(ActionTask.setTodo(taskTodos));
 };
 
 export const taskIndex = (
@@ -30,9 +30,9 @@ export const taskIndex = (
   const todoList = data.todoList.map((item) => adapterTask(item));
   const inprogressList = data.inprogressList.map((item) => adapterTask(item));
   const doneList = data.doneList.map((item) => adapterTask(item));
-  dispatch(ActionTask.setTaskTodo(todoList));
-  dispatch(ActionTask.setTaskInProgresses(inprogressList));
-  dispatch(ActionTask.setTaskDone(doneList));
+  dispatch(ActionTask.setTodo(todoList));
+  dispatch(ActionTask.setInProgresses(inprogressList));
+  dispatch(ActionTask.setDone(doneList));
 };
 
 export const taskUpdateStatus = (

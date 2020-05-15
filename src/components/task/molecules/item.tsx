@@ -5,7 +5,7 @@ import { TaskCard } from '@/types/taskBoard';
 import { Card } from '@/components/task/molecules/card';
 
 interface Props {
-  readonly handleOnSetSelectedTask: Function;
+  readonly setSelectedTask: Function;
   readonly items: TaskCard[];
   readonly droppableId: string;
   readonly isCenter: boolean;
@@ -32,7 +32,7 @@ export const Item: React.FC<Props> = (props) => {
               key={task.id}
               task={task}
               index={index}
-              handleOnSetSelectedTask={props.handleOnSetSelectedTask}
+              setSelectedTask={props.setSelectedTask}
             />
           ))}
           {provided.placeholder}

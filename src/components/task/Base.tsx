@@ -11,7 +11,7 @@ import { ModalTaskDetail } from '@/components/task/modal/ModalTaskDetail';
 import { ModalRegisterUser } from '@/components/task/modal/ModalRegisterUser';
 import { ModalSendReaction } from '@/components/task/modal/ModalSendReaction';
 
-interface OwnProps {
+interface Props {
   readonly todos: TaskCard[];
   readonly inProgresses: TaskCard[];
   readonly dones: TaskCard[];
@@ -22,28 +22,24 @@ interface OwnProps {
   readonly myId: string;
   readonly myName: string;
   readonly isLogined: boolean;
-}
-interface Handler {
   setWebSocket(): void;
-  handleOnSetTaskTodo(tasks: TaskCard[]): void;
-  handleOnSetTaskInProgresses(tasks: TaskCard[]): void;
-  handleOnSetTaskDone(tasks: TaskCard[]): void;
-  handleOnSetSelectedTask(task: TaskCard): void;
-  handleOnAddTaskTodo(task: TaskCard): void;
+  setTaskTodo(tasks: TaskCard[]): void;
+  setTaskInProgresses(tasks: TaskCard[]): void;
+  setTaskDone(tasks: TaskCard[]): void;
+  setSelectedTask(task: TaskCard): void;
+  addTaskTodo(task: TaskCard): void;
   updateTaskStatus(taskId: string, status: string): void;
-  handleOnSetRoom(): void;
+  setRoom(): void;
   registerGuestUser(name: string): void;
   registerUser(email: string, name: string, password: string): void;
   signin(email: string, password: string): void;
   deleteTask(taskId: string): void;
   updateTask(task: TaskCard): void;
 }
-
-type Props = OwnProps & Handler;
 export class TopPage extends React.Component<Props> {
   componentDidMount() {
     this.props.setWebSocket();
-    this.props.handleOnSetRoom();
+    this.props.setRoom();
   }
 
   // 各コンポーネントからreduxを呼び出すこともできるが、
@@ -64,7 +60,7 @@ export class TopPage extends React.Component<Props> {
           registerUser={this.props.registerUser}
           signin={this.props.signin}
         />
-        <ModalAddTask handleOnAddTaskTodo={this.props.handleOnAddTaskTodo} />
+        <ModalAddTask addTaskTodo={this.props.addTaskTodo} />
         <ModalDoneTask />
         <ModalTaskDetail
           updateTask={this.props.updateTask}
@@ -73,10 +69,10 @@ export class TopPage extends React.Component<Props> {
         />
         <ModalSendReaction />
         <TaskBoard
-          handleOnSetSelectedTask={this.props.handleOnSetSelectedTask}
-          handleOnSetTaskTodo={this.props.handleOnSetTaskTodo}
-          handleOnSetTaskInProgresses={this.props.handleOnSetTaskInProgresses}
-          handleOnSetTaskDone={this.props.handleOnSetTaskDone}
+          setSelectedTask={this.props.setSelectedTask}
+          setTaskTodo={this.props.setTaskTodo}
+          setTaskInProgresses={this.props.setTaskInProgresses}
+          setTaskDone={this.props.setTaskDone}
           updateTaskStatus={this.props.updateTaskStatus}
           todos={this.props.todos}
           inProgresses={this.props.inProgresses}

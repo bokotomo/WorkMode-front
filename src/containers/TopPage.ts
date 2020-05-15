@@ -30,18 +30,15 @@ const mapDispatchToProps = (dispatch: Dispatch) => {
     setWebSocket: () => service.setWebsocket(dispatch),
 
     // task
-    handleOnSetTaskTodo: (tasks: TaskCard[]) =>
-      dispatch(ActionTask.setTaskTodo(tasks)),
-    handleOnSetTaskInProgresses: (tasks: TaskCard[]) =>
-      dispatch(ActionTask.setTaskInProgresses(tasks)),
-    handleOnSetTaskDone: (tasks: TaskCard[]) =>
-      dispatch(ActionTask.setTaskDone(tasks)),
-    handleOnSetSelectedTask: (task: TaskCard) =>
+    setTaskTodo: (tasks: TaskCard[]) => dispatch(ActionTask.setTodo(tasks)),
+    setTaskInProgresses: (tasks: TaskCard[]) =>
+      dispatch(ActionTask.setInProgresses(tasks)),
+    setTaskDone: (tasks: TaskCard[]) => dispatch(ActionTask.setDone(tasks)),
+    setSelectedTask: (task: TaskCard) =>
       dispatch(ActionTask.setSelectedTask(task)),
 
     // task request
-    handleOnAddTaskTodo: (task: TaskCard) =>
-      dispatch(ActionTask.requestCreate(task)),
+    addTaskTodo: (task: TaskCard) => dispatch(ActionTask.requestCreate(task)),
     updateTaskStatus: (taskId: string, status: string) =>
       dispatch(
         ActionTask.requestUpdateStatus({ id: taskId, status } as TaskCard)
@@ -50,7 +47,7 @@ const mapDispatchToProps = (dispatch: Dispatch) => {
     updateTask: (task: TaskCard) => dispatch(ActionTask.requestUpdate(task)),
 
     // room
-    handleOnSetRoom: () => dispatch(ActionRoom.setRoom()),
+    setRoom: () => dispatch(ActionRoom.setRoom()),
 
     // user request
     registerGuestUser: (name: string) =>

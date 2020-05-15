@@ -1,4 +1,3 @@
-import { Cookies } from 'react-cookie';
 import { put, takeEvery, select } from 'redux-saga/effects';
 import { ActionTask } from '@/redux/action/task';
 import { ActionModal } from '@/redux/action/modal';
@@ -13,7 +12,7 @@ export function* watchTask() {
 
 function* create(action: { type: string; payload: TaskCard }) {
   const task = action.payload;
-  const token = new Cookies().get('token') || '';
+  const token = yield select((state) => state.auth.token);
   if (token === '') {
     yield put(ActionModal.updateModalOpened('register'));
     return;
@@ -30,7 +29,7 @@ function* create(action: { type: string; payload: TaskCard }) {
 
 function* deleteTask(action: { type: string; payload: string }) {
   const taskId = action.payload;
-  const token = new Cookies().get('token') || '';
+  const token = yield select((state) => state.auth.token);
   if (token === '') {
     yield put(ActionModal.updateModalOpened('register'));
     return;
@@ -48,7 +47,7 @@ function* deleteTask(action: { type: string; payload: string }) {
 
 function* update(action: { type: string; payload: TaskCard }) {
   const task = action.payload;
-  const token = new Cookies().get('token') || '';
+  const token = yield select((state) => state.auth.token);
   if (token === '') {
     yield put(ActionModal.updateModalOpened('register'));
     return;
@@ -66,7 +65,7 @@ function* update(action: { type: string; payload: TaskCard }) {
 
 function* updateStatus(action: { type: string; payload: TaskCard }) {
   const task = action.payload;
-  const token = new Cookies().get('token') || '';
+  const token = yield select((state) => state.auth.token);
   if (token === '') {
     yield put(ActionModal.updateModalOpened('register'));
     return;

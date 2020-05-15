@@ -8,10 +8,10 @@ import { TaskArea } from '@/components/task/molecules/taskArea';
 import { IconCafe } from '@/components/svg/IconCafe';
 
 interface Props {
-  readonly handleOnSetSelectedTask: Function;
-  readonly handleOnSetTaskTodo: Function;
-  readonly handleOnSetTaskInProgresses: Function;
-  readonly handleOnSetTaskDone: Function;
+  readonly setSelectedTask: Function;
+  readonly setTaskTodo: Function;
+  readonly setTaskInProgresses: Function;
+  readonly setTaskDone: Function;
   readonly updateTaskStatus: Function;
   readonly todos: TaskCard[];
   readonly inProgresses: TaskCard[];
@@ -126,10 +126,10 @@ export const TaskBoard: React.FC<Props> = (props) => {
           )}
           {!taskNotExist() && (
             <TaskArea
-              handleOnSetTaskTodo={props.handleOnSetTaskTodo}
-              handleOnSetTaskInProgresses={props.handleOnSetTaskInProgresses}
-              handleOnSetTaskDone={props.handleOnSetTaskDone}
-              handleOnSetSelectedTask={props.handleOnSetSelectedTask}
+              setTaskTodo={props.setTaskTodo}
+              setTaskInProgresses={props.setTaskInProgresses}
+              setTaskDone={props.setTaskDone}
+              setSelectedTask={props.setSelectedTask}
               updateTaskStatus={props.updateTaskStatus}
               todos={props.todos}
               inProgresses={props.inProgresses}

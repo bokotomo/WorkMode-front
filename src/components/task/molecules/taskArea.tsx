@@ -8,10 +8,10 @@ import { TaskCard } from '@/types/taskBoard';
 import { Item } from '@/components/task/molecules/item';
 
 interface Props {
-  readonly handleOnSetTaskTodo: Function;
-  readonly handleOnSetTaskInProgresses: Function;
-  readonly handleOnSetTaskDone: Function;
-  readonly handleOnSetSelectedTask: Function;
+  readonly setTaskTodo: Function;
+  readonly setTaskInProgresses: Function;
+  readonly setTaskDone: Function;
+  readonly setSelectedTask: Function;
   readonly updateTaskStatus: Function;
   readonly todos: TaskCard[];
   readonly inProgresses: TaskCard[];
@@ -98,21 +98,21 @@ export const TaskArea: React.FC<Props> = (props) => {
           result.source.index,
           result.destination.index
         );
-        props.handleOnSetTaskTodo(todos);
+        props.setTaskTodo(todos);
       } else if (result.source.droppableId === 'inProgressArea') {
         const inProgresses = reorder(
           props.inProgresses,
           result.source.index,
           result.destination.index
         );
-        props.handleOnSetTaskInProgresses(inProgresses);
+        props.setTaskInProgresses(inProgresses);
       } else {
         const dones = reorder(
           props.dones,
           result.source.index,
           result.destination.index
         );
-        props.handleOnSetTaskDone(dones);
+        props.setTaskDone(dones);
       }
     } else {
       const res = move(
@@ -121,9 +121,9 @@ export const TaskArea: React.FC<Props> = (props) => {
         result.source,
         result.destination
       );
-      props.handleOnSetTaskTodo(res.todos);
-      props.handleOnSetTaskInProgresses(res.inProgresses);
-      props.handleOnSetTaskDone(res.dones);
+      props.setTaskTodo(res.todos);
+      props.setTaskInProgresses(res.inProgresses);
+      props.setTaskDone(res.dones);
     }
   };
 
@@ -131,19 +131,19 @@ export const TaskArea: React.FC<Props> = (props) => {
     <DragDropContext onDragEnd={onDragEnd}>
       <div style={{ display: 'flex', height: '100%' }}>
         <Item
-          handleOnSetSelectedTask={props.handleOnSetSelectedTask}
+          setSelectedTask={props.setSelectedTask}
           items={props.todos}
           droppableId="todoArea"
           isCenter={false}
         />
         <Item
-          handleOnSetSelectedTask={props.handleOnSetSelectedTask}
+          setSelectedTask={props.setSelectedTask}
           items={props.inProgresses}
           droppableId="inProgressArea"
           isCenter={true}
         />
         <Item
-          handleOnSetSelectedTask={props.handleOnSetSelectedTask}
+          setSelectedTask={props.setSelectedTask}
           items={props.dones}
           droppableId="doneArea"
           isCenter={false}

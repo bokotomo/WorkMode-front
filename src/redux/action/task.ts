@@ -4,10 +4,10 @@ import { actionCreatorFactory } from 'typescript-fsa';
 const actionCreator = actionCreatorFactory();
 
 export const ActionTask = {
-  setTaskTodo: actionCreator<TaskCard[]>('TASK_SET_TODO'),
-  addTaskTodo: actionCreator<TaskCard>('TASK_ADD_TODO'),
-  setTaskInProgresses: actionCreator<TaskCard[]>('TASK_SET_INPROGRESSES'),
-  setTaskDone: actionCreator<TaskCard[]>('TASK_SET_DONE'),
+  setTodo: actionCreator<TaskCard[]>('TASK_SET_TODO'),
+  addTodo: actionCreator<TaskCard>('TASK_ADD_TODO'),
+  setInProgresses: actionCreator<TaskCard[]>('TASK_SET_INPROGRESSES'),
+  setDone: actionCreator<TaskCard[]>('TASK_SET_DONE'),
   setSelectedTask: actionCreator<TaskCard>('TASK_SET_SELECTED'),
   delete: actionCreator<string>('TASK_DELETE'),
   update: actionCreator<TaskCard>('TASK_UPDATE'),

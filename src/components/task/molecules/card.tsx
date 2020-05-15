@@ -11,7 +11,7 @@ import { TaskCard } from '@/types/taskBoard';
 
 interface Props {
   readonly task: TaskCard;
-  readonly handleOnSetSelectedTask: Function;
+  readonly setSelectedTask: Function;
   readonly index: number;
 }
 export const Card: React.FC<Props> = (props) => {
@@ -51,7 +51,7 @@ export const Card: React.FC<Props> = (props) => {
   };
 
   const onOpenDetail = () => {
-    props.handleOnSetSelectedTask(props.task);
+    props.setSelectedTask(props.task);
     dispatch(ActionModal.updateModalOpened('detail'));
   };
 

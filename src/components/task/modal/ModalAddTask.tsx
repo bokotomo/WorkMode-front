@@ -8,7 +8,7 @@ import Modal from 'react-modal';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 interface Props {
-  handleOnAddTaskTodo(task: TaskCard): void;
+  addTaskTodo(task: TaskCard): void;
 }
 export const ModalAddTask: React.FC<Props> = (props) => {
   const dispatch = useDispatch();
@@ -112,7 +112,7 @@ export const ModalAddTask: React.FC<Props> = (props) => {
       alert('全て入力する必要があります。');
       return;
     }
-    props.handleOnAddTaskTodo({
+    props.addTaskTodo({
       id: '',
       title,
       detail,
