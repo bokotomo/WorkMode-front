@@ -62,7 +62,7 @@ export const onMessage = (
       activeUserSearch(message, socket, dispatch);
       break;
     default: {
-      const output = `not found routing:  ${JSON.stringify(message.data)}`;
+      const output = `存在しないroleです:  ${JSON.stringify(message.data)}`;
       throw new Error(output);
     }
   }

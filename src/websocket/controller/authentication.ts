@@ -8,11 +8,10 @@ export const authentication = (
   socket: WebSocket,
   dispatch: Dispatch
 ) => {
-  interface ResponseAuthentication {
+  const data: {
     isLogined: Boolean;
     id: string;
-  }
-  const data: ResponseAuthentication = JSON.parse(message.data);
+  } = JSON.parse(message.data);
   if (!data.isLogined) dispatch(ActionModal.updateModalOpened('register'));
 
   const token = new Cookies().get('token') || '';

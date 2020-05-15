@@ -18,6 +18,7 @@ function* register(action: { type: string; payload: User }) {
     name: user.name,
     password: user.password,
   };
+  console.log(data);
   const socket = yield select((state) => state.webSocket.socket);
   socket.send(JSON.stringify({ action: 'sendmessage', data }));
 }
@@ -43,6 +44,7 @@ function* signin(action: { type: string; payload: User }) {
     email: user.email,
     password: user.password,
   };
+  console.log(data);
   const socket = yield select((state) => state.webSocket.socket);
   socket.send(JSON.stringify({ action: 'sendmessage', data }));
 }
