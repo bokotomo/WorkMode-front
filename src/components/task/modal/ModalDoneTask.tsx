@@ -28,34 +28,36 @@ export const ModalDoneTask: React.FC<Props> = (props) => {
         boxShadow: '0px 0px 6px #0000005c',
       },
     },
-    buttonOK: style({
-      marginTop: 20,
-      fontSize: 18,
-      color: 'white',
-      background: 'linear-gradient(125deg, #66B7FF, #0052de)',
-      borderRadius: 50,
-      border: 'none',
-      width: '100%',
-      textAlign: 'center',
-      height: 40,
-      lineHeight: '40px',
-      boxSizing: 'border-box',
-      cursor: 'pointer',
-    }),
-    buttonNO: style({
-      marginTop: 20,
-      fontSize: 18,
-      color: 'white',
-      background: '#4C6276',
-      borderRadius: 50,
-      border: 'none',
-      width: '100%',
-      textAlign: 'center',
-      height: 40,
-      lineHeight: '40px',
-      boxSizing: 'border-box',
-      cursor: 'pointer',
-    }),
+    button: {
+      ok: style({
+        marginTop: 20,
+        fontSize: 18,
+        color: 'white',
+        background: 'linear-gradient(125deg, #66B7FF, #0052de)',
+        borderRadius: 50,
+        border: 'none',
+        width: '100%',
+        textAlign: 'center',
+        height: 40,
+        lineHeight: '40px',
+        boxSizing: 'border-box',
+        cursor: 'pointer',
+      }),
+      no: style({
+        marginTop: 20,
+        fontSize: 18,
+        color: 'white',
+        background: '#4C6276',
+        borderRadius: 50,
+        border: 'none',
+        width: '100%',
+        textAlign: 'center',
+        height: 40,
+        lineHeight: '40px',
+        boxSizing: 'border-box',
+        cursor: 'pointer',
+      }),
+    },
   };
 
   const onCloseModal = () => dispatch(ActionModal.updateModalOpened(''));
@@ -72,10 +74,10 @@ export const ModalDoneTask: React.FC<Props> = (props) => {
         <FontAwesomeIcon icon="times" />
       </button>
       <div>タイトル</div>
-      <button type="button" className={css.buttonOK} onClick={onCloseModal}>
+      <button type="button" className={css.button.ok} onClick={onCloseModal}>
         完了
       </button>
-      <button type="button" className={css.buttonNO} onClick={onCloseModal}>
+      <button type="button" className={css.button.no} onClick={onCloseModal}>
         キャンセル
       </button>
     </Modal>

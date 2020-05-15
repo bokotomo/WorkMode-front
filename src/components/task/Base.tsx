@@ -45,7 +45,7 @@ export class TopPage extends React.Component<Props> {
   // 各コンポーネントからreduxを呼び出すこともできるが、
   // 引数で渡した方が依存関係が明確になるのと、コンポーネントネスト量が少ないのでやってない。
   // クリーンアーキテクチャのusecaseっぽい感じで、依存関係をまとめられたらうれしいんやけど。
-  // 試しにModal処理だけReduxHooksを付けた。
+  // Modalの処理だけReduxHooksを付けた。
   render() {
     return (
       <div

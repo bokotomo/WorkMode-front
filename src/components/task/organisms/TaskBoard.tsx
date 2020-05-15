@@ -58,25 +58,27 @@ export const TaskBoard: React.FC<Props> = (props) => {
         alignItems: 'center',
       }),
     },
-    buttonTaskAdd: style({
-      ...hover.button,
-      flex: '0 1 80px',
-      background: 'linear-gradient(125deg, #66B7FF, #0052de)',
-      fontSize: 30,
-      fontWeight: 700,
-      lineHeight: '80px',
-      cursor: 'pointer',
-      width: '100%',
-    }),
-    buttonTaskAddPlus: style({
-      display: 'block',
-      fontSize: 24,
-      color: color.white,
-      width: '100%',
-      height: '100%',
-      margin: 'auto',
-      textAlign: 'center',
-    }),
+    button: {
+      addTask: style({
+        ...hover.button,
+        flex: '0 1 80px',
+        background: 'linear-gradient(125deg, #66B7FF, #0052de)',
+        fontSize: 30,
+        fontWeight: 700,
+        lineHeight: '80px',
+        cursor: 'pointer',
+        width: '100%',
+      }),
+      addTaskPlus: style({
+        display: 'block',
+        fontSize: 24,
+        color: color.white,
+        width: '100%',
+        height: '100%',
+        margin: 'auto',
+        textAlign: 'center',
+      }),
+    },
   };
 
   const taskNotExist = () => {
@@ -137,11 +139,11 @@ export const TaskBoard: React.FC<Props> = (props) => {
             />
           )}
         </div>
-        <div className={css.buttonTaskAdd}>
+        <div className={css.button.addTask}>
           <button
             type="button"
             onClick={onOpenModal}
-            className={css.buttonTaskAddPlus}
+            className={css.button.addTaskPlus}
           >
             <FontAwesomeIcon icon="plus" />
           </button>

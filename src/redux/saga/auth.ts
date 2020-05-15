@@ -8,9 +8,8 @@ export function* watchAuth() {
 
 function* authentication(action: { type: string; payload: string }) {
   const token = action.payload;
-  const role = 'authentication';
   const data = {
-    role,
+    role: 'authentication',
     token,
   };
   if (token === '') {

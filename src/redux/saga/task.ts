@@ -17,9 +17,8 @@ function* create(action: { type: string; payload: TaskCard }) {
     yield put(ActionModal.updateModalOpened('register'));
     return;
   }
-  const role = 'task_create';
   const data = {
-    role,
+    role: 'task_create',
     token,
     task,
   };
@@ -34,9 +33,8 @@ function* deleteTask(action: { type: string; payload: string }) {
     yield put(ActionModal.updateModalOpened('register'));
     return;
   }
-  const role = 'task_delete';
   const data = {
-    role,
+    role: 'task_delete',
     token,
     taskId,
   };
@@ -52,9 +50,8 @@ function* update(action: { type: string; payload: TaskCard }) {
     yield put(ActionModal.updateModalOpened('register'));
     return;
   }
-  const role = 'task_update';
   const data = {
-    role,
+    role: 'task_update',
     token,
     task,
   };
@@ -70,9 +67,8 @@ function* updateStatus(action: { type: string; payload: TaskCard }) {
     yield put(ActionModal.updateModalOpened('register'));
     return;
   }
-  const role = 'task_update_status';
   const data = {
-    role,
+    role: 'task_update_status',
     token,
     taskId: task.id,
     status: task.status,

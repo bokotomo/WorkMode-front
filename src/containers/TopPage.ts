@@ -9,18 +9,18 @@ import service from '@/redux/service';
 import { TaskCard } from '@/types/taskBoard';
 import { User } from '@/types/user';
 
-const mapStateToProps = (appState: AppState) => {
+const mapStateToProps = (state: AppState) => {
   return {
-    todos: appState.task.todos,
-    inProgresses: appState.task.inProgresses,
-    dones: appState.task.dones,
-    myId: appState.auth.id,
-    myName: appState.auth.name,
-    isLogined: appState.auth.isLogined,
-    messages: appState.message.messages,
-    activeUsers: appState.user.activeUsers,
-    rooms: appState.room.rooms,
-    selectedTask: appState.task.selectedTask,
+    todos: state.task.todos,
+    inProgresses: state.task.inProgresses,
+    dones: state.task.dones,
+    myId: state.auth.id,
+    myName: state.auth.name,
+    isLogined: state.auth.isLogined,
+    messages: state.message.messages,
+    activeUsers: state.user.activeUsers,
+    rooms: state.room.rooms,
+    selectedTask: state.task.selectedTask,
   };
 };
 

@@ -48,22 +48,6 @@ export const MessageBoard: React.FC<Props> = (props) => {
       fontSize: 14,
     }),
   };
-  // const styleRoomCreateWrapper = {
-  //     display: 'flex',
-  //     alignItems: 'center',
-  //     justifyContent: 'center',
-  // }
-  // const styleRoomCreate = {
-  //     display: 'flex',
-  //     background: 'linear-gradient(125deg, #66B7FF, #0052de)',
-  //     width: '30px',
-  //     height: '30px',
-  //     marginLeft: '10px',
-  //     borderRadius: '100px',
-  //     alignItems: 'center',
-  //     justifyContent: 'center',
-  //     cursor: 'pointer',
-  // };
 
   return (
     <div className={css.messageBoard}>
@@ -80,24 +64,8 @@ export const MessageBoard: React.FC<Props> = (props) => {
             </select>
           </div>
         </div>
-
-        {/* 一時的に消す
-                <div style={styleRoomCreateWrapper}>
-                    <div style={styleRoomCreate}>
-                        <FontAwesomeIcon icon='plus' />
-                    </div>
-                </div>
-
-                <div style={{
-                    cursor: 'pointer',
-                    fontSize: 26,
-                    color: '#f9c929',
-                    marginLeft: 10,
-                }}>
-                    <FontAwesomeIcon icon='moon' />
-                </div>
-                */}
       </div>
+
       <MessageLineBar />
       <MessageUserList activeUsers={props.activeUsers} />
       <MessageTaskProgress myId={props.myId} messages={props.messages} />

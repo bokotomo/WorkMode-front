@@ -16,14 +16,13 @@ function* create(action: { type: string; payload: MessageEvent }) {
     token: string;
   }
   const data: ResponseUserCreated = JSON.parse(action.payload.data);
-  const isLogined = true;
   new Cookies().set('token', data.token, { path: '/' });
   yield put(
     ActionAuth.setAuth({
       id: data.id,
       name: data.name,
       token: data.token,
-      isLogined,
+      isLogined: true,
     })
   );
 }
