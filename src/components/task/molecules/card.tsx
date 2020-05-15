@@ -1,4 +1,6 @@
 import React from 'react';
+import { useDispatch } from 'react-redux';
+import { ActionModal } from '@/redux/action/modal';
 import { style, hover } from '@/css/style';
 import {
   Draggable,
@@ -9,11 +11,11 @@ import { TaskCard } from '@/types/taskBoard';
 
 interface Props {
   readonly task: TaskCard;
-  readonly handleOnModalOpend: Function;
   readonly handleOnSetSelectedTask: Function;
   readonly index: number;
 }
 export const Card: React.FC<Props> = (props) => {
+  const dispatch = useDispatch();
   const css = {
     card: {
       background: '#294063',
@@ -50,7 +52,7 @@ export const Card: React.FC<Props> = (props) => {
 
   const openDetail = () => {
     props.handleOnSetSelectedTask(props.task);
-    props.handleOnModalOpend('detail');
+    dispatch(ActionModal.updateModalOpened('detail'));
   };
 
   return (

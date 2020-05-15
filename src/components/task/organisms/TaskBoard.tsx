@@ -1,4 +1,6 @@
 import React from 'react';
+import { useDispatch } from 'react-redux';
+import { ActionModal } from '@/redux/action/modal';
 import { style, color, hover } from '@/css/style';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { TaskCard } from '@/types/taskBoard';
@@ -6,7 +8,6 @@ import { TaskArea } from '@/components/task/molecules/taskArea';
 import { IconCafe } from '@/components/svg/IconCafe';
 
 interface Props {
-  readonly handleOnModalOpend: Function;
   readonly handleOnSetSelectedTask: Function;
   readonly handleOnSetTaskTodo: Function;
   readonly handleOnSetTaskInProgresses: Function;
@@ -17,6 +18,7 @@ interface Props {
   readonly dones: TaskCard[];
 }
 export const TaskBoard: React.FC<Props> = (props) => {
+  const dispatch = useDispatch();
   const css = {
     taskBoard: style({
       background: '#102133',
@@ -85,9 +87,7 @@ export const TaskBoard: React.FC<Props> = (props) => {
     );
   };
 
-  const openModal = () => {
-    props.handleOnModalOpend('add');
-  };
+  const openModal = () => dispatch(ActionModal.updateModalOpened('add'));
 
   return (
     <div className={css.taskBoard}>
@@ -129,7 +129,6 @@ export const TaskBoard: React.FC<Props> = (props) => {
               handleOnSetTaskTodo={props.handleOnSetTaskTodo}
               handleOnSetTaskInProgresses={props.handleOnSetTaskInProgresses}
               handleOnSetTaskDone={props.handleOnSetTaskDone}
-              handleOnModalOpend={props.handleOnModalOpend}
               handleOnSetSelectedTask={props.handleOnSetSelectedTask}
               updateTaskStatus={props.updateTaskStatus}
               todos={props.todos}

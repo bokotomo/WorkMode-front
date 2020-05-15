@@ -12,7 +12,6 @@ import { ModalRegisterUser } from '@/components/task/modal/ModalRegisterUser';
 import { ModalSendReaction } from '@/components/task/modal/ModalSendReaction';
 
 interface OwnProps {
-  readonly openedModalName: string;
   readonly todos: TaskCard[];
   readonly inProgresses: TaskCard[];
   readonly dones: TaskCard[];
@@ -26,7 +25,6 @@ interface OwnProps {
 }
 interface Handler {
   setWebSocket(): void;
-  handleOnModalOpend(openedModalName: string): void;
   handleOnSetTaskTodo(tasks: TaskCard[]): void;
   handleOnSetTaskInProgresses(tasks: TaskCard[]): void;
   handleOnSetTaskDone(tasks: TaskCard[]): void;
@@ -48,7 +46,10 @@ export class TopPage extends React.Component<Props> {
     this.props.handleOnSetRoom();
   }
 
-  // 各コンポーネントからreduxを呼び出すこともできるが、引数として渡した方がより厳密なのと、このページ量だと必要ないためやってない。
+  // 各コンポーネントからreduxを呼び出すこともできるが、
+  // 引数で渡した方が依存関係が明確になるのと、コンポーネントネスト量が少ないのでやってない。
+  // クリーンアーキテクチャのusecaseっぽい感じで、依存関係をまとめられたらうれしいんやけど。
+  // 試しにModal処理だけReduxHooksを付けた。
   render() {
     return (
       <div
@@ -59,34 +60,19 @@ export class TopPage extends React.Component<Props> {
         }}
       >
         <ModalRegisterUser
-          openedModalName={this.props.openedModalName}
-          handleOnModalOpend={this.props.handleOnModalOpend}
           registerGuestUser={this.props.registerGuestUser}
           registerUser={this.props.registerUser}
           signin={this.props.signin}
         />
-        <ModalAddTask
-          openedModalName={this.props.openedModalName}
-          handleOnModalOpend={this.props.handleOnModalOpend}
-          handleOnAddTaskTodo={this.props.handleOnAddTaskTodo}
-        />
-        <ModalDoneTask
-          openedModalName={this.props.openedModalName}
-          handleOnModalOpend={this.props.handleOnModalOpend}
-        />
+        <ModalAddTask handleOnAddTaskTodo={this.props.handleOnAddTaskTodo} />
+        <ModalDoneTask />
         <ModalTaskDetail
-          openedModalName={this.props.openedModalName}
-          handleOnModalOpend={this.props.handleOnModalOpend}
           updateTask={this.props.updateTask}
           deleteTask={this.props.deleteTask}
           selectedTask={this.props.selectedTask}
         />
-        <ModalSendReaction
-          openedModalName={this.props.openedModalName}
-          handleOnModalOpend={this.props.handleOnModalOpend}
-        />
+        <ModalSendReaction />
         <TaskBoard
-          handleOnModalOpend={this.props.handleOnModalOpend}
           handleOnSetSelectedTask={this.props.handleOnSetSelectedTask}
           handleOnSetTaskTodo={this.props.handleOnSetTaskTodo}
           handleOnSetTaskInProgresses={this.props.handleOnSetTaskInProgresses}
@@ -97,7 +83,6 @@ export class TopPage extends React.Component<Props> {
           dones={this.props.dones}
         />
         <MessageBoard
-          handleOnModalOpend={this.props.handleOnModalOpend}
           myId={this.props.myId}
           messages={this.props.messages}
           activeUsers={this.props.activeUsers}

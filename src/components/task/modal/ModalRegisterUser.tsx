@@ -1,15 +1,20 @@
 import React, { useState } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import { ActionModal } from '@/redux/action/modal';
+import { AppState } from '@/redux/reducer';
 import Modal from 'react-modal';
 import { style, hover, color } from '@/css/style';
 
 interface Props {
-  readonly handleOnModalOpend: Function;
   readonly registerGuestUser: Function;
   readonly registerUser: Function;
   readonly signin: Function;
-  readonly openedModalName: string;
 }
 export const ModalRegisterUser: React.FC<Props> = (props) => {
+  const dispatch = useDispatch();
+  const openedModalName = useSelector(
+    (state: AppState) => state.modal.openedModalName
+  );
   const css = {
     modal: {
       content: {
@@ -102,7 +107,7 @@ export const ModalRegisterUser: React.FC<Props> = (props) => {
   const [loginEmail, setLoginEmail] = useState<string>('');
   const [loginPassword, setLoginPassword] = useState<string>('');
 
-  const closeModal = () => props.handleOnModalOpend('');
+  const closeModal = () => dispatch(ActionModal.updateModalOpened(''));
 
   const createGuestUser = () => {
     if (guestName === '') {
@@ -160,7 +165,7 @@ export const ModalRegisterUser: React.FC<Props> = (props) => {
 
   return (
     <Modal
-      isOpen={props.openedModalName === 'register'}
+      isOpen={openedModalName === 'register'}
       style={css.modal}
       overlayClassName="modalOverLayWrapper"
       contentLabel="モーダル"

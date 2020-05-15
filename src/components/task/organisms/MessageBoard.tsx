@@ -9,7 +9,6 @@ import { MessageUserList } from '@/components/task/molecules/MessageUserList';
 import { MessageTaskProgress } from '@/components/task/molecules/MessageTaskProgress';
 
 interface Props {
-  readonly handleOnModalOpend: Function;
   readonly messages: Message[];
   readonly activeUsers: ActiveUser[];
   readonly rooms: Room[];
@@ -101,11 +100,7 @@ export const MessageBoard: React.FC<Props> = (props) => {
       </div>
       <MessageLineBar />
       <MessageUserList activeUsers={props.activeUsers} />
-      <MessageTaskProgress
-        myId={props.myId}
-        messages={props.messages}
-        handleOnModalOpend={props.handleOnModalOpend}
-      />
+      <MessageTaskProgress myId={props.myId} messages={props.messages} />
     </div>
   );
 };

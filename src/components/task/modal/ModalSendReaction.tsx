@@ -1,14 +1,18 @@
 import React from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import { ActionModal } from '@/redux/action/modal';
+import { AppState } from '@/redux/reducer';
 import { style, hover, color } from '@/css/style';
 import Modal from 'react-modal';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { IconTapioka } from '@/components/svg/IconTapioka';
 
-interface Props {
-  readonly handleOnModalOpend: Function;
-  readonly openedModalName: string;
-}
+interface Props {}
 export const ModalSendReaction: React.FC<Props> = (props) => {
+  const dispatch = useDispatch();
+  const openedModalName = useSelector(
+    (state: AppState) => state.modal.openedModalName
+  );
   const css = {
     modal: {
       content: {
@@ -154,15 +158,11 @@ export const ModalSendReaction: React.FC<Props> = (props) => {
     },
   ];
 
-  const closeModal = () => props.handleOnModalOpend('');
-  // const onClickReaction = (id: string) => {
-  //   // alert(id);
-  //   return;
-  // };
+  const closeModal = () => dispatch(ActionModal.updateModalOpened(''));
 
   return (
     <Modal
-      isOpen={props.openedModalName === 'sendReaction'}
+      isOpen={openedModalName === 'sendReaction'}
       onRequestClose={closeModal}
       style={css.modal}
       overlayClassName="modalOverLayWrapper"

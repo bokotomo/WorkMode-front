@@ -4,7 +4,6 @@ import { TopPage } from '@/components/task/Base';
 import { ActionTask } from '@/redux/action/task';
 import { ActionRoom } from '@/redux/action/room';
 import { ActionAuth } from '@/redux/action/auth';
-import { ActionModal } from '@/redux/action/modal';
 import { AppState } from '@/redux/reducer';
 import service from '@/redux/service';
 import { TaskCard } from '@/types/taskBoard';
@@ -18,7 +17,6 @@ const mapStateToProps = (appState: AppState) => {
     myId: appState.auth.id,
     myName: appState.auth.name,
     isLogined: appState.auth.isLogined,
-    openedModalName: appState.modal.openedModalName,
     messages: appState.message.messages,
     activeUsers: appState.user.activeUsers,
     rooms: appState.room.rooms,
@@ -28,9 +26,10 @@ const mapStateToProps = (appState: AppState) => {
 
 const mapDispatchToProps = (dispatch: Dispatch) => {
   return {
+    // websokect
     setWebSocket: () => service.setWebsocket(dispatch),
-    handleOnModalOpend: (openedModalName: string) =>
-      dispatch(ActionModal.updateModalOpened(openedModalName)),
+
+    // task
     handleOnSetTaskTodo: (tasks: TaskCard[]) =>
       dispatch(ActionTask.setTaskTodo(tasks)),
     handleOnSetTaskInProgresses: (tasks: TaskCard[]) =>
@@ -40,7 +39,7 @@ const mapDispatchToProps = (dispatch: Dispatch) => {
     handleOnSetSelectedTask: (task: TaskCard) =>
       dispatch(ActionTask.setSelectedTask(task)),
 
-    // task
+    // task request
     handleOnAddTaskTodo: (task: TaskCard) =>
       dispatch(ActionTask.requestCreate(task)),
     updateTaskStatus: (taskId: string, status: string) =>
@@ -53,7 +52,7 @@ const mapDispatchToProps = (dispatch: Dispatch) => {
     // room
     handleOnSetRoom: () => dispatch(ActionRoom.setRoom()),
 
-    // user
+    // user request
     registerGuestUser: (name: string) =>
       dispatch(ActionAuth.requestUserRegisterGuest(name)),
     registerUser: (name: string, email: string, password: string) =>

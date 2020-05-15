@@ -5,7 +5,6 @@ import { TaskCard } from '@/types/taskBoard';
 import { Card } from '@/components/task/molecules/card';
 
 interface Props {
-  readonly handleOnModalOpend: Function;
   readonly handleOnSetSelectedTask: Function;
   readonly items: TaskCard[];
   readonly droppableId: string;
@@ -33,7 +32,6 @@ export const Item: React.FC<Props> = (props) => {
               key={task.id}
               task={task}
               index={index}
-              handleOnModalOpend={props.handleOnModalOpend}
               handleOnSetSelectedTask={props.handleOnSetSelectedTask}
             />
           ))}

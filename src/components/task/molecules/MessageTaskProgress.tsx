@@ -1,5 +1,7 @@
 import React, { useEffect } from 'react';
 import moment from 'moment';
+import { useDispatch } from 'react-redux';
+import { ActionModal } from '@/redux/action/modal';
 import { style } from '@/css/style';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { Message } from '@/types/message';
@@ -7,11 +9,11 @@ import { MessageLineBar } from '@/components/atom/MessageLineBar';
 import { UserIconItemMessage } from '@/components/atom/UserIconItemMessage';
 
 interface Props {
-  readonly handleOnModalOpend: Function;
   readonly messages: Message[];
   readonly myId: string;
 }
 export const MessageTaskProgress: React.FC<Props> = (props) => {
+  const dispatch = useDispatch();
   const css = {
     message: {
       area: style({
@@ -48,9 +50,8 @@ export const MessageTaskProgress: React.FC<Props> = (props) => {
     if (obj != null) obj.scrollTop = obj.scrollHeight;
   };
 
-  const onClickReaction = () => {
-    props.handleOnModalOpend('sendReaction');
-  };
+  const onClickReaction = () =>
+    dispatch(ActionModal.updateModalOpened('sendReaction'));
 
   return (
     <div

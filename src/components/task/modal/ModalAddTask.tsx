@@ -1,14 +1,23 @@
 import React, { useState } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import { ActionModal } from '@/redux/action/modal';
+import { AppState } from '@/redux/reducer';
 import { style, hover, color } from '@/css/style';
+import { TaskCard } from '@/types/taskBoard';
 import Modal from 'react-modal';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 interface Props {
-  readonly handleOnModalOpend: Function;
-  readonly handleOnAddTaskTodo: Function;
-  readonly openedModalName: string;
+  handleOnAddTaskTodo(task: TaskCard): void;
 }
 export const ModalAddTask: React.FC<Props> = (props) => {
+  const dispatch = useDispatch();
+  const openedModalName = useSelector(
+    (state: AppState) => state.modal.openedModalName
+  );
+  // ↑ 「useSelector, useDispatch」は、「stateと関数」が各ポーネントに隠れるのが良くも悪くも特徴。
+  // reduxにアクセスするロジックは、コンポーネントから分離と親コンポーネントに依存させたい。
+
   const css = {
     modal: {
       content: {
@@ -94,7 +103,7 @@ export const ModalAddTask: React.FC<Props> = (props) => {
   const [detail, setDetail] = useState<string>('');
   const [time, setTime] = useState<number>(0);
 
-  const closeModal = () => props.handleOnModalOpend('');
+  const closeModal = () => dispatch(ActionModal.updateModalOpened(''));
 
   const addTask = () => {
     if (title === '' || detail === '' || time === 0) {
@@ -108,7 +117,7 @@ export const ModalAddTask: React.FC<Props> = (props) => {
       status: 'todo',
       time,
       createdAt: new Date(),
-    });
+    } as TaskCard);
     closeModal();
   };
 
@@ -123,7 +132,7 @@ export const ModalAddTask: React.FC<Props> = (props) => {
 
   return (
     <Modal
-      isOpen={props.openedModalName === 'add'}
+      isOpen={openedModalName === 'add'}
       onRequestClose={closeModal}
       style={css.modal}
       overlayClassName="modalOverLayWrapper"

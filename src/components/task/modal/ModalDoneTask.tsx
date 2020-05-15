@@ -1,13 +1,17 @@
 import React from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import { ActionModal } from '@/redux/action/modal';
+import { AppState } from '@/redux/reducer';
 import { style } from '@/css/style';
 import Modal from 'react-modal';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
-interface Props {
-  readonly handleOnModalOpend: Function;
-  readonly openedModalName: string;
-}
+interface Props {}
 export const ModalDoneTask: React.FC<Props> = (props) => {
+  const dispatch = useDispatch();
+  const openedModalName = useSelector(
+    (state: AppState) => state.modal.openedModalName
+  );
   const css = {
     modal: {
       content: {
@@ -54,11 +58,11 @@ export const ModalDoneTask: React.FC<Props> = (props) => {
     }),
   };
 
-  const closeModal = () => props.handleOnModalOpend('');
+  const closeModal = () => dispatch(ActionModal.updateModalOpened(''));
 
   return (
     <Modal
-      isOpen={props.openedModalName === 'done'}
+      isOpen={openedModalName === 'done'}
       onRequestClose={closeModal}
       style={css.modal}
       overlayClassName="modalOverLayWrapper"

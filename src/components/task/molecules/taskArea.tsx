@@ -11,7 +11,6 @@ interface Props {
   readonly handleOnSetTaskTodo: Function;
   readonly handleOnSetTaskInProgresses: Function;
   readonly handleOnSetTaskDone: Function;
-  readonly handleOnModalOpend: Function;
   readonly handleOnSetSelectedTask: Function;
   readonly updateTaskStatus: Function;
   readonly todos: TaskCard[];
@@ -132,21 +131,18 @@ export const TaskArea: React.FC<Props> = (props) => {
     <DragDropContext onDragEnd={onDragEnd}>
       <div style={{ display: 'flex', height: '100%' }}>
         <Item
-          handleOnModalOpend={props.handleOnModalOpend}
           handleOnSetSelectedTask={props.handleOnSetSelectedTask}
           items={props.todos}
           droppableId="todoArea"
           isCenter={false}
         />
         <Item
-          handleOnModalOpend={props.handleOnModalOpend}
           handleOnSetSelectedTask={props.handleOnSetSelectedTask}
           items={props.inProgresses}
           droppableId="inProgressArea"
           isCenter={true}
         />
         <Item
-          handleOnModalOpend={props.handleOnModalOpend}
           handleOnSetSelectedTask={props.handleOnSetSelectedTask}
           items={props.dones}
           droppableId="doneArea"

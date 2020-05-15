@@ -1,4 +1,7 @@
 import React, { useState } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import { ActionModal } from '@/redux/action/modal';
+import { AppState } from '@/redux/reducer';
 import { style, hover, color } from '@/css/style';
 import Modal from 'react-modal';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -6,13 +9,15 @@ import { TaskCard } from '@/types/taskBoard';
 import moment from 'moment';
 
 interface Props {
-  readonly handleOnModalOpend: Function;
   readonly deleteTask: Function;
   readonly updateTask: Function;
-  readonly openedModalName: string;
   readonly selectedTask: TaskCard;
 }
 export const ModalTaskDetail: React.FC<Props> = (props) => {
+  const dispatch = useDispatch();
+  const openedModalName = useSelector(
+    (state: AppState) => state.modal.openedModalName
+  );
   const css = {
     modal: {
       content: {
@@ -129,7 +134,7 @@ export const ModalTaskDetail: React.FC<Props> = (props) => {
 
   const closeModal = () => {
     setIsEditMode(false);
-    props.handleOnModalOpend('');
+    dispatch(ActionModal.updateModalOpened(''));
   };
 
   const handleChangeDetail = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
@@ -179,7 +184,7 @@ export const ModalTaskDetail: React.FC<Props> = (props) => {
 
   return (
     <Modal
-      isOpen={props.openedModalName === 'detail'}
+      isOpen={openedModalName === 'detail'}
       onRequestClose={closeModal}
       style={css.modal}
       overlayClassName="modalOverLayWrapper"
