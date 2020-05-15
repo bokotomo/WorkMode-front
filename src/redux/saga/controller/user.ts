@@ -1,22 +1,24 @@
-import { Dispatch } from 'redux';
+import { put, takeEvery } from 'redux-saga/effects';
+import { ActionController } from '@/redux/action/controller';
 import { Cookies } from 'react-cookie';
 import { ActionAuth } from '@/redux/action/auth';
 import { ActionUser } from '@/redux/action/user';
 
-export const userCreated = (
-  message: MessageEvent,
-  socket: WebSocket,
-  dispatch: Dispatch
-) => {
+export function* watchControllerUser() {
+  yield takeEvery(ActionController.userCreate, create);
+  yield takeEvery(ActionController.activeUserSearch, activeUserSearch);
+}
+
+function* create(action: { type: string; payload: MessageEvent }) {
   interface ResponseUserCreated {
     id: string;
     name: string;
     token: string;
   }
-  const data: ResponseUserCreated = JSON.parse(message.data);
+  const data: ResponseUserCreated = JSON.parse(action.payload.data);
   const isLogined = true;
   new Cookies().set('token', data.token, { path: '/' });
-  dispatch(
+  yield put(
     ActionAuth.setAuth({
       id: data.id,
       name: data.name,
@@ -24,13 +26,9 @@ export const userCreated = (
       isLogined,
     })
   );
-};
+}
 
-export const activeUserSearch = (
-  message: MessageEvent,
-  socket: WebSocket,
-  dispatch: Dispatch
-) => {
+function* activeUserSearch(action: { type: string; payload: MessageEvent }) {
   interface ResponseUser {
     id: string;
     name: string;
@@ -39,7 +37,7 @@ export const activeUserSearch = (
   interface ResponseUsers {
     users: ResponseUser[];
   }
-  const data: ResponseUsers = JSON.parse(message.data);
+  const data: ResponseUsers = JSON.parse(action.payload.data);
   const activeUsers = data.users.map(({ id, name, color }: ResponseUser) => {
     return {
       id,
@@ -48,5 +46,5 @@ export const activeUserSearch = (
     };
   });
 
-  dispatch(ActionUser.setActiveUser(activeUsers));
-};
+  yield put(ActionUser.setActiveUser(activeUsers));
+}

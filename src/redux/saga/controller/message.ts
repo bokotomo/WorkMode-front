@@ -1,13 +1,16 @@
-import { Dispatch } from 'redux';
+import { put, takeEvery } from 'redux-saga/effects';
+import { ActionController } from '@/redux/action/controller';
 import { Message } from '@/types/message';
 import { ActionMessage } from '@/redux/action/message';
 import moment from 'moment';
 
-export const messageProgressIndex = (
-  message: MessageEvent,
-  socket: WebSocket,
-  dispatch: Dispatch
-) => {
+export function* watchControllerMessage() {
+  yield takeEvery(ActionController.messageIndex, index);
+  yield takeEvery(ActionController.messageFind, find);
+  yield takeEvery(ActionController.messageDelete, deleteMessage);
+}
+
+function* index(action: { type: string; payload: MessageEvent }) {
   interface ReponseMessage {
     readonly id: string;
     readonly userId: string;
@@ -20,7 +23,7 @@ export const messageProgressIndex = (
   interface ResponseMessageProgress {
     messages: ReponseMessage[];
   }
-  const data: ResponseMessageProgress = JSON.parse(message.data);
+  const data: ResponseMessageProgress = JSON.parse(action.payload.data);
   const domainMessages = data.messages.map((resMessage: ReponseMessage) => {
     return {
       id: resMessage.id,
@@ -34,14 +37,10 @@ export const messageProgressIndex = (
     } as Message;
   });
 
-  dispatch(ActionMessage.setMessage(domainMessages));
-};
+  yield put(ActionMessage.setMessage(domainMessages));
+}
 
-export const messageProgressFind = (
-  message: MessageEvent,
-  socket: WebSocket,
-  dispatch: Dispatch
-) => {
+function* find(action: { type: string; payload: MessageEvent }) {
   interface ReponseMessage {
     readonly id: string;
     readonly userName: string;
@@ -53,7 +52,7 @@ export const messageProgressFind = (
   interface ResponseMessageProgress {
     message: ReponseMessage;
   }
-  const data: ResponseMessageProgress = JSON.parse(message.data);
+  const data: ResponseMessageProgress = JSON.parse(action.payload.data);
   const resMessage = data.message as ReponseMessage;
   const domainMessage = {
     id: resMessage.id,
@@ -65,23 +64,19 @@ export const messageProgressFind = (
     createdAt: moment(resMessage.createdAt, 'YYYY/MM/DD HH:mm:ss').toDate(),
   } as Message;
 
-  dispatch(ActionMessage.addMessage(domainMessage));
-};
+  yield put(ActionMessage.addMessage(domainMessage));
+}
 
-export const messageProgressDelete = (
-  message: MessageEvent,
-  socket: WebSocket,
-  dispatch: Dispatch
-) => {
+function* deleteMessage(action: { type: string; payload: MessageEvent }) {
   interface ReponseMessage {
     readonly id: string;
   }
   interface ResponseMessageProgress {
     messages: ReponseMessage[];
   }
-  const data: ResponseMessageProgress = JSON.parse(message.data);
+  const data: ResponseMessageProgress = JSON.parse(action.payload.data);
   const resMessages = data.messages as ReponseMessage[];
   const domainMessageIds = resMessages.map(({ id }) => id);
 
-  dispatch(ActionMessage.deleteMessages(domainMessageIds));
-};
+  yield put(ActionMessage.deleteMessages(domainMessageIds));
+}
